@@ -1,0 +1,174 @@
+{
+  "conference_id": "sigkdd-5c6996",
+  "year": 2024,
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://kdd.org/kdd2024/awards/",
+      "role": "award",
+      "text": "Best Student Paper Award – Research\nDataset Regeneration for Sequential Recommendation\nMingjia Yin, Hao Wang, Wei Guo, Yong Liu, Suojuan Zhang, Sirui Zhao, Defu Lian",
+      "retrieved_at": "2026-09-09",
+      "acquisition": "manual_short_excerpt",
+      "note": "供离线演示的短摘录；不是程序实时抓取的完整网页。"
+    },
+    {
+      "id": "s2",
+      "url": "https://kdd.org/kdd2024/research-track-papers/",
+      "role": "metadata",
+      "text": "Enhong Chen\nUniversity of Science and Technology of China & State Key Laboratory of Cognitive Intelligence\nHuawei Singapore Research Center",
+      "retrieved_at": "2026-09-09",
+      "acquisition": "manual_short_excerpt",
+      "note": "从官方日程提取的若干短片段，不是连续原文；作者与单位对应关系需打开原始页面核验。"
+    }
+  ],
+  "records": [
+    {
+      "title": "Dataset Regeneration for Sequential Recommendation",
+      "award_name": "Best Student Paper Award – Research",
+      "track": "Research",
+      "award_evidence": {
+        "source_id": "s1",
+        "quote": "Best Student Paper Award – Research\nDataset Regeneration for Sequential Recommendation"
+      },
+      "title_evidence": {
+        "source_id": "s1",
+        "quote": "Dataset Regeneration for Sequential Recommendation"
+      },
+      "authors": [
+        {
+          "name": "Mingjia Yin",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Mingjia Yin"
+          },
+          "affiliations": [
+            {
+              "name": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Hao Wang",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Hao Wang"
+          },
+          "affiliations": [
+            {
+              "name": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Wei Guo",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Wei Guo"
+          },
+          "affiliations": [
+            {
+              "name": "Huawei Singapore Research Center",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "Huawei Singapore Research Center"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Yong Liu",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Yong Liu"
+          },
+          "affiliations": [
+            {
+              "name": "Huawei Singapore Research Center",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "Huawei Singapore Research Center"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Suojuan Zhang",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Suojuan Zhang"
+          },
+          "affiliations": [
+            {
+              "name": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Sirui Zhao",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Sirui Zhao"
+          },
+          "affiliations": [
+            {
+              "name": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Defu Lian",
+          "evidence": {
+            "source_id": "s1",
+            "quote": "Defu Lian"
+          },
+          "affiliations": [
+            {
+              "name": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Enhong Chen",
+          "evidence": {
+            "source_id": "s2",
+            "quote": "Enhong Chen"
+          },
+          "affiliations": [
+            {
+              "name": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence",
+              "evidence": {
+                "source_id": "s2",
+                "quote": "University of Science and Technology of China & State Key Laboratory of Cognitive Intelligence"
+              }
+            }
+          ]
+        }
+      ],
+      "publication_date": null,
+      "publication_date_evidence": null,
+      "paper_url": null,
+      "doi": null
+    }
+  ],
+  "note": "真实学生论文奖样例；尚未补齐正式发表日期，保留 null，不能使用会议日程日期替代。"
+}
