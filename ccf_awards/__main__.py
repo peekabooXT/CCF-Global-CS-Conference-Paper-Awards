@@ -68,17 +68,18 @@ def export_csv(path, records):
             writer.writerow({k: safe(v) for k, v in row.items()})
 
 
-def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None, local_sources=None):
+def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None, local_sources=None, llm=None, notify=None):
     from .llm import LLM
     from .network import crawl
-    llm = LLM()  # Fail clearly before crawling if the user has not configured an API.
+    llm = llm if llm is not None else LLM()
+    notify = notify or (lambda msg: print(msg, file=sys.stderr))
     if not local_sources and not urls:
         raise ValueError("没有入口 URL，请用 source-add 或 collect --url 配置")
     run = db.start_run(conference["id"], year)
     try:
         sources, warnings = (local_sources, []) if local_sources else crawl(
-            urls, extra_urls, max_pages, notify=lambda msg: print(msg, file=sys.stderr))
-        print(f"已读取 {len(sources)} 个来源，正在提取…", file=sys.stderr)
+            urls, extra_urls, max_pages, notify=notify)
+        notify(f"已读取 {len(sources)} 个来源，正在提取…")
         bundle = llm.extract(conference, year, sources)
         target = output or str(Path(db.conn.execute("PRAGMA database_list").fetchone()[2]).parent / "runs" / f"{run:06d}.json")
         save_json(target, bundle)  # Preserve evidence even when individual records fail validation.

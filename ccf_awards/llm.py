@@ -21,16 +21,17 @@ SCHEMA_EXAMPLE = {
 
 
 class LLM:
-    def __init__(self):
-        self.key = os.getenv("LLM_API_KEY", "")
-        self.base = os.getenv("LLM_BASE_URL", "https://api.openai.com/v1").rstrip("/")
-        self.model = os.getenv("LLM_MODEL", "")
+    def __init__(self, api_key=None, base_url=None, model=None, json_mode=None):
+        # Explicit arguments isolate each web session; never mutate os.environ.
+        self.key = api_key if api_key is not None else os.getenv("LLM_API_KEY", "")
+        self.base = (base_url if base_url is not None else os.getenv("LLM_BASE_URL", "https://api.openai.com/v1")).rstrip("/")
+        self.model = model if model is not None else os.getenv("LLM_MODEL", "")
         if not self.key or not self.model:
             raise ValueError("请在本机设置 LLM_API_KEY 和 LLM_MODEL；离线演示无需 API")
         url_syntax(self.base)
         if urlsplit(self.base).scheme != "https":
             raise ValueError("LLM_BASE_URL 必须使用 HTTPS")
-        self.json_mode = os.getenv("LLM_JSON_MODE", "1") == "1"
+        self.json_mode = json_mode if json_mode is not None else os.getenv("LLM_JSON_MODE", "1") == "1"
 
     def json(self, system, payload):
         body = {"model": self.model, "messages": [
