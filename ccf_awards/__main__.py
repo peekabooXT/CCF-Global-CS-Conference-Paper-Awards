@@ -134,6 +134,8 @@ def parser():
     b.add_argument("--max-pages", type=int, default=4)
     imp = sub.add_parser("import-json", help="无需 API，导入人工整理或离线提取 JSON")
     imp.add_argument("file")
+    excel = sub.add_parser("import-excel", help="把核验整理版 Excel 幂等导入 SQLite")
+    excel.add_argument("file")
     demo = sub.add_parser("demo", help="离线导入两条真实获奖样例；默认仍为待核验")
     s = sub.add_parser("search", help="多个条件按 AND 组合检索")
     s.add_argument("--conference")
@@ -194,6 +196,10 @@ def run(args, db):
         result = db.ingest(json.loads(Path(args.file).read_text(encoding="utf-8")))
         dump(result)
         return 2 if result["rejected"] else 0
+    elif cmd == "import-excel":
+        from .excel_import import import_excel
+        db.init()
+        dump(import_excel(db, args.file))
     elif cmd in ("source-add", "sources", "suggest", "collect", "extract-file"):
         conf = db.resolve(args.conference)
         if cmd == "source-add":

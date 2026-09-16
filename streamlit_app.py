@@ -14,6 +14,7 @@ import streamlit as st
 
 from ccf_awards.__main__ import collect_one
 from ccf_awards.db import Database
+from ccf_awards.excel_import import import_excel
 from ccf_awards.llm import LLM
 from ccf_awards.model import require_text, url_syntax
 from ccf_awards.network import read_local_source
@@ -349,10 +350,16 @@ def coverage_page(db, conferences):
 
 
 def main():
-    db = Database(database_path())
+    db_path = database_path()
+    db = Database(db_path)
     try:
         if not db.conferences():
             db.init()
+        default_db = (Path(__file__).resolve().parent / "data" / "awards.sqlite3").resolve()
+        if db_path.resolve() == default_db and not db.conn.execute("SELECT 1 FROM records LIMIT 1").fetchone():
+            workbooks = sorted((default_db.parent / "exports").glob("CCF190_*_论文奖核验整理版.xlsx"))
+            if workbooks:
+                import_excel(db, workbooks[-1])
         conferences = {r["id"]: r for r in db.conferences()}
         section = render_sidebar(db)
         if "notice" in st.session_state:
