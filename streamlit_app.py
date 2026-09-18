@@ -227,6 +227,9 @@ def show_import_result(result, db=None):
     st.write(f'新增 {result["inserted"]} 条 · 更新 {result["updated"]} 条 · 重复 {result["unchanged"]} 条')
     if result.get("elapsed_seconds") is not None:
         st.caption(f'本次操作耗时：{result["elapsed_seconds"]:.1f} 秒')
+    search_tokens, extraction_tokens, total_tokens = _token_totals(result)
+    if total_tokens is not None:
+        st.caption(f"API tokens：搜索 {search_tokens or 0:,} · 结构化提取 {extraction_tokens or 0:,} · 合计 {total_tokens:,}")
     if result.get("status") == "no_results":
         st.info("本次未提取到符合条件的记录，不代表该年度未设奖。")
     if result["rejected"]:
@@ -244,6 +247,16 @@ def show_import_result(result, db=None):
         st.code("\n".join(result["log_lines"]), language="text")
 
 
+def _token_totals(details):
+    usage = details.get("token_usage") or {}
+    search = (usage.get("search") or {}).get("total_tokens")
+    extraction = (usage.get("extraction") or {}).get("total_tokens")
+    known = [value for value in (search, extraction) if isinstance(value, int)]
+    total = details.get("total_tokens")
+    if not isinstance(total, int):
+        total = sum(known) if known else None
+    return search, extraction, total
+
 def _display_time(value):
     if not value:
         return "—"
@@ -254,6 +267,7 @@ def show_run_history(db):
     rows = []
     for run in db.runs(50):
         details = run["details"]
+        search_tokens, extraction_tokens, total_tokens = _token_totals(details)
         rows.append({
             "任务": run["id"], "会议": run["acronym"], "年份": run["year"],
             "开始时间": _display_time(run["started_at"]),
@@ -261,6 +275,9 @@ def show_run_history(db):
             "耗时（秒）": round(run["duration_seconds"], 1) if run["duration_seconds"] is not None else "运行中",
             "状态": run["status"], "新增": details.get("inserted", 0),
             "更新": details.get("updated", 0), "重复": details.get("unchanged", 0),
+            "搜索 tokens": search_tokens if search_tokens is not None else "—",
+            "提取 tokens": extraction_tokens if extraction_tokens is not None else "—",
+            "总 tokens": total_tokens if total_tokens is not None else "—",
             "说明": details.get("error", ""),
         })
     if rows:
@@ -268,21 +285,32 @@ def show_run_history(db):
     else:
         st.caption("尚无采集运行日志。")
 
-
 def show_batch_result(db, batch):
     st.markdown("### 本次批量查找结果")
+    token_rows = [_token_totals(task) for task in batch["tasks"]]
+    search_total = sum(row[0] for row in token_rows if isinstance(row[0], int))
+    extraction_total = sum(row[1] for row in token_rows if isinstance(row[1], int))
     a, b, c, d = st.columns(4)
     a.metric("任务数", len(batch["tasks"]))
     b.metric("成功", sum(task["status"] != "failed" for task in batch["tasks"]))
     c.metric("失败", sum(task["status"] == "failed" for task in batch["tasks"]))
     d.metric("总耗时", f'{batch["elapsed_seconds"]:.1f} 秒')
     st.caption(f'开始：{batch["started_at"]} · 结束：{batch["finished_at"]}')
-    task_rows = [{
-        "会议": task["conference"], "年份": task["year"], "状态": task["status"],
-        "耗时（秒）": task["elapsed_seconds"], "新增": task.get("inserted", 0),
-        "更新": task.get("updated", 0), "重复": task.get("unchanged", 0),
-        "找到论文": len(task.get("record_ids", [])), "说明": task.get("error", ""),
-    } for task in batch["tasks"]]
+    if any(value is not None for row in token_rows for value in row):
+        st.caption(f"API tokens：搜索 {search_total:,} · 结构化提取 {extraction_total:,} · 合计 {search_total + extraction_total:,}")
+    task_rows = []
+    for task in batch["tasks"]:
+        search_tokens, extraction_tokens, total_tokens = _token_totals(task)
+        task_rows.append({
+            "会议": task["conference"], "年份": task["year"], "状态": task["status"],
+            "耗时（秒）": task["elapsed_seconds"], "新增": task.get("inserted", 0),
+            "更新": task.get("updated", 0), "重复": task.get("unchanged", 0),
+            "找到论文": len(task.get("record_ids", [])),
+            "搜索 tokens": search_tokens if search_tokens is not None else "—",
+            "提取 tokens": extraction_tokens if extraction_tokens is not None else "—",
+            "总 tokens": total_tokens if total_tokens is not None else "—",
+            "说明": task.get("error", ""),
+        })
     st.dataframe(task_rows, hide_index=True, width="stretch")
     records = _records_by_ids(db, batch.get("record_ids", []))
     st.markdown(f"#### 本次找到的论文（{len(records)} 条）")
@@ -293,7 +321,6 @@ def show_batch_result(db, batch):
         st.info("本次任务没有产生可展示的论文记录；请查看任务说明和日志。")
     with st.expander("本次查找日志", expanded=True):
         st.code("\n".join(batch["log_lines"]), language="text")
-
 
 def run_batch_collection(db, conferences, conference_ids, years, strategy, maximum):
     task_pairs = [(cid, year) for cid in conference_ids for year in years]
@@ -361,6 +388,14 @@ def run_batch_collection(db, conferences, conference_ids, years, strategy, maxim
 def collect_page(db, conferences):
     st.header("采集与导入")
     st.caption("一次选择多个会议和多个年份区间，集中查看论文结果、任务状态和耗时日志。新增记录默认待核验。")
+    seed_stats = db.seed_stats()
+    a, b, c = st.columns(3)
+    a.metric("已保存入口覆盖", f'{seed_stats["conferences_with_seed"]}/{seed_stats["total_conferences"]} 个会议')
+    b.metric("会议年度网址", seed_stats["seed_rows"])
+    c.metric("尚无入口", seed_stats["conferences_without_seed"])
+    years = " · ".join(f'{row["year"]}: {row["conferences"]} 个会议/{row["urls"]} 个网址'
+                       for row in seed_stats["by_year"])
+    st.caption("入口按会议和年份保存，并不等同于永久官网。" + (" 当前分年覆盖：" + years if years else ""))
     if st.session_state.get("last_collection_batch"):
         with st.container(border=True):
             show_batch_result(db, st.session_state["last_collection_batch"])

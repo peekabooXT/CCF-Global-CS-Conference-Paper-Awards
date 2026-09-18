@@ -7,6 +7,7 @@ from urllib.parse import urlsplit
 from .model import AWARDS, url_syntax
 from .network import NoRedirect
 from .providers import provider_profile
+from .usage import normalize_usage
 
 SCHEMA_EXAMPLE = {
     "records": [{
@@ -38,6 +39,7 @@ class LLM:
         if urlsplit(self.base).scheme != "https":
             raise ValueError("LLM_BASE_URL 必须使用 HTTPS")
         self.json_mode = json_mode if json_mode is not None else os.getenv("LLM_JSON_MODE", "1") == "1"
+        self.last_usage = None
 
     def json(self, system, payload):
         body = {"model": self.model, "messages": [
@@ -66,6 +68,7 @@ class LLM:
                 raise ValueError(f"LLM API HTTP {exc.code}；请检查权限、额度、模型和 JSON 模式配置") from None
             except (urllib.error.URLError, TimeoutError):
                 raise ValueError("LLM API 网络失败或超时；未保存提取结果") from None
+        self.last_usage = normalize_usage(response, self.provider, self.model)
         try:
             choice = response["choices"][0]
             if choice.get("finish_reason") not in ("stop", None):

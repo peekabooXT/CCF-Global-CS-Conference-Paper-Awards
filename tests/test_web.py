@@ -173,6 +173,31 @@ class WebTest(unittest.TestCase):
         self.assertEqual(set(rows["覆盖状态"]), {"部分记录", "尚未开始"})
 
 
+    def test_collection_page_shows_seed_coverage_and_token_history(self):
+        db = Database(self.path)
+        try:
+            cid = db.resolve("ACL")["id"]
+            db.add_seed(cid, 2024, "https://example.org/2024/awards")
+            run_id = db.start_run(cid, 2024)
+            db.finish_run(run_id, "extracted", {
+                "inserted": 1, "updated": 0, "unchanged": 0,
+                "token_usage": {
+                    "search": {"total_tokens": 100},
+                    "extraction": {"total_tokens": 150},
+                },
+                "total_tokens": 250,
+            })
+        finally:
+            db.close()
+        self.app.radio(key="section").set_value("采集与导入").run()
+        self.assertFalse(self.app.exception)
+        labels = {metric.label: str(metric.value) for metric in self.app.metric}
+        self.assertEqual(labels["已保存入口覆盖"], "1/190 个会议")
+        history = self.app.dataframe[0].value
+        self.assertIn("搜索 tokens", history.columns)
+        self.assertIn("提取 tokens", history.columns)
+        self.assertIn("总 tokens", history.columns)
+        self.assertEqual(int(history.iloc[0]["总 tokens"]), 250)
 class WebHelperTest(unittest.TestCase):
     def test_session_llm_configuration_does_not_change_environment(self):
         with patch.dict(os.environ, {"LLM_API_KEY":"environment-key", "LLM_MODEL":"environment-model"}):

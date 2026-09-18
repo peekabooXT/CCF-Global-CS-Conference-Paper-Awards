@@ -68,7 +68,9 @@ def export_csv(path, records):
             writer.writerow({k: safe(v) for k, v in row.items()})
 
 
-def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None, local_sources=None, llm=None, notify=None, strict_urls=True, run_id=None):
+def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None,
+                local_sources=None, llm=None, notify=None, strict_urls=True,
+                run_id=None, run_details=None):
     from .llm import LLM
     from .network import crawl
     llm = llm if llm is not None else LLM()
@@ -81,18 +83,33 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
             urls, extra_urls, max_pages, notify=notify, strict_seeds=strict_urls)
         notify(f"已读取 {len(sources)} 个来源，正在提取…")
         bundle = llm.extract(conference, year, sources)
+        extraction_usage = getattr(llm, "last_usage", None)
+        if extraction_usage:
+            bundle["api_usage"] = {"extraction": extraction_usage}
         target = output or str(Path(db.conn.execute("PRAGMA database_list").fetchone()[2]).parent / "runs" / f"{run:06d}.json")
         save_json(target, bundle)  # Preserve evidence even when individual records fail validation.
         summary = db.ingest(bundle)
         summary.update(run_id=run, raw_bundle=target, warnings=warnings)
+        if run_details:
+            summary.update(run_details)
+        token_usage = dict((run_details or {}).get("token_usage") or {})
+        if extraction_usage:
+            token_usage["extraction"] = extraction_usage
+        if token_usage:
+            summary["token_usage"] = token_usage
+            totals = [item.get("total_tokens") for item in token_usage.values() if isinstance(item, dict)]
+            summary["total_tokens"] = sum(value for value in totals if isinstance(value, int))
         run_status = "partial" if warnings or summary["rejected"] else "extracted" if bundle["records"] else "no_results"
         summary["status"] = run_status
         db.finish_run(run, run_status, summary)
         return summary
     except Exception as exc:
-        db.finish_run(run, "failed", {"error": str(exc)})
+        details = {"error": str(exc)}
+        if getattr(llm, "last_usage", None):
+            details["token_usage"] = {"extraction": llm.last_usage}
+            details["total_tokens"] = llm.last_usage.get("total_tokens")
+        db.finish_run(run, "failed", details)
         raise
-
 
 def auto_collect_one(db, conference, year, output_dir="data/records", max_pages=4,
                      candidate_limit=3, search=None, llm=None, notify=None):
@@ -105,15 +122,22 @@ def auto_collect_one(db, conference, year, output_dir="data/records", max_pages=
         if not urls:
             raise ValueError("网页搜索没有返回候选官方页面")
     except Exception as exc:
-        db.finish_run(run, "failed", {"stage": "discovery", "error": str(exc)})
+        details = {"stage": "discovery", "error": str(exc)}
+        if getattr(search, "last_usage", None):
+            details["token_usage"] = {"search": search.last_usage}
+            details["total_tokens"] = search.last_usage.get("total_tokens")
+        db.finish_run(run, "failed", details)
         raise
     output = Path(output_dir) / f'{conference["id"]}-{year}.json'
-    result = collect_one(db, conference, year, urls, max_pages=max_pages,
-                         output=str(output), llm=llm, notify=notify, strict_urls=False,
-                         run_id=run)
-    result["discovery"] = discovery
-    return result
-
+    search_usage = discovery.get("token_usage")
+    return collect_one(
+        db, conference, year, urls, max_pages=max_pages, output=str(output),
+        llm=llm, notify=notify, strict_urls=False, run_id=run,
+        run_details={
+            "discovery": discovery,
+            "token_usage": {"search": search_usage} if search_usage else {},
+        },
+    )
 
 def year_value(value):
     year = int(value)

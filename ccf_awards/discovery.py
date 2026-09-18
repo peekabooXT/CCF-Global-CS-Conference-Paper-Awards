@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from .model import url_syntax
 from .network import NoRedirect
+from .usage import normalize_usage
 
 
 class ResponsesWebSearch:
@@ -22,6 +23,7 @@ class ResponsesWebSearch:
         url_syntax(self.base)
         if urlsplit(self.base).scheme != "https":
             raise ValueError("SEARCH_BASE_URL 必须使用 HTTPS")
+        self.last_usage = None
 
     def _post(self, body):
         request = urllib.request.Request(
@@ -88,6 +90,7 @@ Search for both award types and return a short answer with the strongest officia
             "max_tool_calls": 3,
             "store": False,
         })
+        self.last_usage = normalize_usage(response, "responses_web_search", self.model)
         if response.get("status") not in (None, "completed"):
             raise ValueError("网页搜索响应未完整结束")
         return {
@@ -96,6 +99,7 @@ Search for both award types and return a short answer with the strongest officia
             "year": year,
             "model": self.model,
             "candidates": self._sources(response)[:limit],
+            "token_usage": self.last_usage,
         }
 
 

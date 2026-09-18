@@ -233,20 +233,51 @@ class CoreTest(unittest.TestCase):
             code = main(["--db", str(self.path), "search", "--year-from", "2025", "--year-to", "2024"])
             self.assertEqual(code, 2)
 
+    def test_collection_persists_token_usage(self):
+        bundle = self.bundle
+
+        class FakeLLM:
+            last_usage = {"input_tokens": 120, "output_tokens": 30, "total_tokens": 150,
+                          "provider": "test", "model": "test-model"}
+
+            def extract(self, conference, year, sources):
+                return bundle
+
+        result = collect_one(
+            self.db, self.db.resolve("ACL"), 2024, [],
+            local_sources=bundle["sources"], llm=FakeLLM(), notify=lambda message: None,
+        )
+        self.assertEqual(result["total_tokens"], 150)
+        details = json.loads(self.db.conn.execute("SELECT details FROM runs").fetchone()[0])
+        self.assertEqual(details["token_usage"]["extraction"]["total_tokens"], 150)
     def test_api_request_json_contract_and_credentials_not_saved(self):
         class Response(io.BytesIO):
             pass
-        response = Response(json.dumps({"choices":[{"finish_reason":"stop", "message":{"content":"{\"records\": []}"}}]}).encode())
+        response = Response(json.dumps({"choices":[{"finish_reason":"stop", "message":{"content":"{\"records\": []}"}}], "usage":{"prompt_tokens":120,"completion_tokens":30,"total_tokens":150}}).encode())
         with patch.dict(os.environ, {"LLM_API_KEY":"test-secret", "LLM_MODEL":"test-model", "LLM_BASE_URL":"https://api.example.org/v1"}), \
              patch("urllib.request.build_opener") as opener:
             opener.return_value.open.return_value = response
-            result = LLM().json("Output JSON", {"sources":[]})
+            client = LLM()
+            result = client.json("Output JSON", {"sources":[]})
             request = opener.return_value.open.call_args.args[0]
             self.assertEqual(request.full_url, "https://api.example.org/v1/chat/completions")
             self.assertEqual(json.loads(request.data)["response_format"], {"type":"json_object"})
             self.assertNotIn("test-secret", request.data.decode())
             self.assertEqual(result, {"records":[]})
+            self.assertEqual(client.last_usage["input_tokens"], 120)
+            self.assertEqual(client.last_usage["output_tokens"], 30)
+            self.assertEqual(client.last_usage["total_tokens"], 150)
 
 
+def test_seed_coverage_stats(self):
+        cid = self.db.resolve("ACL")["id"]
+        self.db.add_seed(cid, 2024, "https://example.org/2024/awards")
+        self.db.add_seed(cid, 2025, "https://example.org/2025/awards")
+        stats = self.db.seed_stats()
+        self.assertEqual(stats["total_conferences"], 190)
+        self.assertEqual(stats["seed_rows"], 2)
+        self.assertEqual(stats["conferences_with_seed"], 1)
+        self.assertEqual(stats["conferences_without_seed"], 189)
+        self.assertEqual([row["year"] for row in stats["by_year"]], [2024, 2025])
 if __name__ == "__main__":
     unittest.main()

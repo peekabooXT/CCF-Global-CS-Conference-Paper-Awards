@@ -82,6 +82,19 @@ class Database:
     def seeds(self, cid, year):
         return [r[0] for r in self.conn.execute("SELECT url FROM seeds WHERE conference_id=? AND year=? ORDER BY url", (cid, year))]
 
+    def seed_stats(self):
+        total = self.conn.execute("SELECT COUNT(*) FROM conferences").fetchone()[0]
+        rows = self.conn.execute("SELECT COUNT(*),COUNT(DISTINCT conference_id) FROM seeds").fetchone()
+        by_year = [{"year": row[0], "urls": row[1], "conferences": row[2]}
+                   for row in self.conn.execute("""SELECT year,COUNT(*),COUNT(DISTINCT conference_id)
+                                                  FROM seeds GROUP BY year ORDER BY year""")]
+        return {
+            "total_conferences": total,
+            "seed_rows": rows[0],
+            "conferences_with_seed": rows[1],
+            "conferences_without_seed": total - rows[1],
+            "by_year": by_year,
+        }
     def ingest(self, bundle):
         from .model import require_text
         if not isinstance(bundle, dict):

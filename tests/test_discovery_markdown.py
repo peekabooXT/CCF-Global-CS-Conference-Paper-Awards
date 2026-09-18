@@ -70,7 +70,7 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
 
         def fake_post(body):
             captured.update(body)
-            return {"status": "completed", "output": [
+            return {"status": "completed", "usage": {"input_tokens": 90, "output_tokens": 10, "total_tokens": 100}, "output": [
                 {"type": "web_search_call", "action": {"sources": [
                     {"url": "https://conf.example/2026/awards", "title": "Official awards"}
                 ]}}
@@ -84,6 +84,7 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
         self.assertIn("web_search_call.action.sources", captured["include"])
         self.assertFalse(captured["store"])
         self.assertEqual(result["candidates"][0]["url"], "https://conf.example/2026/awards")
+        self.assertEqual(result["token_usage"]["total_tokens"], 100)
 
     def test_autonomous_candidates_continue_when_one_page_fails(self):
         source = {
