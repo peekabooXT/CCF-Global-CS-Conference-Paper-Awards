@@ -159,13 +159,13 @@ class Fetcher:
                     extraction_scope="PDF first 3 pages for author metadata" if role == "metadata" and ("pdf" in mime or data.startswith(b"%PDF")) else "full document"), links
 
 
-def crawl(seed_urls, extra_urls=(), max_pages=4, notify=lambda _: None):
+def crawl(seed_urls, extra_urls=(), max_pages=4, notify=lambda _: None, strict_seeds=True):
     if not 1 <= max_pages <= 20:
         raise ValueError("max-pages 应在 1–20 之间")
     if len(seed_urls) + len(extra_urls) > max_pages:
         raise ValueError("显式 URL 数量超过 max-pages，请增大上限")
     fetcher, sources, errors, visited = Fetcher(), [], [], set()
-    queue = [(u, "award", True) for u in seed_urls] + [(u, "metadata", True) for u in extra_urls]
+    queue = [(u, "award", strict_seeds) for u in seed_urls] + [(u, "metadata", True) for u in extra_urls]
     attempts = 0
     while queue and attempts < max_pages:
         url, role, required = queue.pop(0)

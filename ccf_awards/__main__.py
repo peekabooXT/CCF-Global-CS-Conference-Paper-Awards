@@ -68,17 +68,17 @@ def export_csv(path, records):
             writer.writerow({k: safe(v) for k, v in row.items()})
 
 
-def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None, local_sources=None, llm=None, notify=None):
+def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None, local_sources=None, llm=None, notify=None, strict_urls=True, run_id=None):
     from .llm import LLM
     from .network import crawl
     llm = llm if llm is not None else LLM()
     notify = notify or (lambda msg: print(msg, file=sys.stderr))
     if not local_sources and not urls:
         raise ValueError("没有入口 URL，请用 source-add 或 collect --url 配置")
-    run = db.start_run(conference["id"], year)
+    run = run_id or db.start_run(conference["id"], year)
     try:
         sources, warnings = (local_sources, []) if local_sources else crawl(
-            urls, extra_urls, max_pages, notify=notify)
+            urls, extra_urls, max_pages, notify=notify, strict_seeds=strict_urls)
         notify(f"已读取 {len(sources)} 个来源，正在提取…")
         bundle = llm.extract(conference, year, sources)
         target = output or str(Path(db.conn.execute("PRAGMA database_list").fetchone()[2]).parent / "runs" / f"{run:06d}.json")
@@ -94,6 +94,27 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
         raise
 
 
+def auto_collect_one(db, conference, year, output_dir="data/records", max_pages=4,
+                     candidate_limit=3, search=None, llm=None, notify=None):
+    from .discovery import ResponsesWebSearch
+    search = search or ResponsesWebSearch()
+    run = db.start_run(conference["id"], year)
+    try:
+        discovery = search.discover(conference, year, min(candidate_limit, max_pages))
+        urls = [item["url"] for item in discovery["candidates"]]
+        if not urls:
+            raise ValueError("网页搜索没有返回候选官方页面")
+    except Exception as exc:
+        db.finish_run(run, "failed", {"stage": "discovery", "error": str(exc)})
+        raise
+    output = Path(output_dir) / f'{conference["id"]}-{year}.json'
+    result = collect_one(db, conference, year, urls, max_pages=max_pages,
+                         output=str(output), llm=llm, notify=notify, strict_urls=False,
+                         run_id=run)
+    result["discovery"] = discovery
+    return result
+
+
 def year_value(value):
     year = int(value)
     if not 1900 <= year <= 2200:
@@ -102,7 +123,7 @@ def year_value(value):
 
 
 def parser():
-    p = argparse.ArgumentParser(description="CCF A/B 学术会议获奖论文 Agent（本地基础版）")
+    p = argparse.ArgumentParser(description="Global CS Paper Awards：顶级计算机会议与期刊论文奖采集检索系统")
     p.add_argument("--db", default=os.getenv("CCF_AWARDS_DB", "data/awards.sqlite3"), help="SQLite 路径；放在子命令前")
     sub = p.add_subparsers(dest="command", required=True)
     init = sub.add_parser("init", help="导入 190 个会议，不会删除论文")
@@ -136,6 +157,25 @@ def parser():
     imp.add_argument("file")
     excel = sub.add_parser("import-excel", help="把核验整理版 Excel 幂等导入 SQLite")
     excel.add_argument("file")
+    discover = sub.add_parser("discover", help="使用 OpenAI web_search 查找候选官方获奖页")
+    discover.add_argument("--conference", required=True)
+    discover.add_argument("--year", required=True, type=year_value)
+    discover.add_argument("--limit", type=int, default=5)
+    discover.add_argument("--save", action="store_true", help="把候选网址登记为待采集入口")
+    auto = sub.add_parser("autocollect", help="自动发现官网、抓取、提取并保存证据 JSON")
+    auto.add_argument("--conference", required=True)
+    auto.add_argument("--year", required=True, type=year_value)
+    auto.add_argument("--max-pages", type=int, default=4)
+    auto.add_argument("--candidate-limit", type=int, default=3)
+    auto.add_argument("--output-dir", default="data/records")
+    agent = sub.add_parser("agent-run", help="无人值守执行一批尚未处理的会议年度任务")
+    agent.add_argument("--year", required=True, type=year_value)
+    agent.add_argument("--limit", type=int, default=3)
+    agent.add_argument("--max-pages", type=int, default=4)
+    agent.add_argument("--candidate-limit", type=int, default=3)
+    agent.add_argument("--output-dir", default="data/records")
+    render = sub.add_parser("render-markdown", help="从数据库生成 GitHub 可浏览的获奖论文索引")
+    render.add_argument("--root", default=".")
     demo = sub.add_parser("demo", help="离线导入两条真实获奖样例；默认仍为待核验")
     s = sub.add_parser("search", help="多个条件按 AND 组合检索")
     s.add_argument("--conference")
@@ -200,6 +240,43 @@ def run(args, db):
         from .excel_import import import_excel
         db.init()
         dump(import_excel(db, args.file))
+    elif cmd == "discover":
+        from .discovery import ResponsesWebSearch
+        conference = db.resolve(args.conference)
+        result = ResponsesWebSearch().discover(conference, args.year, args.limit)
+        if args.save:
+            for candidate in result["candidates"]:
+                db.add_seed(conference["id"], args.year, candidate["url"])
+        dump(result)
+    elif cmd == "autocollect":
+        conference = db.resolve(args.conference)
+        dump(auto_collect_one(db, conference, args.year, args.output_dir,
+                              args.max_pages, args.candidate_limit))
+    elif cmd == "agent-run":
+        if not 1 <= args.limit <= 50:
+            raise ValueError("limit 应在 1–50 之间")
+        from .discovery import ResponsesWebSearch
+        from .llm import LLM
+        search, llm, tasks = ResponsesWebSearch(), LLM(), []
+        output_dir = Path(args.output_dir)
+        for conference in db.conferences():
+            if len(tasks) >= args.limit:
+                break
+            output = output_dir / f'{conference["id"]}-{args.year}.json'
+            if output.exists() or db.search(conference=conference["id"], year_from=args.year,
+                                            year_to=args.year, status="active"):
+                continue
+            try:
+                result = auto_collect_one(db, conference, args.year, output_dir,
+                                          args.max_pages, args.candidate_limit, search, llm)
+                tasks.append({"conference_id": conference["id"], "status": result["status"], **result})
+            except Exception as exc:
+                tasks.append({"conference_id": conference["id"], "status": "failed", "error": str(exc)})
+        dump({"year": args.year, "tasks": tasks})
+        return 2 if any(task["status"] == "failed" for task in tasks) else 0
+    elif cmd == "render-markdown":
+        from .markdown_export import render_markdown
+        dump(render_markdown(db, args.root))
     elif cmd in ("source-add", "sources", "suggest", "collect", "extract-file"):
         conf = db.resolve(args.conference)
         if cmd == "source-add":

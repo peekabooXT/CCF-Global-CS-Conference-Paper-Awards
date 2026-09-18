@@ -4,6 +4,7 @@ import datetime as dt
 import io
 import json
 import os
+import re
 from pathlib import Path
 from .model import url_syntax
 
@@ -30,6 +31,29 @@ def urls_from_text(value):
     for url in urls:
         url_syntax(url)
     return urls
+
+
+def parse_years(value, max_years=20):
+    """Parse `2024, 2021-2022, 2019` into unique descending years."""
+    value = str(value or "").strip()
+    if not value:
+        raise ValueError("请填写至少一个会议年份或年份区间。")
+    years = set()
+    for part in re.split(r"[,，;；\s]+", value):
+        if not part:
+            continue
+        match = re.fullmatch(r"(\d{4})(?:\s*[-–—~至]\s*(\d{4}))?", part)
+        if not match:
+            raise ValueError(f"无法识别年份：{part}；示例：2023-2026, 2020")
+        start, end = int(match.group(1)), int(match.group(2) or match.group(1))
+        if not 1900 <= start <= 2200 or not 1900 <= end <= 2200:
+            raise ValueError("年份应在 1900–2200 之间。")
+        if start > end:
+            raise ValueError(f"年份区间起点不能晚于终点：{part}")
+        years.update(range(start, end + 1))
+    if len(years) > max_years:
+        raise ValueError(f"一次最多选择 {max_years} 个不同年份。")
+    return sorted(years, reverse=True)
 
 
 def import_demo(db):

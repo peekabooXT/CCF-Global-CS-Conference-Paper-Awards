@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 from ccf_awards.db import Database
 from ccf_awards.llm import LLM
-from ccf_awards.web_helpers import csv_bytes, export_rows, import_demo, urls_from_text
+from ccf_awards.web_helpers import csv_bytes, export_rows, import_demo, parse_years, urls_from_text
 
 try:
     from streamlit.testing.v1 import AppTest
@@ -24,10 +24,11 @@ class WebTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.path = Path(self.tmp.name) / "web.sqlite3"
-        self.env = patch.dict(os.environ, {"CCF_AWARDS_DB":str(self.path), "LLM_API_KEY":"", "LLM_MODEL":""})
+        self.env = patch.dict(os.environ, {"CCF_AWARDS_DB":str(self.path), "LLM_API_KEY":"", "LLM_MODEL":"", "DEEPSEEK_API_KEY":"", "LLM_PROVIDER":"deepseek"})
         self.env.start()
         self.app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=20).run()
         self.assertEqual(len(self.app.exception), 0)
+        self.assertEqual(self.app.selectbox(key="provider_name").value, "deepseek")
 
     def tearDown(self):
         self.env.stop()
@@ -43,6 +44,18 @@ class WebTest(unittest.TestCase):
             if button.key == key or button.label == label:
                 return button
         self.fail(f"未找到按钮：{label}")
+
+    def test_provider_switch_updates_editable_defaults(self):
+        self.app.selectbox(key="provider_name").set_value("openai").run()
+        self.assertFalse(self.app.exception)
+        self.assertEqual(self.app.text_input(key="base_url").value, "https://api.openai.com/v1")
+        self.assertEqual(self.app.text_input(key="model_name").value, "")
+    def test_batch_collection_controls_accept_multiple_conferences_and_ranges(self):
+        self.app.radio(key="section").set_value("采集与导入").run()
+        self.assertEqual(self.app.radio(key="collection_mode").value, "自动搜索官网（批量）")
+        self.app.multiselect(key="batch_conferences").set_value(["acl-70cc29", "sigkdd-366f1f"])
+        self.app.text_input(key="batch_years").set_value("2023-2024, 2026")
+        self.assertEqual(parse_years(self.app.text_input(key="batch_years").value), [2026, 2024, 2023])
 
     def test_empty_state_and_idempotent_demo(self):
         self.assertEqual(self.app.metric[0].value, "190")
@@ -97,6 +110,7 @@ class WebTest(unittest.TestCase):
 
     def test_save_urls_needs_no_llm(self):
         self.app.radio(key="section").set_value("采集与导入").run()
+        self.app.radio(key="collection_mode").set_value("手动网址（单任务）").run()
         self.app.selectbox(key="collect_conference").set_value("acl-70cc29")
         self.app.number_input(key="collect_year").set_value(2024).run()
         self.app.text_area(key="urls_acl-70cc29_2024").set_value("https://2024.aclweb.org/program/best_papers/")
@@ -113,6 +127,7 @@ class WebTest(unittest.TestCase):
     def test_collection_with_mocked_network_and_model(self):
         bundle = json.loads((ROOT / "examples/sample-acl-2024.json").read_text(encoding="utf-8"))
         self.app.radio(key="section").set_value("采集与导入").run()
+        self.app.radio(key="collection_mode").set_value("手动网址（单任务）").run()
         self.app.selectbox(key="collect_conference").set_value("acl-70cc29")
         self.app.number_input(key="collect_year").set_value(2024).run()
         self.app.text_input(key="api_key").set_value("temporary-session-secret")
@@ -136,6 +151,7 @@ class WebTest(unittest.TestCase):
 
     def test_missing_api_settings_fails_before_network(self):
         self.app.radio(key="section").set_value("采集与导入").run()
+        self.app.radio(key="collection_mode").set_value("手动网址（单任务）").run()
         cid = self.app.selectbox(key="collect_conference").value
         year = self.app.number_input(key="collect_year").value
         self.app.text_area(key=f"urls_{cid}_{year}").set_value("https://example.org/2024/awards")
@@ -165,6 +181,14 @@ class WebHelperTest(unittest.TestCase):
             self.assertEqual(first.key, "first")
             self.assertEqual(second.key, "second")
             self.assertEqual(LLM().key, "environment-key")
+
+    def test_year_range_parser(self):
+        self.assertEqual(parse_years("2023-2025, 2020, 2024"), [2025, 2024, 2023, 2020])
+        self.assertEqual(parse_years("2026；2021至2022"), [2026, 2022, 2021])
+        with self.assertRaises(ValueError):
+            parse_years("2026-2023")
+        with self.assertRaises(ValueError):
+            parse_years("2024, not-a-year")
 
     def test_url_list_and_csv_export(self):
         self.assertEqual(urls_from_text("https://example.org\n\nhttps://example.org"), ["https://example.org"])

@@ -12,7 +12,7 @@ from ccf_awards.db import Database
 from ccf_awards.model import date_bounds, validate_bundle
 from ccf_awards.network import decode_document, public_url
 from ccf_awards.llm import LLM
-from ccf_awards.__main__ import main, collect_one
+from ccf_awards.__main__ import auto_collect_one, main, collect_one
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -70,6 +70,28 @@ class CoreTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             date_bounds("2024-02-30")
 
+    def test_ingest_returns_record_ids_for_result_table(self):
+        result = self.db.ingest(self.bundle)
+        self.assertEqual(result["record_ids"], [self.db.search()[0]["id"]])
+
+    def test_persistent_run_history_includes_duration_and_details(self):
+        run_id = self.db.start_run(self.bundle["conference_id"], 2024)
+        self.db.finish_run(run_id, "no_results", {"inserted": 0, "record_ids": []})
+        row = self.db.runs(1)[0]
+        self.assertEqual((row["id"], row["acronym"], row["status"]), (run_id, "ACL", "no_results"))
+        self.assertGreaterEqual(row["duration_seconds"], 0)
+        self.assertEqual(row["details"]["inserted"], 0)
+
+    def test_discovery_failure_is_written_to_run_history(self):
+        class FailingSearch:
+            def discover(self, conference, year, limit):
+                raise ValueError("search unavailable")
+        with self.assertRaisesRegex(ValueError, "search unavailable"):
+            auto_collect_one(self.db, self.db.resolve("ACL"), 2026,
+                             search=FailingSearch(), llm=object())
+        row = self.db.runs(1)[0]
+        self.assertEqual(row["status"], "failed")
+        self.assertEqual(row["details"]["stage"], "discovery")
     def test_duplicate_preserves_review_and_change_archives(self):
         rid = self.add()
         self.db.review(rid, "verified", "Tester", "Compared the source")

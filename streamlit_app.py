@@ -8,22 +8,29 @@ import inspect
 import json
 import os
 import tempfile
+import time
 from pathlib import Path
 
 import streamlit as st
 
-from ccf_awards.__main__ import collect_one
+from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
+from ccf_awards.discovery import ResponsesWebSearch
 from ccf_awards.excel_import import import_excel
 from ccf_awards.llm import LLM
 from ccf_awards.model import require_text, url_syntax
 from ccf_awards.network import read_local_source
+from ccf_awards.providers import PROVIDER_PROFILES, provider_profile
 from ccf_awards.web_helpers import (
     AWARDS, COVERAGE, STATUSES, csv_bytes, database_path, export_rows,
-    import_demo, urls_from_text, validate_filters,
+    import_demo, parse_years, urls_from_text, validate_filters,
 )
 
-st.set_page_config(page_title="CCF 获奖论文库", page_icon="📑", layout="wide")
+APP_NAME = "Global CS Paper Awards"
+APP_SUBTITLE = "Best Paper and Best Student Paper Awards in Top Computer Science Venues"
+APP_NAME_ZH = "全球计算机顶级论文奖数据库——收录顶级会议与期刊的最佳论文奖和最佳学生论文奖"
+
+st.set_page_config(page_title=APP_NAME, page_icon="🏆", layout="wide")
 
 
 def conference_label(cid, conferences):
@@ -37,8 +44,16 @@ def make_llm():
     return LLM(api_key=st.session_state.get("api_key") or None,
                base_url=st.session_state.get("base_url") or None,
                model=st.session_state.get("model_name") or None,
-               json_mode=st.session_state.get("json_mode", True))
+               json_mode=st.session_state.get("json_mode", True),
+               provider=st.session_state.get("provider_name") or None)
 
+
+def make_search():
+    return ResponsesWebSearch(
+        api_key=st.session_state.get("search_api_key") or None,
+        base_url=st.session_state.get("search_base_url") or None,
+        model=st.session_state.get("search_model") or None,
+    )
 
 def flash(message, kind="success"):
     st.session_state["notice"] = (kind, message)
@@ -47,7 +62,9 @@ def flash(message, kind="success"):
 def safe_error(exc):
     message = str(exc)
     # Defensive redaction in UI; backend already omits provider response bodies.
-    for secret in (st.session_state.get("api_key"), os.getenv("LLM_API_KEY")):
+    for secret in (st.session_state.get("api_key"), os.getenv("LLM_API_KEY"),
+                   os.getenv("DEEPSEEK_API_KEY"), os.getenv("OPENAI_API_KEY"),
+                   st.session_state.get("search_api_key"), os.getenv("SEARCH_API_KEY")):
         if secret:
             message = message.replace(secret, "[已隐藏]")
     st.error(message)
@@ -61,21 +78,57 @@ def form_submit(container, label, key, **kwargs):
     return button(label, **kwargs)
 
 
+def apply_provider_defaults():
+    """Update editable connection fields when the named provider changes."""
+    _, profile = provider_profile(st.session_state.get("provider_name", "deepseek"))
+    st.session_state["base_url"] = profile["base_url"]
+    st.session_state["model_name"] = profile["model"]
+
 def render_sidebar(db):
     with st.sidebar:
-        st.title("CCF 获奖论文库")
-        st.caption("A / B 类会议 · 本地工作台")
+        st.title(APP_NAME)
+        st.caption("全球计算机顶级论文奖数据库")
         section = st.radio("工作区", ["论文检索", "采集与导入", "记录核验", "采集覆盖"], key="section")
         st.divider()
         with st.expander("LLM 连接设置"):
-            st.caption("检索和样例导入不需要 API。设置只在当前网页会话中使用。")
-            st.text_input("API 地址", value=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"), key="base_url")
-            st.text_input("模型名称", value=os.getenv("LLM_MODEL", ""), key="model_name", placeholder="填写账户可调用的模型")
-            st.text_input("API Key", type="password", key="api_key", help="留空时读取本机 LLM_API_KEY 环境变量；不会写入数据库。")
+            st.caption("默认使用 DeepSeek 做结构化提取；检索和样例导入不需要 API。设置只在当前网页会话中使用。")
+            provider_names = list(PROVIDER_PROFILES)
+            configured_provider = os.getenv("LLM_PROVIDER", "deepseek").lower()
+            if configured_provider not in provider_names:
+                configured_provider = "deepseek"
+            selected_provider = st.selectbox(
+                "LLM 提供商", provider_names, index=provider_names.index(configured_provider),
+                format_func=lambda name: PROVIDER_PROFILES[name]["label"], key="provider_name",
+                on_change=apply_provider_defaults,
+            )
+            _, profile = provider_profile(selected_provider)
+            if "base_url" not in st.session_state:
+                st.session_state["base_url"] = os.getenv("LLM_BASE_URL", "") or profile["base_url"]
+            if "model_name" not in st.session_state:
+                st.session_state["model_name"] = os.getenv("LLM_MODEL", "") or profile["model"]
+            st.text_input("API 地址", key="base_url")
+            st.text_input("模型名称", key="model_name", placeholder="填写账户可调用的模型")
+            st.text_input(
+                "API Key", type="password", key="api_key",
+                help=f"留空时依次读取 LLM_API_KEY 和 {profile['key_env']}；不会写入数据库。",
+            )
             st.checkbox("请求 JSON 模式", value=os.getenv("LLM_JSON_MODE", "1") == "1", key="json_mode")
-            if st.session_state.get("model_name") and (st.session_state.get("api_key") or os.getenv("LLM_API_KEY")):
+            available_key = st.session_state.get("api_key") or os.getenv("LLM_API_KEY") or os.getenv(profile["key_env"])
+            if st.session_state.get("model_name") and available_key:
                 st.caption("连接参数已填写；尚不代表连接测试成功。")
-        if st.button("导入两条样例", key="demo", use_container_width=True):
+        with st.expander("自动网页搜索设置"):
+            st.caption("批量自动搜索使用独立的 Responses web_search 接口；DeepSeek 默认负责结构化提取。")
+            if "search_base_url" not in st.session_state:
+                st.session_state["search_base_url"] = os.getenv("SEARCH_BASE_URL", "https://api.openai.com/v1")
+            if "search_model" not in st.session_state:
+                st.session_state["search_model"] = os.getenv("SEARCH_MODEL", os.getenv("OPENAI_SEARCH_MODEL", ""))
+            st.text_input("搜索 API 地址", key="search_base_url")
+            st.text_input("搜索模型", key="search_model", placeholder="填写支持 web_search 的模型")
+            st.text_input(
+                "搜索 API Key", type="password", key="search_api_key",
+                help="留空时读取 SEARCH_API_KEY 或 OPENAI_API_KEY；不会写入数据库。",
+            )
+        if st.button("导入两条样例", key="demo", width="stretch"):
             try:
                 results = import_demo(db)
                 count = sum(x["inserted"] for x in results)
@@ -97,7 +150,7 @@ def render_detail(record):
     st.write(f'发表日期：{record["publication_date"] or "未知"}（{precision}）')
     author_rows = [{"作者": a["name"], "发表时单位": "；".join(x["name"] for x in a["affiliations"]) or "未知"} for a in record["authors"]]
     if author_rows:
-        st.dataframe(author_rows, hide_index=True, use_container_width=True)
+        st.dataframe(author_rows, hide_index=True, width="stretch")
     else:
         st.info("来源尚未提供作者信息。")
     for idx, source in enumerate(record["sources"], 1):
@@ -158,15 +211,22 @@ def search_page(db, conferences):
     b.caption("作者与单位同时筛选时，必须对应同一位作者。未知字段不会补猜。")
     rows = export_rows(results)
     keys = ["论文名称", "会议", "CCF", "会议年份", "奖项", "发表日期", "状态"]
-    st.dataframe([{k: row[k] for k in keys} for row in rows], hide_index=True, use_container_width=True)
+    st.dataframe([{k: row[k] for k in keys} for row in rows], hide_index=True, width="stretch")
     by_id = {r["id"]: r for r in results}
     selected = st.selectbox("选择论文查看作者、单位和来源", list(by_id), format_func=lambda x: f'{by_id[x]["acronym"]} {by_id[x]["year"]} · {by_id[x]["title"]}', key="detail_record")
     st.markdown("#### 论文详情")
     render_detail(by_id[selected])
 
 
-def show_import_result(result):
+def _records_by_ids(db, record_ids):
+    wanted = set(record_ids or [])
+    return [record for record in db.search(status="all") if record["id"] in wanted]
+
+
+def show_import_result(result, db=None):
     st.write(f'新增 {result["inserted"]} 条 · 更新 {result["updated"]} 条 · 重复 {result["unchanged"]} 条')
+    if result.get("elapsed_seconds") is not None:
+        st.caption(f'本次操作耗时：{result["elapsed_seconds"]:.1f} 秒')
     if result.get("status") == "no_results":
         st.info("本次未提取到符合条件的记录，不代表该年度未设奖。")
     if result["rejected"]:
@@ -175,14 +235,141 @@ def show_import_result(result):
     if result.get("warnings"):
         st.warning("部分相关页面未能读取，本次采集可能不完整。")
         st.json(result["warnings"])
+    if db is not None and result.get("record_ids"):
+        records = _records_by_ids(db, result["record_ids"])
+        st.markdown("#### 本次找到的论文")
+        st.dataframe(export_rows(records), hide_index=True, width="stretch")
+    if result.get("log_lines"):
+        st.markdown("#### 本次操作日志")
+        st.code("\n".join(result["log_lines"]), language="text")
+
+
+def _display_time(value):
+    if not value:
+        return "—"
+    return dt.datetime.fromisoformat(value).astimezone().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def show_run_history(db):
+    rows = []
+    for run in db.runs(50):
+        details = run["details"]
+        rows.append({
+            "任务": run["id"], "会议": run["acronym"], "年份": run["year"],
+            "开始时间": _display_time(run["started_at"]),
+            "结束时间": _display_time(run["finished_at"]),
+            "耗时（秒）": round(run["duration_seconds"], 1) if run["duration_seconds"] is not None else "运行中",
+            "状态": run["status"], "新增": details.get("inserted", 0),
+            "更新": details.get("updated", 0), "重复": details.get("unchanged", 0),
+            "说明": details.get("error", ""),
+        })
+    if rows:
+        st.dataframe(rows, hide_index=True, width="stretch")
+    else:
+        st.caption("尚无采集运行日志。")
+
+
+def show_batch_result(db, batch):
+    st.markdown("### 本次批量查找结果")
+    a, b, c, d = st.columns(4)
+    a.metric("任务数", len(batch["tasks"]))
+    b.metric("成功", sum(task["status"] != "failed" for task in batch["tasks"]))
+    c.metric("失败", sum(task["status"] == "failed" for task in batch["tasks"]))
+    d.metric("总耗时", f'{batch["elapsed_seconds"]:.1f} 秒')
+    st.caption(f'开始：{batch["started_at"]} · 结束：{batch["finished_at"]}')
+    task_rows = [{
+        "会议": task["conference"], "年份": task["year"], "状态": task["status"],
+        "耗时（秒）": task["elapsed_seconds"], "新增": task.get("inserted", 0),
+        "更新": task.get("updated", 0), "重复": task.get("unchanged", 0),
+        "找到论文": len(task.get("record_ids", [])), "说明": task.get("error", ""),
+    } for task in batch["tasks"]]
+    st.dataframe(task_rows, hide_index=True, width="stretch")
+    records = _records_by_ids(db, batch.get("record_ids", []))
+    st.markdown(f"#### 本次找到的论文（{len(records)} 条）")
+    if records:
+        st.dataframe(export_rows(records), hide_index=True, width="stretch")
+        st.download_button("下载本次结果 CSV", csv_bytes(records), "collection-results.csv", "text/csv", key="batch_csv")
+    else:
+        st.info("本次任务没有产生可展示的论文记录；请查看任务说明和日志。")
+    with st.expander("本次查找日志", expanded=True):
+        st.code("\n".join(batch["log_lines"]), language="text")
+
+
+def run_batch_collection(db, conferences, conference_ids, years, strategy, maximum):
+    task_pairs = [(cid, year) for cid in conference_ids for year in years]
+    if not task_pairs:
+        raise ValueError("请至少选择一个会议和一个年份。")
+    if len(task_pairs) > 50:
+        raise ValueError("一次最多执行 50 个“会议 × 年份”任务，请缩小选择范围。")
+    started_clock = time.perf_counter()
+    started_at = dt.datetime.now().astimezone()
+    logs, tasks, record_ids = [], [], []
+    status = st.status(f"准备执行 {len(task_pairs)} 个采集任务…", expanded=True)
+    live_log = st.empty()
+
+    def log(message):
+        elapsed = time.perf_counter() - started_clock
+        line = f"+{elapsed:7.1f}s  {message}"
+        logs.append(line)
+        live_log.code("\n".join(logs[-120:]), language="text")
+
+    llm = make_llm()
+    search = make_search() if strategy == "自动搜索官网" else None
+    for index, (cid, year) in enumerate(task_pairs, 1):
+        conference = conferences[cid]
+        label = f'{conference["acronym"]} {year}'
+        status.update(label=f"[{index}/{len(task_pairs)}] 正在处理 {label}")
+        log(f"开始 {label}（{strategy}）")
+        task_clock = time.perf_counter()
+        try:
+            if strategy == "自动搜索官网":
+                result = auto_collect_one(
+                    db, conference, year, max_pages=int(maximum),
+                    candidate_limit=min(3, int(maximum)), search=search, llm=llm, notify=log,
+                )
+            else:
+                urls = db.seeds(cid, year)
+                if not urls:
+                    run_id = db.start_run(cid, year)
+                    db.finish_run(run_id, "failed", {"stage": "saved_sources", "error": "没有已保存入口"})
+                    raise ValueError("没有已保存入口；请改用自动搜索或先在单任务模式保存网址。")
+                result = collect_one(db, conference, year, urls, max_pages=int(maximum), llm=llm, notify=log)
+            ids = result.get("record_ids", [])
+            record_ids.extend(ids)
+            elapsed = round(time.perf_counter() - task_clock, 1)
+            tasks.append({"conference": conference["acronym"], "year": year,
+                          "elapsed_seconds": elapsed, **result})
+            log(f'完成 {label}：状态 {result["status"]}，找到 {len(ids)} 条，耗时 {elapsed:.1f} 秒')
+        except Exception as exc:
+            elapsed = round(time.perf_counter() - task_clock, 1)
+            tasks.append({"conference": conference["acronym"], "year": year,
+                          "status": "failed", "elapsed_seconds": elapsed, "error": str(exc),
+                          "record_ids": []})
+            log(f"失败 {label}：{exc}（耗时 {elapsed:.1f} 秒）")
+    elapsed = round(time.perf_counter() - started_clock, 1)
+    failed = sum(task["status"] == "failed" for task in tasks)
+    status.update(label=f"批量采集结束：{len(tasks) - failed} 成功，{failed} 失败，总耗时 {elapsed:.1f} 秒",
+                  state="error" if failed else "complete", expanded=True)
+    return {
+        "started_at": started_at.strftime("%Y-%m-%d %H:%M:%S %Z"),
+        "finished_at": dt.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z"),
+        "elapsed_seconds": elapsed, "tasks": tasks,
+        "record_ids": list(dict.fromkeys(record_ids)), "log_lines": logs,
+    }
 
 
 def collect_page(db, conferences):
     st.header("采集与导入")
-    st.caption("从会议获奖页提取记录，或导入已整理的文件。新增记录默认待核验。")
+    st.caption("一次选择多个会议和多个年份区间，集中查看论文结果、任务状态和耗时日志。新增记录默认待核验。")
+    if st.session_state.get("last_collection_batch"):
+        with st.container(border=True):
+            show_batch_result(db, st.session_state["last_collection_batch"])
     if st.session_state.get("last_import"):
-        with st.expander("最近一次操作结果", expanded=True):
-            show_import_result(st.session_state["last_import"])
+        with st.expander("最近一次单项操作结果", expanded=True):
+            show_import_result(st.session_state["last_import"], db)
+    with st.expander("采集历史日志（最近 50 次）", expanded=False):
+        show_run_history(db)
+
     method = st.radio("数据来源", ["读取网页", "上传正文 / PDF", "导入 JSON"], horizontal=True, key="import_method")
     if method == "导入 JSON":
         with st.form("json_import"):
@@ -192,7 +379,9 @@ def collect_page(db, conferences):
             try:
                 if upload is None:
                     raise ValueError("请先选择 JSON 文件。")
+                started = time.perf_counter()
                 result = db.ingest(json.loads(upload.getvalue().decode("utf-8-sig")))
+                result["elapsed_seconds"] = time.perf_counter() - started
                 st.session_state["last_import"] = result
                 flash("文件已处理，可到论文检索页查看有效记录。", "warning" if result["rejected"] else "success")
                 st.rerun()
@@ -200,11 +389,42 @@ def collect_page(db, conferences):
                 safe_error(exc)
         st.caption("不调用 API。文件结构可参考 examples 中的 JSON。")
         return
-    a, b = st.columns([3, 1])
-    cid = a.selectbox("采集会议", list(conferences), format_func=lambda x: conference_label(x, conferences), key="collect_conference")
-    year = b.number_input("会议年份", min_value=1900, max_value=2200, value=dt.date.today().year, step=1, key="collect_year")
-    conf = conferences[cid]
+
     if method == "读取网页":
+        mode = st.radio(
+            "采集方式", ["自动搜索官网（批量）", "使用已保存入口（批量）", "手动网址（单任务）"],
+            horizontal=True, key="collection_mode",
+        )
+        if mode != "手动网址（单任务）":
+            strategy = "自动搜索官网" if mode.startswith("自动") else "使用已保存入口"
+            with st.form("batch_collect_form"):
+                selected_ids = st.multiselect(
+                    "采集会议（可多选）", list(conferences),
+                    format_func=lambda cid: conference_label(cid, conferences), key="batch_conferences",
+                )
+                year_text = st.text_input(
+                    "会议年份或区间（可填写多个）", value=str(dt.date.today().year),
+                    placeholder="例如：2023-2026, 2020, 2017-2018", key="batch_years",
+                )
+                maximum = st.number_input("每个任务最多读取的页面数", min_value=1, max_value=20, value=4, key="batch_max_pages")
+                submit = form_submit(st, "开始批量采集", "batch_collect_submit", type="primary")
+            st.caption("任务数量 = 会议数 × 去重后的年份数；一次最多 50 个任务。自动搜索需要在左侧配置搜索 API。")
+            if submit:
+                try:
+                    years = parse_years(year_text)
+                    batch = run_batch_collection(db, conferences, selected_ids, years, strategy, int(maximum))
+                    st.session_state["last_collection_batch"] = batch
+                    flash("批量采集已完成；结果表和日志已保留在本页顶部。",
+                          "warning" if any(task["status"] == "failed" for task in batch["tasks"]) else "success")
+                    st.rerun()
+                except Exception as exc:
+                    safe_error(exc)
+            return
+
+        a, b = st.columns([3, 1])
+        cid = a.selectbox("采集会议", list(conferences), format_func=lambda x: conference_label(x, conferences), key="collect_conference")
+        year = b.number_input("会议年份", min_value=1900, max_value=2200, value=dt.date.today().year, step=1, key="collect_year")
+        conf = conferences[cid]
         saved = db.seeds(cid, year)
         with st.form("collect_form"):
             raw_urls = st.text_area("官网或获奖页（每行一个网址）", value="\n".join(saved), placeholder="https://会议官网/awards/", key=f"urls_{cid}_{year}")
@@ -226,16 +446,22 @@ def collect_page(db, conferences):
                         db.add_seed(cid, year, url)
                     flash("年度入口已保存，可重复使用。登记不代表已核实官网身份。")
                     st.rerun()
-                llm = make_llm()
+                started = time.perf_counter()
+                log_lines = []
+                def log(message):
+                    log_lines.append(f'+{time.perf_counter() - started:7.1f}s  {message}')
+                    st.write(log_lines[-1])
                 with st.status("正在读取和提取，请等待本次操作结束。", expanded=True):
-                    result = collect_one(db, conf, year, urls, extra_urls, int(maximum), llm=llm, notify=st.write)
+                    result = collect_one(db, conf, year, urls, extra_urls, int(maximum), llm=make_llm(), notify=log)
+                result["elapsed_seconds"] = time.perf_counter() - started
+                result["log_lines"] = log_lines
                 st.session_state["last_import"] = result
                 flash("采集已结束，请核对本次结果。")
                 st.rerun()
             except Exception as exc:
                 safe_error(exc)
         with st.expander("还没有找到官网？"):
-            st.caption("可让 LLM 建议候选网址；此功能没有接搜索引擎，候选需要你打开核实。")
+            st.caption("可让 LLM 建议候选网址；此功能没有搜索引擎，候选需要你打开核实。")
             if st.button("生成网址候选", key="suggest_urls"):
                 try:
                     with st.spinner("正在生成候选…"):
@@ -246,40 +472,45 @@ def collect_page(db, conferences):
             suggestion = st.session_state.get("suggestion")
             if suggestion and suggestion[:2] == (cid, year):
                 st.json(suggestion[2])
-    else:
-        with st.form("file_extract"):
-            award_file = st.file_uploader("获奖页正文文件", type=["txt", "html", "htm", "pdf"], key="award_file")
-            award_url = st.text_input("获奖正文的真实来源 URL", key="award_file_url")
-            metadata_file = st.file_uploader("论文正文或 PDF（可选）", type=["txt", "html", "htm", "pdf"], key="metadata_file")
-            metadata_url = st.text_input("论文正文的来源 URL（上传论文时必填）", key="metadata_file_url")
-            submit = form_submit(st, "提取并保存", "extract_submit", type="primary")
-        if submit:
-            try:
-                if award_file is None:
-                    raise ValueError("请上传获奖正文。")
-                url_syntax(award_url.strip())
-                if bool(metadata_file) != bool(metadata_url.strip()):
-                    raise ValueError("论文文件和论文来源 URL 需要同时提供。")
-                llm = make_llm()
-                with tempfile.TemporaryDirectory() as temp:
-                    sources = []
-                    for file, url, role, sid in [(award_file, award_url, "award", "s1"), (metadata_file, metadata_url, "metadata", "s2")]:
-                        if file is None:
-                            continue
-                        content = file.getvalue()
-                        if len(content) > 8 * 1024 * 1024:
-                            raise ValueError("单个文件不能超过 8 MiB。")
-                        path = Path(temp) / (sid + Path(file.name).suffix.lower())
-                        path.write_bytes(content)
-                        sources.append(read_local_source(path, url.strip(), role, sid))
-                    with st.status("正在读取文件并提取…", expanded=True):
-                        result = collect_one(db, conf, year, [], local_sources=sources, llm=llm, notify=st.write)
-                st.session_state["last_import"] = result
-                flash("文件提取已结束。")
-                st.rerun()
-            except Exception as exc:
-                safe_error(exc)
+        return
 
+    a, b = st.columns([3, 1])
+    cid = a.selectbox("采集会议", list(conferences), format_func=lambda x: conference_label(x, conferences), key="file_conference")
+    year = b.number_input("会议年份", min_value=1900, max_value=2200, value=dt.date.today().year, step=1, key="file_year")
+    conf = conferences[cid]
+    with st.form("file_extract"):
+        award_file = st.file_uploader("获奖页正文文件", type=["txt", "html", "htm", "pdf"], key="award_file")
+        award_url = st.text_input("获奖正文的真实来源 URL", key="award_file_url")
+        metadata_file = st.file_uploader("论文正文或 PDF（可选）", type=["txt", "html", "htm", "pdf"], key="metadata_file")
+        metadata_url = st.text_input("论文正文的来源 URL（上传论文时必填）", key="metadata_file_url")
+        submit = form_submit(st, "提取并保存", "extract_submit", type="primary")
+    if submit:
+        try:
+            if award_file is None:
+                raise ValueError("请上传获奖正文。")
+            url_syntax(award_url.strip())
+            if bool(metadata_file) != bool(metadata_url.strip()):
+                raise ValueError("论文文件和论文来源 URL 需要同时提供。")
+            started = time.perf_counter()
+            with tempfile.TemporaryDirectory() as temp:
+                sources = []
+                for file, url, role, sid in [(award_file, award_url, "award", "s1"), (metadata_file, metadata_url, "metadata", "s2")]:
+                    if file is None:
+                        continue
+                    content = file.getvalue()
+                    if len(content) > 8 * 1024 * 1024:
+                        raise ValueError("单个文件不能超过 8 MiB。")
+                    path = Path(temp) / (sid + Path(file.name).suffix.lower())
+                    path.write_bytes(content)
+                    sources.append(read_local_source(path, url.strip(), role, sid))
+                with st.status("正在读取文件并提取…", expanded=True):
+                    result = collect_one(db, conf, year, [], local_sources=sources, llm=make_llm(), notify=st.write)
+            result["elapsed_seconds"] = time.perf_counter() - started
+            st.session_state["last_import"] = result
+            flash("文件提取已结束。")
+            st.rerun()
+        except Exception as exc:
+            safe_error(exc)
 
 def review_page(db):
     st.header("记录核验")
@@ -328,7 +559,7 @@ def coverage_page(db, conferences):
     st.dataframe([{"会议": r["acronym"], "会议编号": r["conference_id"], "CCF": r["rank"], "年份": r["year"],
                    "奖项": AWARDS[r["award_type"]], "覆盖状态": COVERAGE[r["state"]],
                    "待核验": r["counts"].get("pending", 0), "已核验": r["counts"].get("verified", 0),
-                   "备注": r["note"] or ""} for r in records], hide_index=True, use_container_width=True)
+                   "备注": r["note"] or ""} for r in records], hide_index=True, width="stretch")
     with st.expander("记录人工检查结论"):
         with st.form("coverage_mark"):
             a, b = st.columns([3, 1])
@@ -365,6 +596,9 @@ def main():
         if "notice" in st.session_state:
             kind, message = st.session_state.pop("notice")
             getattr(st, kind)(message)
+        st.title(APP_NAME)
+        st.caption(APP_SUBTITLE)
+        st.caption(APP_NAME_ZH)
         all_records = db.search()
         a, b, c = st.columns(3)
         a.metric("会议范围", len(conferences), help="用户提供名单中的 A 类 58 个、B 类 132 个")

@@ -1,12 +1,64 @@
-# CCF A/B 会议获奖论文 Agent
+# Global CS Paper Awards
 
-**v0.2 已增加本机网页版。** 安装 `requirements-web.txt` 后运行 `python -m streamlit run streamlit_app.py`，浏览器打开 `http://127.0.0.1:8501`。从安装、旧数据保留到采集核验的步骤见 [WEB-GUIDE.md](WEB-GUIDE.md)。下文保留命令行版使用方法，数据库和核心规则仍共用。
+> **Best Paper and Best Student Paper Awards in Top Computer Science Venues**
+>
+> 全球计算机顶级论文奖数据库——收录顶级会议与期刊的最佳论文奖和最佳学生论文奖
 
-这个项目实现一个本地、单用户的采集与检索工具：指定会议某一年的官网或获奖页，读取正文，由 LLM 提取获奖记录，经过字段与证据校验后保存到 SQLite，再按会议、年份、作者、单位等条件组合查询。支持网页界面和命令行两种入口。
+## 已收录论文
 
-**当前数据库已接入核验整理版 Excel：包含 2023–2025 完整年度及截至 2026-09-15 已公布的记录，共 325 条目标奖项。会议名单共 190 个：A 类 58 个、B 类 132 个。**
+**[全部记录：会议/期刊名称 A–Z](AWARDS.md)** · **[按会议/期刊类别](docs/awards/BY_CATEGORY.md)** · **[按年份](docs/awards/BY_YEAR.md)** · **[按奖项类型](docs/awards/BY_AWARD.md)**
+
+以上页面由数据库自动生成，包含 Best Paper、Best Student Paper、论文名、作者及单位、会议、获奖年份、发表时间、核验状态和官方来源链接。
+
+**v0.3 已加入自主检索与 GitHub 自动运行。** 默认使用 DeepSeek 做论文信息结构化提取；网页发现使用独立、可替换的 Responses `web_search` API。Agent 随后读取网页、校验证据、写入 SQLite 和版本化 JSON，并重新生成上述 Markdown 索引。安装 `requirements-web.txt` 后运行 `python -m streamlit run streamlit_app.py`，浏览器打开 `http://127.0.0.1:8501`。从安装、旧数据保留到采集核验的步骤见 [WEB-GUIDE.md](WEB-GUIDE.md)。下文保留命令行版使用方法，数据库和核心规则仍共用。
+
+网页的“采集与导入”支持 **会议多选 × 多个年份/年份区间** 的批量任务。一次运行结束后会在同一页面显示任务统计、每篇论文的结构化明细、CSV 下载、逐任务状态与耗时日志；最近 50 次底层采集运行也会持久化展示。单批最多 50 个会议年度任务，避免误操作造成过多 API 调用。
+
+这个项目实现一个获奖论文采集与检索系统：可一次选择多个会议和多个年份或年份区间，自动发现官网与获奖页，读取正文，由 LLM 提取获奖记录，经过字段与证据校验后保存到 SQLite，再按会议、年份、作者、单位等条件组合查询。支持网页界面、命令行和 GitHub Actions。
+
+**当前数据库已接入核验整理版 Excel：包含 2023–2025 完整年度及截至 2026-09-15 已公布的记录，共 327 条目标奖项。会议名单共 190 个：A 类 58 个、B 类 132 个。**
 
 采用 Python 标准库和 SQLite，无需搭建服务器、向量数据库或 Agent 框架。只有读取 PDF 时才需要安装 `pypdf`。LLM 使用可配置的 Chat Completions 兼容接口；无需把 API 密钥交给别人。
+
+## 自主搜索并记录
+
+自主流程分成五层，搜索结果本身不会直接变成获奖事实：
+
+1. `web_search` 查找会议官网、主办方或官方出版平台的候选页面；
+2. 安全抓取器实际读取候选页面正文或 PDF，不使用搜索结果摘要充当证据；
+3. LLM 将论文、奖项、作者、单位和日期提取为结构化 JSON；
+4. 本地规则检查奖项名称、原文引文、来源对应和重复记录，新记录默认仍为“待核验”；
+5. SQLite 保存可搜索数据，`data/records/*.json` 保存可在 GitHub 复现的证据包，Markdown 索引从数据库重新生成。
+
+设置搜索与提取所需的环境变量：
+
+```powershell
+# 结构化提取：默认 DeepSeek，地址和模型已有默认值
+$env:DEEPSEEK_API_KEY = "你的 DeepSeek API key"
+
+# 实时网页发现：与提取模型分开配置
+$env:SEARCH_API_KEY = "支持 Responses web_search 的 API key"
+$env:SEARCH_MODEL = "支持 web_search 的模型名"
+# OpenAI 可省略 SEARCH_BASE_URL；其他兼容服务再设置该变量
+```
+
+然后可以分步或一键运行：
+
+```bash
+# 只发现候选官方页面，不入库
+python -m ccf_awards discover --conference ACL --year 2026
+
+# 自动搜索、抓取、提取、校验并保存 evidence JSON
+python -m ccf_awards autocollect --conference ACL --year 2026
+
+# 无人值守处理最多 3 个尚无记录的会议
+python -m ccf_awards agent-run --year 2026 --limit 3
+
+# 从当前数据库重新生成四个 GitHub Markdown 视图
+python -m ccf_awards render-markdown --root .
+```
+
+仓库的 [GitHub Actions 工作流](.github/workflows/award-agent.yml) 支持手动指定会议和年份，也会每周运行一次。默认提取配置需要 Secret `DEEPSEEK_API_KEY`；实时搜索需要 Secret `SEARCH_API_KEY` 和 Variable `SEARCH_MODEL`（使用 OpenAI 时，也兼容 `OPENAI_API_KEY`、`OPENAI_SEARCH_MODEL`）。需要换提供商时，可设置 `LLM_PROVIDER`、`LLM_BASE_URL`、`LLM_MODEL`。工作流会从版本化 Excel 和 JSON 证据重建临时数据库，运行 Agent，更新 Markdown 与证据文件后提交结果；SQLite 文件本身不提交。
 
 ## 1 先在本机运行离线样例
 
@@ -72,33 +124,45 @@ python -m ccf_awards search --conference ACL --format json
 
 发表日期只知道月份时，内部按整月区间匹配。例如 `2024-08` 会命中 `2024-08-15` 所在的查询区间，但显示仍为 `2024-08`，不会伪造具体日期。发表日期未知的记录不会命中发表日期筛选，但能通过会议年份筛选找到。
 
-## 3 配置 LLM API
+## 3 配置多提供商 LLM API
 
-程序直接请求 `LLM_BASE_URL/chat/completions`。提供商需要支持 `model`、`messages` 以及 `choices[0].message.content` 响应。模型名称必须由你填写为账户实际可调用的模型。
-
-Linux / macOS，在当前终端设置：
-
-```bash
-export LLM_BASE_URL="https://api.openai.com/v1"
-export LLM_MODEL="填写你可调用的模型名"
-read -s -p "API key: " LLM_API_KEY
-export LLM_API_KEY
-```
-
-Windows PowerShell：
+结构化提取默认使用 DeepSeek：`LLM_PROVIDER=deepseek`、基础地址 `https://api.deepseek.com`、模型 `deepseek-chat`。通常只需配置密钥：
 
 ```powershell
-$env:LLM_BASE_URL = "https://api.openai.com/v1"
-$env:LLM_MODEL = "填写你可调用的模型名"
-$secret = Read-Host "API key" -AsSecureString
-$env:LLM_API_KEY = [System.Net.NetworkCredential]::new("", $secret).Password
+$env:DEEPSEEK_API_KEY = "你的 DeepSeek API key"
 ```
 
-使用其他提供商时，替换 `LLM_BASE_URL` 和 `LLM_MODEL`。API 地址要求 HTTPS，程序不会跟随带密钥请求的重定向。默认请求 JSON mode：`response_format={"type":"json_object"}`。如果提供商不支持此参数，可设置 `LLM_JSON_MODE=0`；返回内容仍必须是合法 JSON，并通过本地校验。程序不会自动读取 `.env`。
+目前内置三个配置档：
 
-JSON mode 只约束 JSON 格式，不能保证事实正确，因此新数据不会自动成为已核验记录。协议依据：[Chat Completions 官方接口](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create)及[Structured Outputs 文档](https://developers.openai.com/api/docs/guides/structured-outputs)。
+| `LLM_PROVIDER` | 默认地址 | 默认模型 | 默认密钥变量 |
+| --- | --- | --- | --- |
+| `deepseek`（默认） | `https://api.deepseek.com` | `deepseek-chat` | `DEEPSEEK_API_KEY` |
+| `openai` | `https://api.openai.com/v1` | 需要自行填写 | `OPENAI_API_KEY` |
+| `custom` | 需要自行填写 | 需要自行填写 | `LLM_API_KEY` |
 
-每次采集通常调用一次 LLM；网络返回 429 或 5xx 时最多尝试三次。`batch` 的调用量随已登记会议年度入口数量增长。来源正文和元数据会发送到你配置的 API 提供商，本地不会保存 API 密钥。
+所有档位都可用 `LLM_API_KEY`、`LLM_BASE_URL`、`LLM_MODEL` 覆盖，因此其他兼容 Chat Completions 的服务也能接入。例如切换 OpenAI：
+
+```powershell
+$env:LLM_PROVIDER = "openai"
+$env:OPENAI_API_KEY = "你的 API key"
+$env:LLM_MODEL = "你的账户可调用模型"
+```
+
+自主网页发现与结构化提取是两套独立配置。DeepSeek 官方 Responses API 当前会忽略内置 `web_search` 工具，因此不能把 DeepSeek 模型回答冒充实时检索结果。`discover`、`autocollect` 和 `agent-run` 使用：
+
+```powershell
+$env:SEARCH_API_KEY = "搜索 API key"
+$env:SEARCH_MODEL = "支持 Responses web_search 的模型"
+# 默认 SEARCH_BASE_URL=https://api.openai.com/v1
+```
+
+使用 OpenAI 搜索时也兼容旧变量 `OPENAI_API_KEY`、`OPENAI_SEARCH_MODEL`。其他提供商只有在实际兼容 Responses API 且实现 `web_search` 时才可填入 `SEARCH_BASE_URL`；仅仅声称“OpenAI 兼容”并不代表支持网页搜索。
+
+程序默认请求 JSON mode：`response_format={"type":"json_object"}`。如果某个兼容接口不支持，可设置 `LLM_JSON_MODE=0`；返回内容仍须为合法 JSON，并通过本地证据校验。API 地址必须使用 HTTPS，程序不会跟随携带密钥的重定向，也不会把密钥写入数据库。
+
+参考：[DeepSeek API 快速开始](https://api-docs.deepseek.com/)、[DeepSeek Responses API 支持范围](https://api-docs.deepseek.com/guides/responses_api)、[OpenAI Responses API](https://developers.openai.com/api/reference/cli/resources/responses/methods/create)。
+
+每次采集通常进行一次网页发现调用和一次结构化提取调用；网络返回 429 或 5xx 时最多尝试三次。来源正文和元数据会发送给你配置的提取服务商，新数据仍默认进入“待核验”。
 
 ## 4 指定网站并采集
 
@@ -240,7 +304,7 @@ python -m ccf_awards runs
 python -m unittest discover -s tests -v
 ```
 
-交付前已通过 22 项回归测试和独立进程离线演示，验证了会议名单、两类奖项、复合过滤、作者单位关联、日期精度、去重、修订、异常证据、任务失败、PDF 元数据读取范围以及 CLI/CSV。采集编排与 API 请求结构使用模拟响应测试；**没有使用你的真实 API 密钥进行付费推理调用，也未批量抓取历年获奖数据。**
+当前 47 项回归测试和独立进程离线演示均已通过，验证了会议名单、两类奖项、复合过滤、作者单位关联、日期精度、去重、修订、异常证据、任务失败、PDF 元数据读取范围以及 CLI/CSV。采集编排与 API 请求结构使用模拟响应测试；**没有使用你的真实 API 密钥进行付费推理调用，也未批量抓取历年获奖数据。**
 
 现阶段还有这些边界：
 
@@ -253,6 +317,6 @@ python -m unittest discover -s tests -v
 
 ## 8 建议的下一步
 
-先选 3—5 个常用会议及明确年份范围，用真实 API 调通并核对提取质量。v0.2 已加入网页界面和覆盖检查页面；接下来可加入论文详情页与 PDF 的自动发现，随后扩展搜索引擎 API、定时更新和后台任务。每一步都可以复用现有数据库和检索逻辑。
+先选 3—5 个常用会议及明确年份范围，用真实 DeepSeek 提取 API 和搜索 API 联调并核对提取质量。当前已具备网页界面、自动网页发现、定时 GitHub Actions 和覆盖检查；下一步可继续提升论文详情页/PDF 自动发现率，并增加失败任务重试与人工复核队列。
 
 这份基础版把“所有 A/B 会议”作为可逐步覆盖的会议范围，把采集完整性单独记录，方便在增加自动化之后继续追踪缺口。

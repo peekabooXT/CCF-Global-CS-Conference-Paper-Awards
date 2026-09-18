@@ -1,3 +1,4 @@
+import datetime as dt
 import json
 import sqlite3
 from pathlib import Path
@@ -91,10 +92,12 @@ class Database:
         if type(year) is not int or not 1900 <= year <= 2200:
             raise ValueError("year 必须是 1900–2200 的整数")
         valid, rejected = validate_bundle(bundle, cid, year)
-        changes = {"inserted": 0, "updated": 0, "unchanged": 0, "rejected": rejected}
+        changes = {"inserted": 0, "updated": 0, "unchanged": 0,
+                   "rejected": rejected, "record_ids": []}
         sources = json.dumps(bundle["sources"], ensure_ascii=False, sort_keys=True)
         with self.conn:
             for r in valid:
+                changes["record_ids"].append(r["id"])
                 payload = json.dumps(r, ensure_ascii=False, sort_keys=True)
                 old = self.conn.execute("SELECT * FROM records WHERE id=?", (r["id"],)).fetchone()
                 if old and old["payload"] == payload:
@@ -202,3 +205,19 @@ class Database:
         with self.conn:
             self.conn.execute("UPDATE runs SET finished_at=?,status=?,details=? WHERE id=?",
                               (now(), status, json.dumps(details, ensure_ascii=False), run_id))
+
+    def runs(self, limit=50):
+        if type(limit) is not int or not 1 <= limit <= 500:
+            raise ValueError("日志数量应在 1–500 之间")
+        rows = self.conn.execute("""SELECT r.*,c.acronym
+            FROM runs r JOIN conferences c ON c.id=r.conference_id
+            ORDER BY r.id DESC LIMIT ?""", (limit,)).fetchall()
+        result = []
+        for row in rows:
+            details = json.loads(row["details"] or "{}")
+            started = dt.datetime.fromisoformat(row["started_at"]) if row["started_at"] else None
+            finished = dt.datetime.fromisoformat(row["finished_at"]) if row["finished_at"] else None
+            result.append({**dict(row), "details": details,
+                           "duration_seconds": (finished - started).total_seconds()
+                           if started and finished else None})
+        return result

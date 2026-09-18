@@ -6,6 +6,7 @@ import urllib.request
 from urllib.parse import urlsplit
 from .model import AWARDS, url_syntax
 from .network import NoRedirect
+from .providers import provider_profile
 
 SCHEMA_EXAMPLE = {
     "records": [{
@@ -21,13 +22,18 @@ SCHEMA_EXAMPLE = {
 
 
 class LLM:
-    def __init__(self, api_key=None, base_url=None, model=None, json_mode=None):
+    def __init__(self, api_key=None, base_url=None, model=None, json_mode=None, provider=None):
         # Explicit arguments isolate each web session; never mutate os.environ.
-        self.key = api_key if api_key is not None else os.getenv("LLM_API_KEY", "")
-        self.base = (base_url if base_url is not None else os.getenv("LLM_BASE_URL", "https://api.openai.com/v1")).rstrip("/")
-        self.model = model if model is not None else os.getenv("LLM_MODEL", "")
-        if not self.key or not self.model:
-            raise ValueError("请在本机设置 LLM_API_KEY 和 LLM_MODEL；离线演示无需 API")
+        self.provider, profile = provider_profile(provider or os.getenv("LLM_PROVIDER", "deepseek"))
+        provider_key = os.getenv(profile["key_env"], "")
+        self.key = api_key if api_key is not None else os.getenv("LLM_API_KEY", "") or provider_key
+        self.base = (base_url if base_url is not None else os.getenv("LLM_BASE_URL", "") or profile["base_url"]).rstrip("/")
+        self.model = model if model is not None else os.getenv("LLM_MODEL", "") or profile["model"]
+        if not self.key or not self.base or not self.model:
+            raise ValueError(
+                f"{self.provider} 配置不完整；请设置 {profile['key_env']}，"
+                "或使用 LLM_API_KEY、LLM_BASE_URL、LLM_MODEL 覆盖默认值；离线演示无需 API"
+            )
         url_syntax(self.base)
         if urlsplit(self.base).scheme != "https":
             raise ValueError("LLM_BASE_URL 必须使用 HTTPS")
