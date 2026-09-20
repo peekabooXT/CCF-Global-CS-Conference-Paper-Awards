@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from .model import url_syntax
 from .network import NoRedirect
+from .providers import provider_profile
 from .usage import normalize_usage
 
 
@@ -15,11 +16,18 @@ class ResponsesWebSearch:
     """Find candidate official award pages; fetching and validation happen later."""
 
     def __init__(self, api_key=None, base_url=None, model=None):
-        self.key = api_key if api_key is not None else os.getenv("SEARCH_API_KEY", os.getenv("OPENAI_API_KEY", ""))
-        self.base = (base_url if base_url is not None else os.getenv("SEARCH_BASE_URL", os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"))).rstrip("/")
-        self.model = model if model is not None else os.getenv("SEARCH_MODEL", os.getenv("OPENAI_SEARCH_MODEL", ""))
+        reuse = os.getenv("SEARCH_REUSE_LLM", "0") == "1"
+        if reuse and api_key is None and base_url is None and model is None:
+            _, profile = provider_profile(os.getenv("LLM_PROVIDER", "deepseek"))
+            self.key = os.getenv("LLM_API_KEY", "") or os.getenv(profile["key_env"], "")
+            self.base = (os.getenv("LLM_BASE_URL", "") or profile["base_url"]).rstrip("/")
+            self.model = os.getenv("LLM_MODEL", "") or profile["model"]
+        else:
+            self.key = api_key if api_key is not None else os.getenv("SEARCH_API_KEY", os.getenv("OPENAI_API_KEY", ""))
+            self.base = (base_url if base_url is not None else os.getenv("SEARCH_BASE_URL", os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"))).rstrip("/")
+            self.model = model if model is not None else os.getenv("SEARCH_MODEL", os.getenv("OPENAI_SEARCH_MODEL", ""))
         if not self.key or not self.model:
-            raise ValueError("自主搜索需要 SEARCH_API_KEY 和 SEARCH_MODEL（OpenAI 可直接使用 OPENAI_API_KEY/OPENAI_SEARCH_MODEL）")
+            raise ValueError("自主搜索需要可复用的 LLM 连接，或 SEARCH_API_KEY 和 SEARCH_MODEL")
         url_syntax(self.base)
         if urlsplit(self.base).scheme != "https":
             raise ValueError("SEARCH_BASE_URL 必须使用 HTTPS")

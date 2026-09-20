@@ -87,7 +87,7 @@ python -m streamlit run streamlit_app.py
 
 ## 第六步 配置 API 并批量采集
 
-在左侧展开 **LLM 连接设置**。默认使用 DeepSeek 做结构化提取，也可以选择 OpenAI 或自定义兼容接口：
+在左侧展开统一的 **AI 连接设置**。结构化提取与联网搜索默认复用同一组 API 地址、模型和密钥，也可以选择 OpenAI 或自定义兼容接口：
 
 | 网页输入项 | 填写内容 |
 | --- | --- |
@@ -97,7 +97,7 @@ python -m streamlit run streamlit_app.py
 | API Key | 对应提供商的密钥 |
 | 请求 JSON 模式 | 默认勾选；提供商不支持该参数时取消勾选 |
 
-自动发现官网时，还需展开 **自动网页搜索设置**，填写支持 Responses `web_search` 的 API 地址、模型和 API Key。搜索负责找到候选官方页面，DeepSeek 默认负责从实际页面正文中提取结构化论文信息；搜索摘要不会直接作为获奖证据。
+默认勾选“联网搜索复用上述连接”。该端点必须同时支持 Chat Completions 和 Responses web_search。标准 DeepSeek Chat 接口不具备该工具能力，此时取消勾选，在同一个面板出现的“高级搜索连接”中填写支持 web_search 的地址、模型和 API Key。搜索只负责找到候选官方页面，程序仍会读取实际页面正文；搜索摘要不会直接作为获奖证据。
 
 输入的参数只用于当前网页会话，不写入数据库、不修改其他会话的环境变量。API Key 留空时会读取相应环境变量。重启或重新建立网页会话后，可能需要重新填写。
 
@@ -124,6 +124,8 @@ python -m streamlit run streamlit_app.py
 
 **核验记录时：**切换到“记录核验”，选择论文，打开原始来源，核对奖项、作者顺序、单位标号和发表日期，再填写核验人、备注及结论并保存。论文详情保留字段证据，已有核验记录也可以重新查看。
 
+**发布核验结果时：**在“发布已核验记录到 GitHub”区域点击“发布最新已核验记录到 GitHub”。系统只发布所有当前已核验记录，生成四个 Markdown 索引和 data/exports/verified-records.json，内容无变化时不会创建空提交。服务器必须预先配置 GITHUB_TOKEN、GITHUB_REPOSITORY 和 GITHUB_BRANCH；页面不会接收或保存 GitHub Token。
+
 **检查完整性时：**切换到“采集覆盖”，按会议和年份查看。需要记录人工结论时，展开“记录人工检查结论”。“没有查到”与“确认未设奖”是不同状态。已有未排除的获奖记录时，程序会阻止相矛盾的“未设奖”结论。
 
 ## 这次具体改了哪些地方
@@ -144,6 +146,7 @@ python -m streamlit run streamlit_app.py
 
 - `streamlit_app.py`：网页入口，分别用函数组织四个工作区。
 - `ccf_awards/web_helpers.py`：网页显示文字、CSV 下载等适配功能。
+- ccf_awards/github_publish.py：生成已核验快照并通过 GitHub Git Data API 原子发布。
 - `requirements-web.txt`：网页依赖。
 - `.streamlit/config.toml`：本机监听地址、主题、上传限制及请求保护。
 - `tests/test_web.py`：网页交互和会话配置测试。
@@ -187,7 +190,7 @@ if submitted:
 
 ## 验证与后续扩展
 
-当前 49 项测试全部通过，其中包含通过 Streamlit AppTest 模拟网页操作的测试，没有打开真实浏览器或使用付费 API。测试覆盖样例导入、复合筛选、年份校验、核验持久化、入口保存、缺失 API 配置、模拟采集、页面重跑不重复操作和覆盖状态。旧版的核心回归测试也一并保留。
+当前 54 项测试全部通过，其中包含通过 Streamlit AppTest 模拟网页操作的测试，没有打开真实浏览器或使用付费 API。测试覆盖样例导入、复合筛选、年份校验、核验持久化、入口保存、缺失 API 配置、模拟采集、页面重跑不重复操作和覆盖状态。旧版的核心回归测试也一并保留。
 
 ```bash
 python -m unittest discover -s tests -v

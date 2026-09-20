@@ -10,7 +10,7 @@
 
 以上页面由数据库自动生成，包含 Best Paper、Best Student Paper、论文名、作者及单位、会议、获奖年份、发表时间、核验状态和官方来源链接。
 
-**v0.3 已加入自主检索与 GitHub 自动运行。** 默认使用 DeepSeek 做论文信息结构化提取；网页发现使用独立、可替换的 Responses `web_search` API。Agent 随后读取网页、校验证据、写入 SQLite 和版本化 JSON，并重新生成上述 Markdown 索引。安装 `requirements-web.txt` 后运行 `python -m streamlit run streamlit_app.py`，浏览器打开 `http://127.0.0.1:8501`。从安装、旧数据保留到采集核验的步骤见 [WEB-GUIDE.md](WEB-GUIDE.md)。下文保留命令行版使用方法，数据库和核心规则仍共用。
+**v0.4 已加入统一 AI 连接与核验后发布。** 结构化提取和 Responses web_search 可复用同一组 API 地址、模型和密钥；不兼容网页搜索的端点仍可在同一设置面板中使用高级搜索连接。记录核验后可从网页把全部已核验论文、四个 Markdown 索引和可回放 JSON 快照一次提交到 GitHub。Agent 随后读取网页、校验证据并写入 SQLite。
 
 网页的“采集与导入”支持 **会议多选 × 多个年份/年份区间** 的批量任务。一次运行结束后会在同一页面显示任务统计、每篇论文的结构化明细、CSV 下载、逐任务状态、耗时和 API token 日志；搜索与结构化提取分别记录输入、输出和总 tokens，最近 50 次底层采集运行也会持久化展示。仅当服务商在响应中返回 `usage` 时才能记录，旧日志无法事后准确补算。单批最多 50 个会议年度任务，避免误操作造成过多 API 调用。
 
@@ -36,10 +36,12 @@
 # 结构化提取：默认 DeepSeek，地址和模型已有默认值
 $env:DEEPSEEK_API_KEY = "你的 DeepSeek API key"
 
-# 实时网页发现：与提取模型分开配置
+# 若同一端点同时支持 Chat Completions 和 Responses web_search，可直接复用
+$env:SEARCH_REUSE_LLM = "1"
+
+# 端点不支持 web_search 时，改用独立搜索连接
 $env:SEARCH_API_KEY = "支持 Responses web_search 的 API key"
 $env:SEARCH_MODEL = "支持 web_search 的模型名"
-# OpenAI 可省略 SEARCH_BASE_URL；其他兼容服务再设置该变量
 ```
 
 然后可以分步或一键运行：
@@ -58,7 +60,17 @@ python -m ccf_awards agent-run --year 2026 --limit 3
 python -m ccf_awards render-markdown --root .
 ```
 
-仓库的 [GitHub Actions 工作流](.github/workflows/award-agent.yml) 支持手动指定会议和年份，也会每周运行一次。默认提取配置需要 Secret `DEEPSEEK_API_KEY`；实时搜索需要 Secret `SEARCH_API_KEY` 和 Variable `SEARCH_MODEL`（使用 OpenAI 时，也兼容 `OPENAI_API_KEY`、`OPENAI_SEARCH_MODEL`）。需要换提供商时，可设置 `LLM_PROVIDER`、`LLM_BASE_URL`、`LLM_MODEL`。工作流会从版本化 Excel 和 JSON 证据重建临时数据库，运行 Agent，更新 Markdown 与证据文件后提交结果；SQLite 文件本身不提交。
+仓库的 [GitHub Actions 工作流](.github/workflows/award-agent.yml) 支持手动指定会议和年份，也会每周运行一次。默认提取配置需要 Secret `DEEPSEEK_API_KEY`。若同一端点支持网页搜索，可设置 Variable `SEARCH_REUSE_LLM=1`；否则配置 Secret `SEARCH_API_KEY` 和 Variable `SEARCH_MODEL`。需要换提供商时，可设置 `LLM_PROVIDER`、`LLM_BASE_URL`、`LLM_MODEL`。工作流会从版本化 Excel、证据 JSON 和已核验快照重建临时数据库，运行 Agent，只把已核验记录渲染到公开 Markdown 索引；SQLite 文件本身不提交。
+
+### 从“记录核验”发布到 GitHub
+
+网页只发布状态为 **已核验** 的记录；待核验和已排除记录不会进入公开索引。发布过程比较 Git blob 内容，只有文件真实变化时才创建一个原子提交。服务器需配置：
+
+    GITHUB_TOKEN=具有目标仓库 Contents 写权限的细粒度令牌
+    GITHUB_REPOSITORY=peekabooXT/CCF-Awards-Agent
+    GITHUB_BRANCH=main
+
+出于安全考虑，Token 只从服务器环境读取，页面不会提供输入框，尤其不应在当前 HTTP 公网页面中粘贴令牌。发布的 data/exports/verified-records.json 会被 GitHub Actions 重新导入，避免后续数据库重建丢失人工核验状态。
 
 ## 1 先在本机运行离线样例
 
@@ -148,7 +160,7 @@ $env:OPENAI_API_KEY = "你的 API key"
 $env:LLM_MODEL = "你的账户可调用模型"
 ```
 
-自主网页发现与结构化提取是两套独立配置。DeepSeek 官方 Responses API 当前会忽略内置 `web_search` 工具，因此不能把 DeepSeek 模型回答冒充实时检索结果。`discover`、`autocollect` 和 `agent-run` 使用：
+网页界面默认让网页发现与结构化提取复用同一连接；命令行和 GitHub Actions 设置 **SEARCH_REUSE_LLM=1** 后采用同样行为。前提是该端点同时兼容 /chat/completions 与带 web_search 工具的 /responses。标准 DeepSeek Chat 接口目前不能执行该网页搜索工具，因此不能把模型回答冒充实时检索结果；此时关闭复用并配置：
 
 ```powershell
 $env:SEARCH_API_KEY = "搜索 API key"

@@ -24,7 +24,7 @@ class WebTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.path = Path(self.tmp.name) / "web.sqlite3"
-        self.env = patch.dict(os.environ, {"CCF_AWARDS_DB":str(self.path), "LLM_API_KEY":"", "LLM_MODEL":"", "DEEPSEEK_API_KEY":"", "LLM_PROVIDER":"deepseek"})
+        self.env = patch.dict(os.environ, {"CCF_AWARDS_DB":str(self.path), "LLM_API_KEY":"", "LLM_MODEL":"", "DEEPSEEK_API_KEY":"", "LLM_PROVIDER":"deepseek", "GITHUB_TOKEN":"", "GH_TOKEN":""})
         self.env.start()
         self.app = AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=20).run()
         self.assertEqual(len(self.app.exception), 0)
@@ -44,6 +44,17 @@ class WebTest(unittest.TestCase):
             if button.key == key or button.label == label:
                 return button
         self.fail(f"未找到按钮：{label}")
+
+    def test_unified_ai_settings_and_safe_publish_button(self):
+        labels = [item.label for item in self.app.expander]
+        self.assertIn("AI 连接设置", labels)
+        self.assertNotIn("LLM 连接设置", labels)
+        self.assertNotIn("自动网页搜索设置", labels)
+        self.assertTrue(self.app.checkbox(key="search_reuse_primary").value)
+        self.demo()
+        self.app.radio(key="section").set_value("记录核验").run()
+        button = self.button("publish_verified", "发布最新已核验记录到 GitHub")
+        self.assertTrue(button.disabled)
 
     def test_provider_switch_updates_editable_defaults(self):
         self.app.selectbox(key="provider_name").set_value("openai").run()
