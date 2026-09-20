@@ -1,5 +1,6 @@
 """Build and publish a reviewed-data snapshot to GitHub."""
 import hashlib
+import hmac
 import json
 import os
 import tempfile
@@ -12,6 +13,16 @@ from .markdown_export import render_markdown
 
 
 PUBLISHED_JSON = "data/exports/verified-records.json"
+
+
+def verify_publish_password(password, expected_hash=None):
+    """Verify a password without storing or comparing the plaintext secret."""
+    expected = expected_hash if expected_hash is not None else os.getenv("PUBLISH_PASSWORD_SHA256", "")
+    expected = str(expected or "").strip().lower()
+    if len(expected) != 64 or any(ch not in "0123456789abcdef" for ch in expected):
+        return False
+    actual = hashlib.sha256(str(password or "").encode("utf-8")).hexdigest()
+    return hmac.compare_digest(actual, expected)
 
 
 def _snapshot_entry(record):

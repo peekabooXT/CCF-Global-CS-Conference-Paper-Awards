@@ -124,7 +124,7 @@ python -m streamlit run streamlit_app.py
 
 **核验记录时：**切换到“记录核验”，选择论文，打开原始来源，核对奖项、作者顺序、单位标号和发表日期，再填写核验人、备注及结论并保存。论文详情保留字段证据，已有核验记录也可以重新查看。
 
-**发布核验结果时：**在“发布已核验记录到 GitHub”区域点击“发布最新已核验记录到 GitHub”。系统只发布所有当前已核验记录，生成四个 Markdown 索引和 data/exports/verified-records.json，内容无变化时不会创建空提交。服务器必须预先配置 GITHUB_TOKEN、GITHUB_REPOSITORY 和 GITHUB_BRANCH；页面不会接收或保存 GitHub Token。
+**发布核验结果时：**在“发布已核验记录到 GitHub”区域输入发布验证密码，再点击“验证并发布最新已核验记录到 GitHub”。系统只发布所有当前已核验记录，生成四个 Markdown 索引和 data/exports/verified-records.json，内容无变化时不会创建空提交。服务器必须预先配置 GITHUB_TOKEN、GITHUB_REPOSITORY、GITHUB_BRANCH 和 PUBLISH_PASSWORD_SHA256；页面不会接收或保存 GitHub Token，仓库和服务器配置中也不保存明文发布密码。当前 HTTP 部署仍应升级 HTTPS。
 
 **检查完整性时：**切换到“采集覆盖”，按会议和年份查看。需要记录人工结论时，展开“记录人工检查结论”。“没有查到”与“确认未设奖”是不同状态。已有未排除的获奖记录时，程序会阻止相矛盾的“未设奖”结论。
 
@@ -190,7 +190,7 @@ if submitted:
 
 ## 验证与后续扩展
 
-当前 54 项测试全部通过，其中包含通过 Streamlit AppTest 模拟网页操作的测试，没有打开真实浏览器或使用付费 API。测试覆盖样例导入、复合筛选、年份校验、核验持久化、入口保存、缺失 API 配置、模拟采集、页面重跑不重复操作和覆盖状态。旧版的核心回归测试也一并保留。
+当前 55 项测试全部通过，其中包含通过 Streamlit AppTest 模拟网页操作的测试，没有打开真实浏览器或使用付费 API。测试覆盖样例导入、复合筛选、年份校验、核验持久化、入口保存、缺失 API 配置、模拟采集、页面重跑不重复操作和覆盖状态。旧版的核心回归测试也一并保留。
 
 ```bash
 python -m unittest discover -s tests -v

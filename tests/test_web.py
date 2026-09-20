@@ -53,7 +53,8 @@ class WebTest(unittest.TestCase):
         self.assertTrue(self.app.checkbox(key="search_reuse_primary").value)
         self.demo()
         self.app.radio(key="section").set_value("记录核验").run()
-        button = self.button("publish_verified", "发布最新已核验记录到 GitHub")
+        self.assertTrue(self.app.text_input(key="publish_password"))
+        button = self.button("publish_verified", "验证并发布最新已核验记录到 GitHub")
         self.assertTrue(button.disabled)
 
     def test_provider_switch_updates_editable_defaults(self):

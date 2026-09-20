@@ -69,8 +69,9 @@ python -m ccf_awards render-markdown --root .
     GITHUB_TOKEN=具有目标仓库 Contents 写权限的细粒度令牌
     GITHUB_REPOSITORY=peekabooXT/Global-CS-Paper-Awards
     GITHUB_BRANCH=main
+    PUBLISH_PASSWORD_SHA256=发布验证密码的SHA-256摘要
 
-出于安全考虑，Token 只从服务器环境读取，页面不会提供输入框，尤其不应在当前 HTTP 公网页面中粘贴令牌。发布的 data/exports/verified-records.json 会被 GitHub Actions 重新导入，避免后续数据库重建丢失人工核验状态。
+出于安全考虑，Token 只从服务器环境读取，页面不会提供输入框。发布按钮还要求输入验证密码，服务器仅保存 PUBLISH_PASSWORD_SHA256，不把明文密码写入仓库或配置文件。当前网站仍为 HTTP，正式使用还应配置 HTTPS，避免网络传输中的密码被窃听。发布的 data/exports/verified-records.json 会被 GitHub Actions 重新导入，避免后续数据库重建丢失人工核验状态。
 
 ## 1 先在本机运行离线样例
 

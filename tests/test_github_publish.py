@@ -1,3 +1,4 @@
+import hashlib
 import json
 import tempfile
 import unittest
@@ -6,7 +7,7 @@ from pathlib import Path
 from ccf_awards.db import Database
 from ccf_awards.github_publish import (
     GitHubPublisher, PUBLISHED_JSON, build_publish_files, git_blob_sha,
-    import_verified_snapshot,
+    import_verified_snapshot, verify_publish_password,
 )
 from ccf_awards.web_helpers import import_demo
 
@@ -39,6 +40,14 @@ class FakePublisher(GitHubPublisher):
         if method == "PATCH":
             return {"object": {"sha": "new-commit"}}
         raise AssertionError((method, path, body))
+
+
+class PublishPasswordTest(unittest.TestCase):
+    def test_password_is_verified_against_hash_without_plaintext_storage(self):
+        expected = hashlib.sha256(b"test-secret").hexdigest()
+        self.assertTrue(verify_publish_password("test-secret", expected))
+        self.assertFalse(verify_publish_password("wrong-secret", expected))
+        self.assertFalse(verify_publish_password("test-secret", "not-a-valid-hash"))
 
 
 class GitHubPublishTest(unittest.TestCase):
