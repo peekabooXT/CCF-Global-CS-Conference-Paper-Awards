@@ -67,7 +67,7 @@ python -m ccf_awards render-markdown --root .
 网页只发布状态为 **已核验** 的记录；待核验和已排除记录不会进入公开索引。发布过程比较 Git blob 内容，只有文件真实变化时才创建一个原子提交。服务器需配置：
 
     GITHUB_TOKEN=具有目标仓库 Contents 写权限的细粒度令牌
-    GITHUB_REPOSITORY=peekabooXT/CCF-Awards-Agent
+    GITHUB_REPOSITORY=peekabooXT/Global-CS-Paper-Awards
     GITHUB_BRANCH=main
 
 出于安全考虑，Token 只从服务器环境读取，页面不会提供输入框，尤其不应在当前 HTTP 公网页面中粘贴令牌。发布的 data/exports/verified-records.json 会被 GitHub Actions 重新导入，避免后续数据库重建丢失人工核验状态。

@@ -568,7 +568,7 @@ def review_page(db):
     st.header("记录核验")
     st.caption("核对来源中的奖项、作者与单位对应关系后，更新记录状态。")
     verified_count = len(db.search(status="verified"))
-    repository = os.getenv("GITHUB_REPOSITORY", "peekabooXT/CCF-Awards-Agent")
+    repository = os.getenv("GITHUB_REPOSITORY", "peekabooXT/Global-CS-Paper-Awards")
     branch = os.getenv("GITHUB_BRANCH", "main")
     with st.expander("发布已核验记录到 GitHub", expanded=True):
         st.write(f"当前已核验 **{verified_count}** 条；目标仓库 **{repository}**，分支 **{branch}**。")
