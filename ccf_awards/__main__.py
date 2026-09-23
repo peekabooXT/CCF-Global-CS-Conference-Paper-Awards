@@ -81,7 +81,8 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
     try:
         sources, warnings = (local_sources, []) if local_sources else crawl(
             urls, extra_urls, max_pages, notify=notify, strict_seeds=strict_urls)
-        notify(f"已读取 {len(sources)} 个来源，正在提取…")
+        source_chars = sum(len(source["text"]) for source in sources)
+        notify(f"已读取 {len(sources)} 个来源（{source_chars:,} 字符），正在按目标年度提取…")
         bundle = llm.extract(conference, year, sources)
         extraction_usage = getattr(llm, "last_usage", None)
         if extraction_usage:

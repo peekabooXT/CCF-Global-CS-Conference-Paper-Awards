@@ -11,7 +11,7 @@ from ccf_awards.catalog import load_catalog
 from ccf_awards.db import Database
 from ccf_awards.model import date_bounds, validate_bundle
 from ccf_awards.network import decode_document, public_url
-from ccf_awards.llm import LLM
+from ccf_awards.llm import LLM, scope_sources_to_year
 from ccf_awards.__main__ import auto_collect_one, main, collect_one
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -201,6 +201,34 @@ class CoreTest(unittest.TestCase):
         self.assertNotIn("do bad things", text)
         self.assertIn("Best Paper Award\nWinner One", text)
         self.assertEqual(links[0]["url"], "https://example.org/paper.pdf")
+
+    def test_long_multi_year_award_page_is_scoped_to_requested_year(self):
+        source = {
+            "id": "s1", "url": "https://example.org/awards", "role": "award",
+            "text": (
+                "Awards archive\n"
+                "2026\nAAAI-26 Best Paper Award\nNewer Winner\n" + "newer filler\n" * 6_000 +
+                "2025\nAAAI-25 Best Paper Award\nTarget Winner\nTarget Author\n" + "target filler\n" * 3_000 +
+                "2024\nAAAI-24 Best Paper Award\nOlder Winner\n" + "older filler\n" * 6_000
+            ),
+            "extraction_scope": "full document",
+            "links": [{"url": "https://example.org/unrelated", "label": "Site navigation"}],
+        }
+        self.assertGreater(len(source["text"]), 100_000)
+        scoped = scope_sources_to_year([source], 2025)
+        self.assertIn("Target Winner", scoped[0]["text"])
+        self.assertNotIn("Newer Winner", scoped[0]["text"])
+        self.assertNotIn("Older Winner", scoped[0]["text"])
+        self.assertEqual(scoped[0]["original_text_length"], len(source["text"]))
+        self.assertIn("target year 2025", scoped[0]["extraction_scope"])
+        self.assertEqual(scoped[0]["links"], [])
+        self.assertEqual(source["extraction_scope"], "full document")
+
+    def test_long_page_without_target_year_section_still_fails(self):
+        source = {"id": "s1", "url": "https://example.org/awards", "role": "award",
+                  "text": "Awards without year headings\n" + "x" * 100_000}
+        with self.assertRaisesRegex(ValueError, "无法按 2025 年度标题"):
+            scope_sources_to_year([source], 2025)
 
     def test_collect_to_sqlite_with_mocked_api_and_fetch(self):
         # Simulated network/model, real coordinator -> validator -> SQLite -> search.
