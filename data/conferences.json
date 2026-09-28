@@ -1,0 +1,2477 @@
+[
+  {
+    "id": "ppopp-7e8103",
+    "acronym": "PPoPP",
+    "full_name": "ACM SIGPLAN Symposium on Principles & Practice of Parallel Programming",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "PPoPP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "fast-ffdc52",
+    "acronym": "FAST",
+    "full_name": "USENIX Conference on File and Storage Technologies",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "USENIX",
+    "aliases": [
+      "FAST"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "dac-7dded7",
+    "acronym": "DAC",
+    "full_name": "Design Automation Conference",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "DAC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "hpca-60c17f",
+    "acronym": "HPCA",
+    "full_name": "IEEE International Symposium on High Performance Computer Architecture",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "HPCA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "micro-a631fd",
+    "acronym": "MICRO",
+    "full_name": "IEEE/ACM International Symposium on Microarchitecture",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "MICRO"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sc-7aded8",
+    "acronym": "SC",
+    "full_name": "International Conference for High Performance Computing, Networking, Storage, and Analysis",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "SC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "asplos-ad52db",
+    "acronym": "ASPLOS",
+    "full_name": "International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "ASPLOS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "isca-adf18a",
+    "acronym": "ISCA",
+    "full_name": "International Symposium on Computer Architecture",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "ISCA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "acm-sigops-atc-4398bb",
+    "acronym": "ACM SIGOPS ATC",
+    "full_name": "ACM SIGOPS Annual Technical Conference",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "ACM SIGOPS ATC（原 USENIX ATC）",
+      "ACM SIGOPS ATC",
+      "USENIX ATC",
+      "ATC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "eurosys-1a4ca5",
+    "acronym": "EuroSys",
+    "full_name": "European Conference on Computer Systems",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "EuroSys"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "hpdc-9664ae",
+    "acronym": "HPDC",
+    "full_name": "The International ACM Symposium on High-Performance Parallel and Distributed Computing",
+    "rank": "A",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "HPDC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "socc-558b02",
+    "acronym": "SoCC",
+    "full_name": "ACM Symposium on Cloud Computing",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "SoCC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "spaa-7e8630",
+    "acronym": "SPAA",
+    "full_name": "ACM Symposium on Parallelism in Algorithms and Architectures",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "SPAA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "podc-87da73",
+    "acronym": "PODC",
+    "full_name": "ACM Symposium on Principles of Distributed Computing",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "PODC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "fpga-3a39a9",
+    "acronym": "FPGA",
+    "full_name": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "FPGA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cgo-a762bf",
+    "acronym": "CGO",
+    "full_name": "The International Symposium on Code Generation and Optimization",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "CGO"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "date-b7ba1f",
+    "acronym": "DATE",
+    "full_name": "Design, Automation & Test in Europe",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "DATE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "hot-chips-f3832c",
+    "acronym": "HOT CHIPS",
+    "full_name": "Hot Chips: A Symposium on High Performance Chips",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "HOT CHIPS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cluster-788ff5",
+    "acronym": "CLUSTER",
+    "full_name": "IEEE International Conference on Cluster Computing",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "CLUSTER"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iccd-b7b42c",
+    "acronym": "ICCD",
+    "full_name": "International Conference on Computer Design",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICCD"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iccad-e09dbf",
+    "acronym": "ICCAD",
+    "full_name": "International Conference on Computer-Aided Design",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "ICCAD"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icdcs-06fe79",
+    "acronym": "ICDCS",
+    "full_name": "IEEE International Conference on Distributed Computing Systems",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICDCS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "codes-isss-6360e9",
+    "acronym": "CODES+ISSS",
+    "full_name": "International Conference on Hardware/Software Co-design and System Synthesis",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "CODES+ISSS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "hipeac-efa06e",
+    "acronym": "HiPEAC",
+    "full_name": "International Conference on High Performance and Embedded Architectures and Compilers",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "HiPEAC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sigmetrics-cb3bbd",
+    "acronym": "SIGMETRICS",
+    "full_name": "International Conference on Measurement and Modeling of Computer Systems",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "SIGMETRICS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "pact-136cc0",
+    "acronym": "PACT",
+    "full_name": "International Conference on Parallel Architectures and Compilation Techniques",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "PACT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icpp-06337e",
+    "acronym": "ICPP",
+    "full_name": "International Conference on Parallel Processing",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "ICPP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ics-65bd48",
+    "acronym": "ICS",
+    "full_name": "International Conference on Supercomputing",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "ICS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "vee-24f276",
+    "acronym": "VEE",
+    "full_name": "International Conference on Virtual Execution Environments",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "VEE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ipdps-d6e8bf",
+    "acronym": "IPDPS",
+    "full_name": "IEEE International Parallel & Distributed Processing Symposium",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "IPDPS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "performance-1802bf",
+    "acronym": "Performance",
+    "full_name": "International Symposium on Computer Performance, Modeling, Measurements and Evaluation",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "ACM",
+    "aliases": [
+      "Performance"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "itc-e6a6f0",
+    "acronym": "ITC",
+    "full_name": "International Test Conference",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "ITC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "lisa-8c8e6d",
+    "acronym": "LISA",
+    "full_name": "Large Installation System Administration Conference",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "USENIX",
+    "aliases": [
+      "LISA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "msst-73c2bc",
+    "acronym": "MSST",
+    "full_name": "Mass Storage Systems and Technologies",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "MSST"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "rtas-c051a1",
+    "acronym": "RTAS",
+    "full_name": "IEEE Real-Time and Embedded Technology and Applications Symposium",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "RTAS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "euro-par-d11f7f",
+    "acronym": "Euro-Par",
+    "full_name": "European Conference on Parallel and Distributed Computing",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "Springer",
+    "aliases": [
+      "Euro-Par"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iscas-7b8e6c",
+    "acronym": "ISCAS",
+    "full_name": "IEEE International Symposium on Circuits and Systems",
+    "rank": "B",
+    "area": "计算机体系结构 / 并行与分布计算 / 存储系统",
+    "publisher": "IEEE",
+    "aliases": [
+      "ISCAS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sigcomm-4165eb",
+    "acronym": "SIGCOMM",
+    "full_name": "ACM International Conference on Applications, Technologies, Architectures, and Protocols for Computer Communication",
+    "rank": "A",
+    "area": "计算机网络",
+    "publisher": "ACM",
+    "aliases": [
+      "SIGCOMM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "mobicom-2a5b0a",
+    "acronym": "MobiCom",
+    "full_name": "ACM International Conference on Mobile Computing and Networking",
+    "rank": "A",
+    "area": "计算机网络",
+    "publisher": "ACM",
+    "aliases": [
+      "MobiCom"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "infocom-efa115",
+    "acronym": "INFOCOM",
+    "full_name": "IEEE International Conference on Computer Communications",
+    "rank": "A",
+    "area": "计算机网络",
+    "publisher": "IEEE",
+    "aliases": [
+      "INFOCOM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "nsdi-c49ab1",
+    "acronym": "NSDI",
+    "full_name": "Symposium on Network System Design and Implementation",
+    "rank": "A",
+    "area": "计算机网络",
+    "publisher": "USENIX",
+    "aliases": [
+      "NSDI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sensys-9ab36e",
+    "acronym": "SenSys",
+    "full_name": "ACM Conference on Embedded Networked Sensor Systems",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "ACM",
+    "aliases": [
+      "SenSys"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "conext-58ff6c",
+    "acronym": "CoNEXT",
+    "full_name": "ACM International Conference on Emerging Networking Experiments and Technologies",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "ACM",
+    "aliases": [
+      "CoNEXT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "secon-4337d4",
+    "acronym": "SECON",
+    "full_name": "IEEE International Conference on Sensing, Communication, and Networking",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "IEEE",
+    "aliases": [
+      "SECON"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ipsn-a97da3",
+    "acronym": "IPSN",
+    "full_name": "International Conference on Information Processing in Sensor Networks",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "IPSN"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "mobisys-28151b",
+    "acronym": "MobiSys",
+    "full_name": "ACM International Conference on Mobile Systems, Applications, and Services",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "ACM",
+    "aliases": [
+      "MobiSys"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icnp-7ffac1",
+    "acronym": "ICNP",
+    "full_name": "IEEE International Conference on Network Protocols",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICNP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "mobihoc-6dca17",
+    "acronym": "MobiHoc",
+    "full_name": "International Symposium on Theory, Algorithmic Foundations, and Protocol Design for Mobile Networks and Mobile Computing",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "MobiHoc"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "nossdav-2a27ae",
+    "acronym": "NOSSDAV",
+    "full_name": "International Workshop on Network and Operating System Support for Digital Audio and Video",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "ACM",
+    "aliases": [
+      "NOSSDAV"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iwqos-2fe634",
+    "acronym": "IWQoS",
+    "full_name": "IEEE/ACM International Workshop on Quality of Service",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "IEEE",
+    "aliases": [
+      "IWQoS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "imc-3ab850",
+    "acronym": "IMC",
+    "full_name": "ACM Internet Measurement Conference",
+    "rank": "B",
+    "area": "计算机网络",
+    "publisher": "ACM/USENIX",
+    "aliases": [
+      "IMC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ccs-245dbe",
+    "acronym": "CCS",
+    "full_name": "ACM Conference on Computer and Communications Security",
+    "rank": "A",
+    "area": "网络与信息安全",
+    "publisher": "ACM",
+    "aliases": [
+      "CCS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "eurocrypt-24a89a",
+    "acronym": "EUROCRYPT",
+    "full_name": "International Conference on the Theory and Applications of Cryptographic Techniques",
+    "rank": "A",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "EUROCRYPT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "s-p-47715b",
+    "acronym": "S&P",
+    "full_name": "IEEE Symposium on Security and Privacy",
+    "rank": "A",
+    "area": "网络与信息安全",
+    "publisher": "IEEE",
+    "aliases": [
+      "S&P"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "crypto-dd52f6",
+    "acronym": "CRYPTO",
+    "full_name": "International Cryptology Conference",
+    "rank": "A",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "CRYPTO"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "usenix-security-92ae50",
+    "acronym": "USENIX Security",
+    "full_name": "USENIX Security Symposium",
+    "rank": "A",
+    "area": "网络与信息安全",
+    "publisher": "USENIX Association",
+    "aliases": [
+      "USENIX Security"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ndss-483c28",
+    "acronym": "NDSS",
+    "full_name": "Network and Distributed System Security Symposium",
+    "rank": "A",
+    "area": "网络与信息安全",
+    "publisher": "ISOC",
+    "aliases": [
+      "NDSS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "acsac-3c39c5",
+    "acronym": "ACSAC",
+    "full_name": "Annual Computer Security Applications Conference",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "IEEE",
+    "aliases": [
+      "ACSAC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "asiacrypt-6eac7c",
+    "acronym": "ASIACRYPT",
+    "full_name": "Annual International Conference on the Theory and Application of Cryptology and Information Security",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "ASIACRYPT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "esorics-443506",
+    "acronym": "ESORICS",
+    "full_name": "European Symposium on Research in Computer Security",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "ESORICS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "fse-95a390",
+    "acronym": "FSE",
+    "full_name": "Fast Software Encryption",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "FSE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "csfw-45009e",
+    "acronym": "CSFW",
+    "full_name": "IEEE Computer Security Foundations Workshop",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "IEEE",
+    "aliases": [
+      "CSFW"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "srds-d2e99f",
+    "acronym": "SRDS",
+    "full_name": "IEEE International Symposium on Reliable Distributed Systems",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "IEEE",
+    "aliases": [
+      "SRDS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ches-1bc9e5",
+    "acronym": "CHES",
+    "full_name": "International Conference on Cryptographic Hardware and Embedded Systems",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "CHES"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "dsn-afca3b",
+    "acronym": "DSN",
+    "full_name": "International Conference on Dependable Systems and Networks",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "IEEE/IFIP",
+    "aliases": [
+      "DSN"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "raid-bf3806",
+    "acronym": "RAID",
+    "full_name": "International Symposium on Recent Advances in Intrusion Detection",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "RAID"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "pkc-8355e6",
+    "acronym": "PKC",
+    "full_name": "International Workshop on Practice and Theory in Public Key Cryptography",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "PKC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "tcc-31efb6",
+    "acronym": "TCC",
+    "full_name": "Theory of Cryptography Conference",
+    "rank": "B",
+    "area": "网络与信息安全",
+    "publisher": "Springer",
+    "aliases": [
+      "TCC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "pldi-b8e0e5",
+    "acronym": "PLDI",
+    "full_name": "ACM SIGPLAN Conference on Programming Language Design and Implementation",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "PLDI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "popl-2c3d44",
+    "acronym": "POPL",
+    "full_name": "ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "POPL"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "fse-149830",
+    "acronym": "FSE",
+    "full_name": "ACM International Conference on the Foundations of Software Engineering",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "FSE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sosp-13d21a",
+    "acronym": "SOSP",
+    "full_name": "ACM Symposium on Operating Systems Principles",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "SOSP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "oopsla-1f8a44",
+    "acronym": "OOPSLA",
+    "full_name": "Conference on Object-Oriented Programming Systems, Languages, and Applications",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "OOPSLA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ase-651d98",
+    "acronym": "ASE",
+    "full_name": "International Conference on Automated Software Engineering",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "ASE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icse-2045dc",
+    "acronym": "ICSE",
+    "full_name": "International Conference on Software Engineering",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "ICSE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "issta-69ae15",
+    "acronym": "ISSTA",
+    "full_name": "International Symposium on Software Testing and Analysis",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "ISSTA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "osdi-37eeb6",
+    "acronym": "OSDI",
+    "full_name": "USENIX Symposium on Operating Systems Design and Implementation",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "USENIX",
+    "aliases": [
+      "OSDI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "fm-0d16d5",
+    "acronym": "FM",
+    "full_name": "International Symposium on Formal Methods",
+    "rank": "A",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "FME",
+    "aliases": [
+      "FM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ecoop-4b97ad",
+    "acronym": "ECOOP",
+    "full_name": "European Conference on Object-Oriented Programming",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "AITO",
+    "aliases": [
+      "ECOOP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "etaps-fd7fd1",
+    "acronym": "ETAPS",
+    "full_name": "European Joint Conferences on Theory and Practice of Software",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "Springer",
+    "aliases": [
+      "ETAPS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icpc-7c0e51",
+    "acronym": "ICPC",
+    "full_name": "IEEE International Conference on Program Comprehension",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICPC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "re-b9aa97",
+    "acronym": "RE",
+    "full_name": "IEEE International Requirements Engineering Conference",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE",
+    "aliases": [
+      "RE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "caise-e843b2",
+    "acronym": "CAiSE",
+    "full_name": "International Conference on Advanced Information Systems Engineering",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "Springer",
+    "aliases": [
+      "CAiSE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icfp-ddcfe3",
+    "acronym": "ICFP",
+    "full_name": "ACM SIGPLAN International Conference on Function Programming",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "ICFP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "lctes-bcb0e0",
+    "acronym": "LCTES",
+    "full_name": "ACM SIGPLAN/SIGBED International Conference on Languages, Compilers and Tools for Embedded Systems",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "LCTES"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "models-a6d59a",
+    "acronym": "MoDELS",
+    "full_name": "ACM/IEEE International Conference on Model Driven Engineering Languages and Systems",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "MoDELS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cp-086f70",
+    "acronym": "CP",
+    "full_name": "International Conference on Principles and Practice of Constraint Programming",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "Springer",
+    "aliases": [
+      "CP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icsoc-011889",
+    "acronym": "ICSOC",
+    "full_name": "International Conference on Service Oriented Computing",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "Springer",
+    "aliases": [
+      "ICSOC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "saner-538d0f",
+    "acronym": "SANER",
+    "full_name": "IEEE International Conference on Software Analysis, Evolution, and Reengineering",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE",
+    "aliases": [
+      "SANER"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icsme-4ddca6",
+    "acronym": "ICSME",
+    "full_name": "International Conference on Software Maintenance and Evolution",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICSME"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "vmcai-312d17",
+    "acronym": "VMCAI",
+    "full_name": "International Conference on Verification, Model Checking and Abstract Interpretation",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "Springer",
+    "aliases": [
+      "VMCAI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icws-4773ca",
+    "acronym": "ICWS",
+    "full_name": "IEEE International Conference on Web Services",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICWS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "middleware-f594fa",
+    "acronym": "Middleware",
+    "full_name": "International Middleware Conference",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM/IFIP/USENIX",
+    "aliases": [
+      "Middleware"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sas-2f2f89",
+    "acronym": "SAS",
+    "full_name": "International Static Analysis Symposium",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "Springer",
+    "aliases": [
+      "SAS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "esem-1f7a1d",
+    "acronym": "ESEM",
+    "full_name": "International Symposium on Empirical Software Engineering and Measurement",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "ESEM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "issre-31e56a",
+    "acronym": "ISSRE",
+    "full_name": "IEEE International Symposium on Software Reliability Engineering",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "IEEE",
+    "aliases": [
+      "ISSRE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "hotos-f0cb81",
+    "acronym": "HotOS",
+    "full_name": "USENIX Workshop on Hot Topics in Operating Systems",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "USENIX",
+    "aliases": [
+      "HotOS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cc-982913",
+    "acronym": "CC",
+    "full_name": "International Conference on Compiler Construction",
+    "rank": "B",
+    "area": "软件工程 / 系统软件 / 程序设计语言",
+    "publisher": "ACM",
+    "aliases": [
+      "CC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sigmod-882ab4",
+    "acronym": "SIGMOD",
+    "full_name": "ACM SIGMOD Conference",
+    "rank": "A",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "SIGMOD"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sigkdd-5c6996",
+    "acronym": "SIGKDD",
+    "full_name": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+    "rank": "A",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "SIGKDD",
+      "KDD"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icde-34cdee",
+    "acronym": "ICDE",
+    "full_name": "IEEE International Conference on Data Engineering",
+    "rank": "A",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICDE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sigir-21cc23",
+    "acronym": "SIGIR",
+    "full_name": "International ACM SIGIR Conference on Research and Development in Information Retrieval",
+    "rank": "A",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "SIGIR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "vldb-6b36db",
+    "acronym": "VLDB",
+    "full_name": "International Conference on Very Large Data Bases",
+    "rank": "A",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Morgan Kaufmann/ACM",
+    "aliases": [
+      "VLDB"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cikm-9361e4",
+    "acronym": "CIKM",
+    "full_name": "ACM International Conference on Information and Knowledge Management",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "CIKM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "wsdm-c263db",
+    "acronym": "WSDM",
+    "full_name": "ACM International Conference on Web Search and Data Mining",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "WSDM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "pods-75addc",
+    "acronym": "PODS",
+    "full_name": "ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "PODS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "dasfaa-de2d69",
+    "acronym": "DASFAA",
+    "full_name": "International Conference on Database Systems for Advanced Applications",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Springer",
+    "aliases": [
+      "DASFAA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ecml-pkdd-a60f55",
+    "acronym": "ECML-PKDD",
+    "full_name": "European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Springer",
+    "aliases": [
+      "ECML-PKDD"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iswc-db8582",
+    "acronym": "ISWC",
+    "full_name": "IEEE International Semantic Web Conference",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "IEEE",
+    "aliases": [
+      "ISWC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icdm-499c3a",
+    "acronym": "ICDM",
+    "full_name": "IEEE International Conference on Data Mining",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICDM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icdt-3c9e15",
+    "acronym": "ICDT",
+    "full_name": "International Conference on Database Theory",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Springer",
+    "aliases": [
+      "ICDT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "edbt-bae081",
+    "acronym": "EDBT",
+    "full_name": "International Conference on Extending Database Technology",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Springer",
+    "aliases": [
+      "EDBT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cidr-db2eb1",
+    "acronym": "CIDR",
+    "full_name": "Conference on Innovative Data Systems Research",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Online Proceeding",
+    "aliases": [
+      "CIDR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sdm-b0b6ce",
+    "acronym": "SDM",
+    "full_name": "SIAM International Conference on Data Mining",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "SIAM",
+    "aliases": [
+      "SDM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "recsys-997d90",
+    "acronym": "RecSys",
+    "full_name": "ACM Conference on Recommender Systems",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "ACM",
+    "aliases": [
+      "RecSys"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "wise-dfa842",
+    "acronym": "WISE",
+    "full_name": "Web Information Systems Engineering Conference",
+    "rank": "B",
+    "area": "数据库 / 数据挖掘 / 内容检索",
+    "publisher": "Springer",
+    "aliases": [
+      "WISE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "stoc-c6d2e4",
+    "acronym": "STOC",
+    "full_name": "ACM Symposium on the Theory of Computing",
+    "rank": "A",
+    "area": "计算机科学理论",
+    "publisher": "ACM",
+    "aliases": [
+      "STOC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "soda-0d6c86",
+    "acronym": "SODA",
+    "full_name": "ACM-SIAM Symposium on Discrete Algorithms",
+    "rank": "A",
+    "area": "计算机科学理论",
+    "publisher": "SIAM",
+    "aliases": [
+      "SODA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cav-0225f1",
+    "acronym": "CAV",
+    "full_name": "International Conference on Computer Aided Verification",
+    "rank": "A",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "CAV"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "focs-4f9dcb",
+    "acronym": "FOCS",
+    "full_name": "IEEE Annual Symposium on Foundations of Computer Science",
+    "rank": "A",
+    "area": "计算机科学理论",
+    "publisher": "IEEE",
+    "aliases": [
+      "FOCS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "lics-9f247f",
+    "acronym": "LICS",
+    "full_name": "ACM/IEEE Symposium on Logic in Computer Science",
+    "rank": "A",
+    "area": "计算机科学理论",
+    "publisher": "IEEE",
+    "aliases": [
+      "LICS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "socg-ebfe33",
+    "acronym": "SoCG",
+    "full_name": "International Symposium on Computational Geometry",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "ACM",
+    "aliases": [
+      "SoCG"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "esa-c703e4",
+    "acronym": "ESA",
+    "full_name": "European Symposium on Algorithms",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "ESA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ccc-f3b6da",
+    "acronym": "CCC",
+    "full_name": "Conference on Computational Complexity",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "IEEE",
+    "aliases": [
+      "CCC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icalp-f7eb66",
+    "acronym": "ICALP",
+    "full_name": "International Colloquium on Automata, Languages and Programming",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "ICALP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cade-a87aaa",
+    "acronym": "CADE",
+    "full_name": "Conference on Automated Deduction",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "CADE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "concur-991a55",
+    "acronym": "CONCUR",
+    "full_name": "International Conference on Concurrency Theory",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "CONCUR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "hscc-e60e0e",
+    "acronym": "HSCC",
+    "full_name": "International Conference on Hybrid Systems: Computation and Control",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer/ACM",
+    "aliases": [
+      "HSCC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sat-c04550",
+    "acronym": "SAT",
+    "full_name": "International Conference on Theory and Applications of Satisfiability Testing",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "SAT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cocoon-70d2fd",
+    "acronym": "COCOON",
+    "full_name": "International Computing and Combinatorics Conference",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "Springer",
+    "aliases": [
+      "COCOON"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "fmcad-a54088",
+    "acronym": "FMCAD",
+    "full_name": "Formal Methods in Computer-Aided Design",
+    "rank": "B",
+    "area": "计算机科学理论",
+    "publisher": "ACM",
+    "aliases": [
+      "FMCAD"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "acm-mm-04fb16",
+    "acronym": "ACM MM",
+    "full_name": "ACM International Conference on Multimedia",
+    "rank": "A",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ACM",
+    "aliases": [
+      "ACM MM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "siggraph-083f25",
+    "acronym": "SIGGRAPH",
+    "full_name": "ACM Special Interest Group on Computer Graphics",
+    "rank": "A",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ACM",
+    "aliases": [
+      "SIGGRAPH"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "vr-18646c",
+    "acronym": "VR",
+    "full_name": "IEEE Conference on Virtual Reality and 3D User Interfaces（原 IEEE Virtual Reality）",
+    "rank": "A",
+    "area": "计算机图形学与多媒体",
+    "publisher": "IEEE",
+    "aliases": [
+      "VR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ieee-vis-632fb7",
+    "acronym": "IEEE VIS",
+    "full_name": "IEEE Visualization Conference",
+    "rank": "A",
+    "area": "计算机图形学与多媒体",
+    "publisher": "IEEE",
+    "aliases": [
+      "IEEE VIS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icmr-eae771",
+    "acronym": "ICMR",
+    "full_name": "ACM SIGMM International Conference on Multimedia Retrieval",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ACM",
+    "aliases": [
+      "ICMR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "i3d-ecbc32",
+    "acronym": "I3D",
+    "full_name": "ACM SIGGRAPH Symposium on Interactive 3D Graphics and Games",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ACM",
+    "aliases": [
+      "I3D"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sca-6f925f",
+    "acronym": "SCA",
+    "full_name": "ACM SIGGRAPH/Eurographics Symposium on Computer Animation",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ACM",
+    "aliases": [
+      "SCA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "dcc-70fcd0",
+    "acronym": "DCC",
+    "full_name": "Data Compression Conference",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "IEEE",
+    "aliases": [
+      "DCC"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "eurographics-2f357f",
+    "acronym": "Eurographics",
+    "full_name": "Annual Conference of the European Association for Computer Graphics",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "Wiley/Blackwell",
+    "aliases": [
+      "Eurographics"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "eurovis-9036a6",
+    "acronym": "EuroVis",
+    "full_name": "Eurographics Conference on Visualization",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ACM",
+    "aliases": [
+      "EuroVis"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "sgp-d2616e",
+    "acronym": "SGP",
+    "full_name": "Eurographics Symposium on Geometry Processing",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "Wiley/Blackwell",
+    "aliases": [
+      "SGP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "egsr-f80e1f",
+    "acronym": "EGSR",
+    "full_name": "Eurographics Symposium on Rendering",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "Wiley/Blackwell",
+    "aliases": [
+      "EGSR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icassp-47c3a1",
+    "acronym": "ICASSP",
+    "full_name": "IEEE International Conference on Acoustics, Speech and Signal Processing",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICASSP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icme-a72d15",
+    "acronym": "ICME",
+    "full_name": "IEEE International Conference on Multimedia & Expo",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICME"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ismar-f2767d",
+    "acronym": "ISMAR",
+    "full_name": "International Symposium on Mixed and Augmented Reality",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "IEEE/ACM",
+    "aliases": [
+      "ISMAR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "pg-b1116c",
+    "acronym": "PG",
+    "full_name": "Pacific Conference on Computer Graphics and Applications",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "Wiley/Blackwell",
+    "aliases": [
+      "PG"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "spm-0e8395",
+    "acronym": "SPM",
+    "full_name": "Symposium on Solid and Physical Modeling",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "SMA/Elsevier",
+    "aliases": [
+      "SPM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "interspeech-c00ae7",
+    "acronym": "INTERSPEECH",
+    "full_name": "Conference of the International Speech Communication Association",
+    "rank": "B",
+    "area": "计算机图形学与多媒体",
+    "publisher": "ISCA",
+    "aliases": [
+      "INTERSPEECH"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "aaai-8db694",
+    "acronym": "AAAI",
+    "full_name": "AAAI Conference on Artificial Intelligence",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "AAAI",
+    "aliases": [
+      "AAAI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "neurips-1d1eb2",
+    "acronym": "NeurIPS",
+    "full_name": "Conference on Neural Information Processing Systems",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "MIT Press",
+    "aliases": [
+      "NeurIPS",
+      "NIPS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "acl-70cc29",
+    "acronym": "ACL",
+    "full_name": "Annual Meeting of the Association for Computational Linguistics",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "ACL",
+    "aliases": [
+      "ACL"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cvpr-d2daf8",
+    "acronym": "CVPR",
+    "full_name": "IEEE/CVF Computer Vision and Pattern Recognition Conference",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "IEEE",
+    "aliases": [
+      "CVPR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iccv-e6e669",
+    "acronym": "ICCV",
+    "full_name": "International Conference on Computer Vision",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICCV"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icml-cffd37",
+    "acronym": "ICML",
+    "full_name": "International Conference on Machine Learning",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "ACM",
+    "aliases": [
+      "ICML"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iclr-f24ac5",
+    "acronym": "ICLR",
+    "full_name": "International Conference on Learning Representations",
+    "rank": "A",
+    "area": "人工智能",
+    "publisher": "OpenReview",
+    "aliases": [
+      "ICLR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "colt-d87683",
+    "acronym": "COLT",
+    "full_name": "Annual Conference on Computational Learning Theory",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Springer",
+    "aliases": [
+      "COLT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "emnlp-84bfb8",
+    "acronym": "EMNLP",
+    "full_name": "Conference on Empirical Methods in Natural Language Processing",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "ACL",
+    "aliases": [
+      "EMNLP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ecai-454104",
+    "acronym": "ECAI",
+    "full_name": "European Conference on Artificial Intelligence",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "IOS Press",
+    "aliases": [
+      "ECAI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "eccv-19eaec",
+    "acronym": "ECCV",
+    "full_name": "European Conference on Computer Vision",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Springer",
+    "aliases": [
+      "ECCV"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icra-1c339c",
+    "acronym": "ICRA",
+    "full_name": "IEEE International Conference on Robotics and Automation",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "IEEE",
+    "aliases": [
+      "ICRA"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icaps-072174",
+    "acronym": "ICAPS",
+    "full_name": "International Conference on Automated Planning and Scheduling",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "AAAI",
+    "aliases": [
+      "ICAPS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iccbr-9ea469",
+    "acronym": "ICCBR",
+    "full_name": "International Conference on Case-Based Reasoning",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Springer",
+    "aliases": [
+      "ICCBR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "coling-00b69a",
+    "acronym": "COLING",
+    "full_name": "International Conference on Computational Linguistics",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "International Committee on Computational Linguistics",
+    "aliases": [
+      "COLING"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "kr-e0bf11",
+    "acronym": "KR",
+    "full_name": "International Conference on Principles of Knowledge Representation and Reasoning",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Morgan Kaufmann",
+    "aliases": [
+      "KR"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "uai-ba348d",
+    "acronym": "UAI",
+    "full_name": "Conference on Uncertainty in Artificial Intelligence",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "AUAI",
+    "aliases": [
+      "UAI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "aamas-91beb4",
+    "acronym": "AAMAS",
+    "full_name": "International Joint Conference on Autonomous Agents and Multi-agent Systems",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Springer",
+    "aliases": [
+      "AAMAS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ppsn-574026",
+    "acronym": "PPSN",
+    "full_name": "Parallel Problem Solving from Nature",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Springer",
+    "aliases": [
+      "PPSN"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "naacl-ce1b90",
+    "acronym": "NAACL",
+    "full_name": "North American Chapter of the Association for Computational Linguistics",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "ACL",
+    "aliases": [
+      "NAACL"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ijcai-dc7e1b",
+    "acronym": "IJCAI",
+    "full_name": "International Joint Conference on Artificial Intelligence",
+    "rank": "B",
+    "area": "人工智能",
+    "publisher": "Morgan Kaufmann",
+    "aliases": [
+      "IJCAI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cscw-843aee",
+    "acronym": "CSCW",
+    "full_name": "ACM Conference On Computer-Supported Cooperative Work And Social Computing",
+    "rank": "A",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "CSCW"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "chi-e1523c",
+    "acronym": "CHI",
+    "full_name": "ACM Conference on Human Factors in Computing Systems",
+    "rank": "A",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "CHI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ubicomp-3f8211",
+    "acronym": "UbiComp",
+    "full_name": "ACM International Joint Conference on Pervasive and Ubiquitous Computing",
+    "rank": "A",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "UbiComp"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "uist-836177",
+    "acronym": "UIST",
+    "full_name": "ACM Symposium on User Interface Software and Technology",
+    "rank": "A",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "UIST"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "group-cb5ac4",
+    "acronym": "GROUP",
+    "full_name": "ACM International Conference on Supporting Group Work",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "GROUP"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iui-c98a95",
+    "acronym": "IUI",
+    "full_name": "ACM International Conference on Intelligent User Interfaces",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "IUI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "iss-40ccf4",
+    "acronym": "ISS",
+    "full_name": "ACM International Conference on Interactive Surfaces and Spaces",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "ISS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ecscw-ca1d1a",
+    "acronym": "ECSCW",
+    "full_name": "European Conference on Computer Supported Cooperative Work",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "Springer",
+    "aliases": [
+      "ECSCW"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "percom-3053a1",
+    "acronym": "PERCOM",
+    "full_name": "IEEE International Conference on Pervasive Computing and Communications",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "IEEE",
+    "aliases": [
+      "PERCOM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "mobilehci-70f055",
+    "acronym": "MobileHCI",
+    "full_name": "ACM International Conference on Mobile Human-Computer Interaction",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "ACM",
+    "aliases": [
+      "MobileHCI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "icwsm-5041fe",
+    "acronym": "ICWSM",
+    "full_name": "The International AAAI Conference on Web and Social Media",
+    "rank": "B",
+    "area": "人机交互与普适计算",
+    "publisher": "AAAI",
+    "aliases": [
+      "ICWSM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "www-23efdc",
+    "acronym": "WWW",
+    "full_name": "The Web Conference（原 International World Wide Web Conference）",
+    "rank": "A",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "ACM",
+    "aliases": [
+      "WWW"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "rtss-f72534",
+    "acronym": "RTSS",
+    "full_name": "IEEE Real-Time Systems Symposium",
+    "rank": "A",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "IEEE",
+    "aliases": [
+      "RTSS"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "cogsci-e6168e",
+    "acronym": "CogSci",
+    "full_name": "Annual Meeting of the Cognitive Science Society",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "Psychology Press",
+    "aliases": [
+      "CogSci"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "bibm-9d0b08",
+    "acronym": "BIBM",
+    "full_name": "IEEE International Conference on Bioinformatics and Biomedicine",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "IEEE",
+    "aliases": [
+      "BIBM"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "emsoft-4d8db9",
+    "acronym": "EMSOFT",
+    "full_name": "International Conference on Embedded Software",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "IEEE/ACM/IFIP",
+    "aliases": [
+      "EMSOFT"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "ismb-278400",
+    "acronym": "ISMB",
+    "full_name": "International Conference on Intelligent Systems for Molecular Biology",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "Oxford Journals",
+    "aliases": [
+      "ISMB"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "recomb-b4b666",
+    "acronym": "RECOMB",
+    "full_name": "Annual International Conference on Research in Computational Molecular Biology",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "Springer",
+    "aliases": [
+      "RECOMB"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "miccai-d6a1d7",
+    "acronym": "MICCAI",
+    "full_name": "International Conference on Medical Image Computing and Computer-Assisted Intervention",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "Springer",
+    "aliases": [
+      "MICCAI"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  },
+  {
+    "id": "wine-08ea9a",
+    "acronym": "WINE",
+    "full_name": "Conference on Web and Internet Economics",
+    "rank": "B",
+    "area": "交叉 / 综合 / 新兴",
+    "publisher": "Springer",
+    "aliases": [
+      "WINE"
+    ],
+    "catalog_version": "user-supplied-2026",
+    "source": "CCF推荐国际学术会议2026-A类B类(1).docx"
+  }
+]

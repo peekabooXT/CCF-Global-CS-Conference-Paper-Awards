@@ -1,0 +1,4 @@
+# Browser UI. Core CLI remains usable without these dependencies.
+streamlit==1.63.0
+openpyxl>=3.1.5,<4
+-r requirements-pdf.txt

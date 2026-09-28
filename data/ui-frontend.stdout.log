@@ -1,0 +1,12 @@
+Re-optimizing dependencies because vite config has changed
+
+  VITE v5.4.21  ready in 1096 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+  ➜  press h + enter to show help
+22:46:54 [vite] hmr update /src/views/SearchView.vue, /src/views/SearchView.vue?vue&type=style&index=0&scoped=61d5b3d3&lang.css
+22:46:54 [vite] hmr update /src/App.vue, /src/App.vue?vue&type=style&index=0&lang.css
+22:46:54 [vite] hmr update /src/views/CollectView.vue
+22:47:49 [vite] hmr update /src/views/SearchView.vue
+22:50:38 [vite] hmr update /src/views/SearchView.vue, /src/views/SearchView.vue?vue&type=style&index=0&scoped=61d5b3d3&lang.css
+22:52:37 [vite] hmr update /src/App.vue?vue&type=style&index=0&lang.css

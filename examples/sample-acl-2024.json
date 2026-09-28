@@ -1,0 +1,138 @@
+{
+  "conference_id": "acl-70cc29",
+  "year": 2024,
+  "sources": [
+    {
+      "id": "s1",
+      "url": "https://2024.aclweb.org/program/best_papers/",
+      "role": "award",
+      "text": "Best Paper Awards\nMission: Impossible Language Models",
+      "retrieved_at": "2026-09-09",
+      "acquisition": "manual_short_excerpt",
+      "note": "供离线演示的短摘录；不是程序实时抓取的完整网页。"
+    },
+    {
+      "id": "s2",
+      "url": "https://aclanthology.org/2024.acl-long.787/",
+      "role": "metadata",
+      "text": "Julie Kallini\nIsabel Papadimitriou\nRichard Futrell\nKyle Mahowald\nChristopher Potts\nMonth:\nAugust\nYear:\n2024\nhttps://aclanthology.org/2024.acl-long.787/\n10.18653/v1/2024.acl-long.787",
+      "retrieved_at": "2026-09-09",
+      "acquisition": "manual_short_excerpt",
+      "note": "供离线演示的短摘录；不是程序实时抓取的完整网页。"
+    },
+    {
+      "id": "s3",
+      "url": "https://aclanthology.org/2024.acl-long.787.pdf",
+      "role": "metadata",
+      "text": "Julie Kallini1, Isabel Papadimitriou1, Richard Futrell2,\nKyle Mahowald3, Christopher Potts1\n1Stanford University; 2University of California, Irvine; 3University of Texas, Austin",
+      "retrieved_at": "2026-09-09",
+      "acquisition": "manual_short_excerpt",
+      "note": "供离线演示的短摘录；不是程序实时抓取的完整网页。"
+    }
+  ],
+  "records": [
+    {
+      "title": "Mission: Impossible Language Models",
+      "award_name": "Best Paper Awards",
+      "track": "",
+      "award_evidence": {
+        "source_id": "s1",
+        "quote": "Best Paper Awards\nMission: Impossible Language Models"
+      },
+      "title_evidence": {
+        "source_id": "s1",
+        "quote": "Mission: Impossible Language Models"
+      },
+      "authors": [
+        {
+          "name": "Julie Kallini",
+          "evidence": {
+            "source_id": "s2",
+            "quote": "Julie Kallini"
+          },
+          "affiliations": [
+            {
+              "name": "Stanford University",
+              "evidence": {
+                "source_id": "s3",
+                "quote": "Stanford University"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Isabel Papadimitriou",
+          "evidence": {
+            "source_id": "s2",
+            "quote": "Isabel Papadimitriou"
+          },
+          "affiliations": [
+            {
+              "name": "Stanford University",
+              "evidence": {
+                "source_id": "s3",
+                "quote": "Stanford University"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Richard Futrell",
+          "evidence": {
+            "source_id": "s2",
+            "quote": "Richard Futrell"
+          },
+          "affiliations": [
+            {
+              "name": "University of California, Irvine",
+              "evidence": {
+                "source_id": "s3",
+                "quote": "University of California, Irvine"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Kyle Mahowald",
+          "evidence": {
+            "source_id": "s2",
+            "quote": "Kyle Mahowald"
+          },
+          "affiliations": [
+            {
+              "name": "University of Texas, Austin",
+              "evidence": {
+                "source_id": "s3",
+                "quote": "University of Texas, Austin"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Christopher Potts",
+          "evidence": {
+            "source_id": "s2",
+            "quote": "Christopher Potts"
+          },
+          "affiliations": [
+            {
+              "name": "Stanford University",
+              "evidence": {
+                "source_id": "s3",
+                "quote": "Stanford University"
+              }
+            }
+          ]
+        }
+      ],
+      "publication_date": "2024-08",
+      "publication_date_evidence": {
+        "source_id": "s2",
+        "quote": "Month:\nAugust\nYear:\n2024"
+      },
+      "paper_url": "https://aclanthology.org/2024.acl-long.787/",
+      "doi": "10.18653/v1/2024.acl-long.787"
+    }
+  ],
+  "note": "真实论文的人工整理样例，仅一条；作者与单位对应按原论文首页标号核对。"
+}

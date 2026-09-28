@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+/Global-CS-Paper-Awards-main/
+.env
+data/*.sqlite3*
+data/runs/
+results/
+.playwright-cli/
+output/playwright/
