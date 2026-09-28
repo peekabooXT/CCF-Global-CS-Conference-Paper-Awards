@@ -12,6 +12,34 @@ watch(() => props.settingsRequest, async () => {
   document.getElementById('collection-settings')?.scrollIntoView({behavior:'smooth',block:'center'})
 }, {immediate:true})
 const conferences = computed(() => props.meta?.conferences || [])
+const conferenceQuery = ref('')
+const filteredConferences = computed(() => {
+  const query = conferenceQuery.value.trim().toLocaleLowerCase('en-US')
+  if (!query) return conferences.value
+  return conferences.value.filter(conference => {
+    const aliases = Array.isArray(conference.aliases) ? conference.aliases : []
+    const searchable = [
+      conference.acronym,
+      conference.full_name,
+      conference.area,
+      conference.rank,
+      ...aliases,
+    ].filter(Boolean).join(' ').toLocaleLowerCase('en-US')
+    return searchable.includes(query)
+  })
+})
+
+function filterConferences(query) {
+  conferenceQuery.value = query || ''
+}
+
+function conferenceLabel(conference) {
+  return `${conference.acronym} · CCF-${conference.rank} · ${conference.area}`
+}
+
+function onConferenceDropdown(visible) {
+  if (!visible) conferenceQuery.value = ''
+}
 
 const today = new Date().getFullYear()
 const stats = ref(null)
@@ -233,8 +261,23 @@ async function onImportJson(e) {
 
     <el-form inline class="bar">
       <el-form-item label="会议">
-        <el-select v-model="form.conference_id" style="width: 260px" @change="loadSeeds">
-          <el-option v-for="c in conferences" :key="c.id" :label="`${c.acronym} · ${c.area}`" :value="c.id" />
+        <el-select
+          v-model="form.conference_id"
+          filterable
+          clearable
+          placeholder="输入会议简称或名称"
+          :filter-method="filterConferences"
+          style="width: 320px"
+          @visible-change="onConferenceDropdown"
+          @change="loadSeeds"
+        >
+          <el-option v-for="c in filteredConferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id">
+            <div class="conference-option">
+              <strong>{{ c.acronym }}</strong>
+              <el-tag :type="c.rank === 'A' ? 'danger' : 'warning'" size="small" effect="plain">CCF-{{ c.rank }}</el-tag>
+              <span>{{ c.area }}</span>
+            </div>
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="年份">
@@ -369,5 +412,7 @@ h2 { margin: 0; }
 .result { margin-top: 12px; }
 .history { margin-top: 12px; }
 .history-head { display: flex; align-items: center; justify-content: space-between; }
+.conference-option { display: flex; align-items: center; gap: 8px; }
+.conference-option span:last-child { color: #66758a; }
 </style>
 
