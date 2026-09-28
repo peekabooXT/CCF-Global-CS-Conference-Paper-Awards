@@ -7,3 +7,19 @@ data/runs/
 results/
 .playwright-cli/
 output/playwright/
+
+Global-CS-Paper-Awards-main/
+venv/
+# Python缓存
+*.pyo
+# 前端依赖
+frontend/node_modules/
+frontend/dist/
+
+# IDE配置
+.idea/
+.vscode/
+
+# 数据导出临时文件
+data/exports/*.json
+

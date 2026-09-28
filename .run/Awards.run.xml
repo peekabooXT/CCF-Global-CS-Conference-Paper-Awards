@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Awards - Start All" type="PythonConfigurationType" factoryName="Python">
+    <module name="Global-CS-Paper-Awards-main" />
+    <option name="SDK_HOME" value="D:\1postgrade\Global-CS-Paper-Awards\review\Global-CS-Paper-Awards-main\Global-CS-Paper-Awards-main\Scripts\python.exe" />
+    <option name="IS_MODULE_SDK" value="true" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_all.py" />
+    <option name="PARAMETERS" value="" />
+    <envs>
+      <env name="PYTHONUNBUFFERED" value="1" />
+    </envs>
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="MODULE_MODE" value="false" />
+    <method v="2" />
+    <option name="SDK_NAME" value="Awards Python 3.12 - D1" />
+  </configuration>
+</component>
