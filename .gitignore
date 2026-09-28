@@ -23,3 +23,4 @@ frontend/dist/
 # 数据导出临时文件
 data/exports/*.json
 
+tmp/
