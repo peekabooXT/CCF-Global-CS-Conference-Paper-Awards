@@ -1,17 +1,15 @@
 <script setup>
-import { ref, reactive, computed, onMounted, nextTick, watch } from 'vue'
+import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg, collectStream, collectFilesStream } from '../api.js'
 
-const props = defineProps({ meta: { type: Object, required: true }, settingsSection: {type:String,default:''}, settingsRequest: {type:Number,default:0} })
-const expandedSettings = ref([])
-watch(() => props.settingsRequest, async () => {
-  if (!props.settingsSection) return
-  expandedSettings.value = [props.settingsSection]
-  await nextTick()
-  document.getElementById('collection-settings')?.scrollIntoView({behavior:'smooth',block:'center'})
-}, {immediate:true})
+const props = defineProps({
+  meta: { type: Object, required: true },
+  aiSettings: { type: Object, required: true },
+})
 const conferences = computed(() => props.meta?.conferences || [])
+const llm = computed(() => props.aiSettings.llm || {})
+const search = computed(() => props.aiSettings.search || {})
 const conferenceQuery = ref('')
 const filteredConferences = computed(() => {
   const query = conferenceQuery.value.trim().toLocaleLowerCase('en-US')
@@ -51,10 +49,6 @@ const form = reactive({
   extra_urls: '',
   max_pages: 4,
 })
-// LLM 连接配置（仅本次采集请求携带，不持久化）
-const llm = reactive({ provider: 'deepseek', base_url: '', model: '', api_key: '', json_mode: true })
-const search = reactive({ base_url: 'https://api.openai.com/v1', model: '', api_key: '' })
-
 const running = ref(false)
 const result = ref(null)
 const logLines = ref([])
@@ -154,8 +148,8 @@ function baseBody() {
     urls: form.urls.split('\n').map(s => s.trim()).filter(Boolean),
     extra_urls: form.extra_urls.split('\n').map(s => s.trim()).filter(Boolean),
     max_pages: form.max_pages,
-    llm: { ...llm },
-    search: { ...search },
+    llm: { ...llm.value },
+    search: { ...search.value },
   }
 }
 
@@ -205,10 +199,10 @@ async function runFileCollect() {
       fd.append('metadata_file', fileForm.metadata_file)
       fd.append('metadata_url', fileForm.metadata_url)
     }
-    fd.append('llm_provider', llm.provider)
-    fd.append('llm_base_url', llm.base_url)
-    fd.append('llm_model', llm.model)
-    fd.append('llm_api_key', llm.api_key)
+    fd.append('llm_provider', llm.value.provider)
+    fd.append('llm_base_url', llm.value.base_url)
+    fd.append('llm_model', llm.value.model)
+    fd.append('llm_api_key', llm.value.api_key)
     result.value = await collectFilesStream(fd, pushLog)
     ElMessage.success(`采集完成：新增 ${result.value?.inserted || 0} 条`)
     await loadRuns()
@@ -248,25 +242,6 @@ async function onImportJson(e) {
       <el-col :span="8"><el-statistic title="会议年度网址" :value="stats.seed_rows" /></el-col>
       <el-col :span="8"><el-statistic title="尚无入口" :value="stats.conferences_without_seed" /></el-col>
     </el-row>
-
-    <el-collapse id="collection-settings" v-model="expandedSettings" class="cfg">
-      <el-collapse-item name="llm" title="LLM 连接设置（结构化提取）">
-        <el-form inline>
-          <el-form-item label="提供商"><el-input v-model="llm.provider" style="width:140px" /></el-form-item>
-          <el-form-item label="API 地址"><el-input v-model="llm.base_url" placeholder="https://api.deepseek.com" style="width:220px" /></el-form-item>
-          <el-form-item label="模型"><el-input v-model="llm.model" placeholder="deepseek-chat" style="width:160px" /></el-form-item>
-          <el-form-item label="API Key"><el-input v-model="llm.api_key" type="password" show-password style="width:220px" /></el-form-item>
-          <el-form-item><el-checkbox v-model="llm.json_mode">JSON 模式</el-checkbox></el-form-item>
-        </el-form>
-      </el-collapse-item>
-      <el-collapse-item name="search" title="自动网页搜索设置（找官网）">
-        <el-form inline>
-          <el-form-item label="搜索地址"><el-input v-model="search.base_url" style="width:220px" /></el-form-item>
-          <el-form-item label="搜索模型"><el-input v-model="search.model" placeholder="支持 web_search 的模型" style="width:200px" /></el-form-item>
-          <el-form-item label="Key"><el-input v-model="search.api_key" type="password" show-password style="width:220px" /></el-form-item>
-        </el-form>
-      </el-collapse-item>
-    </el-collapse>
 
     <el-form inline class="bar">
       <el-form-item label="会议">
@@ -408,7 +383,6 @@ async function onImportJson(e) {
 h2 { margin: 0; }
 .hint { color: #8494a8; font-size: 13px; }
 .metrics { margin: 12px 0; }
-.cfg { margin: 8px 0 12px; }
 .bar { margin-bottom: 4px; }
 .block { display: flex; width: 100%; margin-bottom: 8px; }
 .block :deep(.el-form-item__label) { width: 110px; }

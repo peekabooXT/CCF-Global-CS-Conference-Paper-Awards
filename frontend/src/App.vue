@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, reactive, computed, watch, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Loading, Reading } from '@element-plus/icons-vue'
 import { api, errMsg } from './api.js'
@@ -8,14 +8,46 @@ import CollectView from './views/CollectView.vue'
 import ReviewView from './views/ReviewView.vue'
 import CoverageView from './views/CoverageView.vue'
 const active = ref('search')
-const settings = ref('')
-const settingsRequest = ref(0)
+const settingsDialogVisible = ref(false)
 const importing = ref(false)
 const searchVersion = ref(0)
-function openSettings(section) {
-  settings.value = section
-  settingsRequest.value++
-  active.value = 'collect'
+
+const AI_SETTINGS_KEY = 'ccf-awards-ai-settings'
+const defaultAiSettings = {
+  llm: { provider: 'deepseek', base_url: '', model: '', api_key: '', json_mode: true },
+  search: { base_url: 'https://api.openai.com/v1', model: '', api_key: '' },
+}
+
+function loadAiSettings() {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(AI_SETTINGS_KEY) || '{}')
+    return {
+      llm: { ...defaultAiSettings.llm, ...(saved.llm || {}) },
+      search: { ...defaultAiSettings.search, ...(saved.search || {}) },
+    }
+  } catch {
+    return {
+      llm: { ...defaultAiSettings.llm },
+      search: { ...defaultAiSettings.search },
+    }
+  }
+}
+
+const aiSettings = reactive(loadAiSettings())
+const hasSessionSettings = computed(() => Boolean(
+  aiSettings.llm.api_key || aiSettings.llm.model || aiSettings.search.api_key || aiSettings.search.model,
+))
+
+watch(aiSettings, value => {
+  try {
+    sessionStorage.setItem(AI_SETTINGS_KEY, JSON.stringify(value))
+  } catch {
+    // Privacy-restricted browsers may disable session storage; in-memory state still works.
+  }
+}, { deep: true })
+
+function openSettings() {
+  settingsDialogVisible.value = true
 }
 async function importDemo() {
   importing.value = true
@@ -56,18 +88,63 @@ onMounted(boot)
       <template v-else>
         <div class="utility-bar" aria-label="设置与数据工具">
           <span>资料库工具</span>
-          <el-button @click="openSettings('llm')">LLM 连接设置</el-button>
-          <el-button @click="openSettings('search')">自动网页搜索设置</el-button>
+          <el-button @click="openSettings">
+            AI 连接设置
+            <el-tag v-if="hasSessionSettings" type="success" size="small" effect="plain" class="configured-tag">已配置</el-tag>
+          </el-button>
           <el-button :loading="importing" @click="importDemo">导入两条样例</el-button>
         </div>
         <SearchView :key="searchVersion" v-if="active==='search'" :meta="meta" />
         <section v-else class="workspace-panel">
-          <CollectView :settings-section="settings" :settings-request="settingsRequest" v-if="active==='collect'" :meta="meta" />
+          <CollectView v-if="active==='collect'" :meta="meta" :ai-settings="aiSettings" />
           <ReviewView v-else-if="active==='review'" :meta="meta" />
           <CoverageView v-else :meta="meta" />
         </section>
       </template>
     </main>
+
+    <el-dialog v-model="settingsDialogVisible" title="AI 连接设置" width="760px" class="ai-settings-dialog">
+      <p class="settings-hint">配置只保存在当前浏览器标签页的会话中。切换功能页面或刷新后仍可继续使用，关闭标签页后自动清除。</p>
+
+      <el-divider content-position="left">结构化提取</el-divider>
+      <el-form label-position="top">
+        <div class="settings-grid">
+          <el-form-item label="提供商">
+            <el-input v-model="aiSettings.llm.provider" placeholder="deepseek" />
+          </el-form-item>
+          <el-form-item label="模型">
+            <el-input v-model="aiSettings.llm.model" placeholder="deepseek-chat" />
+          </el-form-item>
+          <el-form-item label="API 地址" class="settings-full">
+            <el-input v-model="aiSettings.llm.base_url" placeholder="https://api.deepseek.com" />
+          </el-form-item>
+          <el-form-item label="API Key" class="settings-full">
+            <el-input v-model="aiSettings.llm.api_key" type="password" show-password autocomplete="new-password" />
+          </el-form-item>
+        </div>
+        <el-checkbox v-model="aiSettings.llm.json_mode">启用 JSON 模式</el-checkbox>
+      </el-form>
+
+      <el-divider content-position="left">自动网页搜索</el-divider>
+      <el-form label-position="top">
+        <div class="settings-grid">
+          <el-form-item label="搜索模型">
+            <el-input v-model="aiSettings.search.model" placeholder="支持网页搜索的模型" />
+          </el-form-item>
+          <el-form-item label="搜索地址">
+            <el-input v-model="aiSettings.search.base_url" placeholder="https://api.openai.com/v1" />
+          </el-form-item>
+          <el-form-item label="API Key" class="settings-full">
+            <el-input v-model="aiSettings.search.api_key" type="password" show-password autocomplete="new-password" />
+          </el-form-item>
+        </div>
+      </el-form>
+
+      <template #footer>
+        <el-button type="primary" @click="settingsDialogVisible = false">完成</el-button>
+      </template>
+    </el-dialog>
+
     <footer class="site-footer"><span>Global CS Paper Awards · 学术资料索引</span><span>保留原始来源 · 缺失信息标注未知 · 核验状态可追溯</span></footer>
   </div>
 </template>
@@ -82,8 +159,13 @@ onMounted(boot)
 .site-header nav{justify-content:center;gap:32px;min-height:52px;border-top:1px solid #edf1f6;flex-wrap:wrap}
 .site-header nav button{min-height:48px;padding:0 18px;font-size:15px}
 .utility-bar{justify-content:flex-end;margin-bottom:18px}
+.configured-tag{margin-left:8px;vertical-align:middle}
+.settings-hint{margin:0;color:#62748a;font-size:13px}
+.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}
+.settings-full{grid-column:1/-1}
+.ai-settings-dialog{max-width:calc(100vw - 32px)}
 :root{--el-text-color-placeholder:#65758a}
-@media(max-width:650px){.site-header nav{gap:0}.site-header nav button{padding:0 12px;font-size:14px}.utility-bar{justify-content:flex-start}.header-inner{padding-top:16px}.brand strong{font-size:20px}}
+@media(max-width:650px){.site-header nav{gap:0}.site-header nav button{padding:0 12px;font-size:14px}.utility-bar{justify-content:flex-start}.header-inner{padding-top:16px}.brand strong{font-size:20px}.settings-grid{grid-template-columns:1fr}.settings-full{grid-column:auto}}
 </style>
 
 
