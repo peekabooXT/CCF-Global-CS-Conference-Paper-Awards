@@ -31,6 +31,9 @@ const running = ref(false)
 const result = ref(null)
 const logLines = ref([])
 const logBox = ref(null)
+const runHistory = ref([])
+const historyLoading = ref(false)
+const historyError = ref('')
 
 // 文件上传
 const fileForm = reactive({ award_file: null, award_url: '', metadata_file: null, metadata_url: '' })
@@ -38,7 +41,58 @@ const fileForm = reactive({ award_file: null, award_url: '', metadata_file: null
 async function loadStats() {
   try { stats.value = await api.seedStats() } catch (e) { /* 忽略 */ }
 }
-onMounted(loadStats)
+
+async function loadRuns() {
+  historyLoading.value = true
+  historyError.value = ''
+  try {
+    const res = await api.runs(50)
+    runHistory.value = res.runs || []
+  } catch (e) {
+    historyError.value = errMsg(e)
+  } finally {
+    historyLoading.value = false
+  }
+}
+
+onMounted(() => {
+  loadStats()
+  loadRuns()
+})
+
+function tokenTotals(details = {}) {
+  const usage = details.token_usage || {}
+  const searchTokens = usage.search?.total_tokens
+  const extractionTokens = usage.extraction?.total_tokens
+  const known = [searchTokens, extractionTokens].filter(Number.isInteger)
+  const totalTokens = Number.isInteger(details.total_tokens)
+    ? details.total_tokens
+    : (known.length ? known.reduce((sum, value) => sum + value, 0) : null)
+  return { searchTokens, extractionTokens, totalTokens }
+}
+
+function formatTokens(value) {
+  return Number.isInteger(value) ? value.toLocaleString('zh-CN') : '—'
+}
+
+function formatTime(value) {
+  if (!value) return '—'
+  const time = new Date(value)
+  return Number.isNaN(time.getTime()) ? value : time.toLocaleString('zh-CN', { hour12: false })
+}
+
+const resultTokens = computed(() => tokenTotals(result.value || {}))
+const historyRows = computed(() => runHistory.value.map(run => {
+  const details = run.details || {}
+  return {
+    ...run,
+    ...tokenTotals(details),
+    inserted: details.inserted || 0,
+    updated: details.updated || 0,
+    unchanged: details.unchanged || 0,
+    error: details.error || '',
+  }
+}))
 
 async function loadSeeds() {
   if (!form.conference_id) return
@@ -76,6 +130,7 @@ async function runCollect() {
   try {
     result.value = await collectStream(baseBody(), pushLog)
     ElMessage.success(`采集完成：新增 ${result.value?.inserted || 0} 条`)
+    await loadRuns()
   } catch (e) {
     ElMessage.error(errMsg(e))
   } finally {
@@ -119,6 +174,7 @@ async function runFileCollect() {
     fd.append('llm_api_key', llm.api_key)
     result.value = await collectFilesStream(fd, pushLog)
     ElMessage.success(`采集完成：新增 ${result.value?.inserted || 0} 条`)
+    await loadRuns()
   } catch (e) {
     ElMessage.error(errMsg(e))
   } finally {
@@ -248,8 +304,47 @@ async function onImportJson(e) {
         <el-descriptions-item label="更新">{{ result.updated }}</el-descriptions-item>
         <el-descriptions-item label="重复">{{ result.unchanged }}</el-descriptions-item>
         <el-descriptions-item label="状态">{{ result.status }}</el-descriptions-item>
+        <el-descriptions-item label="搜索 tokens">{{ formatTokens(resultTokens.searchTokens) }}</el-descriptions-item>
+        <el-descriptions-item label="提取 tokens">{{ formatTokens(resultTokens.extractionTokens) }}</el-descriptions-item>
+        <el-descriptions-item label="总 tokens">{{ formatTokens(resultTokens.totalTokens) }}</el-descriptions-item>
       </el-descriptions>
       <el-alert v-if="result.rejected?.length" type="warning" :title="`${result.rejected.length} 条未通过校验`" :closable="false" style="margin-top:8px" />
+    </el-card>
+
+    <el-card shadow="never" class="history">
+      <template #header>
+        <div class="history-head">
+          <span>最近运行日志与 Token 用量</span>
+          <el-button size="small" :loading="historyLoading" @click="loadRuns">刷新</el-button>
+        </div>
+      </template>
+      <el-alert v-if="historyError" type="error" :title="historyError" :closable="false" />
+      <el-table v-else-if="historyRows.length" :data="historyRows" v-loading="historyLoading" size="small" stripe>
+        <el-table-column prop="id" label="任务" width="72" />
+        <el-table-column prop="acronym" label="会议" width="90" />
+        <el-table-column prop="year" label="年份" width="72" />
+        <el-table-column label="开始时间" min-width="170">
+          <template #default="scope">{{ formatTime(scope.row.started_at) }}</template>
+        </el-table-column>
+        <el-table-column label="耗时（秒）" width="105">
+          <template #default="scope">{{ scope.row.duration_seconds == null ? '运行中' : scope.row.duration_seconds.toFixed(1) }}</template>
+        </el-table-column>
+        <el-table-column prop="status" label="状态" width="90" />
+        <el-table-column prop="inserted" label="新增" width="70" />
+        <el-table-column prop="updated" label="更新" width="70" />
+        <el-table-column prop="unchanged" label="重复" width="70" />
+        <el-table-column label="搜索 tokens" min-width="110">
+          <template #default="scope">{{ formatTokens(scope.row.searchTokens) }}</template>
+        </el-table-column>
+        <el-table-column label="提取 tokens" min-width="110">
+          <template #default="scope">{{ formatTokens(scope.row.extractionTokens) }}</template>
+        </el-table-column>
+        <el-table-column label="总 tokens" min-width="100">
+          <template #default="scope">{{ formatTokens(scope.row.totalTokens) }}</template>
+        </el-table-column>
+        <el-table-column prop="error" label="说明" min-width="180" show-overflow-tooltip />
+      </el-table>
+      <el-empty v-else-if="!historyLoading" description="尚无采集运行日志" :image-size="72" />
     </el-card>
   </div>
 </template>
@@ -272,5 +367,7 @@ h2 { margin: 0; }
 .logline { line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
 .empty { color: #5a6b82; }
 .result { margin-top: 12px; }
+.history { margin-top: 12px; }
+.history-head { display: flex; align-items: center; justify-content: space-between; }
 </style>
 
