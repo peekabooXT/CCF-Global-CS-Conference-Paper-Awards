@@ -62,11 +62,11 @@ def _header(title, records, prefix=""):
     ]) + "\n"
 
 
-def render_markdown(db, repository_root):
+def render_markdown(db, repository_root, status="all"):
     root = Path(repository_root)
     docs = root / "docs" / "awards"
     docs.mkdir(parents=True, exist_ok=True)
-    records = db.search(status="all")
+    records = db.search(status=status)
 
     alphabetical = sorted(records, key=lambda r: (r["acronym"].casefold(), -r["year"], r["title"].casefold(), r["award_type"]))
     main = _header("Global CS Paper Awards：最佳论文与最佳学生论文", alphabetical)

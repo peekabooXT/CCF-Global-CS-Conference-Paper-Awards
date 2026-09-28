@@ -17,6 +17,7 @@ from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
 from ccf_awards.discovery import ResponsesWebSearch
 from ccf_awards.excel_import import import_excel
+from ccf_awards.github_publish import GitHubPublisher, publish_verified, verify_publish_password
 from ccf_awards.llm import LLM
 from ccf_awards.model import require_text, url_syntax
 from ccf_awards.network import read_local_source
@@ -49,6 +50,13 @@ def make_llm():
 
 
 def make_search():
+    if st.session_state.get("search_reuse_primary", True):
+        _, profile = provider_profile(st.session_state.get("provider_name", "deepseek"))
+        return ResponsesWebSearch(
+            api_key=st.session_state.get("api_key") or os.getenv("LLM_API_KEY") or os.getenv(profile["key_env"]) or None,
+            base_url=st.session_state.get("base_url") or None,
+            model=st.session_state.get("model_name") or None,
+        )
     return ResponsesWebSearch(
         api_key=st.session_state.get("search_api_key") or None,
         base_url=st.session_state.get("search_base_url") or None,
@@ -64,7 +72,8 @@ def safe_error(exc):
     # Defensive redaction in UI; backend already omits provider response bodies.
     for secret in (st.session_state.get("api_key"), os.getenv("LLM_API_KEY"),
                    os.getenv("DEEPSEEK_API_KEY"), os.getenv("OPENAI_API_KEY"),
-                   st.session_state.get("search_api_key"), os.getenv("SEARCH_API_KEY")):
+                   st.session_state.get("search_api_key"), os.getenv("SEARCH_API_KEY"),
+                   os.getenv("GITHUB_TOKEN"), os.getenv("GH_TOKEN")):
         if secret:
             message = message.replace(secret, "[已隐藏]")
     st.error(message)
@@ -90,8 +99,8 @@ def render_sidebar(db):
         st.caption("全球计算机顶级论文奖数据库")
         section = st.radio("工作区", ["论文检索", "采集与导入", "记录核验", "采集覆盖"], key="section")
         st.divider()
-        with st.expander("LLM 连接设置"):
-            st.caption("默认使用 DeepSeek 做结构化提取；检索和样例导入不需要 API。设置只在当前网页会话中使用。")
+        with st.expander("AI 连接设置"):
+            st.caption("结构化提取与联网搜索默认复用同一组 API 地址、模型和密钥；设置只在当前网页会话中使用。")
             provider_names = list(PROVIDER_PROFILES)
             configured_provider = os.getenv("LLM_PROVIDER", "deepseek").lower()
             if configured_provider not in provider_names:
@@ -116,18 +125,26 @@ def render_sidebar(db):
             available_key = st.session_state.get("api_key") or os.getenv("LLM_API_KEY") or os.getenv(profile["key_env"])
             if st.session_state.get("model_name") and available_key:
                 st.caption("连接参数已填写；尚不代表连接测试成功。")
-        with st.expander("自动网页搜索设置"):
-            st.caption("批量自动搜索使用独立的 Responses web_search 接口；DeepSeek 默认负责结构化提取。")
-            if "search_base_url" not in st.session_state:
-                st.session_state["search_base_url"] = os.getenv("SEARCH_BASE_URL", "https://api.openai.com/v1")
-            if "search_model" not in st.session_state:
-                st.session_state["search_model"] = os.getenv("SEARCH_MODEL", os.getenv("OPENAI_SEARCH_MODEL", ""))
-            st.text_input("搜索 API 地址", key="search_base_url")
-            st.text_input("搜索模型", key="search_model", placeholder="填写支持 web_search 的模型")
-            st.text_input(
-                "搜索 API Key", type="password", key="search_api_key",
-                help="留空时读取 SEARCH_API_KEY 或 OPENAI_API_KEY；不会写入数据库。",
+            reuse_default = os.getenv("SEARCH_REUSE_LLM", "1") == "1"
+            st.checkbox(
+                "联网搜索复用上述连接", value=reuse_default, key="search_reuse_primary",
+                help="要求该地址同时兼容 /chat/completions 和带 web_search 工具的 /responses。",
             )
+            if st.session_state.get("search_reuse_primary"):
+                if selected_provider == "deepseek":
+                    st.warning("标准 DeepSeek Chat 接口目前不能执行 Responses web_search。自动搜索请改用同时支持两种接口的端点，或关闭复用并填写高级搜索连接。")
+            else:
+                st.caption("高级搜索连接：仅当上述端点不支持 Responses web_search 时使用。")
+                if "search_base_url" not in st.session_state:
+                    st.session_state["search_base_url"] = os.getenv("SEARCH_BASE_URL", "https://api.openai.com/v1")
+                if "search_model" not in st.session_state:
+                    st.session_state["search_model"] = os.getenv("SEARCH_MODEL", os.getenv("OPENAI_SEARCH_MODEL", ""))
+                st.text_input("搜索 API 地址", key="search_base_url")
+                st.text_input("搜索模型", key="search_model", placeholder="填写支持 web_search 的模型")
+                st.text_input(
+                    "搜索 API Key", type="password", key="search_api_key",
+                    help="留空时读取 SEARCH_API_KEY 或 OPENAI_API_KEY；不会写入数据库。",
+                )
         if st.button("导入两条样例", key="demo", width="stretch"):
             try:
                 results = import_demo(db)
@@ -550,6 +567,41 @@ def collect_page(db, conferences):
 def review_page(db):
     st.header("记录核验")
     st.caption("核对来源中的奖项、作者与单位对应关系后，更新记录状态。")
+    verified_count = len(db.search(status="verified"))
+    repository = os.getenv("GITHUB_REPOSITORY", "peekabooXT/Global-CS-Paper-Awards")
+    branch = os.getenv("GITHUB_BRANCH", "main")
+    with st.expander("发布已核验记录到 GitHub", expanded=True):
+        st.write(f"当前已核验 **{verified_count}** 条；目标仓库 **{repository}**，分支 **{branch}**。")
+        st.caption("发布会重新生成四个 Markdown 索引和已核验 JSON 快照；待核验、已排除记录不会上传。内容无变化时不会创建空提交。")
+        configured = bool(os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN"))
+        password_configured = bool(os.getenv("PUBLISH_PASSWORD_SHA256"))
+        if not configured:
+            st.info("服务器尚未配置 GITHUB_TOKEN。为避免公网泄露令牌，本页面不提供 Token 输入框。")
+        if not password_configured:
+            st.info("服务器尚未配置发布验证密码摘要，发布功能已禁用。")
+        with st.form("publish_verified_form", clear_on_submit=True):
+            publish_password = st.text_input("发布验证密码", type="password", key="publish_password")
+            publish_submit = form_submit(
+                st, "验证并发布最新已核验记录到 GitHub", "publish_verified", type="primary",
+                disabled=not configured or not password_configured or verified_count == 0,
+            )
+        if publish_submit:
+            try:
+                if not verify_publish_password(publish_password):
+                    st.session_state.pop("last_publish", None)
+                    raise ValueError("发布验证密码错误，未向 GitHub 提交任何内容")
+                with st.spinner("正在生成索引并提交到 GitHub…"):
+                    result = publish_verified(db, GitHubPublisher(repository=repository, branch=branch))
+                st.session_state["last_publish"] = result
+            except Exception as exc:
+                safe_error(exc)
+        result = st.session_state.get("last_publish")
+        if result:
+            if result["changed"]:
+                st.success(f"已发布 {result['verified_records']} 条已核验记录，更新 {len(result['files'])} 个文件。")
+            else:
+                st.info("GitHub 上的已核验数据已是最新版本，没有创建新提交。")
+            st.link_button("查看 GitHub 提交", result["commit_url"])
     state = st.selectbox("筛选核验状态", ["pending", "verified", "rejected", "all"], format_func=STATUSES.get, key="review_filter")
     records = db.search(status=state)
     if not records:

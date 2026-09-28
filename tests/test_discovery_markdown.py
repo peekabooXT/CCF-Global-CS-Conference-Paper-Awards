@@ -37,6 +37,14 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
         self.assertEqual((custom.provider, custom.base, custom.model),
                          ("custom", "https://llm.example/v1", "custom-model"))
 
+    def test_search_api_can_reuse_llm_configuration(self):
+        with patch.dict(os.environ, {
+            "SEARCH_REUSE_LLM": "1", "LLM_PROVIDER": "openai",
+            "OPENAI_API_KEY": "shared-key", "LLM_MODEL": "shared-model",
+        }, clear=True):
+            search = ResponsesWebSearch()
+        self.assertEqual((search.key, search.base, search.model),
+                         ("shared-key", "https://api.openai.com/v1", "shared-model"))
     def test_search_api_has_independent_configuration(self):
         with patch.dict(os.environ, {
             "SEARCH_API_KEY": "search-key", "SEARCH_BASE_URL": "https://search.example/v1",

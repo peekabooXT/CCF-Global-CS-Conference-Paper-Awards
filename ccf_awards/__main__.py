@@ -81,7 +81,8 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
     try:
         sources, warnings = (local_sources, []) if local_sources else crawl(
             urls, extra_urls, max_pages, notify=notify, strict_seeds=strict_urls)
-        notify(f"已读取 {len(sources)} 个来源，正在提取…")
+        source_chars = sum(len(source["text"]) for source in sources)
+        notify(f"已读取 {len(sources)} 个来源（{source_chars:,} 字符），正在按目标年度提取…")
         bundle = llm.extract(conference, year, sources)
         extraction_usage = getattr(llm, "last_usage", None)
         if extraction_usage:
@@ -181,6 +182,8 @@ def parser():
     imp.add_argument("file")
     excel = sub.add_parser("import-excel", help="把核验整理版 Excel 幂等导入 SQLite")
     excel.add_argument("file")
+    published = sub.add_parser("import-verified", help="导入 GitHub 上发布的已核验快照")
+    published.add_argument("file")
     discover = sub.add_parser("discover", help="使用 OpenAI web_search 查找候选官方获奖页")
     discover.add_argument("--conference", required=True)
     discover.add_argument("--year", required=True, type=year_value)
@@ -200,6 +203,7 @@ def parser():
     agent.add_argument("--output-dir", default="data/records")
     render = sub.add_parser("render-markdown", help="从数据库生成 GitHub 可浏览的获奖论文索引")
     render.add_argument("--root", default=".")
+    render.add_argument("--status", choices=["all", "active", "pending", "verified", "rejected"], default="all")
     demo = sub.add_parser("demo", help="离线导入两条真实获奖样例；默认仍为待核验")
     s = sub.add_parser("search", help="多个条件按 AND 组合检索")
     s.add_argument("--conference")
@@ -264,6 +268,10 @@ def run(args, db):
         from .excel_import import import_excel
         db.init()
         dump(import_excel(db, args.file))
+    elif cmd == "import-verified":
+        from .github_publish import import_verified_snapshot
+        db.init()
+        dump(import_verified_snapshot(db, args.file))
     elif cmd == "discover":
         from .discovery import ResponsesWebSearch
         conference = db.resolve(args.conference)
@@ -300,7 +308,7 @@ def run(args, db):
         return 2 if any(task["status"] == "failed" for task in tasks) else 0
     elif cmd == "render-markdown":
         from .markdown_export import render_markdown
-        dump(render_markdown(db, args.root))
+        dump(render_markdown(db, args.root, status=args.status))
     elif cmd in ("source-add", "sources", "suggest", "collect", "extract-file"):
         conf = db.resolve(args.conference)
         if cmd == "source-add":

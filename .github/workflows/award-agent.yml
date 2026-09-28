@@ -34,6 +34,7 @@ jobs:
       SEARCH_API_KEY: ${{ secrets.SEARCH_API_KEY || secrets.OPENAI_API_KEY }}
       SEARCH_BASE_URL: ${{ vars.SEARCH_BASE_URL }}
       SEARCH_MODEL: ${{ vars.SEARCH_MODEL || secrets.OPENAI_SEARCH_MODEL }}
+      SEARCH_REUSE_LLM: ${{ vars.SEARCH_REUSE_LLM || '0' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,8 +46,10 @@ jobs:
       - name: Check API configuration
         run: |
           test -n "$LLM_API_KEY" || { echo "Missing extraction key: LLM_API_KEY, DEEPSEEK_API_KEY, or OPENAI_API_KEY"; exit 1; }
-          test -n "$SEARCH_API_KEY" || { echo "Missing search key: SEARCH_API_KEY or OPENAI_API_KEY"; exit 1; }
-          test -n "$SEARCH_MODEL" || { echo "Missing search model: repository variable SEARCH_MODEL or secret OPENAI_SEARCH_MODEL"; exit 1; }
+          if [ "$SEARCH_REUSE_LLM" != "1" ]; then
+            test -n "$SEARCH_API_KEY" || { echo "Missing search key: SEARCH_API_KEY or OPENAI_API_KEY"; exit 1; }
+            test -n "$SEARCH_MODEL" || { echo "Missing search model: repository variable SEARCH_MODEL or secret OPENAI_SEARCH_MODEL"; exit 1; }
+          fi
       - name: Rebuild the database from versioned evidence
         run: |
           python -m ccf_awards --db data/github-agent.sqlite3 import-excel data/exports/CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx
@@ -54,6 +57,9 @@ jobs:
           for file in data/records/*.json; do
             python -m ccf_awards --db data/github-agent.sqlite3 import-json "$file"
           done
+          if [ -f data/exports/verified-records.json ]; then
+            python -m ccf_awards --db data/github-agent.sqlite3 import-verified data/exports/verified-records.json
+          fi
       - name: Search, fetch, extract, and record
         continue-on-error: true
         env:
@@ -69,12 +75,13 @@ jobs:
             python -m ccf_awards --db data/github-agent.sqlite3 agent-run --year "$year" --limit "$limit"
           fi
       - name: Render GitHub indexes
-        run: python -m ccf_awards --db data/github-agent.sqlite3 render-markdown --root .
+        run: python -m ccf_awards --db data/github-agent.sqlite3 render-markdown --root . --status verified
       - name: Commit evidence and indexes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add AWARDS.md docs/awards data/records
+          if [ -f data/exports/verified-records.json ]; then git add data/exports/verified-records.json; fi
           git diff --cached --quiet && exit 0
           git commit -m "data: update award evidence and indexes"
           git push
