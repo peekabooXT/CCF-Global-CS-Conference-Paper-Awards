@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 from ccf_awards.db import Database
 from ccf_awards.llm import LLM
-from ccf_awards.web_helpers import csv_bytes, export_rows, import_demo, parse_years, urls_from_text
+from ccf_awards.web_helpers import csv_bytes, export_rows, import_demo, parse_years, run_log_csv_bytes, urls_from_text
 
 try:
     from streamlit.testing.v1 import AppTest
@@ -244,6 +244,31 @@ class WebHelperTest(unittest.TestCase):
                 self.assertIn("'=BAD()", csv_bytes(records).decode("utf-8-sig"))
             finally:
                 db.close()
+
+    def test_run_log_csv_export_includes_tokens_and_safe_text(self):
+        content = run_log_csv_bytes([{
+            "id": 7,
+            "acronym": "AAAI",
+            "year": 2026,
+            "started_at": "2026-09-28T12:00:00",
+            "finished_at": "2026-09-28T12:00:03",
+            "duration_seconds": 3.0,
+            "status": "failed",
+            "details": {
+                "inserted": 1,
+                "updated": 2,
+                "unchanged": 3,
+                "token_usage": {
+                    "search": {"total_tokens": 100},
+                    "extraction": {"total_tokens": 150},
+                },
+                "error": "=unsafe",
+            },
+        }]).decode("utf-8-sig")
+        self.assertIn("任务,会议,年份", content)
+        self.assertIn("搜索 tokens,提取 tokens,总 tokens", content)
+        self.assertIn("100,150,250", content)
+        self.assertIn("'=unsafe", content)
 
 
 if __name__ == "__main__":

@@ -30,6 +30,7 @@ from ccf_awards.web_helpers import (
     csv_bytes,
     database_path,
     import_demo,
+    run_log_csv_bytes,
     validate_filters,
 )
 
@@ -373,5 +374,19 @@ def runs(limit: int = 50):
     db = get_db()
     try:
         return {"runs": db.runs(limit)}
+    finally:
+        db.close()
+
+
+@app.get("/api/runs/export/csv")
+def export_runs_csv(limit: int = 500):
+    """Download recent persisted collection runs, including token usage."""
+    db = get_db()
+    try:
+        return StreamingResponse(
+            iter([run_log_csv_bytes(db.runs(limit))]),
+            media_type="text/csv; charset=utf-8",
+            headers={"Content-Disposition": "attachment; filename=ccf-awards-run-logs.csv"},
+        )
     finally:
         db.close()

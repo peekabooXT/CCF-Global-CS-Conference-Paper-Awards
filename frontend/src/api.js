@@ -21,6 +21,7 @@ export const api = {
   importJson: (body) => http.post('/import', body).then(r => r.data),
   demo: () => http.post('/demo').then(r => r.data),
   runs: (limit = 50) => http.get('/runs', { params: { limit } }).then(r => r.data),
+  runExportUrl: (limit = 500) => `/api/runs/export/csv?limit=${encodeURIComponent(limit)}`,
 }
 
 // 统一错误提示：后端返回 {detail: "..."}

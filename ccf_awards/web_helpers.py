@@ -89,3 +89,53 @@ def csv_bytes(records):
             safe[key] = "'" + value if value.lstrip().startswith(("=", "+", "-", "@")) else value
         writer.writerow(safe)
     return output.getvalue().encode("utf-8-sig")
+
+
+def run_log_csv_bytes(runs):
+    """Flatten persisted collection runs into an Excel-friendly CSV."""
+    rows = []
+    for run in runs:
+        details = run.get("details") or {}
+        usage = details.get("token_usage") or {}
+        search_usage = usage.get("search") or {}
+        extraction_usage = usage.get("extraction") or {}
+        search_tokens = search_usage.get("total_tokens")
+        extraction_tokens = extraction_usage.get("total_tokens")
+        known_tokens = [
+            value for value in (search_tokens, extraction_tokens)
+            if type(value) is int
+        ]
+        total_tokens = details.get("total_tokens")
+        if type(total_tokens) is not int:
+            total_tokens = sum(known_tokens) if known_tokens else ""
+        rows.append({
+            "任务": run.get("id", ""),
+            "会议": run.get("acronym", ""),
+            "年份": run.get("year", ""),
+            "开始时间": run.get("started_at", ""),
+            "结束时间": run.get("finished_at", ""),
+            "耗时（秒）": run.get("duration_seconds") if run.get("duration_seconds") is not None else "",
+            "状态": run.get("status", ""),
+            "新增": details.get("inserted", 0),
+            "更新": details.get("updated", 0),
+            "重复": details.get("unchanged", 0),
+            "搜索 tokens": search_tokens if type(search_tokens) is int else "",
+            "提取 tokens": extraction_tokens if type(extraction_tokens) is int else "",
+            "总 tokens": total_tokens,
+            "说明": details.get("error", ""),
+        })
+
+    output = io.StringIO(newline="")
+    fieldnames = [
+        "任务", "会议", "年份", "开始时间", "结束时间", "耗时（秒）", "状态",
+        "新增", "更新", "重复", "搜索 tokens", "提取 tokens", "总 tokens", "说明",
+    ]
+    writer = csv.DictWriter(output, fieldnames=fieldnames)
+    writer.writeheader()
+    for row in rows:
+        safe = {}
+        for key, value in row.items():
+            value = str(value)
+            safe[key] = "'" + value if value.lstrip().startswith(("=", "+", "-", "@")) else value
+        writer.writerow(safe)
+    return output.getvalue().encode("utf-8-sig")

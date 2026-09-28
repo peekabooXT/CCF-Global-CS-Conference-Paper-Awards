@@ -83,6 +83,15 @@ async function loadRuns() {
   }
 }
 
+function exportRuns() {
+  const link = document.createElement('a')
+  link.href = api.runExportUrl(500)
+  link.download = ''
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+}
+
 onMounted(() => {
   loadStats()
   loadRuns()
@@ -358,7 +367,10 @@ async function onImportJson(e) {
       <template #header>
         <div class="history-head">
           <span>最近运行日志与 Token 用量</span>
-          <el-button size="small" :loading="historyLoading" @click="loadRuns">刷新</el-button>
+          <div class="history-actions">
+            <el-button size="small" :disabled="!historyRows.length" @click="exportRuns">导出 CSV</el-button>
+            <el-button size="small" :loading="historyLoading" @click="loadRuns">刷新</el-button>
+          </div>
         </div>
       </template>
       <el-alert v-if="historyError" type="error" :title="historyError" :closable="false" />
@@ -412,6 +424,7 @@ h2 { margin: 0; }
 .result { margin-top: 12px; }
 .history { margin-top: 12px; }
 .history-head { display: flex; align-items: center; justify-content: space-between; }
+.history-actions { display: flex; align-items: center; gap: 8px; }
 .conference-option { display: flex; align-items: center; gap: 8px; }
 .conference-option span:last-child { color: #66758a; }
 </style>
