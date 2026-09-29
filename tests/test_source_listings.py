@@ -94,6 +94,14 @@ class SourceListingsTest(unittest.TestCase):
                 self.assertEqual(list_source_listings(db.conn, relation="record")["total"], 1)
                 self.assertEqual(list_source_listings(db.conn, relation="new")["total"], 1)
                 self.assertEqual(db.conn.execute("SELECT COUNT(*) FROM records").fetchone()[0], 1)
+                import_jeffhuang(db.conn, {**document, "review_status": "verified"})
+                self.assertEqual(db.conn.execute(
+                    "SELECT COUNT(*) FROM source_listings WHERE status='verified'"
+                ).fetchone()[0], 3)
+                import_jeffhuang(db.conn, document)
+                self.assertEqual(db.conn.execute(
+                    "SELECT COUNT(*) FROM source_listings WHERE status='verified'"
+                ).fetchone()[0], 3)
             finally:
                 db.close()
 

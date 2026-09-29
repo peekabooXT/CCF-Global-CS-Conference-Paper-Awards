@@ -43,6 +43,14 @@ class AwardEventsTest(unittest.TestCase):
                 self.assertEqual(event["official_award_name"], "USENIX Best Paper / OSDI '25")
                 self.assertEqual(event["rank"], "A")
                 self.assertEqual(db.conn.execute("SELECT COUNT(*) FROM records").fetchone()[0], 0)
+                verified_doc = {**doc, "review_status": "verified"}
+                import_annotations(db.conn, verified_doc)
+                self.assertEqual(event_detail(db.conn, event["id"])["status"], "verified")
+                self.assertEqual(db.conn.execute(
+                    "SELECT COUNT(*) FROM award_event_papers WHERE status='verified'"
+                ).fetchone()[0], 2)
+                import_annotations(db.conn, doc)
+                self.assertEqual(event_detail(db.conn, event["id"])["status"], "verified")
             finally:
                 db.close()
 

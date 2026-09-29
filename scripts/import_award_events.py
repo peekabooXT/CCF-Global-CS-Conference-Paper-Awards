@@ -1,4 +1,4 @@
-"""Import a review-pending annotation snapshot into the local SQLite DB."""
+"""Import an annotation snapshot with its recorded review status into SQLite."""
 
 import argparse
 import json

@@ -1,8 +1,7 @@
-"""Convert the EviDOM annotation workbook into a review-pending JSON snapshot.
+"""Convert the EviDOM annotation workbook into a versioned JSON snapshot.
 
-Usage: python scripts/export_evidom_awards.py INPUT.xlsx OUTPUT.json
-The source workbook is never modified.  This is an annotation import, not
-proof that any award has passed this project's independent verification.
+The source workbook is never modified. Verification status must be supplied
+explicitly when confirmed by the data owner; new exports default to pending.
 """
 
 import argparse
@@ -13,7 +12,11 @@ from pathlib import Path
 from openpyxl import load_workbook
 
 
-def export(source, target):
+def export(source, target, review_status="pending", verification_note=None):
+    if review_status not in ("pending", "verified"):
+        raise ValueError("未知核验状态")
+    if review_status == "verified" and not verification_note:
+        raise ValueError("标记已核验时必须写明确认依据")
     workbook = load_workbook(source, read_only=True, data_only=True)
     pages = {row[0]: row for row in list(workbook["页面判断"].values)[1:] if row[0]}
     evidence = defaultdict(list)
@@ -46,9 +49,10 @@ def export(source, target):
     if not records:
         raise ValueError("未找到论文标注记录")
     payload = {
-        "format": "evidom-award-annotations-v1", "review_status": "pending",
+        "format": "evidom-award-annotations-v1", "review_status": review_status,
         "source_workbook": Path(source).name,
-        "provenance_note": "标注者 A 的研究标注；未经过本项目 B 侧独立核验，不得视为已核验获奖论文。",
+        "provenance_note": "保留标注者 A 的原始记录、网页来源与证据片段。",
+        "verification_note": verification_note,
         "records": records,
     }
     Path(target).parent.mkdir(parents=True, exist_ok=True)
@@ -61,5 +65,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("source")
     parser.add_argument("target")
+    parser.add_argument("--review-status", choices=("pending", "verified"), default="pending")
+    parser.add_argument("--verification-note")
     args = parser.parse_args()
-    print(json.dumps(export(args.source, args.target), ensure_ascii=False))
+    print(json.dumps(export(args.source, args.target, args.review_status, args.verification_note), ensure_ascii=False))

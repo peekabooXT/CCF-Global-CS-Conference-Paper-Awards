@@ -1,6 +1,8 @@
 {
   "format": "jeffhuang-listings-v1",
   "source_name": "jeffhuang",
+  "review_status": "verified",
+  "verification_note": "数据提供者于2026-09-29确认本工作簿数据均已核验",
   "source_url": "https://jeffhuang.com/best_paper_awards/",
   "source_workbook": "jeffhuang_best_paper_awards_academic.xlsx",
   "source_workbook_sha256": "5a01e6a2e7fd583c96dfec8c2e6072f81dedcae9c027d5997898226579ea6504",

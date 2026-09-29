@@ -27,7 +27,7 @@ function relationLabel(row) {
   if (row.event_count && row.record_count) return '关联事件与核验记录'
   if (row.event_count) return '关联获奖事件'
   if (row.record_count) return '关联核验记录'
-  return '新增候选'
+  return '未关联现有记录'
 }
 onMounted(() => load())
 </script>
@@ -35,7 +35,7 @@ onMounted(() => load())
 <template>
   <div class="listings-workspace">
     <h2>来源收录</h2>
-    <p class="hint">JeffHuang 汇总页收录的论文按会议、年份和题名去重。该表未逐条提供官方奖项名称或授奖证据；这里的收录均待核验，不会自动生成“最佳论文”获奖事件。</p>
+    <p class="hint">JeffHuang 汇总页收录的论文按会议、年份和题名去重。核验状态按记录显示；该表未逐条提供官方奖项名称，不会自动生成“最佳论文”获奖事件。</p>
     <el-form inline @submit.prevent="load(true)">
       <el-form-item label="会议"><el-input v-model="filters.venue" clearable placeholder="例如 AAAI" /></el-form-item>
       <el-form-item label="论文 / 作者"><el-input v-model="filters.query" clearable placeholder="输入关键词" /></el-form-item>
@@ -43,7 +43,7 @@ onMounted(() => load())
         <el-select v-model="filters.relation" clearable placeholder="全部" style="width: 170px">
           <el-option label="关联获奖事件" value="event" />
           <el-option label="关联核验记录" value="record" />
-          <el-option label="新增候选" value="new" />
+          <el-option label="未关联现有记录" value="new" />
         </el-select>
       </el-form-item>
       <el-button type="primary" :loading="loading" @click="load(true)">检索</el-button>
@@ -54,20 +54,21 @@ onMounted(() => load())
       <el-table-column label="会议" width="150"><template #default="{ row }">{{ row.source_venue }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></template></el-table-column>
       <el-table-column prop="title" label="论文题目" min-width="330" />
       <el-table-column label="去重结果" width="165"><template #default="{ row }">{{ relationLabel(row) }}</template></el-table-column>
-      <el-table-column label="状态" width="90"><template #default><el-tag size="small" type="warning">待核验</el-tag></template></el-table-column>
+      <el-table-column label="状态" width="90"><template #default="{ row }"><el-tag size="small" :type="row.status === 'verified' ? 'success' : 'warning'">{{ row.status === 'verified' ? '已核验' : '待核验' }}</el-tag></template></el-table-column>
       <el-table-column label="操作" width="80"><template #default="{ row }"><el-button link type="primary" @click="openListing(row.id)">查看</el-button></template></el-table-column>
     </el-table>
     <div class="pager"><el-pagination :current-page="page" :page-size="pageSize" :total="result.total" layout="prev, pager, next" @current-change="p => { offset = (p - 1) * pageSize; load() }" /></div>
     <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.title || '来源收录'">
       <template v-if="selected">
         <p>{{ selected.source_venue }} · {{ selected.year }} · JeffHuang 第 {{ selected.source_row }} 条</p>
+        <p>收录核验状态：{{ selected.status === 'verified' ? '已核验' : '待核验' }}</p>
         <p v-if="selected.area_raw">网页领域：{{ selected.area_raw }}</p>
         <p v-if="selected.authors_raw">作者及单位（网页原文）：{{ selected.authors_raw }}</p>
         <p><a :href="selected.source_url" target="_blank" rel="noopener noreferrer">JeffHuang 汇总页</a></p>
         <p v-if="selected.discovery_url"><a :href="selected.discovery_url" target="_blank" rel="noopener noreferrer">Google Scholar 检索</a> <span class="hint">（不是论文正文或官方授奖证据）</span></p>
         <p v-if="selected.events.length">已关联获奖事件：<span v-for="(event, i) in selected.events" :key="event.id">{{ i ? '；' : '' }}{{ event.official_award_name }}（{{ event.status === 'verified' ? '已核验' : '待核验' }}）</span></p>
         <p v-if="selected.records.length">已关联现有论文记录：{{ selected.records.length }} 条</p>
-        <p v-if="!selected.events.length && !selected.records.length" class="hint">目前没有独立授奖证据，保留为新增候选。</p>
+        <p v-if="!selected.events.length && !selected.records.length" class="hint">尚未关联本项目的获奖事件或论文记录；这不影响本条收录的核验状态。</p>
       </template>
     </el-drawer>
   </div>

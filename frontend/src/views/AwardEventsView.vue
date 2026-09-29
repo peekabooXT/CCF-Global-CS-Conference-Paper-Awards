@@ -31,7 +31,7 @@ onMounted(() => load())
 <template>
   <div class="events-workspace">
     <h2>获奖事件与奖项分类</h2>
-    <p class="hint">一个奖项事件可关联多篇论文，一篇论文也可出现在多个奖项中。保留官网原始奖名；下方 EviDOM 标注暂为待核验，不能视作已核验获奖记录。</p>
+    <p class="hint">一个奖项事件可关联多篇论文，一篇论文也可出现在多个奖项中。保留官网原始奖名与证据；核验状态按每条记录显示。</p>
     <el-form inline @submit.prevent="load(true)">
       <el-form-item label="会议"><el-input v-model="filters.venue" clearable placeholder="例如 SIGIR" /></el-form-item>
       <el-form-item label="统一分类">
@@ -56,10 +56,11 @@ onMounted(() => load())
     <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.official_award_name || '获奖事件'">
       <template v-if="selected">
         <p>{{ selected.venue }} · {{ selected.year }} · {{ selected.category_label }}<span v-if="selected.student_only"> · 学生奖</span></p>
-        <p class="hint">原始奖名与统一分类并列展示；分类不替代原始称谓。以下论文均为待核验标注。</p>
+        <p class="hint">原始奖名与统一分类并列展示；分类不替代原始称谓。事件和论文关联分别保留核验状态。</p>
         <el-divider />
         <article v-for="paper in selected.papers" :key="paper.annotation_id" class="paper">
           <h3>{{ paper.title }}</h3>
+          <p>核验状态：{{ paper.status === 'verified' ? '已核验' : '待核验' }}</p>
           <p v-if="paper.authors_raw">作者（原文）：{{ paper.authors_raw }}</p>
           <p v-else>作者：待补全</p>
           <p v-if="paper.paper_url"><a :href="paper.paper_url" target="_blank" rel="noopener noreferrer">论文链接</a></p>

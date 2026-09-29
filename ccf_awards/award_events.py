@@ -1,4 +1,4 @@
-"""Award events and lossless, review-pending EviDOM annotations.
+"""Award events and lossless EviDOM annotations.
 
 The annotation corpus is separate from the verified ``records`` table.  In
 particular, importing it cannot silently change coverage or review decisions.
@@ -67,6 +67,9 @@ def import_annotations(conn, document):
     rows = document.get("records")
     if not isinstance(rows, list):
         raise ValueError("records 必须是列表")
+    status = document.get("review_status", "pending")
+    if status not in ("pending", "verified"):
+        raise ValueError("未知 EviDOM 核验状态")
     aliases = {}
     for cid, acronym, rank, data in conn.execute("SELECT id,acronym,rank,data FROM conferences"):
         for label in [acronym, *json.loads(data).get("aliases", [])]:
@@ -90,22 +93,24 @@ def import_annotations(conn, document):
             paper_id = _id(venue, year, norm(title))
             cid = catalog.get(norm(venue))
             conn.execute("""INSERT INTO award_events
-                VALUES (?,?,?,?,?,?,?,'pending',datetime('now'))
+                VALUES (?,?,?,?,?,?,?,?,datetime('now'))
                 ON CONFLICT(id) DO UPDATE SET
-                conference_id=COALESCE(excluded.conference_id,award_events.conference_id)""",
-                (event_id, venue, cid, year, name, ontology["category"], int(ontology["student_only"])))
+                conference_id=COALESCE(excluded.conference_id,award_events.conference_id),
+                status=CASE WHEN excluded.status='verified' THEN 'verified' ELSE award_events.status END""",
+                (event_id, venue, cid, year, name, ontology["category"], int(ontology["student_only"]), status))
             conn.execute("""INSERT INTO award_papers VALUES (?,?,?,?,?,?)
                 ON CONFLICT(id) DO UPDATE SET
                 authors_raw=COALESCE(NULLIF(excluded.authors_raw,''),award_papers.authors_raw),
                 paper_url=COALESCE(NULLIF(excluded.paper_url,''),award_papers.paper_url)""",
                 (paper_id, venue, year, title, row.get("authors_raw"), row.get("paper_url")))
-            conn.execute("""INSERT INTO award_event_papers VALUES (?,?,?,?,?,?,?,'pending')
+            conn.execute("""INSERT INTO award_event_papers VALUES (?,?,?,?,?,?,?,?)
                 ON CONFLICT(annotation_id) DO UPDATE SET event_id=excluded.event_id,
                 paper_id=excluded.paper_id,source_url=excluded.source_url,
                 source_page_id=excluded.source_page_id,evidence=excluded.evidence,
-                note=excluded.note""",
+                note=excluded.note,
+                status=CASE WHEN excluded.status='verified' THEN 'verified' ELSE award_event_papers.status END""",
                 (annotation_id, event_id, paper_id, source_url, row["page_id"],
-                 json.dumps(row.get("evidence", []), ensure_ascii=False), row.get("note")))
+                 json.dumps(row.get("evidence", []), ensure_ascii=False), row.get("note"), status))
             events.add(event_id)
             papers.add(paper_id)
     return {"annotations": len(rows), "events": len(events), "papers": len(papers),

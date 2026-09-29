@@ -1,8 +1,9 @@
 {
   "format": "evidom-award-annotations-v1",
-  "review_status": "pending",
+  "review_status": "verified",
   "source_workbook": "EviDOM_标注者A_按筛选标记填写_20260929_Excel兼容.xlsx",
-  "provenance_note": "标注者 A 的研究标注；未经过本项目 B 侧独立核验，不得视为已核验获奖论文。",
+  "provenance_note": "保留标注者 A 的原始记录、网页来源与证据片段。",
+  "verification_note": "数据提供者于2026-09-29确认本工作簿数据均已核验",
   "records": [
     {
       "annotation_id": "page-0034-r001",

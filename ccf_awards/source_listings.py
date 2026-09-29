@@ -74,6 +74,9 @@ def import_jeffhuang(conn, document):
     rows = document.get("rows")
     if not isinstance(rows, list):
         raise ValueError("rows 必须是列表")
+    status = document.get("review_status", "pending")
+    if status not in ("pending", "verified"):
+        raise ValueError("未知 JeffHuang 核验状态")
     source_url = url_syntax(document.get("source_url"))
     aliases = _alias_map(conn)
     papers = {}
@@ -123,15 +126,16 @@ def import_jeffhuang(conn, document):
             conn.execute("""INSERT INTO source_listings
                 (id,source_name,paper_id,source_venue,conference_id,source_row,area_raw,authors_raw,
                  source_url,discovery_url,status,created_at)
-                VALUES (?,'jeffhuang',?,?,?,?,?,?,?,?,'pending',datetime('now'))
+                VALUES (?,'jeffhuang',?,?,?,?,?,?,?,?,?,datetime('now'))
                 ON CONFLICT(id) DO UPDATE SET paper_id=excluded.paper_id,
                 source_venue=excluded.source_venue,conference_id=excluded.conference_id,
                 source_row=excluded.source_row,
                 area_raw=excluded.area_raw,authors_raw=excluded.authors_raw,
-                source_url=excluded.source_url,discovery_url=excluded.discovery_url""",
+                source_url=excluded.source_url,discovery_url=excluded.discovery_url,
+                status=CASE WHEN excluded.status='verified' THEN 'verified' ELSE source_listings.status END""",
                 (listing_id, paper_id, venue, key[0] if key[0] != norm(venue) else None,
                  int(row["source_row"]), row.get("area_raw"),
-                 row.get("authors_raw"), source_url, discovery_url))
+                 row.get("authors_raw"), source_url, discovery_url, status))
             for record_id in matching_records:
                 conn.execute("INSERT OR IGNORE INTO source_listing_records VALUES (?,?)",
                              (listing_id, record_id))

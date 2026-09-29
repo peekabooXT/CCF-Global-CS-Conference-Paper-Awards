@@ -8,7 +8,11 @@ from pathlib import Path
 from openpyxl import load_workbook
 
 
-def export(source, target):
+def export(source, target, review_status="pending", verification_note=None):
+    if review_status not in ("pending", "verified"):
+        raise ValueError("未知核验状态")
+    if review_status == "verified" and not verification_note:
+        raise ValueError("标记已核验时必须写明确认依据")
     source = Path(source)
     book = load_workbook(source, read_only=True, data_only=True)
     header = list(book["Papers"].values)[3]
@@ -29,6 +33,7 @@ def export(source, target):
     if len({r["source_row"] for r in rows}) != len(rows):
         raise ValueError("网站收录序号重复")
     document = {"format": "jeffhuang-listings-v1", "source_name": "jeffhuang",
+                "review_status": review_status, "verification_note": verification_note,
                 "source_url": source_url, "source_workbook": source.name,
                 "source_workbook_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                 "provenance_note": "网站聚合收录；逐条官方奖项名称和授奖证据未在本表提供。页面来源列是 Google Scholar 检索链接，不是论文正文或官方奖项证据。",
@@ -44,5 +49,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("source")
     parser.add_argument("target")
+    parser.add_argument("--review-status", choices=("pending", "verified"), default="pending")
+    parser.add_argument("--verification-note")
     args = parser.parse_args()
-    print(json.dumps(export(args.source, args.target), ensure_ascii=False))
+    print(json.dumps(export(args.source, args.target, args.review_status, args.verification_note), ensure_ascii=False))
