@@ -12,7 +12,7 @@ defineProps({
       <el-descriptions-item label="会议">
         {{ record.acronym }} {{ record.year }} · CCF {{ record.rank }}
       </el-descriptions-item>
-      <el-descriptions-item label="奖项">{{ awards[record.award_type] }}</el-descriptions-item>
+      <el-descriptions-item label="奖项原名">{{ record.award_name || awards[record.award_type] || '未提供' }}</el-descriptions-item>
       <el-descriptions-item label="状态">{{ record.status }}</el-descriptions-item>
       <el-descriptions-item label="发表日期">
         {{ record.publication_date || '未知' }}
@@ -28,6 +28,7 @@ defineProps({
         </template>
       </el-table-column>
     </el-table>
+    <p v-else-if="record.authors_raw">{{ record.authors_raw }}</p>
     <el-alert v-else type="info" :title="'来源尚未提供作者信息'" :closable="false" />
 
     <h4>来源</h4>

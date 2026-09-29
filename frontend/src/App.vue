@@ -17,7 +17,6 @@ const searchVersion = ref(0)
 const AI_SETTINGS_KEY = 'ccf-awards-ai-settings'
 const defaultAiSettings = {
   llm: { provider: 'deepseek', base_url: '', model: '', api_key: '', json_mode: true },
-  search: { base_url: 'https://api.openai.com/v1', model: '', api_key: '' },
 }
 
 function loadAiSettings() {
@@ -25,19 +24,17 @@ function loadAiSettings() {
     const saved = JSON.parse(sessionStorage.getItem(AI_SETTINGS_KEY) || '{}')
     return {
       llm: { ...defaultAiSettings.llm, ...(saved.llm || {}) },
-      search: { ...defaultAiSettings.search, ...(saved.search || {}) },
     }
   } catch {
     return {
       llm: { ...defaultAiSettings.llm },
-      search: { ...defaultAiSettings.search },
     }
   }
 }
 
 const aiSettings = reactive(loadAiSettings())
 const hasSessionSettings = computed(() => Boolean(
-  aiSettings.llm.api_key || aiSettings.llm.model || aiSettings.search.api_key || aiSettings.search.model,
+  aiSettings.llm.api_key || aiSettings.llm.model,
 ))
 
 watch(aiSettings, value => {
@@ -91,7 +88,7 @@ onMounted(boot)
         <div class="utility-bar" aria-label="设置与数据工具">
           <span>资料库工具</span>
           <el-button @click="openSettings">
-            AI 连接设置
+            LLM 连接
             <el-tag v-if="hasSessionSettings" type="success" size="small" effect="plain" class="configured-tag">已配置</el-tag>
           </el-button>
           <el-button :loading="importing" @click="importDemo">导入两条样例</el-button>
@@ -107,10 +104,9 @@ onMounted(boot)
       </template>
     </main>
 
-    <el-dialog v-model="settingsDialogVisible" title="AI 连接设置" width="760px" class="ai-settings-dialog">
+    <el-dialog v-model="settingsDialogVisible" title="LLM 连接" width="760px" class="ai-settings-dialog">
       <p class="settings-hint">配置只保存在当前浏览器标签页的会话中。切换功能页面或刷新后仍可继续使用，关闭标签页后自动清除。</p>
-
-      <el-divider content-position="left">结构化提取</el-divider>
+      <p class="settings-hint">结构化提取与自动网页搜索共用下方的提供商、API 地址、模型和 Key。自动网页搜索要求该连接支持 Responses API 的 web_search 工具。</p>
       <el-form label-position="top">
         <div class="settings-grid">
           <el-form-item label="提供商">
@@ -128,21 +124,7 @@ onMounted(boot)
         </div>
         <el-checkbox v-model="aiSettings.llm.json_mode">启用 JSON 模式</el-checkbox>
       </el-form>
-
-      <el-divider content-position="left">自动网页搜索</el-divider>
-      <el-form label-position="top">
-        <div class="settings-grid">
-          <el-form-item label="搜索模型">
-            <el-input v-model="aiSettings.search.model" placeholder="支持网页搜索的模型" />
-          </el-form-item>
-          <el-form-item label="搜索地址">
-            <el-input v-model="aiSettings.search.base_url" placeholder="https://api.openai.com/v1" />
-          </el-form-item>
-          <el-form-item label="API Key" class="settings-full">
-            <el-input v-model="aiSettings.search.api_key" type="password" show-password autocomplete="new-password" />
-          </el-form-item>
-        </div>
-      </el-form>
+      <el-alert v-if="(aiSettings.llm.base_url || 'https://api.deepseek.com').includes('api.deepseek.com') && aiSettings.llm.provider === 'deepseek'" type="warning" :closable="false" show-icon title="DeepSeek 官方 API 当前不执行内置 web_search；这套连接可用于提取，自动搜索需换成支持 web_search 的 LLM 连接，或改用已有官网网址。" />
 
       <template #footer>
         <el-button type="primary" @click="settingsDialogVisible = false">完成</el-button>

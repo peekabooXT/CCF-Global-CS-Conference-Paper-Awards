@@ -47,10 +47,9 @@ class WebTest(unittest.TestCase):
 
     def test_unified_ai_settings_and_safe_publish_button(self):
         labels = [item.label for item in self.app.expander]
-        self.assertIn("AI 连接设置", labels)
-        self.assertNotIn("LLM 连接设置", labels)
+        self.assertIn("LLM 连接", labels)
+        self.assertNotIn("AI 连接设置", labels)
         self.assertNotIn("自动网页搜索设置", labels)
-        self.assertTrue(self.app.checkbox(key="search_reuse_primary").value)
         self.demo()
         self.app.radio(key="section").set_value("记录核验").run()
         self.assertTrue(self.app.text_input(key="publish_password"))
@@ -239,7 +238,7 @@ class WebHelperTest(unittest.TestCase):
                 records = db.search()
                 csv = csv_bytes(records).decode("utf-8-sig")
                 self.assertIn("Stanford University", csv)
-                self.assertIn("最佳学生论文奖", csv)
+                self.assertIn("Best Student Paper Award – Research", csv)
                 records[0]["title"] = "=BAD()"
                 self.assertIn("'=BAD()", csv_bytes(records).decode("utf-8-sig"))
             finally:

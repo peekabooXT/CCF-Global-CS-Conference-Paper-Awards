@@ -9,7 +9,6 @@ const props = defineProps({
 })
 const conferences = computed(() => props.meta?.conferences || [])
 const llm = computed(() => props.aiSettings.llm || {})
-const search = computed(() => props.aiSettings.search || {})
 const conferenceQuery = ref('')
 const filteredConferences = computed(() => {
   const query = conferenceQuery.value.trim().toLocaleLowerCase('en-US')
@@ -149,7 +148,6 @@ function baseBody() {
     extra_urls: form.extra_urls.split('\n').map(s => s.trim()).filter(Boolean),
     max_pages: form.max_pages,
     llm: { ...llm.value },
-    search: { ...search.value },
   }
 }
 

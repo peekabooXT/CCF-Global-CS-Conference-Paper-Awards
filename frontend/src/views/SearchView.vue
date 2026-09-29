@@ -7,11 +7,11 @@ import RecordDetail from '../components/RecordDetail.vue'
 const props = defineProps({ meta: { type: Object, required: true } })
 
 const conferences = computed(() => props.meta?.conferences || [])
-const awardKeys = computed(() => Object.keys(props.meta?.awards || {}))
+const awardNames = computed(() => props.meta?.award_names || [])
 const statusKeys = computed(() => Object.keys(props.meta?.statuses || {}))
 
 const defaults = () => ({
-  conference: null, rank: null, award: null,
+  conference: null, rank: null, award_name: null,
   year_from: null, year_to: null,
   author: '', affiliation: '', title: '',
   status: 'active', published_from: null, published_to: null,
@@ -92,8 +92,8 @@ onMounted(runSearch)
         </el-select>
       </el-form-item>
       <el-form-item label="奖项">
-        <el-select v-model="filters.award" placeholder="两种奖项" clearable style="width: 160px">
-          <el-option v-for="k in awardKeys" :key="k" :label="meta.awards[k]" :value="k" />
+        <el-select v-model="filters.award_name" placeholder="输入奖项原名查找" filterable clearable style="width: 240px">
+          <el-option v-for="name in awardNames" :key="name" :label="name" :value="name" />
         </el-select>
       </el-form-item>
       <el-form-item label="年份">
@@ -132,8 +132,8 @@ onMounted(runSearch)
       <el-table-column prop="acronym" label="会议" width="100" />
       <el-table-column prop="rank" label="CCF" width="70" />
       <el-table-column prop="year" label="年份" width="80" />
-      <el-table-column label="奖项" width="160">
-        <template #default="{ row }">{{ meta.awards[row.award_type] }}</template>
+      <el-table-column label="奖项原名" min-width="220">
+        <template #default="{ row }">{{ row.award_name || '未提供' }}</template>
       </el-table-column>
       <el-table-column label="发表日期" width="120">
         <template #default="{ row }">{{ row.publication_date || '未知' }}</template>

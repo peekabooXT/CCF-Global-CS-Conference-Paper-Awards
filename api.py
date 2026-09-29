@@ -12,6 +12,7 @@ import tempfile
 import threading
 from pathlib import Path
 from typing import Optional
+from urllib.parse import urlsplit
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,6 +23,7 @@ from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
 from ccf_awards.award_events import event_detail, list_events
 from ccf_awards.ontology import CATEGORIES
+from ccf_awards.paper_search import award_names, search_papers
 from ccf_awards.source_listings import list_source_listings, source_listing_detail
 from ccf_awards.discovery import ResponsesWebSearch
 from ccf_awards.llm import LLM
@@ -72,6 +74,7 @@ def meta():
             "coverage": COVERAGE,
             "conferences": db.conferences(),
             "award_categories": CATEGORIES,
+            "award_names": award_names(db.conn),
         }
     finally:
         db.close()
@@ -132,6 +135,7 @@ class SearchReq(BaseModel):
     affiliation: Optional[str] = None
     title: Optional[str] = None
     award: Optional[str] = None
+    award_name: Optional[str] = None
     status: str = "active"
     published_from: Optional[str] = None
     published_to: Optional[str] = None
@@ -140,7 +144,7 @@ class SearchReq(BaseModel):
 def _run_search(db: Database, req: SearchReq):
     filters = req.model_dump(exclude_none=True)
     validate_filters(filters)
-    return db.search(**filters)
+    return search_papers(db, filters)
 
 
 @app.post("/api/search")
@@ -263,12 +267,6 @@ class LLMConfig(BaseModel):
     provider: Optional[str] = None
 
 
-class SearchConfig(BaseModel):
-    api_key: Optional[str] = None
-    base_url: Optional[str] = None
-    model: Optional[str] = None
-
-
 class CollectReq(BaseModel):
     conference_id: str
     year: int
@@ -277,7 +275,6 @@ class CollectReq(BaseModel):
     extra_urls: list[str] = []
     max_pages: int = 4
     llm: LLMConfig = LLMConfig()
-    search: SearchConfig = SearchConfig()
 
 
 def _build_llm(cfg: LLMConfig):
@@ -300,10 +297,12 @@ def _do_collect(db: Database, req: CollectReq, notify, local_sources=None):
         return collect_one(db, conf, req.year, [], local_sources=local_sources,
                            max_pages=req.max_pages, llm=llm, notify=notify)
     if req.strategy == "auto":
+        if urlsplit(llm.base).hostname == "api.deepseek.com":
+            raise ValueError("DeepSeek 官方 API 当前不提供内置 web_search；请使用已有官网网址，或配置支持该工具的 LLM 连接")
         search = ResponsesWebSearch(
-            api_key=req.search.api_key or None,
-            base_url=req.search.base_url or None,
-            model=req.search.model or None,
+            api_key=llm.key,
+            base_url=llm.base,
+            model=llm.model,
         )
         return auto_collect_one(
             db, conf, req.year, max_pages=req.max_pages,

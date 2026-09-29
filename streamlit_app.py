@@ -50,18 +50,8 @@ def make_llm():
 
 
 def make_search():
-    if st.session_state.get("search_reuse_primary", True):
-        _, profile = provider_profile(st.session_state.get("provider_name", "deepseek"))
-        return ResponsesWebSearch(
-            api_key=st.session_state.get("api_key") or os.getenv("LLM_API_KEY") or os.getenv(profile["key_env"]) or None,
-            base_url=st.session_state.get("base_url") or None,
-            model=st.session_state.get("model_name") or None,
-        )
-    return ResponsesWebSearch(
-        api_key=st.session_state.get("search_api_key") or None,
-        base_url=st.session_state.get("search_base_url") or None,
-        model=st.session_state.get("search_model") or None,
-    )
+    llm = make_llm()
+    return ResponsesWebSearch(api_key=llm.key, base_url=llm.base, model=llm.model)
 
 def flash(message, kind="success"):
     st.session_state["notice"] = (kind, message)
@@ -72,7 +62,6 @@ def safe_error(exc):
     # Defensive redaction in UI; backend already omits provider response bodies.
     for secret in (st.session_state.get("api_key"), os.getenv("LLM_API_KEY"),
                    os.getenv("DEEPSEEK_API_KEY"), os.getenv("OPENAI_API_KEY"),
-                   st.session_state.get("search_api_key"), os.getenv("SEARCH_API_KEY"),
                    os.getenv("GITHUB_TOKEN"), os.getenv("GH_TOKEN")):
         if secret:
             message = message.replace(secret, "[已隐藏]")
@@ -99,8 +88,8 @@ def render_sidebar(db):
         st.caption("全球计算机顶级论文奖数据库")
         section = st.radio("工作区", ["论文检索", "采集与导入", "记录核验", "采集覆盖"], key="section")
         st.divider()
-        with st.expander("AI 连接设置"):
-            st.caption("结构化提取与联网搜索默认复用同一组 API 地址、模型和密钥；设置只在当前网页会话中使用。")
+        with st.expander("LLM 连接"):
+            st.caption("结构化提取与联网搜索共用同一组 API 地址、模型和密钥；设置只在当前网页会话中使用。")
             provider_names = list(PROVIDER_PROFILES)
             configured_provider = os.getenv("LLM_PROVIDER", "deepseek").lower()
             if configured_provider not in provider_names:
@@ -125,26 +114,8 @@ def render_sidebar(db):
             available_key = st.session_state.get("api_key") or os.getenv("LLM_API_KEY") or os.getenv(profile["key_env"])
             if st.session_state.get("model_name") and available_key:
                 st.caption("连接参数已填写；尚不代表连接测试成功。")
-            reuse_default = os.getenv("SEARCH_REUSE_LLM", "1") == "1"
-            st.checkbox(
-                "联网搜索复用上述连接", value=reuse_default, key="search_reuse_primary",
-                help="要求该地址同时兼容 /chat/completions 和带 web_search 工具的 /responses。",
-            )
-            if st.session_state.get("search_reuse_primary"):
-                if selected_provider == "deepseek":
-                    st.warning("标准 DeepSeek Chat 接口目前不能执行 Responses web_search。自动搜索请改用同时支持两种接口的端点，或关闭复用并填写高级搜索连接。")
-            else:
-                st.caption("高级搜索连接：仅当上述端点不支持 Responses web_search 时使用。")
-                if "search_base_url" not in st.session_state:
-                    st.session_state["search_base_url"] = os.getenv("SEARCH_BASE_URL", "https://api.openai.com/v1")
-                if "search_model" not in st.session_state:
-                    st.session_state["search_model"] = os.getenv("SEARCH_MODEL", os.getenv("OPENAI_SEARCH_MODEL", ""))
-                st.text_input("搜索 API 地址", key="search_base_url")
-                st.text_input("搜索模型", key="search_model", placeholder="填写支持 web_search 的模型")
-                st.text_input(
-                    "搜索 API Key", type="password", key="search_api_key",
-                    help="留空时读取 SEARCH_API_KEY 或 OPENAI_API_KEY；不会写入数据库。",
-                )
+            if selected_provider == "deepseek":
+                st.warning("自动搜索要求同一连接支持 Responses web_search；若当前模型不支持，请使用已知官网网址采集，或换用支持该功能的连接。")
         if st.button("导入两条样例", key="demo", width="stretch"):
             try:
                 results = import_demo(db)
