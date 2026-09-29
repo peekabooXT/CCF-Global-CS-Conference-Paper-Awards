@@ -80,14 +80,19 @@ class ResponsesWebSearch:
                             add(annotation.get("url"), annotation.get("title"))
         return found
 
-    def discover(self, conference, year, limit=5):
+    def discover(self, conference, year, limit=5, award_types=None):
         if not 1 <= limit <= 10:
             raise ValueError("候选网址数量应在 1–10 之间")
+        selected = set(award_types or ("best_paper", "best_student_paper"))
+        if not selected or not selected.issubset({"best_paper", "best_student_paper"}):
+            raise ValueError("请选择最佳论文奖或最佳学生论文奖")
+        targets = [label for key, label in (("best_paper", "Best Paper Award"),
+                                            ("best_student_paper", "Best Student Paper Award")) if key in selected]
         prompt = f"""Find official web pages for {conference['full_name']} ({conference['acronym']}) {year}
-that explicitly announce Best Paper Award or Best Student Paper Award winners.
+that explicitly announce {' or '.join(targets)} winners.
 Prioritize the conference website and the official publisher/society website.
 Do not use social media, scraped award aggregators, or search-result snippets as evidence.
-Search for both award types and return a short answer with the strongest official pages."""
+Return a short answer with the strongest official pages."""
         response = self._post({
             "model": self.model,
             "instructions": "Use web search to locate official sources only. Candidate URLs will be fetched and independently validated by another component.",

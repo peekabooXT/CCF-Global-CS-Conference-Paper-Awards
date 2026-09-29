@@ -70,9 +70,13 @@ def export_csv(path, records):
 
 def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=None,
                 local_sources=None, llm=None, notify=None, strict_urls=True,
-                run_id=None, run_details=None):
+                run_id=None, run_details=None, award_types=None):
     from .llm import LLM
     from .network import crawl
+    from .model import AWARDS, norm
+    selected = set(award_types or ("best_paper", "best_student_paper"))
+    if not selected or not selected.issubset({"best_paper", "best_student_paper"}):
+        raise ValueError("请选择最佳论文奖或最佳学生论文奖")
     llm = llm if llm is not None else LLM()
     notify = notify or (lambda msg: print(msg, file=sys.stderr))
     if not local_sources and not urls:
@@ -83,14 +87,20 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
             urls, extra_urls, max_pages, notify=notify, strict_seeds=strict_urls)
         source_chars = sum(len(source["text"]) for source in sources)
         notify(f"已读取 {len(sources)} 个来源（{source_chars:,} 字符），正在按目标年度提取…")
-        bundle = llm.extract(conference, year, sources)
+        bundle = (llm.extract(conference, year, sources, award_types=selected)
+                  if len(selected) == 1 else llm.extract(conference, year, sources))
+        if len(selected) == 1:
+            bundle["records"] = [record for record in bundle["records"]
+                                 if isinstance(record, dict) and isinstance(record.get("award_name"), str)
+                                 and AWARDS.get(norm(record["award_name"])) in selected]
         extraction_usage = getattr(llm, "last_usage", None)
         if extraction_usage:
             bundle["api_usage"] = {"extraction": extraction_usage}
         target = output or str(Path(db.conn.execute("PRAGMA database_list").fetchone()[2]).parent / "runs" / f"{run:06d}.json")
         save_json(target, bundle)  # Preserve evidence even when individual records fail validation.
         summary = db.ingest(bundle)
-        summary.update(run_id=run, raw_bundle=target, warnings=warnings)
+        summary.update(run_id=run, raw_bundle=target, warnings=warnings,
+                       award_types=sorted(selected))
         if run_details:
             summary.update(run_details)
         token_usage = dict((run_details or {}).get("token_usage") or {})
@@ -113,12 +123,16 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
         raise
 
 def auto_collect_one(db, conference, year, output_dir="data/records", max_pages=4,
-                     candidate_limit=3, search=None, llm=None, notify=None):
+                     candidate_limit=3, search=None, llm=None, notify=None, award_types=None):
     from .discovery import ResponsesWebSearch
+    selected = set(award_types or ("best_paper", "best_student_paper"))
+    if not selected or not selected.issubset({"best_paper", "best_student_paper"}):
+        raise ValueError("请选择最佳论文奖或最佳学生论文奖")
     search = search or ResponsesWebSearch()
     run = db.start_run(conference["id"], year)
     try:
-        discovery = search.discover(conference, year, min(candidate_limit, max_pages))
+        discovery = (search.discover(conference, year, min(candidate_limit, max_pages), award_types=selected)
+                     if len(selected) == 1 else search.discover(conference, year, min(candidate_limit, max_pages)))
         urls = [item["url"] for item in discovery["candidates"]]
         if not urls:
             raise ValueError("网页搜索没有返回候选官方页面")
@@ -129,11 +143,11 @@ def auto_collect_one(db, conference, year, output_dir="data/records", max_pages=
             details["total_tokens"] = search.last_usage.get("total_tokens")
         db.finish_run(run, "failed", details)
         raise
-    output = Path(output_dir) / f'{conference["id"]}-{year}.json'
+    output = Path(output_dir) / f'{conference["id"]}-{year}-run-{run:06d}.json'
     search_usage = discovery.get("token_usage")
     return collect_one(
         db, conference, year, urls, max_pages=max_pages, output=str(output),
-        llm=llm, notify=notify, strict_urls=False, run_id=run,
+        llm=llm, notify=notify, strict_urls=False, run_id=run, award_types=selected,
         run_details={
             "discovery": discovery,
             "token_usage": {"search": search_usage} if search_usage else {},

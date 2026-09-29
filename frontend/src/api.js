@@ -12,6 +12,7 @@ export const api = {
 
   search: (filters) => http.post('/search', filters).then(r => r.data),
   exportUrl: (filters) => '/api/export/csv?q=' + encodeURIComponent(JSON.stringify(filters)),
+  exportBatchCsv: (recordIds) => http.post('/export/batch-csv', { record_ids: recordIds }, { responseType: 'blob' }).then(r => r.data),
 
   review: (body) => http.post('/review', body).then(r => r.data),
 
@@ -34,8 +35,12 @@ export function errMsg(e) {
 }
 
 // 读取 SSE 流：后端按 "data: {json}\n\n" 推送 log/result/error
-async function readSSE(res, onLog) {
-  if (!res.ok || !res.body) throw new Error('服务端无响应')
+async function readSSE(res, onLog, onTask = () => {}) {
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}))
+    throw new Error(body.detail || `采集请求失败（HTTP ${res.status}）`)
+  }
+  if (!res.body) throw new Error('服务端无响应')
   const reader = res.body.getReader()
   const decoder = new TextDecoder()
   let buffer = ''
@@ -47,14 +52,17 @@ async function readSSE(res, onLog) {
     const chunks = buffer.split('\n\n')
     buffer = chunks.pop() || ''
     for (const chunk of chunks) {
+      if (!chunk.startsWith('data:')) continue
       const line = chunk.replace(/^data:\s?/, '').trim()
       if (!line) continue
       const evt = JSON.parse(line)
       if (evt.type === 'log') onLog(evt.message)
+      else if (evt.type === 'task') onTask(evt.task)
       else if (evt.type === 'result') result = evt.result
       else if (evt.type === 'error') throw new Error(evt.message)
     }
   }
+  if (result === null) throw new Error('采集连接已结束，但没有收到最终结果；请检查运行日志')
   return result
 }
 
@@ -65,6 +73,14 @@ export function collectStream(body, onLog) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   }).then(res => readSSE(res, onLog))
+}
+
+export function collectBatchStream(body, onLog, onTask) {
+  return fetch('/api/collect-batch-stream', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  }).then(res => readSSE(res, onLog, onTask))
 }
 
 // 上传文件采集：POST FormData，实时滚动日志

@@ -10,6 +10,7 @@ import json as json_lib
 import queue
 import tempfile
 import threading
+import time
 from pathlib import Path
 from typing import Optional
 from urllib.parse import urlsplit
@@ -17,7 +18,7 @@ from urllib.parse import urlsplit
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
@@ -36,6 +37,7 @@ from ccf_awards.web_helpers import (
     database_path,
     import_demo,
     run_log_csv_bytes,
+    parse_years,
     validate_filters,
 )
 
@@ -172,6 +174,24 @@ def export_csv(q: str = ""):
         db.close()
 
 
+class BatchExportReq(BaseModel):
+    record_ids: list[str]
+
+
+@app.post("/api/export/batch-csv")
+def export_batch_csv(req: BatchExportReq):
+    if len(req.record_ids) > 5000:
+        raise ValueError("一次最多导出 5000 条论文")
+    ids = set(req.record_ids)
+    db = get_db()
+    try:
+        records = [row for row in db.search(status="all") if row["id"] in ids]
+        return StreamingResponse(iter([csv_bytes(records)]), media_type="text/csv; charset=utf-8",
+                                 headers={"Content-Disposition": "attachment; filename=ccf-awards-batch.csv"})
+    finally:
+        db.close()
+
+
 # ---------- 核验 ----------
 
 class ReviewReq(BaseModel):
@@ -275,6 +295,23 @@ class CollectReq(BaseModel):
     extra_urls: list[str] = []
     max_pages: int = 4
     llm: LLMConfig = LLMConfig()
+    award_types: list[str] = Field(default_factory=lambda: ["best_paper", "best_student_paper"])
+
+
+class BatchCollectReq(BaseModel):
+    conference_ids: list[str]
+    years: str
+    strategy: str = "auto"
+    max_pages: int = 4
+    llm: LLMConfig = LLMConfig()
+    award_types: list[str] = Field(default_factory=lambda: ["best_paper", "best_student_paper"])
+
+
+def _checked_award_types(values):
+    selected = set(values)
+    if not selected or not selected.issubset({"best_paper", "best_student_paper"}):
+        raise ValueError("请选择最佳论文奖或最佳学生论文奖")
+    return sorted(selected)
 
 
 def _build_llm(cfg: LLMConfig):
@@ -292,10 +329,12 @@ def _do_collect(db: Database, req: CollectReq, notify, local_sources=None):
     conf = next((c for c in db.conferences() if c["id"] == req.conference_id), None)
     if conf is None:
         raise HTTPException(status_code=404, detail="会议不存在")
+    award_types = _checked_award_types(req.award_types)
     llm = _build_llm(req.llm)
     if local_sources is not None:
         return collect_one(db, conf, req.year, [], local_sources=local_sources,
-                           max_pages=req.max_pages, llm=llm, notify=notify)
+                           max_pages=req.max_pages, llm=llm, notify=notify,
+                           award_types=award_types)
     if req.strategy == "auto":
         if urlsplit(llm.base).hostname == "api.deepseek.com":
             raise ValueError("DeepSeek 官方 API 当前不提供内置 web_search；请使用已有官网网址，或配置支持该工具的 LLM 连接")
@@ -307,11 +346,70 @@ def _do_collect(db: Database, req: CollectReq, notify, local_sources=None):
         return auto_collect_one(
             db, conf, req.year, max_pages=req.max_pages,
             candidate_limit=min(3, req.max_pages), search=search, llm=llm, notify=notify,
+            award_types=award_types,
         )
     if not req.urls:
         raise ValueError("请至少填写一个官网或获奖页网址")
     return collect_one(db, conf, req.year, req.urls, extra_urls=req.extra_urls,
-                       max_pages=req.max_pages, llm=llm, notify=notify)
+                       max_pages=req.max_pages, llm=llm, notify=notify,
+                       award_types=award_types)
+
+
+def _do_batch_collect(db: Database, req: BatchCollectReq, notify):
+    ids = list(dict.fromkeys(req.conference_ids))
+    years = parse_years(req.years, max_years=20)
+    if not ids or len(ids) * len(years) > 100:
+        raise ValueError("请选择会议；一次最多执行 100 个会议×年份任务")
+    if req.strategy not in ("auto", "urls") or not 1 <= req.max_pages <= 20:
+        raise ValueError("采集方式或最多页面参数不正确")
+    award_types = _checked_award_types(req.award_types)
+    catalog = {conf["id"]: conf for conf in db.conferences()}
+    if any(cid not in catalog for cid in ids):
+        raise ValueError("批量任务包含未知会议")
+    llm = _build_llm(req.llm)
+    if req.strategy == "auto":
+        if urlsplit(llm.base).hostname == "api.deepseek.com":
+            raise ValueError("DeepSeek 官方 API 当前不提供内置 web_search；请使用已保存网址，或配置支持该工具的 LLM 连接")
+        ResponsesWebSearch(api_key=llm.key, base_url=llm.base, model=llm.model)
+    tasks = []
+    total = len(ids) * len(years)
+    for index, (cid, year) in enumerate(((cid, year) for cid in ids for year in years), 1):
+        conf = catalog[cid]
+        label = f"{conf['acronym']} {year}"
+        notify({"type": "task", "task": {"conference_id": cid, "conference": conf["acronym"],
+                                         "year": year, "status": "running", "index": index}})
+        notify(f"[{index}/{total}] 开始 {label}")
+        started = time.perf_counter()
+        try:
+            urls = db.seeds(cid, year) if req.strategy == "urls" else []
+            if req.strategy == "urls" and not urls:
+                run_id = db.start_run(cid, year)
+                db.finish_run(run_id, "failed", {"stage": "saved_sources", "error": "没有已保存入口"})
+                raise ValueError("没有已保存入口；请先保存网址，或改用自动搜索官网")
+            single = CollectReq(conference_id=cid, year=year, strategy=req.strategy,
+                                urls=urls, max_pages=req.max_pages, llm=req.llm,
+                                award_types=award_types)
+            result = _do_collect(db, single, lambda msg: notify(f"{label} · {msg}"))
+            task = {"conference_id": cid, "conference": conf["acronym"], "year": year,
+                    "index": index, "elapsed_seconds": round(time.perf_counter() - started, 1),
+                    **result}
+            notify(f"完成 {label}：新增 {result.get('inserted', 0)}，状态 {result.get('status', '')}")
+        except Exception as exc:
+            task = {"conference_id": cid, "conference": conf["acronym"], "year": year,
+                    "index": index, "elapsed_seconds": round(time.perf_counter() - started, 1),
+                    "status": "failed", "error": str(exc), "inserted": 0, "updated": 0,
+                    "unchanged": 0}
+            notify(f"失败 {label}：{exc}；继续下一项")
+        tasks.append(task)
+        notify({"type": "task", "task": task})
+    record_ids = list(dict.fromkeys(rid for task in tasks for rid in task.get("record_ids", [])))
+    selected_ids = set(record_ids)
+    papers = [{key: row.get(key) for key in ("id", "title", "acronym", "year", "award_name",
+                                            "status", "paper_url")}
+              for row in db.search(status="all") if row["id"] in selected_ids]
+    return {"total": total, "completed": total - sum(t["status"] == "failed" for t in tasks),
+            "failed": sum(t["status"] == "failed" for t in tasks), "tasks": tasks,
+            "award_types": award_types, "record_ids": record_ids, "papers": papers}
 
 
 def _sse(work):
@@ -320,7 +418,8 @@ def _sse(work):
     SENTINEL = object()
 
     def notify(msg):
-        q.put({"type": "log", "message": str(msg)})
+        q.put(msg if isinstance(msg, dict) and msg.get("type") == "task"
+              else {"type": "log", "message": str(msg)})
 
     def runner():
         db = get_db()
@@ -337,7 +436,11 @@ def _sse(work):
 
     def gen():
         while True:
-            item = q.get()
+            try:
+                item = q.get(timeout=15)
+            except queue.Empty:
+                yield ": keepalive\n\n"
+                continue
             if item is SENTINEL:
                 break
             yield f"data: {json_lib.dumps(item, ensure_ascii=False)}\n\n"
@@ -353,6 +456,12 @@ def _sse(work):
 def collect_stream(req: CollectReq):
     """网址/自动采集：SSE 实时滚动日志。"""
     return _sse(lambda db, notify: _do_collect(db, req, notify))
+
+
+@app.post("/api/collect-batch-stream")
+def collect_batch_stream(req: BatchCollectReq):
+    """Run independent conference-year tasks, streaming per-task progress."""
+    return _sse(lambda db, notify: _do_batch_collect(db, req, notify))
 
 
 @app.post("/api/collect-files-stream")

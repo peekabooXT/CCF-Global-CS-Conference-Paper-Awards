@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive, computed, onMounted, nextTick } from 'vue'
-import { ElMessage } from 'element-plus'
-import { api, errMsg, collectStream, collectFilesStream } from '../api.js'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { api, errMsg, collectStream, collectBatchStream, collectFilesStream } from '../api.js'
 
 const props = defineProps({
   meta: { type: Object, required: true },
@@ -48,6 +48,85 @@ const form = reactive({
   extra_urls: '',
   max_pages: 4,
 })
+const batch = reactive({
+  conference_ids: [], years: String(today), strategy: 'urls', max_pages: 4,
+  award_types: ['best_paper', 'best_student_paper'],
+})
+const batchRunning = ref(false)
+const batchResult = ref(null)
+const batchTasks = ref([])
+function parseBatchYears(value) {
+  const years = new Set()
+  for (const part of String(value || '').split(/[,，;；\s]+/).filter(Boolean)) {
+    const match = part.match(/^(\d{4})(?:[-–—~至](\d{4}))?$/)
+    if (!match) throw new Error(`无法识别年份：${part}；示例：2022-2026, 2020`)
+    const start = Number(match[1])
+    const end = Number(match[2] || match[1])
+    if (start < 1900 || end > 2200 || start > end) throw new Error(`年份区间不正确：${part}`)
+    for (let year = start; year <= end; year++) years.add(year)
+  }
+  if (!years.size || years.size > 20) throw new Error('请选择 1–20 个年份')
+  return [...years].sort((a, b) => b - a)
+}
+const batchTaskCount = computed(() => {
+  try { return batch.conference_ids.length * parseBatchYears(batch.years).length }
+  catch { return 0 }
+})
+const batchTokenTotals = computed(() => batchTasks.value.reduce((total, task) => {
+  const tokens = tokenTotals(task)
+  total.search += tokens.searchTokens || 0
+  total.extraction += tokens.extractionTokens || 0
+  return total
+}, { search: 0, extraction: 0 }))
+function updateBatchTask(task) {
+  const index = batchTasks.value.findIndex(item => item.conference_id === task.conference_id && item.year === task.year)
+  if (index < 0) batchTasks.value.push(task)
+  else batchTasks.value[index] = task
+}
+async function runBatch() {
+  if (running.value || batchRunning.value) return
+  if (!batch.conference_ids.length) { ElMessage.warning('请至少选择一个会议'); return }
+  if (!batch.award_types.length) { ElMessage.warning('请至少选择一种奖项'); return }
+  let years
+  try { years = parseBatchYears(batch.years) }
+  catch (e) { ElMessage.warning(e.message); return }
+  const count = batch.conference_ids.length * years.length
+  if (count > 100) { ElMessage.warning('一次最多执行 100 个会议×年份任务'); return }
+  if (batch.strategy === 'auto' && llm.value.provider === 'deepseek' &&
+      (llm.value.base_url || 'https://api.deepseek.com').includes('api.deepseek.com')) {
+    ElMessage.warning('DeepSeek 官方 API 当前不支持 web_search；请使用已保存网址或更换 LLM 连接')
+    return
+  }
+  try {
+    await ElMessageBox.confirm(`将依次执行 ${count} 个独立采集任务，可能产生 API 费用。失败任务不会中断其余任务。确定开始吗？`,
+      '确认批量采集', { type: 'warning', confirmButtonText: '开始采集', cancelButtonText: '取消' })
+  } catch { return }
+  batchRunning.value = true
+  batchResult.value = null
+  batchTasks.value = []
+  logLines.value = []
+  try {
+    batchResult.value = await collectBatchStream({ ...batch, llm: { ...llm.value } }, pushLog, updateBatchTask)
+    ElMessage.success(`批量采集结束：完成 ${batchResult.value.completed}，失败 ${batchResult.value.failed}`)
+    await loadRuns()
+  } catch (e) { ElMessage.error(errMsg(e)) }
+  finally { batchRunning.value = false }
+}
+async function exportBatchPapers() {
+  const ids = batchResult.value?.record_ids || []
+  if (!ids.length) return
+  try {
+    const blob = await api.exportBatchCsv(ids)
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'ccf-awards-batch.csv'
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+  } catch (e) { ElMessage.error(errMsg(e)) }
+}
 const running = ref(false)
 const result = ref(null)
 const logLines = ref([])
@@ -241,6 +320,64 @@ async function onImportJson(e) {
       <el-col :span="8"><el-statistic title="尚无入口" :value="stats.conferences_without_seed" /></el-col>
     </el-row>
 
+    <el-card shadow="never" class="batch-card">
+      <template #header><strong>批量查找获奖论文</strong></template>
+      <p class="hint">选择多个会议与年份，系统按“会议 × 年份”逐项采集；每项独立记录结果和 Token 用量。新增论文仍需按项目流程核验。</p>
+      <el-form inline class="batch-form">
+        <el-form-item label="会议（可多选）">
+          <el-select v-model="batch.conference_ids" multiple filterable collapse-tags collapse-tags-tooltip
+            placeholder="输入会议简称并多选" style="width: 370px">
+            <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="年份／区间">
+          <el-input v-model="batch.years" placeholder="例如 2022-2026, 2020" style="width: 245px" />
+        </el-form-item>
+        <el-form-item label="目标奖项">
+          <el-checkbox-group v-model="batch.award_types">
+            <el-checkbox value="best_paper">最佳论文奖</el-checkbox>
+            <el-checkbox value="best_student_paper">最佳学生论文奖</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+        <el-form-item label="采集方式">
+          <el-radio-group v-model="batch.strategy">
+            <el-radio value="auto">自动搜索官网</el-radio>
+            <el-radio value="urls">使用各会议年度已保存网址</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="每项最多页面">
+          <el-input-number v-model="batch.max_pages" :min="1" :max="20" controls-position="right" style="width: 115px" />
+        </el-form-item>
+      </el-form>
+      <div class="batch-actions">
+        <span>预计 {{ batchTaskCount }} 个独立任务（单次上限 100）</span>
+        <el-button type="primary" :loading="batchRunning" :disabled="running" @click="runBatch">开始批量采集</el-button>
+      </div>
+      <el-table v-if="batchTasks.length" :data="batchTasks" size="small" stripe class="batch-results">
+        <el-table-column prop="conference" label="会议" width="100" />
+        <el-table-column prop="year" label="年份" width="75" />
+        <el-table-column prop="status" label="状态" width="105" />
+        <el-table-column prop="inserted" label="新增" width="70" />
+        <el-table-column prop="updated" label="更新" width="70" />
+        <el-table-column prop="unchanged" label="重复" width="70" />
+        <el-table-column label="总 tokens" width="115"><template #default="scope">{{ formatTokens(tokenTotals(scope.row).totalTokens) }}</template></el-table-column>
+        <el-table-column prop="error" label="说明" min-width="190" show-overflow-tooltip />
+      </el-table>
+      <p v-if="batchResult" class="hint">完成 {{ batchResult.completed }} / {{ batchResult.total }}，失败 {{ batchResult.failed }}；搜索 {{ formatTokens(batchTokenTotals.search) }} tokens，提取 {{ formatTokens(batchTokenTotals.extraction) }} tokens。</p>
+      <div v-if="batchResult?.papers?.length" class="batch-papers">
+        <div class="batch-paper-head"><strong>本批找到的论文（{{ batchResult.papers.length }}）</strong><el-button size="small" @click="exportBatchPapers">导出本批 CSV</el-button></div>
+        <el-table :data="batchResult.papers" size="small" stripe max-height="340">
+          <el-table-column prop="title" label="论文题目" min-width="280" />
+          <el-table-column prop="acronym" label="会议" width="90" />
+          <el-table-column prop="year" label="年份" width="75" />
+          <el-table-column prop="award_name" label="奖项原名" min-width="190" />
+          <el-table-column prop="status" label="状态" width="85" />
+        </el-table>
+      </div>
+    </el-card>
+
+    <el-divider>单个会议／年份采集与手动导入</el-divider>
+
     <el-form inline class="bar">
       <el-form-item label="会议">
         <el-select
@@ -284,7 +421,7 @@ async function onImportJson(e) {
     </el-form-item>
 
     <div class="actions">
-      <el-button type="primary" :loading="running" @click="runCollect">开始采集</el-button>
+      <el-button type="primary" :loading="running" :disabled="batchRunning" @click="runCollect">开始采集</el-button>
       <el-button @click="saveSeeds">仅保存入口</el-button>
       <el-upload :show-file-list="false" :auto-upload="false" @change="onImportJson">
         <el-button>导入 JSON</el-button>
@@ -306,7 +443,7 @@ async function onImportJson(e) {
         <el-input v-model="fileForm.metadata_url" placeholder="上传论文时必填" style="width:220px" />
       </el-form-item>
       <el-form-item>
-        <el-button type="success" :loading="running" @click="runFileCollect">上传并提取</el-button>
+        <el-button type="success" :loading="running" :disabled="batchRunning" @click="runFileCollect">上传并提取</el-button>
       </el-form-item>
     </el-form>
 
@@ -314,7 +451,7 @@ async function onImportJson(e) {
     <el-card shadow="never" class="logcard">
       <template #header>
         <span>实时日志</span>
-        <el-tag v-if="running" type="warning" size="small" style="margin-left:8px">采集中…</el-tag>
+        <el-tag v-if="running || batchRunning" type="warning" size="small" style="margin-left:8px">采集中…</el-tag>
       </template>
       <div ref="logBox" class="logbox">
         <div v-for="(line, i) in logLines" :key="i" class="logline">{{ line }}</div>
@@ -381,6 +518,12 @@ async function onImportJson(e) {
 h2 { margin: 0; }
 .hint { color: #8494a8; font-size: 13px; }
 .metrics { margin: 12px 0; }
+.batch-card { margin: 18px 0 24px; }
+.batch-form { margin-top: 18px; }
+.batch-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; color: #62748a; font-size: 13px; }
+.batch-results { margin-top: 18px; }
+.batch-papers { margin-top: 18px; }
+.batch-paper-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .bar { margin-bottom: 4px; }
 .block { display: flex; width: 100%; margin-bottom: 8px; }
 .block :deep(.el-form-item__label) { width: 110px; }
