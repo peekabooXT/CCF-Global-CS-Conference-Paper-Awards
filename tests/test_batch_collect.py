@@ -63,7 +63,7 @@ class BatchCollectCoreTest(unittest.TestCase):
 
     def test_batch_continues_after_missing_saved_entrance(self):
         try:
-            from api import BatchCollectReq, _do_batch_collect
+            from api import BatchCollectReq, LLMConfig, _do_batch_collect
         except ImportError as exc:
             self.skipTest(f"API test dependencies unavailable: {exc}")
         with tempfile.TemporaryDirectory() as temp:
@@ -76,7 +76,9 @@ class BatchCollectCoreTest(unittest.TestCase):
                 db.add_seed(other["id"], 2025, "https://example.org/acl-2025-awards")
                 db.add_seed(other["id"], 2026, "https://example.org/acl-2026-awards")
                 req = BatchCollectReq(conference_ids=[conf["id"], other["id"]], years="2025-2026",
-                                      strategy="urls", award_types=["best_paper"])
+                                      strategy="urls", award_types=["best_paper"],
+                                      llm=LLMConfig(provider="custom", api_key="test-key",
+                                                    base_url="https://example.org/v1", model="test-model"))
                 events = []
                 with patch("api._do_collect", return_value={"status": "extracted", "inserted": 1,
                                                              "updated": 0, "unchanged": 0}) as collect:
