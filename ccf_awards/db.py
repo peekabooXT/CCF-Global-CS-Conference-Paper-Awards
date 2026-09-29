@@ -39,6 +39,8 @@ class Database:
           id INTEGER PRIMARY KEY, conference_id TEXT REFERENCES conferences(id),
           year INTEGER, started_at TEXT, finished_at TEXT, status TEXT, details TEXT);
         """)
+        from .award_events import init_schema
+        init_schema(self.conn)
         self.conn.commit()
 
     def close(self):

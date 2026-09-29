@@ -20,6 +20,8 @@ from pydantic import BaseModel
 
 from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
+from ccf_awards.award_events import event_detail, list_events
+from ccf_awards.ontology import CATEGORIES
 from ccf_awards.discovery import ResponsesWebSearch
 from ccf_awards.llm import LLM
 from ccf_awards.network import read_local_source
@@ -68,7 +70,30 @@ def meta():
             "statuses": STATUSES,
             "coverage": COVERAGE,
             "conferences": db.conferences(),
+            "award_categories": CATEGORIES,
         }
+    finally:
+        db.close()
+
+
+@app.get("/api/award-events")
+def award_events(venue: str = "", category: str = "", query: str = "",
+                 limit: int = 100, offset: int = 0):
+    db = get_db()
+    try:
+        return list_events(db.conn, venue, category, query, limit, offset)
+    finally:
+        db.close()
+
+
+@app.get("/api/award-events/{event_id}")
+def award_event(event_id: str):
+    db = get_db()
+    try:
+        event = event_detail(db.conn, event_id)
+        if event is None:
+            raise HTTPException(status_code=404, detail="获奖事件不存在")
+        return event
     finally:
         db.close()
 

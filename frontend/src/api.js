@@ -5,6 +5,8 @@ const http = axios.create({ baseURL: '/api', timeout: 600000 })
 
 export const api = {
   meta: () => http.get('/meta').then(r => r.data),
+  awardEvents: (params) => http.get('/award-events', { params }).then(r => r.data),
+  awardEvent: (id) => http.get(`/award-events/${id}`).then(r => r.data),
 
   search: (filters) => http.post('/search', filters).then(r => r.data),
   exportUrl: (filters) => '/api/export/csv?q=' + encodeURIComponent(JSON.stringify(filters)),
