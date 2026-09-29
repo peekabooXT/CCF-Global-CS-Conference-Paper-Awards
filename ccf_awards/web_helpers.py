@@ -7,6 +7,7 @@ import os
 import re
 from pathlib import Path
 from .model import url_syntax
+from .ontology import classify_award
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 AWARDS = {"best_paper": "最佳论文奖", "best_student_paper": "最佳学生论文奖"}
@@ -66,12 +67,15 @@ def export_rows(records):
     for r in records:
         source = next((s["url"] for s in r["sources"] if s["id"] == (r.get("award_evidence") or {}).get("source_id")),
                       r["sources"][0]["url"] if r["sources"] else "")
+        is_listing = r.get("source_kind") == "source_listing"
         rows.append({"论文名称": r["title"], "会议": r["acronym"], "CCF": r["rank"],
-                     "会议年份": r["year"], "奖项": r.get("award_name") or AWARDS.get(r["award_type"], r["award_type"]),
-                     "原始奖项": r["award_name"], "发表日期": r["publication_date"] or "未知",
+                     "会议年份": r["year"], "统一分类": r.get("category_label") or classify_award(r.get("award_name"))["category_label"],
+                     "奖项": r.get("award_name") or ("未标明奖项" if is_listing else AWARDS.get(r["award_type"], r["award_type"])),
+                     "原始奖项": r.get("award_name") or "", "发表日期": r["publication_date"] or "未知",
                      "日期精度": {"day":"日", "month":"月", "year":"年", "unknown":"未知"}[r["date_precision"]],
                      "作者及单位": "; ".join(a["name"] + " [" + ("; ".join(b["name"] for b in a["affiliations"]) or "单位未知") + "]" for a in r["authors"]) or r.get("authors_raw") or "未知",
-                     "状态": STATUSES[r["status"]], "获奖来源": source,
+                     "状态": STATUSES[r["status"]], "获奖来源": "" if is_listing else source,
+                     "聚合收录来源": source if is_listing else "",
                      "论文链接": r["paper_url"] or "", "DOI": r["doi"] or "", "记录编号": r["id"]})
     return rows
 

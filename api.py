@@ -138,6 +138,7 @@ class SearchReq(BaseModel):
     title: Optional[str] = None
     award: Optional[str] = None
     award_name: Optional[str] = None
+    category: Optional[str] = None
     status: str = "active"
     published_from: Optional[str] = None
     published_to: Optional[str] = None

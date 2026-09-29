@@ -7,11 +7,11 @@ import RecordDetail from '../components/RecordDetail.vue'
 const props = defineProps({ meta: { type: Object, required: true } })
 
 const conferences = computed(() => props.meta?.conferences || [])
-const awardNames = computed(() => props.meta?.award_names || [])
+const awardCategories = computed(() => props.meta?.award_categories || {})
 const statusKeys = computed(() => Object.keys(props.meta?.statuses || {}))
 
 const defaults = () => ({
-  conference: null, rank: null, award_name: null,
+  conference: null, rank: null, category: null,
   year_from: null, year_to: null,
   author: '', affiliation: '', title: '',
   status: 'active', published_from: null, published_to: null,
@@ -77,7 +77,7 @@ onMounted(runSearch)
 <template>
   <div class="search-workspace">
     <h2>论文检索</h2>
-    <p class="hint">组合筛选获奖论文，查看作者、发表时间和单位。</p>
+    <p class="hint">按统一奖项分类检索论文；奖项原名仍在结果中保留。聚合来源未提供逐条奖名的论文会明确标注。</p>
 
     <el-form :model="filters" inline class="filter-form" @submit.prevent="runSearch">
       <el-form-item label="会议">
@@ -91,9 +91,9 @@ onMounted(runSearch)
           <el-option label="B 类" value="B" />
         </el-select>
       </el-form-item>
-      <el-form-item label="奖项">
-        <el-select v-model="filters.award_name" placeholder="输入奖项原名查找" filterable clearable style="width: 240px">
-          <el-option v-for="name in awardNames" :key="name" :label="name" :value="name" />
+      <el-form-item label="奖项分类">
+        <el-select v-model="filters.category" placeholder="全部奖项分类" clearable style="width: 210px">
+          <el-option v-for="(label, key) in awardCategories" :key="key" :label="label" :value="key" />
         </el-select>
       </el-form-item>
       <el-form-item label="年份">
@@ -126,12 +126,13 @@ onMounted(runSearch)
       </el-form-item>
     </el-form>
 
-    <div class="results-heading"><span role="status" aria-live="polite">{{ loading ? '正在检索…' : `共 ${records.length} 条获奖记录` }}</span><el-button :disabled="!applied || loading || !records.length" @click="downloadCsv">导出当前结果 CSV</el-button></div>
+    <div class="results-heading"><span role="status" aria-live="polite">{{ loading ? '正在检索…' : `共 ${records.length} 条论文条目` }}</span><el-button :disabled="!applied || loading || !records.length" @click="downloadCsv">导出当前结果 CSV</el-button></div>
     <el-table :data="pageRecords" empty-text="没有匹配记录，请减少筛选条件或更换关键词。" v-loading="loading" size="default" @row-dblclick="row => openDetail(row.id)">
       <el-table-column prop="title" label="论文名称" min-width="300" class-name="paper-title-cell" />
       <el-table-column prop="acronym" label="会议" width="100" />
       <el-table-column prop="rank" label="CCF" width="70" />
       <el-table-column prop="year" label="年份" width="80" />
+      <el-table-column prop="category_label" label="统一分类" min-width="150" />
       <el-table-column label="奖项原名" min-width="220">
         <template #default="{ row }">{{ row.award_name || '未提供' }}</template>
       </el-table-column>

@@ -61,6 +61,19 @@ def init_schema(conn):
     """)
 
 
+def reclassify_events(conn):
+    """Apply the current broad ontology without changing names, links or reviews."""
+    changed = 0
+    with conn:
+        for row in list(conn.execute("SELECT id,official_award_name,category,student_only FROM award_events")):
+            label = classify_award(row["official_award_name"])
+            if row["category"] != label["category"] or row["student_only"] != int(label["student_only"]):
+                conn.execute("UPDATE award_events SET category=?,student_only=? WHERE id=?",
+                             (label["category"], int(label["student_only"]), row["id"]))
+                changed += 1
+    return changed
+
+
 def import_annotations(conn, document):
     if document.get("format") != "evidom-award-annotations-v1":
         raise ValueError("不是支持的 EviDOM 标注导出格式")
@@ -96,6 +109,7 @@ def import_annotations(conn, document):
                 VALUES (?,?,?,?,?,?,?,?,datetime('now'))
                 ON CONFLICT(id) DO UPDATE SET
                 conference_id=COALESCE(excluded.conference_id,award_events.conference_id),
+                category=excluded.category,student_only=excluded.student_only,
                 status=CASE WHEN excluded.status='verified' THEN 'verified' ELSE award_events.status END""",
                 (event_id, venue, cid, year, name, ontology["category"], int(ontology["student_only"]), status))
             conn.execute("""INSERT INTO award_papers VALUES (?,?,?,?,?,?)

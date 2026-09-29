@@ -3,17 +3,45 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ccf_awards.award_events import event_detail, import_annotations, list_events, venue_for
+from ccf_awards.award_events import event_detail, import_annotations, list_events, reclassify_events, venue_for
 from ccf_awards.db import Database
-from ccf_awards.ontology import classify_award
+from ccf_awards.ontology import CATEGORIES, classify_award
 
 
 class AwardEventsTest(unittest.TestCase):
     def test_category_precedence_and_lossless_name(self):
-        self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "honorable_mention")
-        self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "runner_up")
-        self.assertEqual(classify_award("SIGCOMM Test of Time")["category"], "test_of_time")
+        self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "recognition")
+        self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "recognition")
+        self.assertEqual(classify_award("SIGCOMM Test-of-time award (2026)")["category"], "impact")
+        self.assertEqual(classify_award("Best Paper Awards")["category"], "paper")
+        self.assertEqual(classify_award("Outstanding Paper Awards")["category"], "paper")
+        self.assertEqual(classify_award("Best Student Paper Award")["category"], "student")
+        self.assertEqual(classify_award(None)["category"], "other")
         self.assertTrue(classify_award("Best Student Paper")["student_only"])
+        self.assertLessEqual(len(CATEGORIES), 5)
+        self.assertNotIn("2026", " ".join(CATEGORIES.values()))
+
+    def test_reclassification_preserves_original_name_and_review(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                import_annotations(db.conn, {"format": "evidom-award-annotations-v1",
+                    "review_status": "verified", "records": [{
+                        "annotation_id": "page-0004-r999", "page_id": "page-0004", "year": 2026,
+                        "official_award_name": "2026 Outstanding Paper Awards",
+                        "title": "A Paper", "authors_raw": "A. Author", "paper_url": None,
+                        "source_url": "https://aaai.org/awards", "evidence": [], "note": None,
+                    }]})
+                db.conn.execute("UPDATE award_events SET category='outstanding'")
+                db.conn.commit()
+                self.assertEqual(reclassify_events(db.conn), 1)
+                self.assertEqual(reclassify_events(db.conn), 0)
+                event = db.conn.execute(
+                    "SELECT official_award_name,category,status FROM award_events").fetchone()
+                self.assertEqual(tuple(event), ("2026 Outstanding Paper Awards", "paper", "verified"))
+            finally:
+                db.close()
 
     def test_mixed_usenix_source_uses_record_label(self):
         self.assertEqual(venue_for("page-0005", "USENIX Best Paper / OSDI '25"), "OSDI")
@@ -35,7 +63,7 @@ class AwardEventsTest(unittest.TestCase):
                 for _ in range(2):
                     counts = import_annotations(db.conn, doc)
                     self.assertEqual(counts["annotations"], 2)
-                listing = list_events(db.conn, venue="OSDI", category="best")
+                listing = list_events(db.conn, venue="OSDI", category="paper")
                 self.assertEqual(listing["total"], 1)
                 event = event_detail(db.conn, listing["events"][0]["id"])
                 self.assertEqual(len(event["papers"]), 2)

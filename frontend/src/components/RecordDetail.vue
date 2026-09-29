@@ -10,9 +10,10 @@ defineProps({
     <h3 class="r-title">{{ record.title }}</h3>
     <el-descriptions :column="3" size="small" border>
       <el-descriptions-item label="会议">
-        {{ record.acronym }} {{ record.year }} · CCF {{ record.rank }}
+        {{ record.acronym }} {{ record.year }} · CCF {{ record.rank || '未映射' }}
       </el-descriptions-item>
-      <el-descriptions-item label="奖项原名">{{ record.award_name || awards[record.award_type] || '未提供' }}</el-descriptions-item>
+      <el-descriptions-item label="统一分类">{{ record.category_label || '其他／未标明奖项' }}</el-descriptions-item>
+      <el-descriptions-item label="奖项原名">{{ record.award_name || (record.source_kind === 'source_listing' ? '来源未提供' : awards[record.award_type] || '未提供') }}</el-descriptions-item>
       <el-descriptions-item label="状态">{{ record.status }}</el-descriptions-item>
       <el-descriptions-item label="发表日期">
         {{ record.publication_date || '未知' }}
@@ -34,7 +35,7 @@ defineProps({
     <h4>来源</h4>
     <div v-for="(s, i) in record.sources" :key="s.id" class="src">
       <el-link :href="s.url" target="_blank" type="primary">
-        来源 {{ i + 1 }} · {{ s.role === 'award' ? '获奖页面' : '论文元数据' }}
+        来源 {{ i + 1 }} · {{ s.role === 'award' ? '获奖页面' : s.role === 'listing' ? '聚合收录（未提供逐条奖名）' : '论文元数据' }}
       </el-link>
     </div>
     <el-link v-if="record.paper_url" :href="record.paper_url" target="_blank" type="success">
