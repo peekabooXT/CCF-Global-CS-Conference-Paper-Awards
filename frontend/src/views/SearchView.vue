@@ -134,7 +134,7 @@ onMounted(runSearch)
       <el-table-column prop="year" label="年份" width="80" />
       <el-table-column prop="category_label" label="统一分类" min-width="150" />
       <el-table-column label="奖项原名" min-width="220">
-        <template #default="{ row }">{{ row.award_name || '未提供' }}</template>
+        <template #default="{ row }">{{ row.award_name || '来源未提供' }}</template>
       </el-table-column>
       <el-table-column label="发表日期" width="120">
         <template #default="{ row }">{{ row.publication_date || '未知' }}</template>

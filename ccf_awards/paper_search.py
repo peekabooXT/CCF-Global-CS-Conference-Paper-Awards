@@ -110,7 +110,7 @@ def search_papers(db, filters):
             "evidence": json.loads(row["evidence"]), "note": row["note"],
         }
     listings = []
-    if category in (None, "other") and not award_name and not legacy_award and not (
+    if category in (None, "paper") and not award_name and not legacy_award and not (
             filters.get("affiliation") or filters.get("published_from") or filters.get("published_to")):
         listing_where, listing_args = [
             "NOT EXISTS (SELECT 1 FROM award_event_papers x WHERE x.paper_id=l.paper_id)",
@@ -150,8 +150,8 @@ def search_papers(db, filters):
                 "id": "listing:" + row["id"], "source_kind": "source_listing",
                 "title": row["title"], "acronym": row["acronym"] or row["source_venue"],
                 "rank": row["rank"], "area": row["area"], "year": row["year"],
-                "award_name": None, "award_type": "other", "category": "other",
-                "category_label": CATEGORIES["other"], "student_only": False,
+                "award_name": None, "award_type": "paper", "category": "paper",
+                "category_label": CATEGORIES["paper"], "student_only": False,
                 "status": row["status"], "authors": [], "authors_raw": row["authors_raw"],
                 "publication_date": None, "date_precision": "unknown",
                 "paper_url": row["paper_url"], "doi": None,

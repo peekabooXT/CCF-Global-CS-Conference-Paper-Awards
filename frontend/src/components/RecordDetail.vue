@@ -12,7 +12,7 @@ defineProps({
       <el-descriptions-item label="会议">
         {{ record.acronym }} {{ record.year }} · CCF {{ record.rank || '未映射' }}
       </el-descriptions-item>
-      <el-descriptions-item label="统一分类">{{ record.category_label || '其他／未标明奖项' }}</el-descriptions-item>
+      <el-descriptions-item label="统一分类">{{ record.category_label || '最佳／杰出论文奖' }}</el-descriptions-item>
       <el-descriptions-item label="奖项原名">{{ record.award_name || (record.source_kind === 'source_listing' ? '来源未提供' : awards[record.award_type] || '未提供') }}</el-descriptions-item>
       <el-descriptions-item label="状态">{{ record.status }}</el-descriptions-item>
       <el-descriptions-item label="发表日期">

@@ -10,15 +10,18 @@ from ccf_awards.ontology import CATEGORIES, classify_award
 
 class AwardEventsTest(unittest.TestCase):
     def test_category_precedence_and_lossless_name(self):
-        self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "recognition")
-        self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "recognition")
+        self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "paper")
+        self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "paper")
+        self.assertEqual(classify_award("BEST STUDENT PAPER RUNNER-UP")["category"], "student")
+        self.assertEqual(classify_award("Test of Time Honorable Mention")["category"], "impact")
         self.assertEqual(classify_award("SIGCOMM Test-of-time award (2026)")["category"], "impact")
         self.assertEqual(classify_award("Best Paper Awards")["category"], "paper")
         self.assertEqual(classify_award("Outstanding Paper Awards")["category"], "paper")
         self.assertEqual(classify_award("Best Student Paper Award")["category"], "student")
-        self.assertEqual(classify_award(None)["category"], "other")
+        self.assertEqual(classify_award("Best Demonstration Award")["category"], "paper")
+        self.assertEqual(classify_award(None)["category"], "paper")
         self.assertTrue(classify_award("Best Student Paper")["student_only"])
-        self.assertLessEqual(len(CATEGORIES), 5)
+        self.assertEqual(set(CATEGORIES), {"paper", "student", "impact"})
         self.assertNotIn("2026", " ".join(CATEGORIES.values()))
 
     def test_reclassification_preserves_original_name_and_review(self):

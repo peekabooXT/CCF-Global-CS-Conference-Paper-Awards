@@ -70,7 +70,7 @@ def export_rows(records):
         is_listing = r.get("source_kind") == "source_listing"
         rows.append({"论文名称": r["title"], "会议": r["acronym"], "CCF": r["rank"],
                      "会议年份": r["year"], "统一分类": r.get("category_label") or classify_award(r.get("award_name"))["category_label"],
-                     "奖项": r.get("award_name") or ("未标明奖项" if is_listing else AWARDS.get(r["award_type"], r["award_type"])),
+                     "奖项": r.get("award_name") or ("来源未提供原名" if is_listing else AWARDS.get(r["award_type"], r["award_type"])),
                      "原始奖项": r.get("award_name") or "", "发表日期": r["publication_date"] or "未知",
                      "日期精度": {"day":"日", "month":"月", "year":"年", "unknown":"未知"}[r["date_precision"]],
                      "作者及单位": "; ".join(a["name"] + " [" + ("; ".join(b["name"] for b in a["affiliations"]) or "单位未知") + "]" for a in r["authors"]) or r.get("authors_raw") or "未知",

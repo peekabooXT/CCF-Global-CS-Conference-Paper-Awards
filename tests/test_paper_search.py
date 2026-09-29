@@ -44,7 +44,7 @@ class PaperSearchTest(unittest.TestCase):
             finally:
                 db.close()
 
-    def test_unlinked_verified_listing_has_honest_fallback_category(self):
+    def test_unlinked_verified_listing_uses_broad_source_category_without_fabricated_name(self):
         with tempfile.TemporaryDirectory() as temp:
             db = Database(Path(temp) / "test.sqlite3")
             try:
@@ -54,16 +54,17 @@ class PaperSearchTest(unittest.TestCase):
                     "rows": [{"source_row": 1, "year": 2025, "venue": "FSE",
                               "area_raw": "Software Engineering", "title": "A New Paper",
                               "authors_raw": "An Author", "discovery_url": None}]})
-                rows = search_papers(db, {"category": "other", "status": "verified"})
+                rows = search_papers(db, {"category": "paper", "status": "verified"})
                 self.assertEqual(len(rows), 1)
                 self.assertEqual(rows[0]["source_kind"], "source_listing")
                 self.assertIsNone(rows[0]["award_name"])
                 self.assertIn(rows[0]["category"], CATEGORIES)
                 csv = csv_bytes(rows).decode("utf-8-sig")
-                self.assertIn("其他／未标明奖项", csv)
+                self.assertIn("最佳／杰出论文奖", csv)
+                self.assertIn("来源未提供原名", csv)
                 self.assertIn("聚合收录来源", csv)
                 self.assertNotIn("获奖来源,https://jeffhuang", csv)
-                self.assertEqual(search_papers(db, {"category": "paper", "status": "verified"}), [])
+                self.assertEqual(search_papers(db, {"category": "student", "status": "verified"}), [])
             finally:
                 db.close()
 
