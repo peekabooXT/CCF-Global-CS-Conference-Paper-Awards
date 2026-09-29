@@ -22,6 +22,7 @@ from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
 from ccf_awards.award_events import event_detail, list_events
 from ccf_awards.ontology import CATEGORIES
+from ccf_awards.source_listings import list_source_listings, source_listing_detail
 from ccf_awards.discovery import ResponsesWebSearch
 from ccf_awards.llm import LLM
 from ccf_awards.network import read_local_source
@@ -94,6 +95,28 @@ def award_event(event_id: str):
         if event is None:
             raise HTTPException(status_code=404, detail="获奖事件不存在")
         return event
+    finally:
+        db.close()
+
+
+@app.get("/api/source-listings")
+def source_listings(venue: str = "", query: str = "", relation: str = "",
+                    limit: int = 50, offset: int = 0):
+    db = get_db()
+    try:
+        return list_source_listings(db.conn, venue, query, relation, limit, offset)
+    finally:
+        db.close()
+
+
+@app.get("/api/source-listings/{listing_id}")
+def source_listing(listing_id: str):
+    db = get_db()
+    try:
+        item = source_listing_detail(db.conn, listing_id)
+        if item is None:
+            raise HTTPException(status_code=404, detail="来源收录不存在")
+        return item
     finally:
         db.close()
 

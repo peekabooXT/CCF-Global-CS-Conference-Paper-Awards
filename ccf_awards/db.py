@@ -41,6 +41,8 @@ class Database:
         """)
         from .award_events import init_schema
         init_schema(self.conn)
+        from .source_listings import init_schema as init_source_listings
+        init_source_listings(self.conn)
         self.conn.commit()
 
     def close(self):

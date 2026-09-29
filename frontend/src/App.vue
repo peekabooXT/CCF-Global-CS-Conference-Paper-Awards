@@ -8,6 +8,7 @@ import CollectView from './views/CollectView.vue'
 import ReviewView from './views/ReviewView.vue'
 import CoverageView from './views/CoverageView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
+import SourceListingsView from './views/SourceListingsView.vue'
 const active = ref('search')
 const settingsDialogVisible = ref(false)
 const importing = ref(false)
@@ -59,7 +60,7 @@ async function importDemo() {
 const meta = ref(null)
 const loading = ref(true)
 const loadError = ref('')
-const navigation = [{id:'search',label:'论文检索'},{id:'events',label:'获奖事件'},{id:'collect',label:'采集与导入'},{id:'review',label:'记录核验'},{id:'coverage',label:'采集覆盖'}]
+const navigation = [{id:'search',label:'论文检索'},{id:'events',label:'获奖事件'},{id:'listings',label:'来源收录'},{id:'collect',label:'采集与导入'},{id:'review',label:'记录核验'},{id:'coverage',label:'采集覆盖'}]
 async function boot() {
   loading.value = true
   loadError.value = ''
@@ -97,6 +98,7 @@ onMounted(boot)
         </div>
         <SearchView :key="searchVersion" v-if="active==='search'" :meta="meta" />
         <AwardEventsView v-else-if="active==='events'" :meta="meta" />
+        <SourceListingsView v-else-if="active==='listings'" />
         <section v-else class="workspace-panel">
           <CollectView v-if="active==='collect'" :meta="meta" :ai-settings="aiSettings" />
           <ReviewView v-else-if="active==='review'" :meta="meta" />
