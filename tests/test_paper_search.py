@@ -60,11 +60,36 @@ class PaperSearchTest(unittest.TestCase):
                 self.assertIsNone(rows[0]["award_name"])
                 self.assertIn(rows[0]["category"], CATEGORIES)
                 csv = csv_bytes(rows).decode("utf-8-sig")
-                self.assertIn("最佳／杰出论文奖", csv)
+                self.assertIn("最佳论文奖", csv)
                 self.assertIn("来源未提供原名", csv)
                 self.assertIn("聚合收录来源", csv)
                 self.assertNotIn("获奖来源,https://jeffhuang", csv)
                 self.assertEqual(search_papers(db, {"category": "student", "status": "verified"}), [])
+            finally:
+                db.close()
+
+    def test_poster_and_demonstration_are_other_awards_in_search_and_export(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                names = ["AAAI-26 Best Demonstration Awards / Runner Up",
+                         "AAAI-26 Outstanding Paper Awards", "AAAI-26 Best Poster Award"]
+                import_annotations(db.conn, {"format": "evidom-award-annotations-v1",
+                    "review_status": "verified", "records": [{
+                        "annotation_id": f"page-0004-r{i:03d}", "page_id": "page-0004",
+                        "year": 2026, "official_award_name": name,
+                        "title": f"Awarded Paper {i}", "authors_raw": "A. Author",
+                        "paper_url": None, "source_url": "https://aaai.org/awards",
+                        "evidence": [], "note": None,
+                    } for i, name in enumerate(names, 1)]})
+                paper = search_papers(db, {"category": "paper", "status": "verified"})
+                other = search_papers(db, {"category": "other", "status": "verified"})
+                self.assertEqual([row["award_name"] for row in paper], [names[1]])
+                self.assertEqual({row["award_name"] for row in other}, {names[0], names[2]})
+                exported = csv_bytes(other).decode("utf-8-sig")
+                self.assertIn("其他获奖", exported)
+                self.assertIn(names[2], exported)
             finally:
                 db.close()
 

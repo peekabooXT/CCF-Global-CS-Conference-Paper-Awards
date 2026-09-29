@@ -10,18 +10,24 @@ from ccf_awards.ontology import CATEGORIES, classify_award
 
 class AwardEventsTest(unittest.TestCase):
     def test_category_precedence_and_lossless_name(self):
-        self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "paper")
-        self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "paper")
-        self.assertEqual(classify_award("BEST STUDENT PAPER RUNNER-UP")["category"], "student")
-        self.assertEqual(classify_award("Test of Time Honorable Mention")["category"], "impact")
-        self.assertEqual(classify_award("SIGCOMM Test-of-time award (2026)")["category"], "impact")
+        self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "other")
+        self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "other")
+        self.assertEqual(classify_award("Best Paper Awards Runners-Up")["category"], "other")
+        self.assertEqual(classify_award("BEST STUDENT PAPER RUNNER-UP")["category"], "other")
+        self.assertEqual(classify_award("Test of Time Honorable Mention")["category"], "other")
+        self.assertEqual(classify_award("SIGCOMM Test-of-time award (2026)")["category"], "other")
         self.assertEqual(classify_award("Best Paper Awards")["category"], "paper")
         self.assertEqual(classify_award("Outstanding Paper Awards")["category"], "paper")
+        self.assertEqual(classify_award("AAAI Distinguished Papers")["category"], "paper")
         self.assertEqual(classify_award("Best Student Paper Award")["category"], "student")
-        self.assertEqual(classify_award("Best Demonstration Award")["category"], "paper")
-        self.assertEqual(classify_award(None)["category"], "paper")
+        self.assertEqual(classify_award("Best Demonstration Award")["category"], "other")
+        self.assertEqual(classify_award("AAAI-26 Best Demonstration Awards / Runner Up")["category"], "other")
+        self.assertEqual(classify_award("AAAI-26 Best Poster Award")["category"], "other")
+        self.assertEqual(classify_award("Best Short Paper Award")["category"], "other")
+        self.assertEqual(classify_award("Best 10-year Old Paper")["category"], "other")
+        self.assertEqual(classify_award(None)["category"], "other")
         self.assertTrue(classify_award("Best Student Paper")["student_only"])
-        self.assertEqual(set(CATEGORIES), {"paper", "student", "impact"})
+        self.assertEqual(set(CATEGORIES), {"paper", "student", "other"})
         self.assertNotIn("2026", " ".join(CATEGORIES.values()))
 
     def test_reclassification_preserves_original_name_and_review(self):
@@ -43,6 +49,27 @@ class AwardEventsTest(unittest.TestCase):
                 event = db.conn.execute(
                     "SELECT official_award_name,category,status FROM award_events").fetchone()
                 self.assertEqual(tuple(event), ("2026 Outstanding Paper Awards", "paper", "verified"))
+            finally:
+                db.close()
+
+    def test_reclassification_removes_old_best_label_from_poster(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                import_annotations(db.conn, {"format": "evidom-award-annotations-v1",
+                    "review_status": "verified", "records": [{
+                        "annotation_id": "page-0004-r998", "page_id": "page-0004", "year": 2026,
+                        "official_award_name": "AAAI-26 Best Poster Award",
+                        "title": "A Poster", "authors_raw": "A. Author", "paper_url": None,
+                        "source_url": "https://aaai.org/awards", "evidence": [], "note": None,
+                    }]})
+                db.conn.execute("UPDATE award_events SET category='paper'")
+                db.conn.commit()
+                self.assertEqual(reclassify_events(db.conn), 1)
+                event = db.conn.execute(
+                    "SELECT official_award_name,category,status FROM award_events").fetchone()
+                self.assertEqual(tuple(event), ("AAAI-26 Best Poster Award", "other", "verified"))
             finally:
                 db.close()
 

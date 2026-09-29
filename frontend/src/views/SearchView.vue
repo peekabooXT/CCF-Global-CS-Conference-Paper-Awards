@@ -77,7 +77,7 @@ onMounted(runSearch)
 <template>
   <div class="search-workspace">
     <h2>论文检索</h2>
-    <p class="hint">按统一奖项分类检索论文；奖项原名仍在结果中保留。聚合来源未提供逐条奖名的论文会明确标注。</p>
+    <p class="hint">“最佳论文奖”参照 JeffHuang 收录口径，含 Outstanding／Distinguished Paper；海报、演示、短论文、经典论文及提名等归“其他获奖”。学生论文奖单列，奖项原名保留。</p>
 
     <el-form :model="filters" inline class="filter-form" @submit.prevent="runSearch">
       <el-form-item label="会议">
