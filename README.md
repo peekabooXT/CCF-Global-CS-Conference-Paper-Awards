@@ -139,18 +139,21 @@ python -m ccf_awards search --conference ACL --format json
 
 ## 3 配置多提供商 LLM API
 
-结构化提取默认使用 DeepSeek：`LLM_PROVIDER=deepseek`、基础地址 `https://api.deepseek.com`、模型 `deepseek-chat`。通常只需配置密钥：
+结构化提取默认使用 DeepSeek：`LLM_PROVIDER=deepseek`、基础地址 `https://api.deepseek.com`、模型 `deepseek-flash`。通常只需配置密钥：
 
 ```powershell
 $env:DEEPSEEK_API_KEY = "你的 DeepSeek API key"
 ```
 
-目前内置三个配置档：
+目前内置以下配置档；网页端可直接选择，模型也可以从预设或当前账户列表选择，仍可手动填写模型 ID 和 API 地址：
 
 | `LLM_PROVIDER` | 默认地址 | 默认模型 | 默认密钥变量 |
 | --- | --- | --- | --- |
-| `deepseek`（默认） | `https://api.deepseek.com` | `deepseek-chat` | `DEEPSEEK_API_KEY` |
-| `openai` | `https://api.openai.com/v1` | 需要自行填写 | `OPENAI_API_KEY` |
+| `deepseek`（默认） | `https://api.deepseek.com` | `deepseek-flash` | `DEEPSEEK_API_KEY` |
+| `openai` | `https://api.openai.com/v1` | `gpt-5-mini` | `OPENAI_API_KEY` |
+| `bailian` | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen3.8-max` | `DASHSCOPE_API_KEY` |
+| `qwen`（千问，同百炼 API） | 同上 | `qwen3.8-max` | `DASHSCOPE_API_KEY` |
+| `zhipu`（智谱） | `https://open.bigmodel.cn/api/paas/v4` | `glm-4.6` | `ZHIPUAI_API_KEY` |
 | `custom` | 需要自行填写 | 需要自行填写 | `LLM_API_KEY` |
 
 所有档位都可用 `LLM_API_KEY`、`LLM_BASE_URL`、`LLM_MODEL` 覆盖，因此其他兼容 Chat Completions 的服务也能接入。例如切换 OpenAI：
@@ -161,7 +164,9 @@ $env:OPENAI_API_KEY = "你的 API key"
 $env:LLM_MODEL = "你的账户可调用模型"
 ```
 
-网页界面默认让网页发现与结构化提取复用同一连接；命令行和 GitHub Actions 设置 **SEARCH_REUSE_LLM=1** 后采用同样行为。前提是该端点同时兼容 /chat/completions 与带 web_search 工具的 /responses。标准 DeepSeek Chat 接口目前不能执行该网页搜索工具，因此不能把模型回答冒充实时检索结果；此时关闭复用并配置：
+网页界面的单次与批量采集默认使用自动网页搜索；搜索与结构化提取复用“LLM 连接”中当前的提供商、模型和 Key。网页采集必须显式填写 Key，切换提供商时清空旧 Key，不会暗中使用服务器环境变量。DeepSeek 官方连接的搜索使用同一 Key 的 Anthropic 兼容 `/anthropic/v1/messages`；OpenAI、百炼及千问连接使用 Responses `web_search`；智谱连接使用当前模型的 Chat Completions `web_search` 工具。各模型的搜索支持范围不同，若未真正执行搜索或未返回结构化来源会报错，不把模型回答当成来源。网页端在自动采集前提示所用账户及额外 Token 费用，日志及 CSV 记录搜索提供商、模型与 Token 用量。模型列表查询限已知官方 HTTPS 域名；不支持列表的接口仍可手填。
+
+命令行和 GitHub Actions 的搜索配置仍独立：设置 **SEARCH_REUSE_LLM=1** 后复用 LLM 凭据，但命令行搜索器目前仍要求该端点支持 Responses `web_search`，不使用网页端新增的 DeepSeek Anthropic 适配。若不复用，须显式配置独立搜索账户；该账户产生的费用不属于提取账户：
 
 ```powershell
 $env:SEARCH_API_KEY = "搜索 API key"
@@ -173,7 +178,7 @@ $env:SEARCH_MODEL = "支持 Responses web_search 的模型"
 
 程序默认请求 JSON mode：`response_format={"type":"json_object"}`。如果某个兼容接口不支持，可设置 `LLM_JSON_MODE=0`；返回内容仍须为合法 JSON，并通过本地证据校验。API 地址必须使用 HTTPS，程序不会跟随携带密钥的重定向，也不会把密钥写入数据库。
 
-参考：[DeepSeek API 快速开始](https://api-docs.deepseek.com/)、[DeepSeek Responses API 支持范围](https://api-docs.deepseek.com/guides/responses_api)、[OpenAI Responses API](https://developers.openai.com/api/reference/cli/resources/responses/methods/create)。
+参考：[DeepSeek Anthropic API](https://api-docs.deepseek.com/guides/anthropic_api/)、[DeepSeek 网页搜索及费用说明](https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code/)、[DeepSeek Responses API 支持范围](https://api-docs.deepseek.com/guides/responses_api/)、[阿里云百炼网页搜索](https://help.aliyun.com/en/model-studio/web-search)、[百炼模型列表](https://help.aliyun.com/en/model-studio/list-models)、[OpenAI Responses API](https://developers.openai.com/api/reference/cli/resources/responses/methods/create)。
 
 每次采集通常进行一次网页发现调用和一次结构化提取调用；网络返回 429 或 5xx 时最多尝试三次。来源正文和元数据会发送给你配置的提取服务商，新数据仍默认进入“待核验”。
 

@@ -26,8 +26,9 @@ from ccf_awards.award_events import event_detail, list_events
 from ccf_awards.ontology import CATEGORIES
 from ccf_awards.paper_search import award_names, search_papers
 from ccf_awards.source_listings import list_source_listings, source_listing_detail
-from ccf_awards.discovery import ResponsesWebSearch
+from ccf_awards.discovery import DeepSeekAnthropicWebSearch, ResponsesWebSearch, ZhipuWebSearch
 from ccf_awards.llm import LLM
+from ccf_awards.model_catalog import list_provider_models
 from ccf_awards.network import read_local_source
 from ccf_awards.web_helpers import (
     AWARDS,
@@ -288,6 +289,14 @@ class LLMConfig(BaseModel):
     provider: Optional[str] = None
 
 
+@app.post("/api/llm-models")
+def llm_models(cfg: LLMConfig):
+    try:
+        return {"models": list_provider_models(cfg.provider or "deepseek", cfg.api_key or "", cfg.base_url)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from None
+
+
 class CollectReq(BaseModel):
     conference_id: str
     year: int
@@ -316,13 +325,24 @@ def _checked_award_types(values):
 
 
 def _build_llm(cfg: LLMConfig):
+    if not cfg.api_key:
+        raise ValueError("网页采集请在“LLM 连接”中填写当前账户的 API Key；不会静默使用服务器环境变量中的 Key")
     return LLM(
-        api_key=cfg.api_key or None,
+        api_key=cfg.api_key,
         base_url=cfg.base_url or None,
         model=cfg.model or None,
         json_mode=cfg.json_mode,
         provider=cfg.provider or None,
     )
+
+
+def _search_for_llm(llm):
+    options = {"api_key": llm.key, "base_url": llm.base, "model": llm.model}
+    if llm.provider == "deepseek" and urlsplit(llm.base).hostname == "api.deepseek.com":
+        return DeepSeekAnthropicWebSearch(**options)
+    if llm.provider == "zhipu":
+        return ZhipuWebSearch(**options)
+    return ResponsesWebSearch(**options, provider=llm.provider)
 
 
 def _do_collect(db: Database, req: CollectReq, notify, local_sources=None):
@@ -337,13 +357,7 @@ def _do_collect(db: Database, req: CollectReq, notify, local_sources=None):
                            max_pages=req.max_pages, llm=llm, notify=notify,
                            award_types=award_types)
     if req.strategy == "auto":
-        if urlsplit(llm.base).hostname == "api.deepseek.com":
-            raise ValueError("DeepSeek 官方 API 当前不提供内置 web_search；请使用已有官网网址，或配置支持该工具的 LLM 连接")
-        search = ResponsesWebSearch(
-            api_key=llm.key,
-            base_url=llm.base,
-            model=llm.model,
-        )
+        search = _search_for_llm(llm)
         return auto_collect_one(
             db, conf, req.year, max_pages=req.max_pages,
             candidate_limit=min(3, req.max_pages), search=search, llm=llm, notify=notify,
@@ -369,9 +383,7 @@ def _do_batch_collect(db: Database, req: BatchCollectReq, notify):
         raise ValueError("批量任务包含未知会议")
     llm = _build_llm(req.llm)
     if req.strategy == "auto":
-        if urlsplit(llm.base).hostname == "api.deepseek.com":
-            raise ValueError("DeepSeek 官方 API 当前不提供内置 web_search；请使用已保存网址，或配置支持该工具的 LLM 连接")
-        ResponsesWebSearch(api_key=llm.key, base_url=llm.base, model=llm.model)
+        _search_for_llm(llm)
     tasks = []
     total = len(ids) * len(years)
     for index, (cid, year) in enumerate(((cid, year) for cid in ids for year in years), 1):
@@ -482,7 +494,7 @@ async def collect_files_stream(
     """上传获奖页正文/PDF + 可选论文元数据，SSE 实时滚动。"""
     req = CollectReq(
         conference_id=conference_id, year=year, max_pages=max_pages,
-        llm=LLMConfig(api_key=llm_api_key or None, base_url=llm_base_url or None,
+        llm=LLMConfig(api_key=llm_api_key, base_url=llm_base_url or None,
                       model=llm_model or None, provider=llm_provider or None),
     )
 

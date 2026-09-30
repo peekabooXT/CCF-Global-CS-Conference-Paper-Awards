@@ -193,7 +193,7 @@ class WebTest(unittest.TestCase):
             db.finish_run(run_id, "extracted", {
                 "inserted": 1, "updated": 0, "unchanged": 0,
                 "token_usage": {
-                    "search": {"total_tokens": 100},
+                    "search": {"total_tokens": 100, "provider": "deepseek", "model": "deepseek-flash"},
                     "extraction": {"total_tokens": 150},
                 },
                 "total_tokens": 250,
@@ -258,14 +258,15 @@ class WebHelperTest(unittest.TestCase):
                 "updated": 2,
                 "unchanged": 3,
                 "token_usage": {
-                    "search": {"total_tokens": 100},
+                    "search": {"total_tokens": 100, "provider": "deepseek", "model": "deepseek-flash"},
                     "extraction": {"total_tokens": 150},
                 },
                 "error": "=unsafe",
             },
         }]).decode("utf-8-sig")
         self.assertIn("任务,会议,年份", content)
-        self.assertIn("搜索 tokens,提取 tokens,总 tokens", content)
+        self.assertIn("搜索提供商,搜索模型,搜索 tokens,提取 tokens,总 tokens", content)
+        self.assertIn("deepseek,deepseek-flash,100,150,250", content)
         self.assertIn("100,150,250", content)
         self.assertIn("'=unsafe", content)
 

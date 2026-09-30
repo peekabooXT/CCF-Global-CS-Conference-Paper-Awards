@@ -49,7 +49,7 @@ const form = reactive({
   max_pages: 4,
 })
 const batch = reactive({
-  conference_ids: [], years: String(today), strategy: 'urls', max_pages: 4,
+  conference_ids: [], years: String(today), strategy: 'auto', max_pages: 4,
   award_types: ['best_paper', 'best_student_paper'],
 })
 const batchRunning = ref(false)
@@ -85,6 +85,7 @@ function updateBatchTask(task) {
 }
 async function runBatch() {
   if (running.value || batchRunning.value) return
+  if (!llm.value.api_key) { ElMessage.warning('请先在“LLM 连接”中填写当前账户的 API Key'); return }
   if (!batch.conference_ids.length) { ElMessage.warning('请至少选择一个会议'); return }
   if (!batch.award_types.length) { ElMessage.warning('请至少选择一种奖项'); return }
   let years
@@ -92,13 +93,10 @@ async function runBatch() {
   catch (e) { ElMessage.warning(e.message); return }
   const count = batch.conference_ids.length * years.length
   if (count > 100) { ElMessage.warning('一次最多执行 100 个会议×年份任务'); return }
-  if (batch.strategy === 'auto' && llm.value.provider === 'deepseek' &&
-      (llm.value.base_url || 'https://api.deepseek.com').includes('api.deepseek.com')) {
-    ElMessage.warning('DeepSeek 官方 API 当前不支持 web_search；请使用已保存网址或更换 LLM 连接')
-    return
-  }
   try {
-    await ElMessageBox.confirm(`将依次执行 ${count} 个独立采集任务，可能产生 API 费用。失败任务不会中断其余任务。确定开始吗？`,
+    const account = llm.value.provider === 'deepseek' && (llm.value.base_url || 'https://api.deepseek.com').includes('api.deepseek.com')
+      ? '当前 DeepSeek Key（搜索走 Anthropic 兼容接口）' : `当前 ${llm.value.provider || 'LLM'} 连接`
+    await ElMessageBox.confirm(`将依次执行 ${count} 个独立采集任务。搜索与提取均使用${account}，搜索可能产生额外 Token 费用；失败任务不会中断其余任务。确定开始吗？`,
       '确认批量采集', { type: 'warning', confirmButtonText: '开始采集', cancelButtonText: '取消' })
   } catch { return }
   batchRunning.value = true
@@ -232,6 +230,15 @@ function baseBody() {
 
 async function runCollect() {
   if (!form.conference_id) { ElMessage.warning('请先选择会议'); return }
+  if (!llm.value.api_key) { ElMessage.warning('请先在“LLM 连接”中填写当前账户的 API Key'); return }
+  if (form.strategy === 'auto') {
+    const account = llm.value.provider === 'deepseek' && (llm.value.base_url || 'https://api.deepseek.com').includes('api.deepseek.com')
+      ? '当前 DeepSeek Key（搜索走 Anthropic 兼容接口）' : `当前 ${llm.value.provider || 'LLM'} 连接`
+    try {
+      await ElMessageBox.confirm(`自动搜索与提取均使用${account}，搜索可能产生额外 Token 费用。确定开始吗？`,
+        '确认自动采集', { type: 'warning', confirmButtonText: '开始采集', cancelButtonText: '取消' })
+    } catch { return }
+  }
   running.value = true
   result.value = null
   logLines.value = []
@@ -262,6 +269,7 @@ function onPickMeta(e) { fileForm.metadata_file = e.target.files[0] || null }
 async function runFileCollect() {
   if (!form.conference_id) { ElMessage.warning('请先选择会议'); return }
   if (!fileForm.award_file) { ElMessage.warning('请先选择获奖页文件'); return }
+  if (!llm.value.api_key) { ElMessage.warning('请先在“LLM 连接”中填写当前账户的 API Key'); return }
   running.value = true
   result.value = null
   logLines.value = []
@@ -467,6 +475,7 @@ async function onImportJson(e) {
         <el-descriptions-item label="重复">{{ result.unchanged }}</el-descriptions-item>
         <el-descriptions-item label="状态">{{ result.status }}</el-descriptions-item>
         <el-descriptions-item label="搜索 tokens">{{ formatTokens(resultTokens.searchTokens) }}</el-descriptions-item>
+        <el-descriptions-item label="搜索连接">{{ result.token_usage?.search?.provider || '—' }} / {{ result.token_usage?.search?.model || '—' }}</el-descriptions-item>
         <el-descriptions-item label="提取 tokens">{{ formatTokens(resultTokens.extractionTokens) }}</el-descriptions-item>
         <el-descriptions-item label="总 tokens">{{ formatTokens(resultTokens.totalTokens) }}</el-descriptions-item>
       </el-descriptions>
@@ -500,6 +509,9 @@ async function onImportJson(e) {
         <el-table-column prop="unchanged" label="重复" width="70" />
         <el-table-column label="搜索 tokens" min-width="110">
           <template #default="scope">{{ formatTokens(scope.row.searchTokens) }}</template>
+        </el-table-column>
+        <el-table-column label="搜索连接" min-width="170" show-overflow-tooltip>
+          <template #default="scope">{{ scope.row.details?.token_usage?.search?.provider || '—' }} / {{ scope.row.details?.token_usage?.search?.model || '—' }}</template>
         </el-table-column>
         <el-table-column label="提取 tokens" min-width="110">
           <template #default="scope">{{ formatTokens(scope.row.extractionTokens) }}</template>

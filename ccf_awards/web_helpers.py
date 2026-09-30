@@ -124,6 +124,8 @@ def run_log_csv_bytes(runs):
             "新增": details.get("inserted", 0),
             "更新": details.get("updated", 0),
             "重复": details.get("unchanged", 0),
+            "搜索提供商": search_usage.get("provider", ""),
+            "搜索模型": search_usage.get("model", ""),
             "搜索 tokens": search_tokens if type(search_tokens) is int else "",
             "提取 tokens": extraction_tokens if type(extraction_tokens) is int else "",
             "总 tokens": total_tokens,
@@ -133,7 +135,7 @@ def run_log_csv_bytes(runs):
     output = io.StringIO(newline="")
     fieldnames = [
         "任务", "会议", "年份", "开始时间", "结束时间", "耗时（秒）", "状态",
-        "新增", "更新", "重复", "搜索 tokens", "提取 tokens", "总 tokens", "说明",
+        "新增", "更新", "重复", "搜索提供商", "搜索模型", "搜索 tokens", "提取 tokens", "总 tokens", "说明",
     ]
     writer = csv.DictWriter(output, fieldnames=fieldnames)
     writer.writeheader()

@@ -15,8 +15,16 @@ const importing = ref(false)
 const searchVersion = ref(0)
 
 const AI_SETTINGS_KEY = 'ccf-awards-ai-settings'
+const providers = [
+  { id: 'deepseek', label: 'DeepSeek', base: 'https://api.deepseek.com', model: 'deepseek-flash', models: ['deepseek-flash', 'deepseek-v4-pro'] },
+  { id: 'openai', label: 'OpenAI', base: 'https://api.openai.com/v1', model: 'gpt-5-mini', models: ['gpt-5-mini', 'gpt-5', 'gpt-4.1-mini'] },
+  { id: 'bailian', label: '阿里云百炼', base: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen3.8-max', models: ['qwen3.8-max', 'qwen3.7-max', 'qwen3.5-plus'] },
+  { id: 'qwen', label: '阿里千问（百炼 API）', base: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen3.8-max', models: ['qwen3.8-max', 'qwen3.8-flash', 'qwen3.7-plus'] },
+  { id: 'zhipu', label: '智谱 GLM', base: 'https://open.bigmodel.cn/api/paas/v4', model: 'glm-4.6', models: ['glm-5.1', 'glm-5', 'glm-4.7', 'glm-4.6'] },
+  { id: 'custom', label: '自定义兼容接口', base: '', model: '', models: [] },
+]
 const defaultAiSettings = {
-  llm: { provider: 'deepseek', base_url: '', model: '', api_key: '', json_mode: true },
+  llm: { provider: 'deepseek', base_url: 'https://api.deepseek.com', model: 'deepseek-flash', api_key: '', json_mode: true },
 }
 
 function loadAiSettings() {
@@ -33,9 +41,38 @@ function loadAiSettings() {
 }
 
 const aiSettings = reactive(loadAiSettings())
-const hasSessionSettings = computed(() => Boolean(
-  aiSettings.llm.api_key || aiSettings.llm.model,
-))
+const hasSessionSettings = computed(() => Boolean(aiSettings.llm.api_key))
+const currentProvider = computed(() => providers.find(item => item.id === aiSettings.llm.provider) || providers[5])
+const fetchedModels = ref([])
+const modelsLoading = ref(false)
+const modelOptions = computed(() => {
+  const liveById = new Map(fetchedModels.value.map(item => [item.id, item]))
+  const ids = [aiSettings.llm.model, ...currentProvider.value.models, ...liveById.keys()].filter(Boolean)
+  return [...new Set(ids)].map(id => ({ id, live: liveById.has(id), name: liveById.get(id)?.name }))
+})
+
+function onProviderChange(provider) {
+  const profile = providers.find(item => item.id === provider)
+  if (!profile) return
+  aiSettings.llm.base_url = profile.base
+  aiSettings.llm.model = profile.model
+  aiSettings.llm.api_key = ''
+  fetchedModels.value = []
+  ElMessage.info('已切换提供商；请填写该账户的 API Key，旧 Key 不会复用')
+}
+
+async function refreshModels() {
+  const connection = { ...aiSettings.llm }
+  modelsLoading.value = true
+  try {
+    const result = await api.llmModels(connection)
+    if (connection.provider !== aiSettings.llm.provider || connection.api_key !== aiSettings.llm.api_key ||
+        connection.base_url !== aiSettings.llm.base_url) return
+    fetchedModels.value = result.models || []
+    ElMessage.success(`已获取 ${fetchedModels.value.length} 个当前账户可见模型；联网搜索能力仍以实际接口为准`)
+  } catch (error) { ElMessage.warning(errMsg(error)) }
+  finally { modelsLoading.value = false }
+}
 
 watch(aiSettings, value => {
   try {
@@ -106,14 +143,19 @@ onMounted(boot)
 
     <el-dialog v-model="settingsDialogVisible" title="LLM 连接" width="760px" class="ai-settings-dialog">
       <p class="settings-hint">配置只保存在当前浏览器标签页的会话中。切换功能页面或刷新后仍可继续使用，关闭标签页后自动清除。</p>
-      <p class="settings-hint">结构化提取与自动网页搜索共用下方的提供商、API 地址、模型和 Key。自动网页搜索要求该连接支持 Responses API 的 web_search 工具。</p>
+      <p class="settings-hint">搜索与提取共用当前提供商的 Key 和模型；切换提供商会清空旧 Key。DeepSeek、OpenAI／百炼／千问、智谱分别使用其支持的网页搜索接口；不执行搜索或不返回来源的模型会明确报错。</p>
       <el-form label-position="top">
         <div class="settings-grid">
           <el-form-item label="提供商">
-            <el-input v-model="aiSettings.llm.provider" placeholder="deepseek" />
+            <el-select v-model="aiSettings.llm.provider" style="width:100%" @change="onProviderChange">
+              <el-option v-for="item in providers" :key="item.id" :label="item.label" :value="item.id" />
+            </el-select>
           </el-form-item>
           <el-form-item label="模型">
-            <el-input v-model="aiSettings.llm.model" placeholder="deepseek-chat" />
+            <el-select v-model="aiSettings.llm.model" filterable allow-create default-first-option style="width:100%" placeholder="选择或手动输入模型 ID">
+              <el-option v-for="item in modelOptions" :key="item.id" :label="item.id + (item.live ? ` · ${item.name || '当前账户'}` : '')" :value="item.id" />
+            </el-select>
+            <el-button size="small" text :loading="modelsLoading" @click="refreshModels">刷新当前账户模型</el-button>
           </el-form-item>
           <el-form-item label="API 地址" class="settings-full">
             <el-input v-model="aiSettings.llm.base_url" placeholder="https://api.deepseek.com" />
@@ -124,7 +166,9 @@ onMounted(boot)
         </div>
         <el-checkbox v-model="aiSettings.llm.json_mode">启用 JSON 模式</el-checkbox>
       </el-form>
-      <el-alert v-if="(aiSettings.llm.base_url || 'https://api.deepseek.com').includes('api.deepseek.com') && aiSettings.llm.provider === 'deepseek'" type="warning" :closable="false" show-icon title="DeepSeek 官方 API 当前不执行内置 web_search；这套连接可用于提取，自动搜索需换成支持 web_search 的 LLM 连接，或改用已有官网网址。" />
+      <el-alert v-if="(aiSettings.llm.base_url || 'https://api.deepseek.com').includes('api.deepseek.com') && aiSettings.llm.provider === 'deepseek'" type="warning" :closable="false" show-icon title="使用 DeepSeek 官方连接自动搜索时，搜索和提取都向当前 DeepSeek Key 计费；搜索可能额外产生模型 Token 费用。批量采集会逐项调用。" />
+      <el-alert v-if="aiSettings.llm.provider === 'zhipu'" type="info" :closable="false" show-icon title="智谱自动搜索使用当前模型的 web_search 工具；部分 GLM 模型可能不支持，请以实际返回的来源为准，也可改用已有官网网址。" />
+      <p class="settings-hint">模型预设仅供快速选择，不保证当前账户已开通或支持网页搜索；可刷新账户列表，也可直接手填模型 ID。百炼和千问使用同一阿里云百炼 Key。</p>
 
       <template #footer>
         <el-button type="primary" @click="settingsDialogVisible = false">完成</el-button>

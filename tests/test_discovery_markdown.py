@@ -3,10 +3,10 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from ccf_awards.db import Database
-from ccf_awards.discovery import OpenAIWebSearch, ResponsesWebSearch
+from ccf_awards.discovery import DeepSeekAnthropicWebSearch, OpenAIWebSearch, ResponsesWebSearch, ZhipuWebSearch
 from ccf_awards.llm import LLM
 from ccf_awards.markdown_export import render_markdown
 from ccf_awards.network import crawl
@@ -23,7 +23,7 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
             llm = LLM()
         self.assertEqual(llm.provider, "deepseek")
         self.assertEqual(llm.base, "https://api.deepseek.com")
-        self.assertEqual(llm.model, "deepseek-chat")
+        self.assertEqual(llm.model, "deepseek-flash")
         self.assertEqual(llm.key, "deepseek-key")
 
     def test_named_and_custom_provider_overrides(self):
@@ -93,6 +93,102 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
         self.assertFalse(captured["store"])
         self.assertEqual(result["candidates"][0]["url"], "https://conf.example/2026/awards")
         self.assertEqual(result["token_usage"]["total_tokens"], 100)
+
+    def test_bailian_responses_search_uses_supported_options_and_real_sources(self):
+        search = ResponsesWebSearch(api_key="account-key", base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+                                    model="qwen3.8-max", provider="bailian")
+        captured = {}
+
+        def fake_post(body):
+            captured.update(body)
+            return {"status": "completed", "usage": {"input_tokens": 8, "output_tokens": 3},
+                    "output": [{"type": "web_search_call", "action": {"sources": [
+                        {"url": "https://conf.example/awards", "title": "Awards"}]}}]}
+
+        search._post = fake_post
+        result = search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
+        self.assertEqual(captured["tools"], [{"type": "web_search"}])
+        self.assertNotIn("tool_choice", captured)
+        self.assertEqual(result["candidates"][0]["url"], "https://conf.example/awards")
+        self.assertEqual(result["token_usage"]["provider"], "bailian")
+
+        search._post = lambda _: {"status": "completed", "usage": {"input_tokens": 8, "output_tokens": 3},
+                                  "output": [{"type": "message", "content": [{"text": "https://made-up.example"}]}]}
+        with self.assertRaisesRegex(ValueError, "未执行网页搜索"):
+            search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
+
+    def test_deepseek_search_uses_anthropic_tool_and_records_account(self):
+        search = DeepSeekAnthropicWebSearch(api_key="current-key", base_url="https://api.deepseek.com", model="deepseek-flash")
+        captured = {}
+
+        def fake_post(body):
+            captured.update(body)
+            return {"type": "message", "stop_reason": "end_turn", "usage": {"input_tokens": 40, "output_tokens": 10,
+                    "server_tool_use": {"web_search_requests": 1}},
+                    "content": [{"type": "server_tool_use", "name": "web_search"},
+                                {"type": "web_search_tool_result", "content": [
+                                    {"type": "web_search_result", "url": "https://conf.example/awards", "title": "Awards"},
+                                    {"type": "web_search_result", "url": "https://conf.example/awards", "title": "Duplicate"},
+                                ]}, {"type": "text", "citations": [
+                                    {"type": "web_search_result_location", "url": "https://publisher.example/paper", "title": "Paper"}
+                                ]}]}
+
+        search._post = fake_post
+        result = search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
+        self.assertEqual(captured["tools"], [{"type": "web_search_20250305", "name": "web_search", "max_uses": 3}])
+        self.assertEqual([item["url"] for item in result["candidates"]],
+                         ["https://conf.example/awards", "https://publisher.example/paper"])
+        self.assertEqual(result["token_usage"]["provider"], "deepseek")
+        self.assertEqual(result["token_usage"]["model"], "deepseek-flash")
+        self.assertEqual(result["token_usage"]["total_tokens"], 50)
+        self.assertEqual(result["token_usage"]["web_search_requests"], 1)
+
+    def test_deepseek_search_posts_only_to_official_anthropic_endpoint(self):
+        search = DeepSeekAnthropicWebSearch(api_key="current-key", base_url="https://api.deepseek.com", model="deepseek-flash")
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b'{"type":"message"}'
+        opener = MagicMock()
+        opener.open.return_value = response
+        with patch("ccf_awards.discovery.urllib.request.build_opener", return_value=opener):
+            self.assertEqual(search._post({"model": "deepseek-flash"})["type"], "message")
+        request = opener.open.call_args.args[0]
+        self.assertEqual(request.full_url, "https://api.deepseek.com/anthropic/v1/messages")
+        self.assertEqual(request.get_header("X-api-key"), "current-key")
+        self.assertNotIn("Authorization", request.headers)
+
+    def test_zhipu_search_uses_current_model_and_structured_tool_sources(self):
+        search = ZhipuWebSearch(api_key="current-key", base_url="https://open.bigmodel.cn/api/paas/v4", model="glm-4.6")
+        captured = {}
+
+        def fake_post(body):
+            captured.update(body)
+            return {"usage": {"prompt_tokens": 12, "completion_tokens": 4}, "choices": [{"message": {
+                "content": "An uncited answer is not a source",
+                "tool_calls": [{"type": "web_search", "search_result": [
+                    {"link": "https://conf.example/awards", "title": "Awards"},
+                    {"link": "https://conf.example/awards", "title": "Duplicate"},
+                ]}],
+            }}]}
+
+        search._post = fake_post
+        result = search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
+        self.assertEqual(captured["model"], "glm-4.6")
+        self.assertEqual(captured["tools"][0]["type"], "web_search")
+        self.assertTrue(captured["tools"][0]["web_search"]["search_result"])
+        self.assertEqual(result["candidates"], [{"url": "https://conf.example/awards", "title": "Awards"}])
+        self.assertEqual(result["token_usage"]["provider"], "zhipu")
+        search._post = lambda _: {"choices": [{"message": {"content": "https://invented.example"}}]}
+        with self.assertRaisesRegex(ValueError, "未返回可核验"):
+            search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
+
+    def test_deepseek_search_requires_real_tool_results_even_if_text_has_url(self):
+        search = DeepSeekAnthropicWebSearch(api_key="key", base_url="https://api.deepseek.com", model="deepseek-flash")
+        search._post = lambda _: {"type": "message", "stop_reason": "end_turn",
+                                  "usage": {"input_tokens": 3, "output_tokens": 4},
+                                  "content": [{"type": "text", "text": "https://made-up.example/awards"}]}
+        with self.assertRaisesRegex(ValueError, "未实际调用"):
+            search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
+        self.assertEqual(search.last_usage["total_tokens"], 7)
 
     def test_autonomous_candidates_continue_when_one_page_fails(self):
         source = {

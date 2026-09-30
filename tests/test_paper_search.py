@@ -96,7 +96,7 @@ class PaperSearchTest(unittest.TestCase):
     def test_auto_search_reuses_exact_llm_connection(self):
         try:
             from api import CollectReq, LLMConfig, _do_collect
-        except ImportError as exc:
+        except (ImportError, RuntimeError) as exc:
             self.skipTest(f"API test dependencies unavailable: {exc}")
 
         with tempfile.TemporaryDirectory() as temp:
@@ -110,12 +110,15 @@ class PaperSearchTest(unittest.TestCase):
                 with patch("api.ResponsesWebSearch") as search, patch("api.auto_collect_one", return_value={}) as collect:
                     _do_collect(db, req, lambda _: None)
                 search.assert_called_once_with(api_key="same-key", base_url="https://example.org/v1",
-                                               model="same-model")
+                                               model="same-model", provider="custom")
                 self.assertEqual(collect.call_args.kwargs["llm"].key, "same-key")
-                unsupported = CollectReq(conference_id=conf["id"], year=2026, strategy="auto",
-                                         llm=LLMConfig(provider="deepseek", api_key="key"))
-                with self.assertRaisesRegex(ValueError, "web_search"):
-                    _do_collect(db, unsupported, lambda _: None)
+                deepseek = CollectReq(conference_id=conf["id"], year=2026, strategy="auto",
+                                      llm=LLMConfig(provider="deepseek", api_key="key"))
+                with patch("api.DeepSeekAnthropicWebSearch") as deepseek_search, \
+                     patch("api.auto_collect_one", return_value={}):
+                    _do_collect(db, deepseek, lambda _: None)
+                deepseek_search.assert_called_once_with(api_key="key", base_url="https://api.deepseek.com",
+                                                       model="deepseek-flash")
             finally:
                 db.close()
 

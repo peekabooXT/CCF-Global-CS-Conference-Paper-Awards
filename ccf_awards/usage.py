@@ -29,6 +29,9 @@ def normalize_usage(response, provider=None, model=None):
     output_details = usage.get("output_tokens_details") or usage.get("completion_tokens_details") or {}
     optional = {
         "cached_input_tokens": _token(input_details.get("cached_tokens")),
+        "cache_read_input_tokens": _token(usage.get("cache_read_input_tokens")),
+        "cache_creation_input_tokens": _token(usage.get("cache_creation_input_tokens")),
+        "web_search_requests": _token((usage.get("server_tool_use") or {}).get("web_search_requests")),
         "reasoning_output_tokens": _token(output_details.get("reasoning_tokens")),
         "cache_hit_input_tokens": _token(usage.get("prompt_cache_hit_tokens")),
         "cache_miss_input_tokens": _token(usage.get("prompt_cache_miss_tokens")),
