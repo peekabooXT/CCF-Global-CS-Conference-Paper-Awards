@@ -32,7 +32,7 @@ PROVIDER_PROFILES = {
         "key_env": "ZHIPUAI_API_KEY",
     },
     "custom": {
-        "label": "OpenAI Chat Completions 兼容/自定义",
+        "label": "中转站／自定义 OpenAI 兼容接口",
         "base_url": "",
         "model": "",
         "key_env": "LLM_API_KEY",

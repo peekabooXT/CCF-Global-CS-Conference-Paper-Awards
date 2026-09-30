@@ -11,6 +11,46 @@ from ccf_awards.llm import LLM
 
 
 class BatchCollectCoreTest(unittest.TestCase):
+    def test_server_retains_per_batch_task_limit(self):
+        try:
+            from api import BatchCollectReq, LLMConfig, SeedLookupReq, _do_batch_collect, lookup_seeds
+        except ImportError as exc:
+            self.skipTest(f"API test dependencies unavailable: {exc}")
+        with self.assertRaisesRegex(ValueError, "100"):
+            lookup_seeds(SeedLookupReq(conference_ids=["a", "b"], years=list(range(1950, 2001))))
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                ids = [row["id"] for row in db.conferences()[:101]]
+                req = BatchCollectReq(conference_ids=ids, years="2025", strategy="auto",
+                                      llm=LLMConfig(provider="custom", api_key="key",
+                                                    base_url="https://example.org/v1", model="model"))
+                with self.assertRaisesRegex(ValueError, "100"):
+                    _do_batch_collect(db, req, lambda _: None)
+            finally:
+                db.close()
+
+    def test_lookup_saved_urls_for_selected_targets(self):
+        try:
+            from api import SeedLookupReq, lookup_seeds
+        except ImportError as exc:
+            self.skipTest(f"API test dependencies unavailable: {exc}")
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "test.sqlite3"
+            db = Database(path)
+            db.init()
+            aaai = db.resolve("AAAI")["id"]
+            acl = db.resolve("ACL")["id"]
+            db.add_seed(aaai, 2025, "https://example.org/aaai-2025")
+            db.add_seed(aaai, 2025, "https://example.org/another-page")
+            db.close()
+            with patch("api.get_db", side_effect=lambda: Database(path)):
+                result = lookup_seeds(SeedLookupReq(conference_ids=[aaai, acl], years=[2025]))
+            self.assertEqual(len(result["items"]), 2)
+            self.assertEqual(len(result["items"][0]["urls"]), 2)
+            self.assertEqual(result["items"][1]["urls"], [])
+
     def test_selected_award_scopes_search_and_extraction_prompts(self):
         conference = {"id": "example", "acronym": "EX", "full_name": "Example Conference"}
         llm = LLM(provider="custom", api_key="key", base_url="https://example.org/v1", model="model")

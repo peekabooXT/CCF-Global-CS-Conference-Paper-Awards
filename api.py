@@ -269,6 +269,30 @@ class AddSeedReq(BaseModel):
     url: str
 
 
+class SeedLookupReq(BaseModel):
+    conference_ids: list[str]
+    years: list[int]
+
+
+@app.post("/api/seeds/lookup")
+def lookup_seeds(req: SeedLookupReq):
+    ids = list(dict.fromkeys(req.conference_ids))
+    years = list(dict.fromkeys(req.years))
+    if not ids or not years or len(ids) * len(years) > 100:
+        raise ValueError("请选择会议和年份；一次最多查询 100 个会议×年份入口")
+    if any(type(year) is not int or not 1900 <= year <= 2200 for year in years):
+        raise ValueError("年份必须在 1900–2200 之间")
+    db = get_db()
+    try:
+        known = {conf["id"] for conf in db.conferences()}
+        if any(cid not in known for cid in ids):
+            raise ValueError("包含未知会议")
+        return {"items": [{"conference_id": cid, "year": year, "urls": db.seeds(cid, year)}
+                          for cid in ids for year in years]}
+    finally:
+        db.close()
+
+
 @app.post("/api/seeds")
 def add_seed(req: AddSeedReq):
     db = get_db()

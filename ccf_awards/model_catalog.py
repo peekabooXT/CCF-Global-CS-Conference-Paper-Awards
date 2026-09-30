@@ -4,14 +4,19 @@ import urllib.error
 import urllib.request
 from urllib.parse import urlsplit
 
-from .network import NoRedirect
+from .network import NoRedirect, public_url
 from .providers import provider_profile
 
 
 def _catalog_url(provider, base_url):
     provider, profile = provider_profile(provider)
     if provider == "custom":
-        raise ValueError("自定义服务请手动填写模型 ID")
+        base = (base_url or "").rstrip("/")
+        parts = urlsplit(base)
+        if parts.scheme != "https" or parts.port not in (None, 443) or parts.query or parts.fragment:
+            raise ValueError("中转站 API 地址须为不带参数的公共 HTTPS 地址；例如 https://relay.example/v1")
+        public_url(base)
+        return base + "/models"
     base = (base_url or profile["base_url"]).rstrip("/")
     parts = urlsplit(base)
     host = (parts.hostname or "").lower()

@@ -115,6 +115,9 @@ Return a short answer with the strongest official pages."""
         if self.provider in ("bailian", "qwen") and not any(
                 item.get("type") == "web_search_call" for item in response.get("output", [])):
             raise ValueError("当前百炼模型未执行网页搜索；请换支持 Responses web_search 的模型或使用已有网址")
+        if self.provider == "custom" and not any(
+                item.get("type") == "web_search_call" for item in response.get("output", [])):
+            raise ValueError("中转站未执行 Responses web_search；请换支持网页搜索的模型，或使用各会议年度已保存网址")
         return {
             "conference_id": conference["id"],
             "conference": conference["acronym"],

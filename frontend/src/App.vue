@@ -21,7 +21,7 @@ const providers = [
   { id: 'bailian', label: '阿里云百炼', base: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen3.8-max', models: ['qwen3.8-max', 'qwen3.7-max', 'qwen3.5-plus'] },
   { id: 'qwen', label: '阿里千问（百炼 API）', base: 'https://dashscope.aliyuncs.com/compatible-mode/v1', model: 'qwen3.8-max', models: ['qwen3.8-max', 'qwen3.8-flash', 'qwen3.7-plus'] },
   { id: 'zhipu', label: '智谱 GLM', base: 'https://open.bigmodel.cn/api/paas/v4', model: 'glm-4.6', models: ['glm-5.1', 'glm-5', 'glm-4.7', 'glm-4.6'] },
-  { id: 'custom', label: '自定义兼容接口', base: '', model: '', models: [] },
+  { id: 'custom', label: '中转站／自定义 OpenAI 兼容接口', base: '', model: '', models: [] },
 ]
 const defaultAiSettings = {
   llm: { provider: 'deepseek', base_url: 'https://api.deepseek.com', model: 'deepseek-flash', api_key: '', json_mode: true },
@@ -143,7 +143,7 @@ onMounted(boot)
 
     <el-dialog v-model="settingsDialogVisible" title="LLM 连接" width="760px" class="ai-settings-dialog">
       <p class="settings-hint">配置只保存在当前浏览器标签页的会话中。切换功能页面或刷新后仍可继续使用，关闭标签页后自动清除。</p>
-      <p class="settings-hint">搜索与提取共用当前提供商的 Key 和模型；切换提供商会清空旧 Key。DeepSeek、OpenAI／百炼／千问、智谱分别使用其支持的网页搜索接口；不执行搜索或不返回来源的模型会明确报错。</p>
+      <p class="settings-hint">搜索与提取共用当前连接的 Key 和模型；切换提供商会清空旧 Key。使用非官方服务时请选择“中转站／自定义 OpenAI 兼容接口”。</p>
       <el-form label-position="top">
         <div class="settings-grid">
           <el-form-item label="提供商">
@@ -155,10 +155,10 @@ onMounted(boot)
             <el-select v-model="aiSettings.llm.model" filterable allow-create default-first-option style="width:100%" placeholder="选择或手动输入模型 ID">
               <el-option v-for="item in modelOptions" :key="item.id" :label="item.id + (item.live ? ` · ${item.name || '当前账户'}` : '')" :value="item.id" />
             </el-select>
-            <el-button size="small" text :loading="modelsLoading" @click="refreshModels">刷新当前账户模型</el-button>
+            <el-button size="small" text :loading="modelsLoading" @click="refreshModels">读取此连接可用模型</el-button>
           </el-form-item>
           <el-form-item label="API 地址" class="settings-full">
-            <el-input v-model="aiSettings.llm.base_url" placeholder="https://api.deepseek.com" />
+            <el-input v-model="aiSettings.llm.base_url" :placeholder="aiSettings.llm.provider === 'custom' ? 'https://你的中转站域名/v1' : currentProvider.base" />
           </el-form-item>
           <el-form-item label="API Key" class="settings-full">
             <el-input v-model="aiSettings.llm.api_key" type="password" show-password autocomplete="new-password" />
@@ -168,7 +168,9 @@ onMounted(boot)
       </el-form>
       <el-alert v-if="(aiSettings.llm.base_url || 'https://api.deepseek.com').includes('api.deepseek.com') && aiSettings.llm.provider === 'deepseek'" type="warning" :closable="false" show-icon title="使用 DeepSeek 官方连接自动搜索时，搜索和提取都向当前 DeepSeek Key 计费；搜索可能额外产生模型 Token 费用。批量采集会逐项调用。" />
       <el-alert v-if="aiSettings.llm.provider === 'zhipu'" type="info" :closable="false" show-icon title="智谱自动搜索使用当前模型的 web_search 工具；部分 GLM 模型可能不支持，请以实际返回的来源为准，也可改用已有官网网址。" />
-      <p class="settings-hint">模型预设仅供快速选择，不保证当前账户已开通或支持网页搜索；可刷新账户列表，也可直接手填模型 ID。百炼和千问使用同一阿里云百炼 Key。</p>
+      <el-alert v-if="aiSettings.llm.provider === 'custom'" type="info" :closable="false" show-icon title="中转站需提供 OpenAI 兼容的 /chat/completions 接口用于提取。自动搜索还需同一地址提供 Responses /responses 的 web_search 工具并返回可核验来源；如果不支持，请在采集页选择“使用各会议年度已保存网址”。" />
+      <p v-if="aiSettings.llm.provider === 'custom'" class="settings-hint">填写中转站的公共 HTTPS 基础地址（通常以 /v1 结尾，不要填 /chat/completions）、该站发放的 Key 和模型 ID。可尝试读取 /models；若中转站不提供模型列表，仍可手动输入模型。JSON 模式不兼容时可取消勾选。</p>
+      <p class="settings-hint">模型预设仅供快速选择，不保证当前账户已开通或支持网页搜索；可读取账户列表，也可直接手填模型 ID。百炼和千问使用同一阿里云百炼 Key。</p>
 
       <template #footer>
         <el-button type="primary" @click="settingsDialogVisible = false">完成</el-button>

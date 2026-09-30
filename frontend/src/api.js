@@ -22,6 +22,7 @@ export const api = {
 
   seedStats: () => http.get('/seed-stats').then(r => r.data),
   seeds: (cid, year) => http.get(`/seeds/${cid}/${year}`).then(r => r.data),
+  lookupSeeds: (conferenceIds, years) => http.post('/seeds/lookup', { conference_ids: conferenceIds, years }).then(r => r.data),
   addSeed: (body) => http.post('/seeds', body).then(r => r.data),
 
   importJson: (body) => http.post('/import', body).then(r => r.data),

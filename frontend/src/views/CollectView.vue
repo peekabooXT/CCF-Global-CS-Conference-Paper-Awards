@@ -1,7 +1,8 @@
 <script setup>
-import { ref, reactive, computed, onMounted, nextTick } from 'vue'
+import { ref, reactive, computed, onMounted, nextTick, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { api, errMsg, collectStream, collectBatchStream, collectFilesStream } from '../api.js'
+import { api, errMsg, collectBatchStream, collectFilesStream } from '../api.js'
+import { planCollectionBatches } from '../collectionBatches.js'
 
 const props = defineProps({
   meta: { type: Object, required: true },
@@ -43,9 +44,6 @@ const stats = ref(null)
 const form = reactive({
   conference_id: null,
   year: today,
-  strategy: 'auto',          // auto | urls
-  urls: '',
-  extra_urls: '',
   max_pages: 4,
 })
 const batch = reactive({
@@ -55,23 +53,121 @@ const batch = reactive({
 const batchRunning = ref(false)
 const batchResult = ref(null)
 const batchTasks = ref([])
-function parseBatchYears(value) {
-  const years = new Set()
-  for (const part of String(value || '').split(/[,，;；\s]+/).filter(Boolean)) {
-    const match = part.match(/^(\d{4})(?:[-–—~至](\d{4}))?$/)
-    if (!match) throw new Error(`无法识别年份：${part}；示例：2022-2026, 2020`)
-    const start = Number(match[1])
-    const end = Number(match[2] || match[1])
-    if (start < 1900 || end > 2200 || start > end) throw new Error(`年份区间不正确：${part}`)
-    for (let year = start; year <= end; year++) years.add(year)
-  }
-  if (!years.size || years.size > 20) throw new Error('请选择 1–20 个年份')
-  return [...years].sort((a, b) => b - a)
-}
-const batchTaskCount = computed(() => {
-  try { return batch.conference_ids.length * parseBatchYears(batch.years).length }
-  catch { return 0 }
+const PLAN_KEY = 'ccf-awards-collection-plan'
+const batchPlan = ref(null)
+const nextBatchIndex = ref(0)
+const planProgress = reactive({ completed: 0, failed: 0 })
+const batchUncertain = ref(false)
+const draftPlan = computed(() => {
+  try { return planCollectionBatches(batch.conference_ids, batch.years) }
+  catch { return null }
 })
+const currentChunk = computed(() => batchPlan.value
+  ? batchPlan.value.chunks[nextBatchIndex.value] || null
+  : draftPlan.value?.chunks[0] || null)
+const currentStrategy = computed(() => batchPlan.value?.strategy || batch.strategy)
+const totalTaskCount = computed(() => batchPlan.value?.totalTasks || draftPlan.value?.totalTasks || 0)
+const totalBatchCount = computed(() => batchPlan.value?.chunks.length || draftPlan.value?.chunks.length || 0)
+const planFinished = computed(() => !!batchPlan.value && nextBatchIndex.value >= batchPlan.value.chunks.length)
+function savePlanState(inFlight = false) {
+  try {
+    if (!batchPlan.value) sessionStorage.removeItem(PLAN_KEY)
+    else sessionStorage.setItem(PLAN_KEY, JSON.stringify({
+      version: 1,
+      plan: batchPlan.value, nextBatchIndex: nextBatchIndex.value,
+      progress: { ...planProgress }, inFlight,
+    }))
+  } catch { /* Browser privacy settings may disable session storage. */ }
+}
+function restorePlanState() {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(PLAN_KEY) || 'null')
+    if (saved?.version !== 1 || !saved.plan || !Array.isArray(saved.plan.chunks) ||
+        !Array.isArray(saved.plan.conference_ids) || !Array.isArray(saved.plan.award_types) ||
+        !['auto', 'urls'].includes(saved.plan.strategy) ||
+        !Number.isInteger(saved.plan.max_pages) || saved.plan.max_pages < 1 || saved.plan.max_pages > 20 ||
+        !Number.isInteger(saved.nextBatchIndex) || saved.nextBatchIndex < 0 ||
+        saved.nextBatchIndex > saved.plan.chunks.length ||
+        saved.plan.chunks.some(chunk => !Array.isArray(chunk.conference_ids) ||
+          !Array.isArray(chunk.yearNumbers) || !chunk.yearNumbers.length ||
+          chunk.yearNumbers.length > 20 || chunk.count !== chunk.conference_ids.length * chunk.yearNumbers.length ||
+          chunk.count < 1 || chunk.count > 100)) return
+    batchPlan.value = saved.plan
+    nextBatchIndex.value = saved.nextBatchIndex
+    planProgress.completed = saved.progress?.completed || 0
+    planProgress.failed = saved.progress?.failed || 0
+    batchUncertain.value = !!saved.inFlight
+    batch.conference_ids = [...saved.plan.conference_ids]
+    batch.years = saved.plan.yearText
+    batch.strategy = saved.plan.strategy
+    batch.max_pages = saved.plan.max_pages
+    batch.award_types = [...saved.plan.award_types]
+  } catch { /* Ignore a stale or unavailable session record. */ }
+}
+function refreshPlanState() {
+  restorePlanState()
+  loadRuns()
+  if (batchUncertain.value) ElMessage.info('此批仍未确认结束；请核对运行日志，避免重复调用')
+}
+async function resetBatchPlan() {
+  if (batchRunning.value) return
+  if (batchPlan.value && !planFinished.value) {
+    try {
+      await ElMessageBox.confirm('这会放弃尚未执行的批次；已完成的记录和运行日志不会删除。确定重新选择吗？',
+        '重新选择目标', { type: 'warning' })
+    } catch { return }
+  }
+  batchPlan.value = null
+  nextBatchIndex.value = 0
+  planProgress.completed = 0
+  planProgress.failed = 0
+  batchUncertain.value = false
+  batchResult.value = null
+  batchTasks.value = []
+  savePlanState()
+}
+const savedSeeds = ref([])
+const seedDrafts = reactive({})
+const seedLoading = ref(false)
+const savingSeed = ref('')
+const seedError = ref('')
+let seedRequestId = 0
+const seedKey = (cid, year) => `${cid}:${year}`
+async function loadSelectedSeeds() {
+  const requestId = ++seedRequestId
+  savedSeeds.value = []
+  seedError.value = ''
+  seedLoading.value = false
+  const chunk = currentChunk.value
+  if (currentStrategy.value !== 'urls' || !chunk) return
+  seedLoading.value = true
+  try {
+    const res = await api.lookupSeeds(chunk.conference_ids, chunk.yearNumbers)
+    if (requestId === seedRequestId) savedSeeds.value = res.items || []
+  } catch (e) {
+    if (requestId === seedRequestId) seedError.value = errMsg(e)
+  } finally {
+    if (requestId === seedRequestId) seedLoading.value = false
+  }
+}
+watch([currentStrategy, currentChunk], loadSelectedSeeds)
+
+async function saveTargetSeed(target) {
+  const key = seedKey(target.conference_id, target.year)
+  const urls = [...new Set((seedDrafts[key] || '').split(/\r?\n/).map(url => url.trim()).filter(Boolean))]
+  if (!urls.length) { ElMessage.warning('请先填写要保存的网址，每行一个'); return }
+  savingSeed.value = key
+  try {
+    for (const url of urls) {
+      await api.addSeed({ conference_id: target.conference_id, year: target.year, url })
+    }
+    seedDrafts[key] = ''
+    await loadSelectedSeeds()
+    await loadStats()
+    ElMessage.success(`${target.conference_id} ${target.year}：已保存 ${urls.length} 个网址`)
+  } catch (e) { ElMessage.error(errMsg(e)) }
+  finally { savingSeed.value = '' }
+}
 const batchTokenTotals = computed(() => batchTasks.value.reduce((total, task) => {
   const tokens = tokenTotals(task)
   total.search += tokens.searchTokens || 0
@@ -85,29 +181,72 @@ function updateBatchTask(task) {
 }
 async function runBatch() {
   if (running.value || batchRunning.value) return
+  if (batchUncertain.value) restorePlanState()
+  if (planFinished.value) { ElMessage.info('所有批次已完成；如需重新采集，请先重新选择目标'); return }
+  let plan = batchPlan.value
+  if (!plan) {
+    if (!batch.award_types.length) { ElMessage.warning('请至少选择一种奖项'); return }
+    if (!Number.isInteger(batch.max_pages) || batch.max_pages < 1 || batch.max_pages > 20) {
+      ElMessage.warning('每项最多页面应为 1–20'); return
+    }
+    try {
+      const { chunks, totalTasks } = planCollectionBatches(batch.conference_ids, batch.years)
+      plan = {
+        conference_ids: [...batch.conference_ids], yearText: batch.years,
+        strategy: batch.strategy, max_pages: batch.max_pages,
+        award_types: [...batch.award_types], chunks, totalTasks,
+      }
+    } catch (e) { ElMessage.warning(e.message); return }
+  }
+  const chunk = plan.chunks[nextBatchIndex.value]
+  if (!chunk) return
+  if (plan.strategy === 'urls') {
+    await loadSelectedSeeds()
+    if (seedError.value) { ElMessage.warning(seedError.value); return }
+    if (savedSeeds.value.length !== chunk.count) { ElMessage.warning('未能完整读取本批已保存网址，请刷新后再试'); return }
+    const missing = savedSeeds.value.filter(item => !item.urls.length)
+    if (missing.length) {
+      ElMessage.warning(`本批有 ${missing.length} 个会议年度尚未保存网址，请先在下方添加入口`)
+      return
+    }
+  }
   if (!llm.value.api_key) { ElMessage.warning('请先在“LLM 连接”中填写当前账户的 API Key'); return }
-  if (!batch.conference_ids.length) { ElMessage.warning('请至少选择一个会议'); return }
-  if (!batch.award_types.length) { ElMessage.warning('请至少选择一种奖项'); return }
-  let years
-  try { years = parseBatchYears(batch.years) }
-  catch (e) { ElMessage.warning(e.message); return }
-  const count = batch.conference_ids.length * years.length
-  if (count > 100) { ElMessage.warning('一次最多执行 100 个会议×年份任务'); return }
+  if (batchUncertain.value) {
+    try {
+      await ElMessageBox.confirm('上一批连接曾中断，可能已有部分任务在服务器完成。请先查看运行日志；重试本批可能产生重复调用及费用。仍要重试吗？',
+        '确认重试', { type: 'warning', confirmButtonText: '仍要重试', cancelButtonText: '取消' })
+    } catch { return }
+  }
   try {
     const account = llm.value.provider === 'deepseek' && (llm.value.base_url || 'https://api.deepseek.com').includes('api.deepseek.com')
       ? '当前 DeepSeek Key（搜索走 Anthropic 兼容接口）' : `当前 ${llm.value.provider || 'LLM'} 连接`
-    await ElMessageBox.confirm(`将依次执行 ${count} 个独立采集任务。搜索与提取均使用${account}，搜索可能产生额外 Token 费用；失败任务不会中断其余任务。确定开始吗？`,
-      '确认批量采集', { type: 'warning', confirmButtonText: '开始采集', cancelButtonText: '取消' })
+    await ElMessageBox.confirm(`计划共 ${plan.totalTasks} 项，分 ${plan.chunks.length} 批。本次只执行第 ${nextBatchIndex.value + 1} 批的 ${chunk.count} 项（每项最多 ${plan.max_pages} 页）；完成后不会自动开始下一批。搜索与提取使用${account}，可能产生 Token 费用。确定开始本批吗？`,
+      '逐批确认采集', { type: 'warning', confirmButtonText: '开始本批', cancelButtonText: '取消' })
   } catch { return }
+  if (!batchPlan.value) batchPlan.value = plan
+  batchUncertain.value = false
+  savePlanState(true)
   batchRunning.value = true
   batchResult.value = null
   batchTasks.value = []
   logLines.value = []
   try {
-    batchResult.value = await collectBatchStream({ ...batch, llm: { ...llm.value } }, pushLog, updateBatchTask)
-    ElMessage.success(`批量采集结束：完成 ${batchResult.value.completed}，失败 ${batchResult.value.failed}`)
+    batchResult.value = await collectBatchStream({
+      conference_ids: chunk.conference_ids, years: chunk.years,
+      strategy: plan.strategy, max_pages: plan.max_pages,
+      award_types: plan.award_types, llm: { ...llm.value },
+    }, pushLog, updateBatchTask)
+    planProgress.completed += batchResult.value.completed
+    planProgress.failed += batchResult.value.failed
+    nextBatchIndex.value++
+    savePlanState()
+    ElMessage.success(`本批结束：完成 ${batchResult.value.completed}，失败 ${batchResult.value.failed}。${planFinished.value ? '全部批次已结束。' : '下一批需再次确认。'}`)
     await loadRuns()
-  } catch (e) { ElMessage.error(errMsg(e)) }
+  } catch (e) {
+    batchUncertain.value = true
+    savePlanState(true)
+    ElMessage.error(`${errMsg(e)}；本批状态可能不确定，请核对运行日志后再重试`)
+  }
   finally { batchRunning.value = false }
 }
 async function exportBatchPapers() {
@@ -163,6 +302,7 @@ function exportRuns() {
 }
 
 onMounted(() => {
+  restorePlanState()
   loadStats()
   loadRuns()
 })
@@ -201,65 +341,11 @@ const historyRows = computed(() => runHistory.value.map(run => {
   }
 }))
 
-async function loadSeeds() {
-  if (!form.conference_id) return
-  try {
-    const res = await api.seeds(form.conference_id, form.year)
-    form.urls = res.urls.join('\n')
-  } catch (e) { ElMessage.error(errMsg(e)) }
-}
-
 // 把新日志追加并自动滚到底部
 async function pushLog(msg) {
   logLines.value.push(msg)
   await nextTick()
   if (logBox.value) logBox.value.scrollTop = logBox.value.scrollHeight
-}
-
-function baseBody() {
-  return {
-    conference_id: form.conference_id,
-    year: form.year,
-    strategy: form.strategy,
-    urls: form.urls.split('\n').map(s => s.trim()).filter(Boolean),
-    extra_urls: form.extra_urls.split('\n').map(s => s.trim()).filter(Boolean),
-    max_pages: form.max_pages,
-    llm: { ...llm.value },
-  }
-}
-
-async function runCollect() {
-  if (!form.conference_id) { ElMessage.warning('请先选择会议'); return }
-  if (!llm.value.api_key) { ElMessage.warning('请先在“LLM 连接”中填写当前账户的 API Key'); return }
-  if (form.strategy === 'auto') {
-    const account = llm.value.provider === 'deepseek' && (llm.value.base_url || 'https://api.deepseek.com').includes('api.deepseek.com')
-      ? '当前 DeepSeek Key（搜索走 Anthropic 兼容接口）' : `当前 ${llm.value.provider || 'LLM'} 连接`
-    try {
-      await ElMessageBox.confirm(`自动搜索与提取均使用${account}，搜索可能产生额外 Token 费用。确定开始吗？`,
-        '确认自动采集', { type: 'warning', confirmButtonText: '开始采集', cancelButtonText: '取消' })
-    } catch { return }
-  }
-  running.value = true
-  result.value = null
-  logLines.value = []
-  try {
-    result.value = await collectStream(baseBody(), pushLog)
-    ElMessage.success(`采集完成：新增 ${result.value?.inserted || 0} 条`)
-    await loadRuns()
-  } catch (e) {
-    ElMessage.error(errMsg(e))
-  } finally {
-    running.value = false
-  }
-}
-
-async function saveSeeds() {
-  const urls = form.urls.split('\n').map(s => s.trim()).filter(Boolean)
-  try {
-    for (const url of urls) await api.addSeed({ conference_id: form.conference_id, year: form.year, url })
-    ElMessage.success('年度入口已保存')
-    await loadStats()
-  } catch (e) { ElMessage.error(errMsg(e)) }
 }
 
 // 上传文件采集
@@ -329,37 +415,61 @@ async function onImportJson(e) {
     </el-row>
 
     <el-card shadow="never" class="batch-card">
-      <template #header><strong>批量查找获奖论文</strong></template>
-      <p class="hint">选择多个会议与年份，系统按“会议 × 年份”逐项采集；每项独立记录结果和 Token 用量。新增论文仍需按项目流程核验。</p>
+      <template #header><strong>查找获奖论文</strong></template>
+      <p class="hint">会议和年份可任意多选；系统按“会议 × 年份”拆为每批最多 100 项、最多 20 个年份。每批结束后由你确认才继续，绝不自动启动下一批。每项独立记录结果和 Token 用量。</p>
       <el-form inline class="batch-form">
         <el-form-item label="会议（可多选）">
-          <el-select v-model="batch.conference_ids" multiple filterable collapse-tags collapse-tags-tooltip
+          <el-select v-model="batch.conference_ids" multiple filterable collapse-tags collapse-tags-tooltip :disabled="!!batchPlan"
             placeholder="输入会议简称并多选" style="width: 370px">
             <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
           </el-select>
         </el-form-item>
         <el-form-item label="年份／区间">
-          <el-input v-model="batch.years" placeholder="例如 2022-2026, 2020" style="width: 245px" />
+          <el-input v-model="batch.years" :disabled="!!batchPlan" placeholder="例如 1990-2026, 2020" style="width: 245px" />
         </el-form-item>
         <el-form-item label="目标奖项">
-          <el-checkbox-group v-model="batch.award_types">
+          <el-checkbox-group v-model="batch.award_types" :disabled="!!batchPlan">
             <el-checkbox value="best_paper">最佳论文奖</el-checkbox>
             <el-checkbox value="best_student_paper">最佳学生论文奖</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
         <el-form-item label="采集方式">
-          <el-radio-group v-model="batch.strategy">
+          <el-radio-group v-model="batch.strategy" :disabled="!!batchPlan">
             <el-radio value="auto">自动搜索官网</el-radio>
             <el-radio value="urls">使用各会议年度已保存网址</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="每项最多页面">
-          <el-input-number v-model="batch.max_pages" :min="1" :max="20" controls-position="right" style="width: 115px" />
+          <el-input-number v-model="batch.max_pages" :min="1" :max="20" :disabled="!!batchPlan" controls-position="right" style="width: 115px" />
         </el-form-item>
       </el-form>
+      <div v-if="currentStrategy === 'urls' && currentChunk" class="seed-panel" v-loading="seedLoading">
+        <div class="seed-head">
+          <strong>本批已保存的会议年度网址（{{ currentChunk.count }} 项）</strong>
+          <el-button size="small" @click="loadSelectedSeeds">刷新网址</el-button>
+        </div>
+        <p class="hint">只展示当前待执行批次；后续批次在切换到该批时展示。缺少网址可直接添加并保存，保存不会调用 LLM。</p>
+        <el-alert v-if="seedError" type="error" :title="seedError" :closable="false" />
+        <div v-for="target in savedSeeds" :key="seedKey(target.conference_id, target.year)" class="seed-target">
+          <div class="seed-target-title">
+            <strong>{{ conferences.find(c => c.id === target.conference_id)?.acronym || target.conference_id }} · {{ target.year }}</strong>
+            <el-tag :type="target.urls.length ? 'success' : 'warning'" size="small">{{ target.urls.length ? `已保存 ${target.urls.length} 个网址` : '尚无网址' }}</el-tag>
+          </div>
+          <div v-if="target.urls.length" class="seed-links">
+            <a v-for="url in target.urls" :key="url" :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a>
+          </div>
+          <el-input v-model="seedDrafts[seedKey(target.conference_id, target.year)]" type="textarea" :rows="2" placeholder="添加官网／获奖页网址，每行一个" />
+          <el-button size="small" :loading="savingSeed === seedKey(target.conference_id, target.year)" :disabled="!!savingSeed" @click="saveTargetSeed(target)">保存网址</el-button>
+        </div>
+      </div>
+      <el-alert v-if="batchUncertain" type="warning" :closable="false" show-icon title="上一批连接中断，服务器可能已完成部分任务。请先查看运行日志；重试本批可能重复计费。" />
       <div class="batch-actions">
-        <span>预计 {{ batchTaskCount }} 个独立任务（单次上限 100）</span>
-        <el-button type="primary" :loading="batchRunning" :disabled="running" @click="runBatch">开始批量采集</el-button>
+        <span>共 {{ totalTaskCount }} 项、{{ totalBatchCount }} 批；每批单独确认</span>
+        <span v-if="batchPlan">已执行 {{ nextBatchIndex }} / {{ totalBatchCount }} 批；成功 {{ planProgress.completed }}，失败 {{ planProgress.failed }}</span>
+        <el-button v-if="!planFinished" type="primary" :loading="batchRunning" :disabled="running || seedLoading" @click="runBatch">{{ batchUncertain ? '核对后重试本批' : batchPlan ? '确认并继续下一批' : '确认并开始第一批' }}</el-button>
+        <el-tag v-else type="success">全部批次已结束</el-tag>
+        <el-button v-if="batchUncertain" @click="refreshPlanState">刷新计划状态与日志</el-button>
+        <el-button v-if="batchPlan" :disabled="batchRunning" @click="resetBatchPlan">重新选择目标</el-button>
       </div>
       <el-table v-if="batchTasks.length" :data="batchTasks" size="small" stripe class="batch-results">
         <el-table-column prop="conference" label="会议" width="100" />
@@ -371,7 +481,7 @@ async function onImportJson(e) {
         <el-table-column label="总 tokens" width="115"><template #default="scope">{{ formatTokens(tokenTotals(scope.row).totalTokens) }}</template></el-table-column>
         <el-table-column prop="error" label="说明" min-width="190" show-overflow-tooltip />
       </el-table>
-      <p v-if="batchResult" class="hint">完成 {{ batchResult.completed }} / {{ batchResult.total }}，失败 {{ batchResult.failed }}；搜索 {{ formatTokens(batchTokenTotals.search) }} tokens，提取 {{ formatTokens(batchTokenTotals.extraction) }} tokens。</p>
+      <p v-if="batchResult" class="hint">本批完成 {{ batchResult.completed }} / {{ batchResult.total }}，失败 {{ batchResult.failed }}；搜索 {{ formatTokens(batchTokenTotals.search) }} tokens，提取 {{ formatTokens(batchTokenTotals.extraction) }} tokens。</p>
       <div v-if="batchResult?.papers?.length" class="batch-papers">
         <div class="batch-paper-head"><strong>本批找到的论文（{{ batchResult.papers.length }}）</strong><el-button size="small" @click="exportBatchPapers">导出本批 CSV</el-button></div>
         <el-table :data="batchResult.papers" size="small" stripe max-height="340">
@@ -384,8 +494,8 @@ async function onImportJson(e) {
       </div>
     </el-card>
 
-    <el-divider>单个会议／年份采集与手动导入</el-divider>
-
+    <el-divider>上传文件采集（网页打不开时用）</el-divider>
+    <p class="hint">文件上传针对单个会议年度，独立于上方的网址采集任务。</p>
     <el-form inline class="bar">
       <el-form-item label="会议">
         <el-select
@@ -396,7 +506,6 @@ async function onImportJson(e) {
           :filter-method="filterConferences"
           style="width: 320px"
           @visible-change="onConferenceDropdown"
-          @change="loadSeeds"
         >
           <el-option v-for="c in filteredConferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id">
             <div class="conference-option">
@@ -408,35 +517,13 @@ async function onImportJson(e) {
         </el-select>
       </el-form-item>
       <el-form-item label="年份">
-        <el-input-number v-model="form.year" :min="1900" :max="2200" controls-position="right" style="width: 120px" @change="loadSeeds" />
-      </el-form-item>
-      <el-form-item label="采集方式">
-        <el-radio-group v-model="form.strategy">
-          <el-radio value="auto">自动搜索官网</el-radio>
-          <el-radio value="urls">使用已填网址</el-radio>
-        </el-radio-group>
+        <el-input-number v-model="form.year" :min="1900" :max="2200" controls-position="right" style="width: 120px" />
       </el-form-item>
       <el-form-item label="最多页面">
         <el-input-number v-model="form.max_pages" :min="1" :max="20" controls-position="right" style="width: 110px" />
       </el-form-item>
     </el-form>
 
-    <el-form-item label="官网/获奖页" class="block">
-      <el-input v-model="form.urls" type="textarea" :rows="3" placeholder="每行一个网址；切到该会议年份时会自动带出已保存入口" />
-    </el-form-item>
-    <el-form-item label="论文详情页" class="block">
-      <el-input v-model="form.extra_urls" type="textarea" :rows="2" placeholder="可选，补全作者单位和发表日期" />
-    </el-form-item>
-
-    <div class="actions">
-      <el-button type="primary" :loading="running" :disabled="batchRunning" @click="runCollect">开始采集</el-button>
-      <el-button @click="saveSeeds">仅保存入口</el-button>
-      <el-upload :show-file-list="false" :auto-upload="false" @change="onImportJson">
-        <el-button>导入 JSON</el-button>
-      </el-upload>
-    </div>
-
-    <el-divider>上传文件采集（网页打不开时用）</el-divider>
     <el-form inline>
       <el-form-item label="获奖页文件">
         <input type="file" accept=".txt,.html,.htm,.pdf" @change="onPickAward" />
@@ -454,6 +541,9 @@ async function onImportJson(e) {
         <el-button type="success" :loading="running" :disabled="batchRunning" @click="runFileCollect">上传并提取</el-button>
       </el-form-item>
     </el-form>
+    <el-upload :show-file-list="false" :auto-upload="false" @change="onImportJson">
+      <el-button>导入 JSON</el-button>
+    </el-upload>
 
     <!-- 实时滚动日志 -->
     <el-card shadow="never" class="logcard">
@@ -536,10 +626,14 @@ h2 { margin: 0; }
 .batch-results { margin-top: 18px; }
 .batch-papers { margin-top: 18px; }
 .batch-paper-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.seed-panel { margin: 6px 0 18px; padding: 16px; max-height: 520px; overflow-y: auto; border: 1px solid #dce5ef; border-radius: 6px; background: #f8fafc; }
+.seed-head, .seed-target-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.seed-panel .hint { margin: 8px 0 12px; }
+.seed-target { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 0; border-top: 1px solid #e4ebf2; }
+.seed-target-title, .seed-target :deep(.el-textarea) { width: 100%; }
+.seed-links { display: flex; flex-direction: column; gap: 4px; max-width: 100%; }
+.seed-links a { color: #246398; overflow-wrap: anywhere; }
 .bar { margin-bottom: 4px; }
-.block { display: flex; width: 100%; margin-bottom: 8px; }
-.block :deep(.el-form-item__label) { width: 110px; }
-.actions { margin: 12px 0; display: flex; gap: 8px; align-items: center; }
 .logcard { margin-top: 12px; }
 .logbox {
   height: 240px; overflow-y: auto; background: #0f1b2d;

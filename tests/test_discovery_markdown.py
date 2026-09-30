@@ -117,6 +117,19 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "未执行网页搜索"):
             search.discover({"id": "acl", "acronym": "ACL", "full_name": "ACL"}, 2026)
 
+    def test_relay_search_requires_real_responses_web_search(self):
+        search = ResponsesWebSearch(api_key="relay-key", base_url="https://relay.example/v1",
+                                    model="relay-model", provider="custom")
+        conf = {"id": "acl", "acronym": "ACL", "full_name": "ACL"}
+        search._post = lambda _: {"status": "completed", "output": [{"type": "message", "content": []}]}
+        with self.assertRaisesRegex(ValueError, "中转站未执行 Responses web_search"):
+            search.discover(conf, 2026)
+        search._post = lambda _: {"status": "completed", "output": [
+            {"type": "web_search_call", "action": {"sources": [
+                {"url": "https://conf.example/awards", "title": "Awards"}]}}]}
+        self.assertEqual(search.discover(conf, 2026)["candidates"][0]["url"],
+                         "https://conf.example/awards")
+
     def test_deepseek_search_uses_anthropic_tool_and_records_account(self):
         search = DeepSeekAnthropicWebSearch(api_key="current-key", base_url="https://api.deepseek.com", model="deepseek-flash")
         captured = {}
