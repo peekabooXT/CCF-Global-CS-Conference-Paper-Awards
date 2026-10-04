@@ -50,6 +50,16 @@ const batch = reactive({
   conference_ids: [], years: String(today), strategy: 'auto', max_pages: 4,
   award_types: ['best_paper', 'best_student_paper'],
 })
+const allConferencesSelected = computed(() =>
+  conferences.value.length > 0 && conferences.value.every(conference => batch.conference_ids.includes(conference.id)))
+function selectAllConferences() {
+  if (batchPlan.value) return
+  batch.conference_ids = conferences.value.map(conference => conference.id)
+}
+function clearConferences() {
+  if (batchPlan.value) return
+  batch.conference_ids = []
+}
 const batchRunning = ref(false)
 const batchResult = ref(null)
 const batchTasks = ref([])
@@ -556,10 +566,15 @@ async function onImportJson(e) {
       <p class="hint">会议和年份可任意多选；系统按“会议 × 年份”拆为每批最多 100 项、最多 20 个年份。每批结束后由你确认才继续，绝不自动启动下一批。每项独立记录结果和 Token 用量。</p>
       <el-form inline class="batch-form">
         <el-form-item label="会议（可多选）">
-          <el-select v-model="batch.conference_ids" multiple filterable collapse-tags collapse-tags-tooltip :disabled="!!batchPlan"
-            placeholder="输入会议简称并多选" style="width: 370px">
-            <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
-          </el-select>
+          <div class="batch-conference-picker">
+            <el-select v-model="batch.conference_ids" multiple filterable collapse-tags collapse-tags-tooltip :disabled="!!batchPlan"
+              placeholder="输入会议简称并多选" class="batch-conference-select">
+              <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
+            </el-select>
+            <el-button size="small" :disabled="!!batchPlan || allConferencesSelected || !conferences.length" @click="selectAllConferences">全选全部会议</el-button>
+            <el-button size="small" :disabled="!!batchPlan || !batch.conference_ids.length" @click="clearConferences">清空</el-button>
+            <span class="conference-selection-count">已选 {{ batch.conference_ids.length }} / {{ conferences.length }}</span>
+          </div>
         </el-form-item>
         <el-form-item label="年份／区间">
           <el-input v-model="batch.years" :disabled="!!batchPlan" placeholder="例如 1990-2026, 2020" style="width: 245px" />
@@ -784,6 +799,10 @@ h2 { margin: 0; }
 .metrics { margin: 12px 0; }
 .batch-card { margin: 18px 0 24px; }
 .batch-form { margin-top: 18px; }
+.batch-conference-picker { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.batch-conference-select { width: 370px; max-width: 100%; }
+.batch-conference-picker :deep(.el-button + .el-button) { margin-left: 0; }
+.conference-selection-count { color: #7e91a8; font-size: 12px; white-space: nowrap; }
 .batch-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; color: #62748a; font-size: 13px; }
 .batch-results { margin-top: 18px; }
 .batch-papers { margin-top: 18px; }
@@ -814,6 +833,6 @@ h2 { margin: 0; }
 .upload-card{margin:24px 0 16px;padding:25px;background:#fff;border:1px solid #dce8f5;border-radius:12px;box-shadow:0 7px 22px rgba(27,65,111,.045)}.upload-heading{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid #e8eff7}.section-eyebrow{font-size:11px;font-weight:750;color:#2680d9;letter-spacing:.12em}.upload-heading h3{margin:6px 0 4px;color:#173b66;font-size:20px}.upload-heading p{margin:0;color:#70839b;font-size:13px}.upload-format{white-space:nowrap;background:#edf6ff;color:#3776b1;padding:7px 10px;border-radius:6px;font-size:12px;font-weight:650}.upload-targets{display:grid;grid-template-columns:minmax(240px,2fr) repeat(2,minmax(120px,1fr));gap:16px;margin-top:20px}.upload-targets :deep(.el-select),.upload-targets :deep(.el-input-number){width:100%}.upload-form :deep(.el-form-item__label){color:#526b88;font-weight:650}.upload-sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:4px}.upload-source{padding:18px;border:1px solid #e0ebf6;border-radius:10px;background:#f8fbff}.source-heading{display:flex;align-items:center;gap:10px;margin-bottom:15px}.source-heading strong{display:block;color:#23476e;font-size:14px}.source-heading small{display:block;color:#8294a9;margin-top:3px}.source-heading em{font-size:11px;font-style:normal;color:#1d7ccc;background:#e7f3ff;padding:2px 6px;border-radius:4px}.source-heading em.optional{color:#6b819a;background:#edf2f8}.source-number{color:#4093de;font-weight:800;font-size:18px}.file-picker{position:relative;min-height:74px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;border:1px dashed #a9caec;border-radius:8px;background:white;color:#357bb5;font-size:13px;font-weight:650;overflow-wrap:anywhere;padding:10px;text-align:center}.file-picker:hover,.file-picker:focus-within{border-color:#1880dc;background:#f1f8ff}.picker-symbol{font-size:21px;line-height:1}.file-picker input,.json-picker input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip-path:inset(50%)}.upload-source .el-form-item{margin:13px 0 0}.upload-source :deep(.el-input){width:100%}.upload-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:19px}.upload-actions>span{color:#8a9ab0;font-size:12px}.json-picker{position:relative;display:inline-flex;align-items:center;justify-content:center;border:1px solid #d6e4f2;border-radius:6px;padding:9px 14px;color:#446b91;cursor:pointer;font-size:13px;background:#fff}.json-picker:hover,.json-picker:focus-within{border-color:#1880dc;color:#1880dc}
 .collapse-title{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:1;min-width:0;padding:0;border:0;background:none;text-align:left;color:#183c63;font-size:16px;font-weight:650;cursor:pointer}.collapse-title small{margin-left:9px;color:#8494a8;font-size:12px;font-weight:400}.collapse-chevron{display:inline-block;color:#7a93ad;font-size:21px;transition:transform .2s}.collapse-chevron.open{transform:rotate(180deg)}.history-head{gap:16px}.history-actions{flex-wrap:wrap}.logcard,.history{border-radius:10px;border-color:#dce8f5}.logcard :deep(.el-card__header),.history :deep(.el-card__header){padding:16px 19px}
 @media(max-width:900px){.upload-targets{grid-template-columns:repeat(2,minmax(0,1fr))}.upload-targets .el-form-item:first-child{grid-column:1/-1}.upload-sources,.review-columns,.confirm-columns{grid-template-columns:1fr}.history-head{align-items:stretch;flex-direction:column}.history-actions{justify-content:flex-start}}
-@media(max-width:600px){.upload-card{padding:16px}.upload-heading{flex-direction:column}.upload-targets{grid-template-columns:1fr;gap:0}.upload-targets .el-form-item:first-child{grid-column:auto}.upload-format{white-space:normal}.candidate-list>div{flex-direction:column;gap:2px}}
+@media(max-width:600px){.batch-conference-select{width:100%}.upload-card{padding:16px}.upload-heading{flex-direction:column}.upload-targets{grid-template-columns:1fr;gap:0}.upload-targets .el-form-item:first-child{grid-column:auto}.upload-format{white-space:normal}.candidate-list>div{flex-direction:column;gap:2px}}
 </style>
 
