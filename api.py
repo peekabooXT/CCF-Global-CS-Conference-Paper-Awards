@@ -224,6 +224,23 @@ def coverage(start: int = 2024, end: int = 2026, cid: Optional[str] = None):
         db.close()
 
 
+class CoverageQueryReq(BaseModel):
+    conference_ids: list[str]
+    years: str
+    offset: int = Field(default=0, ge=0)
+    limit: int = Field(default=100, ge=1, le=200)
+
+
+@app.post("/api/coverage/query")
+def query_coverage(req: CoverageQueryReq):
+    years = parse_years(req.years, max_years=301)
+    db = get_db()
+    try:
+        return db.coverage_report(req.conference_ids, years, offset=req.offset, limit=req.limit)
+    finally:
+        db.close()
+
+
 class MarkCoverageReq(BaseModel):
     conference_id: str
     year: int
@@ -231,13 +248,15 @@ class MarkCoverageReq(BaseModel):
     state: str
     url: str = ""
     note: str = ""
+    expected_count: Optional[int] = Field(default=None, ge=0, le=100000)
 
 
 @app.post("/api/mark-coverage")
 def mark_coverage(req: MarkCoverageReq):
     db = get_db()
     try:
-        db.mark_coverage(req.conference_id, req.year, req.award, req.state, req.url, req.note)
+        count = {"expected_count": req.expected_count} if "expected_count" in req.model_fields_set else {}
+        db.mark_coverage(req.conference_id, req.year, req.award, req.state, req.url, req.note, **count)
         return {"ok": True}
     finally:
         db.close()

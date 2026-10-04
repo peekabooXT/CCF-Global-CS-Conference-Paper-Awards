@@ -5,6 +5,8 @@ from pathlib import Path
 from .catalog import load_catalog
 from .model import norm, now, validate_bundle
 
+_UNSET = object()
+
 
 class Database:
     def __init__(self, path):
@@ -41,6 +43,9 @@ class Database:
         """)
         if "deleted_at" not in {row[1] for row in self.conn.execute("PRAGMA table_info(runs)")}:
             self.conn.execute("ALTER TABLE runs ADD COLUMN deleted_at TEXT")
+        if "expected_count" not in {row[1] for row in self.conn.execute("PRAGMA table_info(coverage)")}:
+            self.conn.execute("ALTER TABLE coverage ADD COLUMN expected_count INTEGER")
+            self.conn.execute("UPDATE coverage SET expected_count=0 WHERE state='not_offered'")
         from .award_events import init_schema
         init_schema(self.conn)
         from .source_listings import init_schema as init_source_listings
@@ -156,7 +161,7 @@ class Database:
                 (r["id"], cid, year, r["award_type"], r["title"], r["date_start"], r["date_end"],
                  payload, sources, now(), now()))
                 changes["updated" if old else "inserted"] += 1
-                self.conn.execute("UPDATE coverage SET state='partial',note=?,updated_at=? WHERE conference_id=? AND year=? AND award_type=?",
+                self.conn.execute("UPDATE coverage SET state='partial',note=?,updated_at=?,expected_count=CASE WHEN expected_count=0 THEN NULL ELSE expected_count END WHERE conference_id=? AND year=? AND award_type=?",
                                   ("新增或修改记录后，覆盖结论需要重新核对", now(), cid, year, r["award_type"]))
         return changes
 
@@ -210,34 +215,117 @@ class Database:
             self.conn.execute("UPDATE records SET status=?,reviewer=?,review_note=?,updated_at=? WHERE id=?",
                               (state, reviewer, note, now(), rid))
 
-    def mark_coverage(self, cid, year, award, state, url, note):
+    def mark_coverage(self, cid, year, award, state, url, note, expected_count=_UNSET):
         from .model import url_syntax
         url_syntax(url)
+        if type(year) is not int or not 1900 <= year <= 2200:
+            raise ValueError("年份必须在 1900–2200 之间")
+        if award not in ("best_paper", "best_student_paper"):
+            raise ValueError("奖项类别不正确")
+        if state not in ("not_started", "partial", "checked", "not_offered", "not_found"):
+            raise ValueError("覆盖状态不正确")
+        if not self.conn.execute("SELECT 1 FROM conferences WHERE id=?", (cid,)).fetchone():
+            raise ValueError("会议不存在")
         if state == "not_offered" and self.conn.execute("SELECT 1 FROM records WHERE conference_id=? AND year=? AND award_type=? AND status!='rejected' LIMIT 1", (cid, year, award)).fetchone():
             raise ValueError("已有未排除的获奖记录，不能标记该年度未设奖；请先核对记录")
+        if expected_count is _UNSET:
+            if state == "not_offered":
+                expected_count = 0
+            else:
+                existing = self.conn.execute("SELECT expected_count FROM coverage WHERE conference_id=? AND year=? AND award_type=?",
+                                             (cid, year, award)).fetchone()
+                expected_count = existing[0] if existing else None
+                if expected_count == 0:
+                    expected_count = None
+        if state == "not_offered":
+            if expected_count not in (None, 0):
+                raise ValueError("确认未设奖时，获奖总篇数必须为 0")
+            expected_count = 0
+        elif expected_count is not None and (type(expected_count) is not int or not 1 <= expected_count <= 100000):
+            raise ValueError("获奖总篇数应为正整数；未知时留空")
         with self.conn:
-            self.conn.execute("""INSERT INTO coverage VALUES (?,?,?,?,?,?,?)
+            self.conn.execute("""INSERT INTO coverage
+                (conference_id,year,award_type,state,evidence_url,note,updated_at,expected_count)
+                VALUES (?,?,?,?,?,?,?,?)
             ON CONFLICT(conference_id,year,award_type) DO UPDATE SET state=excluded.state,
-            evidence_url=excluded.evidence_url,note=excluded.note,updated_at=excluded.updated_at""",
-            (cid, year, award, state, url, note, now()))
+                evidence_url=excluded.evidence_url,note=excluded.note,updated_at=excluded.updated_at,
+                expected_count=excluded.expected_count""",
+            (cid, year, award, state, url, note, now(), expected_count))
 
     def coverage(self, start, end, cid=None):
+        if type(start) is not int or type(end) is not int or not 1900 <= start <= end <= 2200:
+            raise ValueError("年份范围必须在 1900–2200 之间，且开始年份不晚于结束年份")
+        return self.coverage_report([cid] if cid else None, range(start, end + 1), limit=None)["rows"]
+
+    def coverage_report(self, conference_ids, years, offset=0, limit=100):
+        """Return selected rows and a selection-wide rate only where award totals are known."""
+        catalog = self.conferences()
+        known_ids = {conf["id"] for conf in catalog}
+        if conference_ids is None:
+            selected = catalog
+        else:
+            ids = set(conference_ids)
+            if ids - known_ids:
+                raise ValueError("包含未知会议")
+            selected = [conf for conf in catalog if conf["id"] in ids]
+        year_numbers = sorted(set(years))
+        if any(type(year) is not int or not 1900 <= year <= 2200 for year in year_numbers):
+            raise ValueError("年份必须在 1900–2200 之间")
+        if type(offset) is not int or offset < 0 or (limit is not None and (type(limit) is not int or limit < 1)):
+            raise ValueError("分页参数不正确")
+        summary = dict(targets=2 * len(selected) * len(year_numbers), found_total=0,
+                       known_targets=0, unknown_targets=0, not_offered_targets=0,
+                       known_found=0, known_expected=0, over_expected_targets=0,
+                       coverage_rate=None)
+        if not selected or not year_numbers:
+            return {"rows": [], "total_rows": 0, "summary": summary}
+        ids = [conf["id"] for conf in selected]
+        placeholders = ",".join("?" for _ in ids)
+        bounds = [*ids, year_numbers[0], year_numbers[-1]]
+        decisions = {(row["conference_id"], row["year"], row["award_type"]): row
+                     for row in self.conn.execute(
+                         f"SELECT * FROM coverage WHERE conference_id IN ({placeholders}) AND year BETWEEN ? AND ?",
+                         bounds)}
+        counts_by_target = {}
+        for row in self.conn.execute(
+                f"""SELECT conference_id,year,award_type,status,COUNT(*) AS total
+                    FROM records WHERE conference_id IN ({placeholders}) AND year BETWEEN ? AND ?
+                    AND award_type IN ('best_paper','best_student_paper')
+                    GROUP BY conference_id,year,award_type,status""", bounds):
+            counts_by_target.setdefault((row["conference_id"], row["year"], row["award_type"]), {})[row["status"]] = row["total"]
         rows = []
-        for conf in self.conferences():
-            if cid and conf["id"] != cid:
-                continue
-            for year in range(start, end + 1):
+        index = 0
+        for conf in selected:
+            for year in year_numbers:
                 for award in ("best_paper", "best_student_paper"):
-                    state = self.conn.execute("SELECT * FROM coverage WHERE conference_id=? AND year=? AND award_type=?",
-                                              (conf["id"], year, award)).fetchone()
-                    counts = dict(self.conn.execute("SELECT status,COUNT(*) FROM records WHERE conference_id=? AND year=? AND award_type=? GROUP BY status",
-                                                    (conf["id"], year, award)).fetchall())
-                    effective = state["state"] if state else ("partial" if counts else "not_started")
-                    rows.append(dict(conference_id=conf["id"], acronym=conf["acronym"], rank=conf["rank"],
-                                     year=year, award_type=award, state=effective, counts=counts,
-                                     evidence_url=state["evidence_url"] if state else None,
-                                     note=state["note"] if state else None))
-        return rows
+                    key = (conf["id"], year, award)
+                    decision = decisions.get(key)
+                    counts = counts_by_target.get(key, {})
+                    found = counts.get("pending", 0) + counts.get("verified", 0)
+                    expected = decision["expected_count"] if decision else None
+                    summary["found_total"] += found
+                    if expected is None:
+                        summary["unknown_targets"] += 1
+                    elif expected == 0:
+                        summary["not_offered_targets"] += 1
+                    else:
+                        summary["known_targets"] += 1
+                        summary["known_found"] += found
+                        summary["known_expected"] += expected
+                        if found > expected:
+                            summary["over_expected_targets"] += 1
+                    if index >= offset and (limit is None or len(rows) < limit):
+                        rows.append(dict(conference_id=conf["id"], acronym=conf["acronym"], rank=conf["rank"],
+                                         year=year, award_type=award,
+                                         state=decision["state"] if decision else ("partial" if counts else "not_started"),
+                                         counts=counts, found_count=found, expected_count=expected,
+                                         coverage_rate=round(found / expected * 100, 1) if expected else None,
+                                         evidence_url=decision["evidence_url"] if decision else None,
+                                         note=decision["note"] if decision else None))
+                    index += 1
+        if summary["known_expected"]:
+            summary["coverage_rate"] = round(summary["known_found"] / summary["known_expected"] * 100, 1)
+        return {"rows": rows, "total_rows": summary["targets"], "summary": summary}
 
     def start_run(self, cid, year):
         with self.conn:

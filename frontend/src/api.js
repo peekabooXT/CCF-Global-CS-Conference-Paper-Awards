@@ -18,6 +18,7 @@ export const api = {
   review: (body) => http.post('/review', body).then(r => r.data),
 
   coverage: (q) => http.get('/coverage', { params: q }).then(r => r.data),
+  queryCoverage: (body) => http.post('/coverage/query', body).then(r => r.data),
   markCoverage: (body) => http.post('/mark-coverage', body).then(r => r.data),
 
   seedStats: () => http.get('/seed-stats').then(r => r.data),

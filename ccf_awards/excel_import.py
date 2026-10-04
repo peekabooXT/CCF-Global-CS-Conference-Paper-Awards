@@ -165,7 +165,9 @@ def import_excel(db, path):
                     for award_type, count_field in (("best_paper", "Best Paper记录数"), ("best_student_paper", "Best Student记录数")):
                         if int(row.get(count_field) or 0) <= 0:
                             continue
-                        db.conn.execute("""INSERT INTO coverage VALUES (?,?,?,?,?,?,?)
+                        db.conn.execute("""INSERT INTO coverage
+                            (conference_id,year,award_type,state,evidence_url,note,updated_at)
+                            VALUES (?,?,?,?,?,?,?)
                             ON CONFLICT(conference_id,year,award_type) DO UPDATE SET state=excluded.state,
                             evidence_url=excluded.evidence_url,note=excluded.note,updated_at=excluded.updated_at""",
                             (conference["id"], year, award_type, "partial", evidence_url, note, imported_at))
