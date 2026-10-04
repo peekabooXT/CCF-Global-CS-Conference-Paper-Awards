@@ -198,6 +198,15 @@ onMounted(boot)
 .ai-settings-dialog{max-width:calc(100vw - 32px)}
 :root{--el-text-color-placeholder:#65758a}
 @media(max-width:650px){.site-header nav{gap:0}.site-header nav button{padding:0 12px;font-size:14px}.utility-bar{justify-content:flex-start}.header-inner{padding-top:16px}.brand strong{font-size:20px}.settings-grid{grid-template-columns:1fr}.settings-full{grid-column:auto}}
+/* A calmer blue-and-white visual system, shared by the existing pages. */
+:root{--el-color-primary:#1476d4;--el-color-primary-light-3:#58a0e6;--el-color-primary-light-5:#8fc0ee;--el-color-primary-light-7:#c4def6;--el-color-primary-light-9:#eef7ff;--el-color-primary-dark-2:#0d5eaa;--el-border-color:#dce7f3}
+body{background:#f6f9fd}.site-header{border-top:0;border-bottom:1px solid #e3ecf6;box-shadow:0 2px 14px rgba(25,70,126,.035)}
+.header-inner{max-width:1600px;padding:16px 38px 0}.brand{margin-bottom:15px}.brand-mark{background:linear-gradient(135deg,#1584e6,#1054a9);border-radius:11px;width:45px;height:45px;box-shadow:0 6px 14px rgba(20,118,212,.18)}
+.brand strong{font-family:Inter,"Segoe UI","Microsoft YaHei",sans-serif;font-size:22px;letter-spacing:-.02em;color:#102f59}.brand small{letter-spacing:.02em;color:#7b8fa8}
+.site-header nav{border-top-color:#edf2f8;gap:12px}.site-header nav button{color:#607793;border-bottom-width:3px;border-radius:6px 6px 0 0}.site-header nav button:hover{color:#1476d4;background:#f6faff}.site-header nav button.active{color:#1167b6;border-bottom-color:#1782e5;background:#f3f9ff}
+.main-shell{max-width:1600px;padding:26px 38px 52px}.utility-bar{margin-bottom:18px}.utility-bar>span{color:#8a9ab0}.utility-bar .el-button{border-radius:8px}.workspace-panel{border-color:#dce7f3;border-radius:12px;box-shadow:0 7px 22px rgba(27,65,111,.035)}.site-footer{max-width:1600px}
+@media(max-width:760px){.header-inner{padding:15px 18px 0}.main-shell{padding:18px 14px 38px}.site-header nav{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.site-header nav button{min-height:44px;padding:0 10px}}
+@media(max-width:760px){.brand{min-width:0;max-width:100%;flex-shrink:1}.brand>span:last-child{min-width:0}.brand strong{font-size:17px;line-height:1.25;overflow-wrap:anywhere}.brand small{font-size:10px}.site-header nav{min-width:0;max-width:100%}}
 </style>
 
 
