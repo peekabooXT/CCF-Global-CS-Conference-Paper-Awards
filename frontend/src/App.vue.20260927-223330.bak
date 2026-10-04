@@ -44,7 +44,7 @@ onMounted(boot)
 <template>
   <el-container class="layout">
     <el-aside width="220px" class="aside">
-      <h2 class="title">🏆 Global CS Paper Awards</h2>
+      <h2 class="title">🏆 Global CS Paper Awards Agent</h2>
       <p class="subtitle">全球计算机顶级论文奖数据库</p>
       <el-menu v-model="active" class="menu" @select="(i) => (active = i)">
         <el-menu-item index="search">论文检索</el-menu-item>

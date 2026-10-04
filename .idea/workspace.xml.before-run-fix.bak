@@ -2,7 +2,7 @@
 <project version="4">
   <component name="RunManager">
     <configuration name="run_all" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Global-CS-Paper-Awards-main" />
+      <module name="Global-CS-Paper-Awards-Agent" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
