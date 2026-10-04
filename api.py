@@ -562,24 +562,61 @@ def demo():
         db.close()
 
 
+class RunDeletion(BaseModel):
+    started_from: str
+    started_to: str
+    conference_id: Optional[str] = None
+    status: Optional[str] = None
+    expected_count: int
+    through_id: int
+
+
 @app.get("/api/runs")
-def runs(limit: int = 50):
+def runs(limit: int = 50, started_from: Optional[str] = None, started_to: Optional[str] = None,
+         conference_id: Optional[str] = None, status: Optional[str] = None):
     db = get_db()
     try:
-        return {"runs": db.runs(limit)}
+        filters = dict(started_from=started_from, started_to=started_to,
+                       conference_id=conference_id, status=status)
+        return {"runs": db.runs(limit, **filters), "total": db.run_count(**filters)}
     finally:
         db.close()
 
 
 @app.get("/api/runs/export/csv")
-def export_runs_csv(limit: int = 500):
-    """Download recent persisted collection runs, including token usage."""
+def export_runs_csv(limit: Optional[int] = None, started_from: Optional[str] = None,
+                    started_to: Optional[str] = None, conference_id: Optional[str] = None,
+                    status: Optional[str] = None):
+    """Download matching collection runs, including token usage."""
     db = get_db()
     try:
+        filters = dict(started_from=started_from, started_to=started_to,
+                       conference_id=conference_id, status=status)
         return StreamingResponse(
-            iter([run_log_csv_bytes(db.runs(limit))]),
+            iter([run_log_csv_bytes(db.runs(limit, **filters))]),
             media_type="text/csv; charset=utf-8",
             headers={"Content-Disposition": "attachment; filename=ccf-awards-run-logs.csv"},
         )
+    finally:
+        db.close()
+
+
+@app.get("/api/runs/deletion-preview")
+def preview_run_deletion(started_from: str, started_to: str,
+                         conference_id: Optional[str] = None, status: Optional[str] = None):
+    db = get_db()
+    try:
+        return db.preview_run_deletion(started_from, started_to, conference_id, status)
+    finally:
+        db.close()
+
+
+@app.post("/api/runs/delete")
+def delete_runs(req: RunDeletion):
+    db = get_db()
+    try:
+        count = db.delete_runs(req.started_from, req.started_to, req.expected_count,
+                               req.through_id, req.conference_id, req.status)
+        return {"deleted": count}
     finally:
         db.close()

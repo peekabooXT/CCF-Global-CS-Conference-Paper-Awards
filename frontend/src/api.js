@@ -27,8 +27,10 @@ export const api = {
 
   importJson: (body) => http.post('/import', body).then(r => r.data),
   demo: () => http.post('/demo').then(r => r.data),
-  runs: (limit = 50) => http.get('/runs', { params: { limit } }).then(r => r.data),
-  runExportUrl: (limit = 500) => `/api/runs/export/csv?limit=${encodeURIComponent(limit)}`,
+  runs: (params = {}) => http.get('/runs', { params: { limit: 50, ...params } }).then(r => r.data),
+  runExportUrl: (params = {}) => `/api/runs/export/csv?${new URLSearchParams(params).toString()}`,
+  runDeletionPreview: (params) => http.get('/runs/deletion-preview', { params }).then(r => r.data),
+  deleteRuns: (body) => http.post('/runs/delete', body).then(r => r.data),
 }
 
 // 统一错误提示：后端返回 {detail: "..."}

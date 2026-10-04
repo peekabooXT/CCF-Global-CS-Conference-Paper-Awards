@@ -39,6 +39,8 @@ class Database:
           id INTEGER PRIMARY KEY, conference_id TEXT REFERENCES conferences(id),
           year INTEGER, started_at TEXT, finished_at TEXT, status TEXT, details TEXT);
         """)
+        if "deleted_at" not in {row[1] for row in self.conn.execute("PRAGMA table_info(runs)")}:
+            self.conn.execute("ALTER TABLE runs ADD COLUMN deleted_at TEXT")
         from .award_events import init_schema
         init_schema(self.conn)
         from .source_listings import init_schema as init_source_listings
@@ -223,12 +225,46 @@ class Database:
             self.conn.execute("UPDATE runs SET finished_at=?,status=?,details=? WHERE id=?",
                               (now(), status, json.dumps(details, ensure_ascii=False), run_id))
 
-    def runs(self, limit=50):
-        if type(limit) is not int or not 1 <= limit <= 500:
+    def _run_filter(self, started_from=None, started_to=None, conference_id=None, status=None):
+        bounds = []
+        for value in (started_from, started_to):
+            if value:
+                try:
+                    parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
+                    if parsed.tzinfo is None:
+                        raise ValueError()
+                    bounds.append(parsed.astimezone(dt.timezone.utc).isoformat(timespec="seconds"))
+                except (ValueError, TypeError):
+                    raise ValueError("时间范围必须为带时区的 ISO 时间") from None
+            else:
+                bounds.append(None)
+        if bounds[0] and bounds[1] and bounds[0] > bounds[1]:
+            raise ValueError("开始时间不得晚于结束时间")
+        where, args = ["r.deleted_at IS NULL"], []
+        if bounds[0]:
+            where.append("r.started_at >= ?")
+            args.append(bounds[0])
+        if bounds[1]:
+            where.append("r.started_at <= ?")
+            args.append(bounds[1])
+        if conference_id:
+            where.append("r.conference_id = ?")
+            args.append(conference_id)
+        if status:
+            where.append("r.status = ?")
+            args.append(status)
+        return " AND ".join(where), args
+
+    def runs(self, limit=50, started_from=None, started_to=None, conference_id=None, status=None):
+        if limit is not None and (type(limit) is not int or not 1 <= limit <= 500):
             raise ValueError("日志数量应在 1–500 之间")
-        rows = self.conn.execute("""SELECT r.*,c.acronym
-            FROM runs r JOIN conferences c ON c.id=r.conference_id
-            ORDER BY r.id DESC LIMIT ?""", (limit,)).fetchall()
+        where, args = self._run_filter(started_from, started_to, conference_id, status)
+        sql = """SELECT r.*,c.acronym FROM runs r JOIN conferences c ON c.id=r.conference_id
+            WHERE """ + where + " ORDER BY r.id DESC"
+        if limit is not None:
+            sql += " LIMIT ?"
+            args = [*args, limit]
+        rows = self.conn.execute(sql, args).fetchall()
         result = []
         for row in rows:
             details = json.loads(row["details"] or "{}")
@@ -238,3 +274,29 @@ class Database:
                            "duration_seconds": (finished - started).total_seconds()
                            if started and finished else None})
         return result
+
+    def run_count(self, started_from=None, started_to=None, conference_id=None, status=None):
+        where, args = self._run_filter(started_from, started_to, conference_id, status)
+        return self.conn.execute("SELECT COUNT(*) FROM runs r WHERE " + where, args).fetchone()[0]
+
+    def preview_run_deletion(self, started_from, started_to, conference_id=None, status=None):
+        if not started_from or not started_to:
+            raise ValueError("删除前必须选择完整的开始时间范围")
+        where, args = self._run_filter(started_from, started_to, conference_id, status)
+        row = self.conn.execute("SELECT COUNT(*),COALESCE(MAX(r.id),0) FROM runs r WHERE " + where + " AND r.status!='running'", args).fetchone()
+        return {"count": row[0], "through_id": row[1]}
+
+    def delete_runs(self, started_from, started_to, expected_count, through_id, conference_id=None, status=None):
+        if not started_from or not started_to:
+            raise ValueError("删除前必须选择完整的开始时间范围")
+        if type(expected_count) is not int or expected_count < 0 or type(through_id) is not int or through_id < 0:
+            raise ValueError("删除预览参数无效")
+        where, args = self._run_filter(started_from, started_to, conference_id, status)
+        where += " AND r.status!='running' AND r.id<=?"
+        args.append(through_id)
+        with self.conn:
+            count = self.conn.execute("SELECT COUNT(*) FROM runs r WHERE " + where, args).fetchone()[0]
+            if count != expected_count:
+                raise ValueError("匹配日志已变化，请重新预览后再删除")
+            self.conn.execute("UPDATE runs AS r SET deleted_at=? WHERE " + where, (now(), *args))
+        return count

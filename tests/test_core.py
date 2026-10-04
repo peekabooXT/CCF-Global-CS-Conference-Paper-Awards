@@ -82,6 +82,34 @@ class CoreTest(unittest.TestCase):
         self.assertGreaterEqual(row["duration_seconds"], 0)
         self.assertEqual(row["details"]["inserted"], 0)
 
+    def test_run_filters_and_confirmed_soft_deletion(self):
+        first = self.db.start_run(self.bundle["conference_id"], 2024)
+        self.db.finish_run(first, "failed", {"error": "test"})
+        running = self.db.start_run(self.bundle["conference_id"], 2025)
+        date = self.db.runs(2)[1]["started_at"][:10]
+        filters = {"started_from": f"{date}T00:00:00+00:00",
+                   "started_to": f"{date}T23:59:59+00:00",
+                   "status": "failed"}
+        self.assertEqual(self.db.run_count(**filters), 1)
+        self.assertEqual([row["id"] for row in self.db.runs(None, **filters)], [first])
+        preview = self.db.preview_run_deletion(filters["started_from"], filters["started_to"])
+        self.assertEqual(preview, {"count": 1, "through_id": first})
+        with self.assertRaisesRegex(ValueError, "已变化"):
+            self.db.delete_runs(filters["started_from"], filters["started_to"], 2, first)
+        self.assertEqual(self.db.delete_runs(filters["started_from"], filters["started_to"], 1, first), 1)
+        self.assertEqual([row["id"] for row in self.db.runs(None)], [running])
+        self.assertEqual(self.db.conn.execute("SELECT COUNT(*) FROM runs WHERE id=? AND deleted_at IS NOT NULL", (first,)).fetchone()[0], 1)
+        with self.assertRaisesRegex(ValueError, "完整"):
+            self.db.preview_run_deletion(None, filters["started_to"])
+
+    def test_run_schema_migrates_existing_database(self):
+        self.db.conn.execute("ALTER TABLE runs RENAME TO old_runs")
+        self.db.conn.execute("CREATE TABLE runs (id INTEGER PRIMARY KEY, conference_id TEXT, year INTEGER, started_at TEXT, finished_at TEXT, status TEXT, details TEXT)")
+        self.db.conn.commit()
+        self.db.close()
+        self.db = Database(self.path)
+        self.assertIn("deleted_at", [row[1] for row in self.db.conn.execute("PRAGMA table_info(runs)")])
+
     def test_discovery_failure_is_written_to_run_history(self):
         class FailingSearch:
             def discover(self, conference, year, limit):

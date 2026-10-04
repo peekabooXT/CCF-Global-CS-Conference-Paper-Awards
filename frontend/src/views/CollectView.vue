@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed, onMounted, nextTick, watch } from 'vue'
+import { ref, reactive, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { api, errMsg, collectBatchStream, collectFilesStream } from '../api.js'
 import { planCollectionBatches } from '../collectionBatches.js'
@@ -271,6 +271,24 @@ const logBox = ref(null)
 const runHistory = ref([])
 const historyLoading = ref(false)
 const historyError = ref('')
+const historyTotal = ref(0)
+const historyDates = ref([])
+const historyConference = ref('')
+const historyStatus = ref('')
+const deletingRuns = ref(false)
+let historyTimer
+let historyRequest = 0
+
+function runFilters() {
+  const filters = {}
+  if (historyDates.value?.length === 2) {
+    filters.started_from = new Date(Number(historyDates.value[0])).toISOString()
+    filters.started_to = new Date(Number(historyDates.value[1])).toISOString()
+  }
+  if (historyConference.value) filters.conference_id = historyConference.value
+  if (historyStatus.value) filters.status = historyStatus.value
+  return filters
+}
 
 // 文件上传
 const fileForm = reactive({ award_file: null, award_url: '', metadata_file: null, metadata_url: '' })
@@ -279,32 +297,76 @@ async function loadStats() {
   try { stats.value = await api.seedStats() } catch (e) { /* 忽略 */ }
 }
 
-async function loadRuns() {
-  historyLoading.value = true
-  historyError.value = ''
+async function loadRuns(silent = false) {
+  const request = ++historyRequest
+  if (!silent) historyLoading.value = true
   try {
-    const res = await api.runs(50)
+    const res = await api.runs(runFilters())
+    if (request !== historyRequest) return
     runHistory.value = res.runs || []
+    historyTotal.value = res.total || 0
+    historyError.value = ''
   } catch (e) {
-    historyError.value = errMsg(e)
+    if (request === historyRequest) historyError.value = errMsg(e)
   } finally {
-    historyLoading.value = false
+    if (request === historyRequest) historyLoading.value = false
   }
 }
 
-function exportRuns() {
+function exportRuns(scope = 'all') {
   const link = document.createElement('a')
-  link.href = api.runExportUrl(500)
+  link.href = api.runExportUrl({ ...runFilters(), ...(scope === 'recent' ? { limit: 50 } : {}) })
   link.download = ''
   document.body.appendChild(link)
   link.click()
   link.remove()
 }
 
+async function deleteRunRange() {
+  const filters = runFilters()
+  if (!filters.started_from || !filters.started_to) {
+    ElMessage.warning('请先选择完整的开始时间范围，再删除日志')
+    return
+  }
+  deletingRuns.value = true
+  try {
+    const preview = await api.runDeletionPreview(filters)
+    if (!preview.count) {
+      ElMessage.info('该范围内没有可删除的已结束任务日志')
+      return
+    }
+    await ElMessageBox.confirm(
+      `将移除 ${preview.count} 条匹配的已结束任务日志。不会删除获奖论文或正在运行的任务。建议先导出 CSV 备份。`,
+      '确认删除日志', { type: 'warning', confirmButtonText: '删除日志', cancelButtonText: '取消' }
+    )
+    const result = await api.deleteRuns({ ...filters, expected_count: preview.count, through_id: preview.through_id })
+    ElMessage.success(`已移除 ${result.deleted} 条日志`)
+    await loadRuns()
+  } catch (e) {
+    if (e !== 'cancel' && e !== 'close') ElMessage.error(errMsg(e))
+  } finally {
+    deletingRuns.value = false
+  }
+}
+
+watch([historyDates, historyConference, historyStatus], () => loadRuns())
+
+function refreshVisibleRuns() {
+  if (document.visibilityState === 'visible' && !historyLoading.value && !deletingRuns.value) loadRuns(true)
+}
+
 onMounted(() => {
   restorePlanState()
   loadStats()
   loadRuns()
+  historyTimer = window.setInterval(refreshVisibleRuns, 3000)
+  document.addEventListener('visibilitychange', refreshVisibleRuns)
+})
+
+onUnmounted(() => {
+  window.clearInterval(historyTimer)
+  document.removeEventListener('visibilitychange', refreshVisibleRuns)
+  historyRequest++
 })
 
 function tokenTotals(details = {}) {
@@ -575,13 +637,33 @@ async function onImportJson(e) {
     <el-card shadow="never" class="history">
       <template #header>
         <div class="history-head">
-          <span>最近运行日志与 Token 用量</span>
+          <span>运行日志与 Token 用量 <small class="history-live">● 自动刷新（3 秒）</small></span>
           <div class="history-actions">
-            <el-button size="small" :disabled="!historyRows.length" @click="exportRuns">导出 CSV</el-button>
-            <el-button size="small" :loading="historyLoading" @click="loadRuns">刷新</el-button>
+            <el-dropdown split-button size="small" :disabled="!historyTotal" @click="exportRuns('all')" @command="exportRuns">
+              导出筛选范围 CSV
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="all">全部匹配记录</el-dropdown-item>
+                  <el-dropdown-item command="recent">最近 50 条匹配记录</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+            <el-button size="small" type="danger" plain :loading="deletingRuns" @click="deleteRunRange">按时间删除</el-button>
+            <el-button size="small" :loading="historyLoading" @click="loadRuns()">刷新</el-button>
           </div>
         </div>
       </template>
+      <div class="history-filters">
+        <span>开始时间</span>
+        <el-date-picker v-model="historyDates" type="datetimerange" value-format="x" start-placeholder="起始日期时间" end-placeholder="结束日期时间" range-separator="至" style="width:370px" />
+        <el-select v-model="historyConference" clearable filterable placeholder="全部会议" style="width:180px">
+          <el-option v-for="conference in conferences" :key="conference.id" :label="conferenceLabel(conference)" :value="conference.id" />
+        </el-select>
+        <el-select v-model="historyStatus" clearable placeholder="全部状态" style="width:145px">
+          <el-option v-for="status in ['running', 'extracted', 'partial', 'no_results', 'failed']" :key="status" :label="status" :value="status" />
+        </el-select>
+        <span class="hint">匹配 {{ historyTotal }} 条，表格显示最近 50 条；删除仅作用于当前筛选范围内已结束的日志。</span>
+      </div>
       <el-alert v-if="historyError" type="error" :title="historyError" :closable="false" />
       <el-table v-else-if="historyRows.length" :data="historyRows" v-loading="historyLoading" size="small" stripe>
         <el-table-column prop="id" label="任务" width="72" />
@@ -619,6 +701,8 @@ async function onImportJson(e) {
 <style scoped>
 h2 { margin: 0; }
 .hint { color: #8494a8; font-size: 13px; }
+.history-live { margin-left: 8px; color: #31946b; font-weight: normal; font-size: 12px; }
+.history-filters { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
 .metrics { margin: 12px 0; }
 .batch-card { margin: 18px 0 24px; }
 .batch-form { margin-top: 18px; }
