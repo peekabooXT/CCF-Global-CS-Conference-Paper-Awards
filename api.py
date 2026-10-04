@@ -269,6 +269,14 @@ class AddSeedReq(BaseModel):
     url: str
 
 
+class ReplaceSeedReq(BaseModel):
+    conference_id: str
+    year: int
+    expected_urls: list[str]
+    urls: list[str]
+    confirmed: bool = False
+
+
 class SeedLookupReq(BaseModel):
     conference_ids: list[str]
     years: list[int]
@@ -299,6 +307,18 @@ def add_seed(req: AddSeedReq):
     try:
         db.add_seed(req.conference_id, req.year, req.url)
         return {"ok": True}
+    finally:
+        db.close()
+
+
+@app.put("/api/seeds")
+def replace_seeds(req: ReplaceSeedReq):
+    if not req.confirmed:
+        raise ValueError("修改已保存网址前需要确认")
+    db = get_db()
+    try:
+        return {"urls": db.replace_seeds(req.conference_id, req.year,
+                                         req.expected_urls, req.urls)}
     finally:
         db.close()
 
@@ -436,6 +456,8 @@ def _do_batch_collect(db: Database, req: BatchCollectReq, notify):
                     "index": index, "elapsed_seconds": round(time.perf_counter() - started, 1),
                     "status": "failed", "error": str(exc), "inserted": 0, "updated": 0,
                     "unchanged": 0}
+            if getattr(exc, "seed_review", None):
+                task["seed_review"] = exc.seed_review
             notify(f"失败 {label}：{exc}；继续下一项")
         tasks.append(task)
         notify({"type": "task", "task": task})

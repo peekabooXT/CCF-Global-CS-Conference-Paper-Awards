@@ -128,22 +128,49 @@ async function resetBatchPlan() {
 }
 const savedSeeds = ref([])
 const seedDrafts = reactive({})
+const reviewDrafts = reactive({})
+const autoReviews = ref([])
+const REVIEWS_KEY = 'global-cs-awards-url-reviews'
+const seedConfirmation = ref(null)
+const seedConfirmationVisible = ref(false)
 const seedLoading = ref(false)
 const savingSeed = ref('')
 const seedError = ref('')
 let seedRequestId = 0
 const seedKey = (cid, year) => `${cid}:${year}`
+function restoreAutoReviews() {
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(REVIEWS_KEY) || '{}')
+    if (Array.isArray(saved.items)) autoReviews.value = saved.items.filter(item =>
+      item && typeof item.conference_id === 'string' && Number.isInteger(item.year) &&
+      item.seed_review && Array.isArray(item.seed_review.saved_urls) &&
+      Array.isArray(item.seed_review.candidate_urls))
+    if (saved.drafts && typeof saved.drafts === 'object') Object.assign(reviewDrafts, saved.drafts)
+  } catch { /* Session storage may be disabled or contain a stale value. */ }
+}
+function persistAutoReviews() {
+  try { sessionStorage.setItem(REVIEWS_KEY, JSON.stringify({ items: autoReviews.value, drafts: { ...reviewDrafts } })) }
+  catch { /* In-memory review remains available. */ }
+}
+watch(autoReviews, persistAutoReviews, { deep: true })
+watch(reviewDrafts, persistAutoReviews, { deep: true })
 async function loadSelectedSeeds() {
   const requestId = ++seedRequestId
   savedSeeds.value = []
   seedError.value = ''
   seedLoading.value = false
   const chunk = currentChunk.value
-  if (currentStrategy.value !== 'urls' || !chunk) return
+  if (!chunk) return
   seedLoading.value = true
   try {
     const res = await api.lookupSeeds(chunk.conference_ids, chunk.yearNumbers)
-    if (requestId === seedRequestId) savedSeeds.value = res.items || []
+    if (requestId === seedRequestId) {
+      savedSeeds.value = res.items || []
+      for (const target of savedSeeds.value) {
+        const key = seedKey(target.conference_id, target.year)
+        if (!(key in seedDrafts)) seedDrafts[key] = target.urls.join('\n')
+      }
+    }
   } catch (e) {
     if (requestId === seedRequestId) seedError.value = errMsg(e)
   } finally {
@@ -154,17 +181,44 @@ watch([currentStrategy, currentChunk], loadSelectedSeeds)
 
 async function saveTargetSeed(target) {
   const key = seedKey(target.conference_id, target.year)
-  const urls = [...new Set((seedDrafts[key] || '').split(/\r?\n/).map(url => url.trim()).filter(Boolean))]
-  if (!urls.length) { ElMessage.warning('请先填写要保存的网址，每行一个'); return }
+  openSeedConfirmation(target.conference_id, target.year, target.urls, seedDrafts[key])
+}
+function parseSeedDraft(text) {
+  return [...new Set((text || '').split(/\r?\n/).map(url => url.trim()).filter(Boolean))]
+}
+function openSeedConfirmation(cid, year, saved, draft) {
+  const urls = parseSeedDraft(draft)
+  if (!urls.length) { ElMessage.warning('请填写至少一个核对过的官网／获奖页网址'); return }
+  if (urls.length === saved.length && urls.every(url => saved.includes(url))) {
+    ElMessage.info('网址未变化，无需重复保存')
+    return
+  }
+  seedConfirmation.value = { conference_id: cid, year, expected_urls: [...saved], urls }
+  seedConfirmationVisible.value = true
+}
+function useCandidate(cid, year, url) {
+  const key = seedKey(cid, year)
+  const current = parseSeedDraft(reviewDrafts[key])
+  if (!current.includes(url)) current.push(url)
+  reviewDrafts[key] = current.join('\n')
+}
+async function confirmSeedSave() {
+  const proposal = seedConfirmation.value
+  if (!proposal) return
+  const key = seedKey(proposal.conference_id, proposal.year)
   savingSeed.value = key
   try {
-    for (const url of urls) {
-      await api.addSeed({ conference_id: target.conference_id, year: target.year, url })
+    const res = await api.replaceSeeds({ ...proposal, confirmed: true })
+    seedDrafts[key] = res.urls.join('\n')
+    reviewDrafts[key] = res.urls.join('\n')
+    for (const review of autoReviews.value) {
+      if (seedKey(review.conference_id, review.year) === key) review.seed_review.saved_urls = [...res.urls]
     }
-    seedDrafts[key] = ''
+    seedConfirmationVisible.value = false
+    seedConfirmation.value = null
     await loadSelectedSeeds()
     await loadStats()
-    ElMessage.success(`${target.conference_id} ${target.year}：已保存 ${urls.length} 个网址`)
+    ElMessage.success(`${proposal.conference_id} ${proposal.year}：已保存 ${res.urls.length} 个核对后的网址`)
   } catch (e) { ElMessage.error(errMsg(e)) }
   finally { savingSeed.value = '' }
 }
@@ -236,6 +290,19 @@ async function runBatch() {
       strategy: plan.strategy, max_pages: plan.max_pages,
       award_types: plan.award_types, llm: { ...llm.value },
     }, pushLog, updateBatchTask)
+    if (plan.strategy === 'auto') {
+      const finished = (batchResult.value.tasks || batchTasks.value).filter(task => task.seed_review)
+      for (const task of finished) {
+        const key = seedKey(task.conference_id, task.year)
+        if (!(key in reviewDrafts)) reviewDrafts[key] = task.seed_review.saved_urls.join('\n') || task.seed_review.used_urls.join('\n')
+      }
+      const byTarget = new Map(autoReviews.value.map(task => [seedKey(task.conference_id, task.year), task]))
+      for (const task of finished) byTarget.set(seedKey(task.conference_id, task.year), {
+        conference_id: task.conference_id, conference: task.conference,
+        year: task.year, seed_review: task.seed_review,
+      })
+      autoReviews.value = [...byTarget.values()]
+    }
     planProgress.completed += batchResult.value.completed
     planProgress.failed += batchResult.value.failed
     nextBatchIndex.value++
@@ -268,6 +335,8 @@ const running = ref(false)
 const result = ref(null)
 const logLines = ref([])
 const logBox = ref(null)
+const showLiveLog = ref(false)
+const showHistory = ref(false)
 const runHistory = ref([])
 const historyLoading = ref(false)
 const historyError = ref('')
@@ -352,13 +421,18 @@ async function deleteRunRange() {
 watch([historyDates, historyConference, historyStatus], () => loadRuns())
 
 function refreshVisibleRuns() {
-  if (document.visibilityState === 'visible' && !historyLoading.value && !deletingRuns.value) loadRuns(true)
+  if (showHistory.value && document.visibilityState === 'visible' && !historyLoading.value && !deletingRuns.value) loadRuns(true)
+}
+
+function toggleHistory() {
+  showHistory.value = !showHistory.value
+  if (showHistory.value) loadRuns()
 }
 
 onMounted(() => {
   restorePlanState()
+  restoreAutoReviews()
   loadStats()
-  loadRuns()
   historyTimer = window.setInterval(refreshVisibleRuns, 3000)
   document.addEventListener('visibilitychange', refreshVisibleRuns)
 })
@@ -406,6 +480,7 @@ const historyRows = computed(() => runHistory.value.map(run => {
 // 把新日志追加并自动滚到底部
 async function pushLog(msg) {
   logLines.value.push(msg)
+  if (!showLiveLog.value) return
   await nextTick()
   if (logBox.value) logBox.value.scrollTop = logBox.value.scrollHeight
 }
@@ -471,7 +546,7 @@ async function onImportJson(e) {
     <p class="hint">自动搜索官网或使用已保存入口采集；新增记录默认待核验。真实采集会调用 API 并产生费用。</p>
 
     <el-row :gutter="16" v-if="stats" class="metrics">
-      <el-col :span="8"><el-statistic title="已保存入口覆盖" :value="`${stats.conferences_with_seed}/${stats.total_conferences}`" /></el-col>
+      <el-col :span="8"><el-statistic title="已保存入口覆盖" :value="stats.conferences_with_seed"><template #suffix>/{{ stats.total_conferences }}</template></el-statistic></el-col>
       <el-col :span="8"><el-statistic title="会议年度网址" :value="stats.seed_rows" /></el-col>
       <el-col :span="8"><el-statistic title="尚无入口" :value="stats.conferences_without_seed" /></el-col>
     </el-row>
@@ -505,12 +580,12 @@ async function onImportJson(e) {
           <el-input-number v-model="batch.max_pages" :min="1" :max="20" :disabled="!!batchPlan" controls-position="right" style="width: 115px" />
         </el-form-item>
       </el-form>
-      <div v-if="currentStrategy === 'urls' && currentChunk" class="seed-panel" v-loading="seedLoading">
+      <div v-if="currentChunk" class="seed-panel" v-loading="seedLoading">
         <div class="seed-head">
           <strong>本批已保存的会议年度网址（{{ currentChunk.count }} 项）</strong>
           <el-button size="small" @click="loadSelectedSeeds">刷新网址</el-button>
         </div>
-        <p class="hint">只展示当前待执行批次；后续批次在切换到该批时展示。缺少网址可直接添加并保存，保存不会调用 LLM。</p>
+        <p class="hint">{{ currentStrategy === 'auto' ? '自动搜索会优先尝试这些已保存入口，再搜索官网作对照。搜索候选不会自动覆盖网址；采集后请核对并确认。' : '只展示当前待执行批次；缺少网址请先填写并确认保存。保存网址不会调用 LLM。' }}</p>
         <el-alert v-if="seedError" type="error" :title="seedError" :closable="false" />
         <div v-for="target in savedSeeds" :key="seedKey(target.conference_id, target.year)" class="seed-target">
           <div class="seed-target-title">
@@ -520,8 +595,8 @@ async function onImportJson(e) {
           <div v-if="target.urls.length" class="seed-links">
             <a v-for="url in target.urls" :key="url" :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a>
           </div>
-          <el-input v-model="seedDrafts[seedKey(target.conference_id, target.year)]" type="textarea" :rows="2" placeholder="添加官网／获奖页网址，每行一个" />
-          <el-button size="small" :loading="savingSeed === seedKey(target.conference_id, target.year)" :disabled="!!savingSeed" @click="saveTargetSeed(target)">保存网址</el-button>
+          <el-input v-model="seedDrafts[seedKey(target.conference_id, target.year)]" type="textarea" :rows="2" placeholder="核对后的官网／获奖页网址，每行一个；可修改旧网址" />
+          <el-button size="small" :loading="savingSeed === seedKey(target.conference_id, target.year)" :disabled="!!savingSeed" @click="saveTargetSeed(target)">核对并保存网址</el-button>
         </div>
       </div>
       <el-alert v-if="batchUncertain" type="warning" :closable="false" show-icon title="上一批连接中断，服务器可能已完成部分任务。请先查看运行日志；重试本批可能重复计费。" />
@@ -554,66 +629,67 @@ async function onImportJson(e) {
           <el-table-column prop="status" label="状态" width="85" />
         </el-table>
       </div>
+      <div v-if="autoReviews.length" class="review-panel">
+        <div class="review-heading"><strong>官网网址核对（{{ autoReviews.length }} 项）</strong><span>搜索结果仅是候选；请打开页面核实会议、年份及奖项后再保存。</span></div>
+        <div v-for="task in autoReviews" :key="seedKey(task.conference_id, task.year)" class="review-target">
+          <div class="seed-target-title"><strong>{{ task.conference }} · {{ task.year }}</strong><el-tag :type="task.seed_review.search_error ? 'warning' : 'info'" size="small">{{ task.seed_review.search_error ? '搜索未完成' : '待人工核对' }}</el-tag></div>
+          <p v-if="task.seed_review.search_error" class="review-warning">搜索核对失败：{{ task.seed_review.search_error }}；已保存网址仍优先尝试。</p>
+          <div class="review-columns">
+            <div><span class="review-label">原已保存网址</span><div v-if="task.seed_review.saved_urls.length" class="seed-links"><a v-for="url in task.seed_review.saved_urls" :key="url" :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a></div><span v-else class="hint">尚无已保存网址</span></div>
+            <div><span class="review-label">本次搜索候选</span><div v-if="task.seed_review.candidate_urls.length" class="candidate-list"><div v-for="url in task.seed_review.candidate_urls" :key="url"><a :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a><el-button link type="primary" @click="useCandidate(task.conference_id, task.year, url)">加入待保存</el-button></div></div><span v-else class="hint">暂无候选</span></div>
+          </div>
+          <span class="review-label">核对后拟保存的网址（每行一个，可删除错误旧网址）</span>
+          <el-input v-model="reviewDrafts[seedKey(task.conference_id, task.year)]" type="textarea" :rows="2" placeholder="请填写核对后的官网网址" />
+          <el-button size="small" type="primary" plain :loading="savingSeed === seedKey(task.conference_id, task.year)" :disabled="!!savingSeed" @click="openSeedConfirmation(task.conference_id, task.year, task.seed_review.saved_urls, reviewDrafts[seedKey(task.conference_id, task.year)])">核对并保存到会议年度网址</el-button>
+        </div>
+      </div>
     </el-card>
 
-    <el-divider>上传文件采集（网页打不开时用）</el-divider>
-    <p class="hint">文件上传针对单个会议年度，独立于上方的网址采集任务。</p>
-    <el-form inline class="bar">
-      <el-form-item label="会议">
-        <el-select
-          v-model="form.conference_id"
-          filterable
-          clearable
-          placeholder="输入会议简称或名称"
-          :filter-method="filterConferences"
-          style="width: 320px"
-          @visible-change="onConferenceDropdown"
-        >
-          <el-option v-for="c in filteredConferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id">
-            <div class="conference-option">
-              <strong>{{ c.acronym }}</strong>
-              <el-tag :type="c.rank === 'A' ? 'danger' : 'warning'" size="small" effect="plain">CCF-{{ c.rank }}</el-tag>
-              <span>{{ c.area }}</span>
-            </div>
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="年份">
-        <el-input-number v-model="form.year" :min="1900" :max="2200" controls-position="right" style="width: 120px" />
-      </el-form-item>
-      <el-form-item label="最多页面">
-        <el-input-number v-model="form.max_pages" :min="1" :max="20" controls-position="right" style="width: 110px" />
-      </el-form-item>
-    </el-form>
+    <el-dialog v-model="seedConfirmationVisible" title="确认修改会议年度网址" width="min(640px, calc(100vw - 24px))" class="seed-confirm-dialog" :close-on-click-modal="false">
+      <template v-if="seedConfirmation">
+        <p>请确认 <strong>{{ conferences.find(c => c.id === seedConfirmation.conference_id)?.acronym || seedConfirmation.conference_id }} · {{ seedConfirmation.year }}</strong> 的网址。保存后将以新列表替换该会议年度的旧列表，不影响其他会议或年份。</p>
+        <div class="confirm-columns"><div><strong>当前已保存</strong><p v-for="url in seedConfirmation.expected_urls" :key="url">{{ url }}</p><p v-if="!seedConfirmation.expected_urls.length" class="hint">无</p></div><div><strong>确认后保存</strong><p v-for="url in seedConfirmation.urls" :key="url">{{ url }}</p></div></div>
+        <el-alert type="warning" :closable="false" title="请先打开网址，核实页面确实对应所选会议、年份和奖项；搜索候选不等于已核实来源。" />
+      </template>
+      <template #footer><el-button @click="seedConfirmationVisible = false">取消</el-button><el-button type="primary" :loading="!!savingSeed" @click="confirmSeedSave">确认替换并保存</el-button></template>
+    </el-dialog>
 
-    <el-form inline>
-      <el-form-item label="获奖页文件">
-        <input type="file" accept=".txt,.html,.htm,.pdf" @change="onPickAward" />
-      </el-form-item>
-      <el-form-item label="获奖来源 URL">
-        <el-input v-model="fileForm.award_url" placeholder="https://…" style="width:240px" />
-      </el-form-item>
-      <el-form-item label="论文文件">
-        <input type="file" accept=".txt,.html,.htm,.pdf" @change="onPickMeta" />
-      </el-form-item>
-      <el-form-item label="论文来源 URL">
-        <el-input v-model="fileForm.metadata_url" placeholder="上传论文时必填" style="width:220px" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="success" :loading="running" :disabled="batchRunning" @click="runFileCollect">上传并提取</el-button>
-      </el-form-item>
-    </el-form>
-    <el-upload :show-file-list="false" :auto-upload="false" @change="onImportJson">
-      <el-button>导入 JSON</el-button>
-    </el-upload>
+    <section class="upload-card" aria-labelledby="upload-title">
+      <div class="upload-heading"><div><span class="section-eyebrow">备用采集方式</span><h3 id="upload-title">上传文件采集</h3><p>网页无法直接读取时，上传单个会议年度的获奖页文件；论文文件可选。</p></div><span class="upload-format">支持 PDF · HTML · TXT</span></div>
+      <el-form label-position="top" class="upload-form">
+        <div class="upload-targets">
+          <el-form-item label="会议">
+            <el-select v-model="form.conference_id" filterable clearable placeholder="输入会议简称或名称" :filter-method="filterConferences" @visible-change="onConferenceDropdown">
+              <el-option v-for="c in filteredConferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id">
+                <div class="conference-option"><strong>{{ c.acronym }}</strong><el-tag :type="c.rank === 'A' ? 'danger' : 'warning'" size="small" effect="plain">CCF-{{ c.rank }}</el-tag><span>{{ c.area }}</span></div>
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="年份"><el-input-number v-model="form.year" :min="1900" :max="2200" controls-position="right" /></el-form-item>
+          <el-form-item label="最多页面"><el-input-number v-model="form.max_pages" :min="1" :max="20" controls-position="right" /></el-form-item>
+        </div>
+        <div class="upload-sources">
+          <div class="upload-source">
+            <div class="source-heading"><span class="source-number">01</span><div><strong>获奖页文件 <em>必填</em></strong><small>官方奖项页、公告或 PDF</small></div></div>
+            <label class="file-picker"><input type="file" accept=".txt,.html,.htm,.pdf" @change="onPickAward" /><span class="picker-symbol">↑</span><span>{{ fileForm.award_file?.name || '点击选择获奖页文件' }}</span></label>
+            <el-form-item label="获奖来源 URL"><el-input v-model="fileForm.award_url" placeholder="https://官方页面网址" /></el-form-item>
+          </div>
+          <div class="upload-source">
+            <div class="source-heading"><span class="source-number">02</span><div><strong>论文文件 <em class="optional">可选</em></strong><small>用于补充作者、单位等元数据</small></div></div>
+            <label class="file-picker"><input type="file" accept=".txt,.html,.htm,.pdf" @change="onPickMeta" /><span class="picker-symbol">↑</span><span>{{ fileForm.metadata_file?.name || '点击选择论文文件' }}</span></label>
+            <el-form-item label="论文来源 URL"><el-input v-model="fileForm.metadata_url" placeholder="上传论文文件时必填" /></el-form-item>
+          </div>
+        </div>
+        <div class="upload-actions"><el-button type="primary" :loading="running" :disabled="batchRunning" @click="runFileCollect">上传并提取</el-button><label class="json-picker"><input type="file" accept=".json,application/json" @change="onImportJson" />导入已有 JSON</label><span>上传文件仅用于本次任务，不替代会议年度已保存网址。</span></div>
+      </el-form>
+    </section>
 
     <!-- 实时滚动日志 -->
-    <el-card shadow="never" class="logcard">
+    <el-card shadow="never" class="logcard" :body-style="showLiveLog ? {} : { padding: '0' }">
       <template #header>
-        <span>实时日志</span>
-        <el-tag v-if="running || batchRunning" type="warning" size="small" style="margin-left:8px">采集中…</el-tag>
+        <button class="collapse-title" type="button" :aria-expanded="showLiveLog" @click="showLiveLog = !showLiveLog"><span>实时日志 <el-tag v-if="running || batchRunning" type="warning" size="small">采集中…</el-tag><small v-else-if="logLines.length">{{ logLines.length }} 条</small></span><span class="collapse-chevron" :class="{open:showLiveLog}">⌄</span></button>
       </template>
-      <div ref="logBox" class="logbox">
+      <div v-show="showLiveLog" ref="logBox" class="logbox">
         <div v-for="(line, i) in logLines" :key="i" class="logline">{{ line }}</div>
         <div v-if="!logLines.length" class="empty">（暂无日志，点击“开始采集”或“上传并提取”）</div>
       </div>
@@ -634,11 +710,11 @@ async function onImportJson(e) {
       <el-alert v-if="result.rejected?.length" type="warning" :title="`${result.rejected.length} 条未通过校验`" :closable="false" style="margin-top:8px" />
     </el-card>
 
-    <el-card shadow="never" class="history">
+    <el-card shadow="never" class="history" :body-style="showHistory ? {} : { padding: '0' }">
       <template #header>
         <div class="history-head">
-          <span>运行日志与 Token 用量 <small class="history-live">● 自动刷新（3 秒）</small></span>
-          <div class="history-actions">
+          <button class="collapse-title" type="button" :aria-expanded="showHistory" @click="toggleHistory"><span>运行日志与 Token 用量 <small v-if="showHistory" class="history-live">● 自动刷新（3 秒）</small></span><span class="collapse-chevron" :class="{open:showHistory}">⌄</span></button>
+          <div v-if="showHistory" class="history-actions">
             <el-dropdown split-button size="small" :disabled="!historyTotal" @click="exportRuns('all')" @command="exportRuns">
               导出筛选范围 CSV
               <template #dropdown>
@@ -653,6 +729,7 @@ async function onImportJson(e) {
           </div>
         </div>
       </template>
+      <div v-show="showHistory">
       <div class="history-filters">
         <span>开始时间</span>
         <el-date-picker v-model="historyDates" type="datetimerange" value-format="x" start-placeholder="起始日期时间" end-placeholder="结束日期时间" range-separator="至" style="width:370px" />
@@ -694,6 +771,7 @@ async function onImportJson(e) {
         <el-table-column prop="error" label="说明" min-width="180" show-overflow-tooltip />
       </el-table>
       <el-empty v-else-if="!historyLoading" description="尚无采集运行日志" :image-size="72" />
+      </div>
     </el-card>
   </div>
 </template>
@@ -732,5 +810,10 @@ h2 { margin: 0; }
 .history-actions { display: flex; align-items: center; gap: 8px; }
 .conference-option { display: flex; align-items: center; gap: 8px; }
 .conference-option span:last-child { color: #66758a; }
+.review-panel{margin-top:22px;padding:20px;border:1px solid #bfdaf4;border-radius:12px;background:#f4f9ff}.review-heading{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;color:#163a64}.review-heading span{color:#70839b;font-size:12px}.review-target{background:white;border:1px solid #deebf7;border-radius:10px;padding:16px;margin-top:13px}.review-target .el-textarea{margin:8px 0 10px}.review-target .seed-target-title{margin-bottom:12px}.review-columns,.confirm-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:12px 0}.review-columns>div,.confirm-columns>div{min-width:0}.review-label{display:block;font-size:12px;font-weight:700;color:#627b99;margin-bottom:6px}.candidate-list>div{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px}.candidate-list a{min-width:0;overflow-wrap:anywhere;color:#1675c9;font-size:12px}.review-warning{color:#a36a19;font-size:12px;margin:6px 0}.confirm-columns>div{border:1px solid #e0e9f4;background:#f7faff;border-radius:8px;padding:12px}.confirm-columns p{font-size:12px;overflow-wrap:anywhere;margin:8px 0;color:#456487}
+.upload-card{margin:24px 0 16px;padding:25px;background:#fff;border:1px solid #dce8f5;border-radius:12px;box-shadow:0 7px 22px rgba(27,65,111,.045)}.upload-heading{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid #e8eff7}.section-eyebrow{font-size:11px;font-weight:750;color:#2680d9;letter-spacing:.12em}.upload-heading h3{margin:6px 0 4px;color:#173b66;font-size:20px}.upload-heading p{margin:0;color:#70839b;font-size:13px}.upload-format{white-space:nowrap;background:#edf6ff;color:#3776b1;padding:7px 10px;border-radius:6px;font-size:12px;font-weight:650}.upload-targets{display:grid;grid-template-columns:minmax(240px,2fr) repeat(2,minmax(120px,1fr));gap:16px;margin-top:20px}.upload-targets :deep(.el-select),.upload-targets :deep(.el-input-number){width:100%}.upload-form :deep(.el-form-item__label){color:#526b88;font-weight:650}.upload-sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:4px}.upload-source{padding:18px;border:1px solid #e0ebf6;border-radius:10px;background:#f8fbff}.source-heading{display:flex;align-items:center;gap:10px;margin-bottom:15px}.source-heading strong{display:block;color:#23476e;font-size:14px}.source-heading small{display:block;color:#8294a9;margin-top:3px}.source-heading em{font-size:11px;font-style:normal;color:#1d7ccc;background:#e7f3ff;padding:2px 6px;border-radius:4px}.source-heading em.optional{color:#6b819a;background:#edf2f8}.source-number{color:#4093de;font-weight:800;font-size:18px}.file-picker{position:relative;min-height:74px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;border:1px dashed #a9caec;border-radius:8px;background:white;color:#357bb5;font-size:13px;font-weight:650;overflow-wrap:anywhere;padding:10px;text-align:center}.file-picker:hover,.file-picker:focus-within{border-color:#1880dc;background:#f1f8ff}.picker-symbol{font-size:21px;line-height:1}.file-picker input,.json-picker input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip-path:inset(50%)}.upload-source .el-form-item{margin:13px 0 0}.upload-source :deep(.el-input){width:100%}.upload-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:19px}.upload-actions>span{color:#8a9ab0;font-size:12px}.json-picker{position:relative;display:inline-flex;align-items:center;justify-content:center;border:1px solid #d6e4f2;border-radius:6px;padding:9px 14px;color:#446b91;cursor:pointer;font-size:13px;background:#fff}.json-picker:hover,.json-picker:focus-within{border-color:#1880dc;color:#1880dc}
+.collapse-title{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:1;min-width:0;padding:0;border:0;background:none;text-align:left;color:#183c63;font-size:16px;font-weight:650;cursor:pointer}.collapse-title small{margin-left:9px;color:#8494a8;font-size:12px;font-weight:400}.collapse-chevron{display:inline-block;color:#7a93ad;font-size:21px;transition:transform .2s}.collapse-chevron.open{transform:rotate(180deg)}.history-head{gap:16px}.history-actions{flex-wrap:wrap}.logcard,.history{border-radius:10px;border-color:#dce8f5}.logcard :deep(.el-card__header),.history :deep(.el-card__header){padding:16px 19px}
+@media(max-width:900px){.upload-targets{grid-template-columns:repeat(2,minmax(0,1fr))}.upload-targets .el-form-item:first-child{grid-column:1/-1}.upload-sources,.review-columns,.confirm-columns{grid-template-columns:1fr}.history-head{align-items:stretch;flex-direction:column}.history-actions{justify-content:flex-start}}
+@media(max-width:600px){.upload-card{padding:16px}.upload-heading{flex-direction:column}.upload-targets{grid-template-columns:1fr;gap:0}.upload-targets .el-form-item:first-child{grid-column:auto}.upload-format{white-space:normal}.candidate-list>div{flex-direction:column;gap:2px}}
 </style>
 

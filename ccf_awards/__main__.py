@@ -116,9 +116,15 @@ def collect_one(db, conference, year, urls, extra_urls=(), max_pages=4, output=N
         return summary
     except Exception as exc:
         details = {"error": str(exc)}
+        if run_details:
+            details.update({key: run_details[key] for key in ("discovery", "seed_review") if key in run_details})
+        token_usage = dict((run_details or {}).get("token_usage") or {})
         if getattr(llm, "last_usage", None):
-            details["token_usage"] = {"extraction": llm.last_usage}
-            details["total_tokens"] = llm.last_usage.get("total_tokens")
+            token_usage["extraction"] = llm.last_usage
+        if token_usage:
+            details["token_usage"] = token_usage
+            details["total_tokens"] = sum(item.get("total_tokens", 0) for item in token_usage.values()
+                                           if isinstance(item, dict) and isinstance(item.get("total_tokens"), int))
         db.finish_run(run, "failed", details)
         raise
 
@@ -129,30 +135,50 @@ def auto_collect_one(db, conference, year, output_dir="data/records", max_pages=
     if not selected or not selected.issubset({"best_paper", "best_student_paper"}):
         raise ValueError("请选择最佳论文奖或最佳学生论文奖")
     search = search or ResponsesWebSearch()
+    notify = notify or (lambda msg: print(msg, file=sys.stderr))
     run = db.start_run(conference["id"], year)
+    saved_urls = db.seeds(conference["id"], year)
+    if saved_urls:
+        notify(f"优先使用 {len(saved_urls)} 个已保存的 {conference['acronym']} {year} 网址，并搜索官网核对")
+    discovery = None
+    search_error = None
     try:
         discovery = (search.discover(conference, year, min(candidate_limit, max_pages), award_types=selected)
                      if len(selected) == 1 else search.discover(conference, year, min(candidate_limit, max_pages)))
-        urls = [item["url"] for item in discovery["candidates"]]
-        if not urls:
-            raise ValueError("网页搜索没有返回候选官方页面")
     except Exception as exc:
-        details = {"stage": "discovery", "error": str(exc)}
-        if getattr(search, "last_usage", None):
-            details["token_usage"] = {"search": search.last_usage}
-            details["total_tokens"] = search.last_usage.get("total_tokens")
-        db.finish_run(run, "failed", details)
-        raise
+        if not saved_urls:
+            details = {"stage": "discovery", "error": str(exc)}
+            if getattr(search, "last_usage", None):
+                details["token_usage"] = {"search": search.last_usage}
+                details["total_tokens"] = search.last_usage.get("total_tokens")
+            db.finish_run(run, "failed", details)
+            raise
+        search_error = str(exc)
+        notify(f"官网搜索未能完成核对，将继续尝试已保存网址：{search_error}")
+    candidate_urls = [item["url"] for item in (discovery or {}).get("candidates", [])]
+    urls = list(dict.fromkeys([*saved_urls, *candidate_urls]))[:max_pages]
+    if not urls:
+        db.finish_run(run, "failed", {"stage": "discovery", "error": "网页搜索没有返回候选官方页面"})
+        raise ValueError("网页搜索没有返回候选官方页面")
+    if candidate_urls:
+        notify(f"官网搜索返回 {len(candidate_urls)} 个候选网址；本次先读取已保存网址，候选差异请在采集后核对保存")
+    seed_review = {"saved_urls": saved_urls, "candidate_urls": candidate_urls,
+                   "used_urls": urls, "search_error": search_error}
     output = Path(output_dir) / f'{conference["id"]}-{year}-run-{run:06d}.json'
-    search_usage = discovery.get("token_usage")
-    return collect_one(
-        db, conference, year, urls, max_pages=max_pages, output=str(output),
-        llm=llm, notify=notify, strict_urls=False, run_id=run, award_types=selected,
-        run_details={
-            "discovery": discovery,
-            "token_usage": {"search": search_usage} if search_usage else {},
-        },
-    )
+    search_usage = (discovery or {}).get("token_usage") or getattr(search, "last_usage", None)
+    try:
+        return collect_one(
+            db, conference, year, urls, max_pages=max_pages, output=str(output),
+            llm=llm, notify=notify, strict_urls=False, run_id=run, award_types=selected,
+            run_details={
+                "discovery": discovery,
+                "seed_review": seed_review,
+                "token_usage": {"search": search_usage} if search_usage else {},
+            },
+        )
+    except Exception as exc:
+        exc.seed_review = seed_review
+        raise
 
 def year_value(value):
     year = int(value)

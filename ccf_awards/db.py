@@ -85,6 +85,30 @@ class Database:
         with self.conn:
             self.conn.execute("INSERT OR IGNORE INTO seeds VALUES (?,?,?)", (cid, year, url))
 
+    def replace_seeds(self, cid, year, expected_urls, urls):
+        """Replace one conference-year's URLs only if the reviewed snapshot is current."""
+        from .model import url_syntax
+        if type(year) is not int or not 1900 <= year <= 2200:
+            raise ValueError("年份必须在 1900–2200 之间")
+        if not self.conn.execute("SELECT 1 FROM conferences WHERE id=?", (cid,)).fetchone():
+            raise ValueError("会议不存在")
+        if not isinstance(expected_urls, list) or not isinstance(urls, list) or len(expected_urls) > 100 or not 0 < len(urls) <= 100:
+            raise ValueError("网址列表无效或超过 100 条")
+        if any(not isinstance(url, str) for url in [*expected_urls, *urls]):
+            raise ValueError("网址必须是字符串")
+        old = sorted(set(expected_urls))
+        new = sorted(set(urls))
+        for url in new:
+            url_syntax(url)
+        with self.conn:
+            self.conn.execute("BEGIN IMMEDIATE")
+            current = self.seeds(cid, year)
+            if current != old:
+                raise ValueError("已保存网址已被其他操作修改，请刷新后重新核对")
+            self.conn.execute("DELETE FROM seeds WHERE conference_id=? AND year=?", (cid, year))
+            self.conn.executemany("INSERT INTO seeds VALUES (?,?,?)", ((cid, year, url) for url in new))
+        return self.seeds(cid, year)
+
     def seeds(self, cid, year):
         return [r[0] for r in self.conn.execute("SELECT url FROM seeds WHERE conference_id=? AND year=? ORDER BY url", (cid, year))]
 

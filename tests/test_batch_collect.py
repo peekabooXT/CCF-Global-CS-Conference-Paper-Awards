@@ -4,13 +4,88 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ccf_awards.__main__ import collect_one
+from ccf_awards.__main__ import auto_collect_one, collect_one
 from ccf_awards.db import Database
 from ccf_awards.discovery import ResponsesWebSearch
 from ccf_awards.llm import LLM
 
 
 class BatchCollectCoreTest(unittest.TestCase):
+    def test_replace_saved_urls_requires_current_snapshot(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                cid = db.resolve("AAAI")["id"]
+                old = "https://example.org/old-2025-awards"
+                new = "https://example.org/new-2025-awards"
+                db.add_seed(cid, 2025, old)
+                with self.assertRaisesRegex(ValueError, "重新核对"):
+                    db.replace_seeds(cid, 2025, [], [new])
+                self.assertEqual(db.seeds(cid, 2025), [old])
+                self.assertEqual(db.replace_seeds(cid, 2025, [old], [new]), [new])
+                self.assertEqual(db.seeds(cid, 2025), [new])
+                with self.assertRaisesRegex(ValueError, "URL"):
+                    db.replace_seeds(cid, 2025, [new], ["javascript:bad"])
+                self.assertEqual(db.seeds(cid, 2025), [new])
+            finally:
+                db.close()
+
+    def test_auto_search_prefers_saved_urls_and_returns_review_candidates(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                conf = db.resolve("AAAI")
+                saved = "https://example.org/saved-2025-awards"
+                candidate = "https://example.org/found-2025-awards"
+                db.add_seed(conf["id"], 2025, saved)
+
+                class Search:
+                    last_usage = {"total_tokens": 42}
+
+                    def discover(self, conference, year, limit):
+                        return {"candidates": [{"url": candidate}], "token_usage": self.last_usage}
+
+                def collect(*args, **kwargs):
+                    self.assertEqual(args[3], [saved, candidate])
+                    return {"seed_review": kwargs["run_details"]["seed_review"]}
+
+                with patch("ccf_awards.__main__.collect_one", side_effect=collect):
+                    result = auto_collect_one(db, conf, 2025, output_dir=temp,
+                                              search=Search(), llm=object(), notify=lambda _: None)
+                self.assertEqual(result["seed_review"]["saved_urls"], [saved])
+                self.assertEqual(result["seed_review"]["candidate_urls"], [candidate])
+                self.assertEqual(db.seeds(conf["id"], 2025), [saved])
+            finally:
+                db.close()
+
+    def test_auto_search_failure_falls_back_to_saved_url(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                conf = db.resolve("AAAI")
+                saved = "https://example.org/saved-2025-awards"
+                db.add_seed(conf["id"], 2025, saved)
+
+                class Search:
+                    last_usage = None
+
+                    def discover(self, conference, year, limit):
+                        raise ValueError("search unavailable")
+
+                def collect(*args, **kwargs):
+                    self.assertEqual(args[3], [saved])
+                    return {"seed_review": kwargs["run_details"]["seed_review"]}
+
+                with patch("ccf_awards.__main__.collect_one", side_effect=collect):
+                    result = auto_collect_one(db, conf, 2025, output_dir=temp,
+                                              search=Search(), llm=object(), notify=lambda _: None)
+                self.assertIn("search unavailable", result["seed_review"]["search_error"])
+            finally:
+                db.close()
+
     def test_server_retains_per_batch_task_limit(self):
         try:
             from api import BatchCollectReq, LLMConfig, SeedLookupReq, _do_batch_collect, lookup_seeds
@@ -50,6 +125,25 @@ class BatchCollectCoreTest(unittest.TestCase):
             self.assertEqual(len(result["items"]), 2)
             self.assertEqual(len(result["items"][0]["urls"]), 2)
             self.assertEqual(result["items"][1]["urls"], [])
+
+    def test_replace_saved_urls_api_requires_explicit_confirmation(self):
+        try:
+            from api import ReplaceSeedReq, replace_seeds
+        except ImportError as exc:
+            self.skipTest(f"API test dependencies unavailable: {exc}")
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "test.sqlite3"
+            db = Database(path)
+            db.init()
+            cid = db.resolve("AAAI")["id"]
+            db.close()
+            payload = dict(conference_id=cid, year=2025, expected_urls=[],
+                           urls=["https://example.org/awards-2025"])
+            with patch("api.get_db", side_effect=lambda: Database(path)):
+                with self.assertRaisesRegex(ValueError, "确认"):
+                    replace_seeds(ReplaceSeedReq(**payload))
+                result = replace_seeds(ReplaceSeedReq(**payload, confirmed=True))
+            self.assertEqual(result["urls"], payload["urls"])
 
     def test_selected_award_scopes_search_and_extraction_prompts(self):
         conference = {"id": "example", "acronym": "EX", "full_name": "Example Conference"}

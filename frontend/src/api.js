@@ -24,6 +24,7 @@ export const api = {
   seeds: (cid, year) => http.get(`/seeds/${cid}/${year}`).then(r => r.data),
   lookupSeeds: (conferenceIds, years) => http.post('/seeds/lookup', { conference_ids: conferenceIds, years }).then(r => r.data),
   addSeed: (body) => http.post('/seeds', body).then(r => r.data),
+  replaceSeeds: (body) => http.put('/seeds', body).then(r => r.data),
 
   importJson: (body) => http.post('/import', body).then(r => r.data),
   demo: () => http.post('/demo').then(r => r.data),
