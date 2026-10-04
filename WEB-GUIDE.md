@@ -1,4 +1,4 @@
-# Global CS Paper Awards 网页使用指南
+# Global CS Paper Awards Agent 网页使用指南
 
 这一版使用 **Streamlit 网页界面 + 原有 Python 采集逻辑 + 原有 SQLite 数据库**。程序在你的电脑上运行，通过浏览器操作。你无需先学习前后端分离，就能完成论文检索、采集、核验和覆盖检查。
 
@@ -6,7 +6,7 @@
 
 ## 第一步 准备项目
 
-解压 `ccf-awards-agent-web-v0.2.zip`，进入里面的 `ccf-awards-agent` 文件夹。这个文件夹中应该能直接看到 `streamlit_app.py`、`requirements-web.txt` 和 `ccf_awards` 文件夹。
+进入 `Global-CS-Paper-Awards-Agent` 项目文件夹。根目录应能看到 `streamlit_app.py`、`requirements-web.txt` 和 `ccf_awards` 文件夹；不再使用旧版压缩包名称。
 
 **如果旧版已经有自己的论文数据：**先关闭旧程序并备份旧版 `data` 文件夹，再将原来的 `data/awards.sqlite3` 和 `data/runs` 复制到新版对应位置。新版使用同一数据库结构，无需重新采集。若原来通过 `CCF_AWARDS_DB` 指定其他数据库，仍可使用那个设置；相对路径现在以项目文件夹为基准。
 

@@ -1,4 +1,4 @@
-# Global CS Paper Awards
+# Global CS Paper Awards Agent
 
 > **Best Paper and Best Student Paper Awards in Top Computer Science Venues**
 >
@@ -67,7 +67,7 @@ python -m ccf_awards render-markdown --root .
 网页只发布状态为 **已核验** 的记录；待核验和已排除记录不会进入公开索引。发布过程比较 Git blob 内容，只有文件真实变化时才创建一个原子提交。服务器需配置：
 
     GITHUB_TOKEN=具有目标仓库 Contents 写权限的细粒度令牌
-    GITHUB_REPOSITORY=peekabooXT/Global-CS-Paper-Awards
+    GITHUB_REPOSITORY=peekabooXT/Global-CS-Paper-Awards-Agent
     GITHUB_BRANCH=main
     PUBLISH_PASSWORD_SHA256=发布验证密码的SHA-256摘要
 
@@ -75,7 +75,7 @@ python -m ccf_awards render-markdown --root .
 
 ## 1 先在本机运行离线样例
 
-安装 Python 3.10 或以上版本，把压缩包解压，在 `ccf-awards-agent` 文件夹中打开终端。基础功能无需安装第三方依赖。
+安装 Python 3.10 或以上版本，在 `Global-CS-Paper-Awards-Agent` 项目文件夹中打开终端。基础功能无需安装第三方依赖。
 
 ```bash
 python -m ccf_awards demo

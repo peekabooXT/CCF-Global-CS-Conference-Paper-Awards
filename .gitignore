@@ -8,7 +8,7 @@ results/
 .playwright-cli/
 output/playwright/
 
-Global-CS-Paper-Awards-main/
+Global-CS-Paper-Awards-Agent-main/
 venv/
 # Python缓存
 *.pyo

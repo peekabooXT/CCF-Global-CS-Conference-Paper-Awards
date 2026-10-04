@@ -1,7 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Awards - Start All" type="PythonConfigurationType" factoryName="Python">
-    <module name="Global-CS-Paper-Awards-main" />
-    <option name="SDK_HOME" value="D:\1postgrade\Global-CS-Paper-Awards\review\Global-CS-Paper-Awards-main\Global-CS-Paper-Awards-main\Scripts\python.exe" />
+    <module name="Global-CS-Paper-Awards-Agent" />
     <option name="IS_MODULE_SDK" value="true" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_all.py" />

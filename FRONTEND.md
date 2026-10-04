@@ -5,9 +5,9 @@
 ## 结构
 
 ```
-Global-CS-Paper-Awards-main/
+Global-CS-Paper-Awards-Agent/
 ├─ api.py                  ← 新增：FastAPI 层，把 ccf_awards 包的方法包成 JSON 接口
-├─ start-web.cmd           ← 新增：一键启动（后端 8000 + 前端 5173）
+├─ run_all.py              ← Windows 一键启动（后端 8000 + 前端 5173）
 └─ frontend/               ← 新增：Vite + Vue3 + Element Plus
    ├─ vite.config.js       ← /api 代理到 127.0.0.1:8000
    └─ src/
@@ -26,11 +26,11 @@ cd frontend
 npm install
 ```
 
-之后每次直接双击根目录的 **`start-web.cmd`**，或手动执行：
+之后每次在项目根目录运行 **`python run_all.py`**，或手动执行：
 
 ```powershell
 # 终端 1：后端
-Global-CS-Paper-Awards-main\Scripts\python.exe -m uvicorn api:app --port 8000
+.venv\Scripts\python.exe -m uvicorn api:app --port 8000
 
 # 终端 2：前端
 cd frontend

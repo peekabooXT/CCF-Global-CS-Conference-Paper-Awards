@@ -1,7 +1,7 @@
 """FastAPI 层：只做 JSON 包装，业务逻辑全部复用 ccf_awards 包，不改一行核心代码。
 
 启动（在项目根目录）：
-    Global-CS-Paper-Awards-main\\Scripts\\python.exe -m uvicorn api:app --port 8000
+    .venv\\Scripts\\python.exe -m uvicorn api:app --port 8000
 然后启动前端：frontend 目录下 npm run dev（Vite 会把 /api 代理到 8000）。
 """
 from __future__ import annotations
@@ -42,7 +42,7 @@ from ccf_awards.web_helpers import (
     validate_filters,
 )
 
-app = FastAPI(title="Global CS Paper Awards API")
+app = FastAPI(title="Global CS Paper Awards Agent API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -170,7 +170,7 @@ def export_csv(q: str = ""):
         return StreamingResponse(
             iter([csv_bytes(records)]),
             media_type="text/csv; charset=utf-8",
-            headers={"Content-Disposition": "attachment; filename=ccf-awards.csv"},
+            headers={"Content-Disposition": "attachment; filename=global-cs-paper-awards-agent.csv"},
         )
     finally:
         db.close()
@@ -189,7 +189,7 @@ def export_batch_csv(req: BatchExportReq):
     try:
         records = [row for row in db.search(status="all") if row["id"] in ids]
         return StreamingResponse(iter([csv_bytes(records)]), media_type="text/csv; charset=utf-8",
-                                 headers={"Content-Disposition": "attachment; filename=ccf-awards-batch.csv"})
+                                 headers={"Content-Disposition": "attachment; filename=global-cs-paper-awards-agent-batch.csv"})
     finally:
         db.close()
 
@@ -595,7 +595,7 @@ def export_runs_csv(limit: Optional[int] = None, started_from: Optional[str] = N
         return StreamingResponse(
             iter([run_log_csv_bytes(db.runs(limit, **filters))]),
             media_type="text/csv; charset=utf-8",
-            headers={"Content-Disposition": "attachment; filename=ccf-awards-run-logs.csv"},
+            headers={"Content-Disposition": "attachment; filename=global-cs-paper-awards-agent-run-logs.csv"},
         )
     finally:
         db.close()

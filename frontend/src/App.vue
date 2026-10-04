@@ -109,9 +109,9 @@ onMounted(boot)
   <div class="academic-app">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="#" @click.prevent="active = 'search'" aria-label="Global CS Paper Awards 首页">
+        <a class="brand" href="#" @click.prevent="active = 'search'" aria-label="Global CS Paper Awards Agent 首页">
           <span class="brand-mark"><el-icon :size="25"><Reading /></el-icon></span>
-          <span><strong>Global CS Paper Awards</strong><small>计算机领域获奖论文资料库</small></span>
+          <span><strong>Global CS Paper Awards Agent</strong><small>计算机领域获奖论文资料库</small></span>
         </a>
         <nav aria-label="主导航">
           <button v-for="item in navigation" :key="item.id" :class="{active:active===item.id}" :aria-current="active===item.id?'page':undefined" @click="active=item.id">{{ item.label }}</button>
@@ -177,7 +177,7 @@ onMounted(boot)
       </template>
     </el-dialog>
 
-    <footer class="site-footer"><span>Global CS Paper Awards · 学术资料索引</span><span>保留原始来源 · 缺失信息标注未知 · 核验状态可追溯</span></footer>
+    <footer class="site-footer"><span>Global CS Paper Awards Agent · 学术资料索引</span><span>保留原始来源 · 缺失信息标注未知 · 核验状态可追溯</span></footer>
   </div>
 </template>
 

@@ -27,7 +27,7 @@ from ccf_awards.web_helpers import (
     import_demo, parse_years, urls_from_text, validate_filters,
 )
 
-APP_NAME = "Global CS Paper Awards"
+APP_NAME = "Global CS Paper Awards Agent"
 APP_SUBTITLE = "Best Paper and Best Student Paper Awards in Top Computer Science Venues"
 APP_NAME_ZH = "全球计算机顶级论文奖数据库——收录顶级会议与期刊的最佳论文奖和最佳学生论文奖"
 
@@ -195,7 +195,7 @@ def search_page(db, conferences):
         st.info("没有匹配结果。首次使用可点击左侧“导入两条样例”；也可调整筛选，或到“采集与导入”添加记录。")
         return
     a, b = st.columns([1, 5])
-    a.download_button("下载 CSV", csv_bytes(results), file_name="ccf-awards.csv", mime="text/csv", key="download_csv")
+    a.download_button("下载 CSV", csv_bytes(results), file_name="global-cs-paper-awards-agent.csv", mime="text/csv", key="download_csv")
     b.caption("作者与单位同时筛选时，必须对应同一位作者。未知字段不会补猜。")
     rows = export_rows(results)
     keys = ["论文名称", "会议", "CCF", "会议年份", "奖项", "发表日期", "状态"]
@@ -539,7 +539,7 @@ def review_page(db):
     st.header("记录核验")
     st.caption("核对来源中的奖项、作者与单位对应关系后，更新记录状态。")
     verified_count = len(db.search(status="verified"))
-    repository = os.getenv("GITHUB_REPOSITORY", "peekabooXT/Global-CS-Paper-Awards")
+    repository = os.getenv("GITHUB_REPOSITORY", "peekabooXT/Global-CS-Paper-Awards-Agent")
     branch = os.getenv("GITHUB_BRANCH", "main")
     with st.expander("发布已核验记录到 GitHub", expanded=True):
         st.write(f"当前已核验 **{verified_count}** 条；目标仓库 **{repository}**，分支 **{branch}**。")

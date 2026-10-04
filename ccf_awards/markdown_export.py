@@ -69,7 +69,7 @@ def render_markdown(db, repository_root, status="all"):
     records = db.search(status=status)
 
     alphabetical = sorted(records, key=lambda r: (r["acronym"].casefold(), -r["year"], r["title"].casefold(), r["award_type"]))
-    main = _header("Global CS Paper Awards：最佳论文与最佳学生论文", alphabetical)
+    main = _header("Global CS Paper Awards Agent：最佳论文与最佳学生论文", alphabetical)
     main += "## 会议/期刊字母排序检索\n\n"
     main += "当前数据源以 CCF A/B 会议为主；期刊接入后将使用同一字段和索引。\n\n"
     main += _table(alphabetical) + "\n"

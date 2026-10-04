@@ -257,7 +257,7 @@ async function exportBatchPapers() {
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = 'ccf-awards-batch.csv'
+    link.download = 'global-cs-paper-awards-agent-batch.csv'
     document.body.appendChild(link)
     link.click()
     link.remove()

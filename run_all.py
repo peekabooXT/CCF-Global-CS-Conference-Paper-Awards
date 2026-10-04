@@ -17,12 +17,8 @@ import sys
 import time
 from pathlib import Path
 
-# ROOT = Path(__file__).resolve().parent
-# VENV_PYTHON = ROOT / "Global-CS-Paper-Awards-main" / "Scripts" / "python.exe"
-# FRONTEND = ROOT / "frontend"
 ROOT = Path(__file__).resolve().parent
-# 真实虚拟环境目录名：Global-CS-Paper-Awards-main
-VENV_PYTHON = ROOT / "Global-CS-Paper-Awards-main" / "Scripts" / "python.exe"
+VENV_PYTHON = Path(sys.executable) if sys.prefix != sys.base_prefix else ROOT / ".venv" / "Scripts" / "python.exe"
 FRONTEND = ROOT / "frontend"
 
 

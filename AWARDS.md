@@ -1,4 +1,4 @@
-# Global CS Paper Awards：最佳论文与最佳学生论文
+# Global CS Paper Awards Agent：最佳论文与最佳学生论文
 
 [会议/期刊字母排序](AWARDS.md) · [会议/期刊类别分类检索](docs/awards/BY_CATEGORY.md) · [年份分类检索](docs/awards/BY_YEAR.md) · [奖项分类检索](docs/awards/BY_AWARD.md)
 

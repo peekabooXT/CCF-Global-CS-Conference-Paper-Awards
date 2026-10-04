@@ -162,7 +162,7 @@ def year_value(value):
 
 
 def parser():
-    p = argparse.ArgumentParser(description="Global CS Paper Awards：顶级计算机会议与期刊论文奖采集检索系统")
+    p = argparse.ArgumentParser(description="Global CS Paper Awards Agent：顶级计算机会议与期刊论文奖采集检索系统")
     p.add_argument("--db", default=os.getenv("CCF_AWARDS_DB", "data/awards.sqlite3"), help="SQLite 路径；放在子命令前")
     sub = p.add_subparsers(dest="command", required=True)
     init = sub.add_parser("init", help="导入 190 个会议，不会删除论文")

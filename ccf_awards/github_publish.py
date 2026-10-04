@@ -107,7 +107,7 @@ class GitHubPublisher:
 
     def __init__(self, token=None, repository=None, branch=None, api_url=None):
         self.token = token if token is not None else os.getenv("GITHUB_TOKEN", os.getenv("GH_TOKEN", ""))
-        self.repository = repository or os.getenv("GITHUB_REPOSITORY", "peekabooXT/Global-CS-Paper-Awards")
+        self.repository = repository or os.getenv("GITHUB_REPOSITORY", "peekabooXT/Global-CS-Paper-Awards-Agent")
         self.branch = branch or os.getenv("GITHUB_BRANCH", "main")
         self.api_url = (api_url or os.getenv("GITHUB_API_URL", "https://api.github.com")).rstrip("/")
         if not self.token:
@@ -127,7 +127,7 @@ class GitHubPublisher:
                 "Accept": "application/vnd.github+json",
                 "X-GitHub-Api-Version": "2022-11-28",
                 "Content-Type": "application/json",
-                "User-Agent": "global-cs-paper-awards",
+                "User-Agent": "global-cs-paper-awards-agent",
             },
         )
         try:
