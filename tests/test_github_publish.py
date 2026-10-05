@@ -4,12 +4,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ccf_awards.db import Database
-from ccf_awards.github_publish import (
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.github_publish import (
     GitHubPublisher, PUBLISHED_JSON, build_publish_files, git_blob_sha,
     import_verified_snapshot, verify_publish_password,
 )
-from ccf_awards.web_helpers import import_demo
+from global_cs_paper_awards_agent.web_helpers import import_demo
 
 
 class FakePublisher(GitHubPublisher):

@@ -52,13 +52,13 @@ jobs:
           fi
       - name: Rebuild the database from versioned evidence
         run: |
-          python -m ccf_awards --db data/github-agent.sqlite3 import-excel data/exports/CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx
+          python -m global_cs_paper_awards_agent --db data/github-agent.sqlite3 import-excel data/exports/CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx
           shopt -s nullglob
           for file in data/records/*.json; do
-            python -m ccf_awards --db data/github-agent.sqlite3 import-json "$file"
+            python -m global_cs_paper_awards_agent --db data/github-agent.sqlite3 import-json "$file"
           done
           if [ -f data/exports/verified-records.json ]; then
-            python -m ccf_awards --db data/github-agent.sqlite3 import-verified data/exports/verified-records.json
+            python -m global_cs_paper_awards_agent --db data/github-agent.sqlite3 import-verified data/exports/verified-records.json
           fi
       - name: Search, fetch, extract, and record
         continue-on-error: true
@@ -70,12 +70,12 @@ jobs:
           year="${INPUT_YEAR:-$(date +%Y)}"
           limit="${INPUT_LIMIT:-3}"
           if [ -n "$INPUT_CONFERENCE" ]; then
-            python -m ccf_awards --db data/github-agent.sqlite3 autocollect --conference "$INPUT_CONFERENCE" --year "$year"
+            python -m global_cs_paper_awards_agent --db data/github-agent.sqlite3 autocollect --conference "$INPUT_CONFERENCE" --year "$year"
           else
-            python -m ccf_awards --db data/github-agent.sqlite3 agent-run --year "$year" --limit "$limit"
+            python -m global_cs_paper_awards_agent --db data/github-agent.sqlite3 agent-run --year "$year" --limit "$limit"
           fi
       - name: Render GitHub indexes
-        run: python -m ccf_awards --db data/github-agent.sqlite3 render-markdown --root . --status verified
+        run: python -m global_cs_paper_awards_agent --db data/github-agent.sqlite3 render-markdown --root . --status verified
       - name: Commit evidence and indexes
         run: |
           git config user.name "github-actions[bot]"

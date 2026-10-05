@@ -2,9 +2,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ccf_awards.award_events import import_annotations
-from ccf_awards.db import Database
-from ccf_awards.source_listings import import_jeffhuang, list_source_listings, source_listing_detail
+from global_cs_paper_awards_agent.award_events import import_annotations
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.source_listings import import_jeffhuang, list_source_listings, source_listing_detail
 
 
 class SourceListingsTest(unittest.TestCase):

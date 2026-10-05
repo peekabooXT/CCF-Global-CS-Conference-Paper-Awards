@@ -3,8 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ccf_awards.db import Database
-from ccf_awards.excel_import import import_excel
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.excel_import import import_excel
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKBOOK = ROOT / "data" / "exports" / "CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx"

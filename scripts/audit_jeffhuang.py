@@ -10,10 +10,10 @@ from pathlib import Path
 from openpyxl import load_workbook
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from ccf_awards.award_events import venue_for
-from ccf_awards.model import keytext, norm
-from ccf_awards.ontology import classify_award
-from ccf_awards.source_listings import TITLE_ALIASES
+from global_cs_paper_awards_agent.award_events import venue_for
+from global_cs_paper_awards_agent.model import keytext, norm
+from global_cs_paper_awards_agent.ontology import classify_award
+from global_cs_paper_awards_agent.source_listings import TITLE_ALIASES
 
 
 def main(workbook_path, evidom_path, verified_path):

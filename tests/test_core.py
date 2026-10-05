@@ -7,12 +7,12 @@ import unittest
 from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 from unittest.mock import patch
-from ccf_awards.catalog import load_catalog
-from ccf_awards.db import Database
-from ccf_awards.model import date_bounds, validate_bundle
-from ccf_awards.network import decode_document, public_url
-from ccf_awards.llm import LLM, scope_sources_to_year
-from ccf_awards.__main__ import auto_collect_one, main, collect_one
+from global_cs_paper_awards_agent.catalog import load_catalog
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.model import date_bounds, validate_bundle
+from global_cs_paper_awards_agent.network import decode_document, public_url
+from global_cs_paper_awards_agent.llm import LLM, scope_sources_to_year
+from global_cs_paper_awards_agent.__main__ import auto_collect_one, main, collect_one
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -261,7 +261,7 @@ class CoreTest(unittest.TestCase):
     def test_collect_to_sqlite_with_mocked_api_and_fetch(self):
         # Simulated network/model, real coordinator -> validator -> SQLite -> search.
         with patch.dict(os.environ, {"LLM_API_KEY":"test-secret", "LLM_MODEL":"test-model"}), \
-             patch("ccf_awards.network.crawl", return_value=(self.bundle["sources"], [])), \
+             patch("global_cs_paper_awards_agent.network.crawl", return_value=(self.bundle["sources"], [])), \
              patch.object(LLM, "json", return_value={"records":self.bundle["records"]}), redirect_stderr(io.StringIO()):
             result = collect_one(self.db, self.db.resolve("ACL"), 2024, ["https://example.org/2024"])
         self.assertEqual(result["inserted"], 1)
@@ -271,7 +271,7 @@ class CoreTest(unittest.TestCase):
 
     def test_failed_collection_logged(self):
         with patch.dict(os.environ, {"LLM_API_KEY":"test-secret", "LLM_MODEL":"test-model"}), \
-             patch("ccf_awards.network.crawl", side_effect=ValueError("fetch failed")):
+             patch("global_cs_paper_awards_agent.network.crawl", side_effect=ValueError("fetch failed")):
             with self.assertRaises(ValueError):
                 collect_one(self.db, self.db.resolve("ACL"), 2024, ["https://example.org/2024"])
         self.assertEqual(self.db.conn.execute("SELECT status FROM runs").fetchone()[0], "failed")

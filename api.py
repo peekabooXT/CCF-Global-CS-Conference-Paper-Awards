@@ -1,4 +1,4 @@
-"""FastAPI 层：只做 JSON 包装，业务逻辑全部复用 ccf_awards 包，不改一行核心代码。
+"""FastAPI 层：只做 JSON 包装，业务逻辑全部复用 global_cs_paper_awards_agent 包，不改一行核心代码。
 
 启动（在项目根目录）：
     .venv\\Scripts\\python.exe -m uvicorn api:app --port 8000
@@ -20,17 +20,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
-from ccf_awards.__main__ import auto_collect_one, collect_one
-from ccf_awards.db import Database
-from ccf_awards.award_events import event_detail, list_events
-from ccf_awards.ontology import CATEGORIES
-from ccf_awards.paper_search import award_names, search_papers
-from ccf_awards.source_listings import list_source_listings, source_listing_detail
-from ccf_awards.discovery import DeepSeekAnthropicWebSearch, ResponsesWebSearch, ZhipuWebSearch
-from ccf_awards.llm import LLM
-from ccf_awards.model_catalog import list_provider_models
-from ccf_awards.network import read_local_source
-from ccf_awards.web_helpers import (
+from global_cs_paper_awards_agent.__main__ import auto_collect_one, collect_one
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.award_events import event_detail, list_events
+from global_cs_paper_awards_agent.ontology import CATEGORIES
+from global_cs_paper_awards_agent.paper_search import award_names, search_papers
+from global_cs_paper_awards_agent.source_listings import list_source_listings, source_listing_detail
+from global_cs_paper_awards_agent.discovery import DeepSeekAnthropicWebSearch, ResponsesWebSearch, ZhipuWebSearch
+from global_cs_paper_awards_agent.llm import LLM
+from global_cs_paper_awards_agent.model_catalog import list_provider_models
+from global_cs_paper_awards_agent.network import read_local_source
+from global_cs_paper_awards_agent.web_helpers import (
     AWARDS,
     COVERAGE,
     STATUSES,

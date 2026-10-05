@@ -7,9 +7,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from ccf_awards.award_events import reclassify_events
-from ccf_awards.db import Database
-from ccf_awards.ontology import CATEGORIES
+from global_cs_paper_awards_agent.award_events import reclassify_events
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.ontology import CATEGORIES
 
 
 if __name__ == "__main__":

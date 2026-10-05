@@ -7,8 +7,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from ccf_awards.db import Database
-from ccf_awards.source_listings import import_jeffhuang
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.source_listings import import_jeffhuang
 
 
 if __name__ == "__main__":

@@ -13,16 +13,16 @@ from pathlib import Path
 
 import streamlit as st
 
-from ccf_awards.__main__ import auto_collect_one, collect_one
-from ccf_awards.db import Database
-from ccf_awards.discovery import ResponsesWebSearch
-from ccf_awards.excel_import import import_excel
-from ccf_awards.github_publish import GitHubPublisher, publish_verified, verify_publish_password
-from ccf_awards.llm import LLM
-from ccf_awards.model import require_text, url_syntax
-from ccf_awards.network import read_local_source
-from ccf_awards.providers import PROVIDER_PROFILES, provider_profile
-from ccf_awards.web_helpers import (
+from global_cs_paper_awards_agent.__main__ import auto_collect_one, collect_one
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.discovery import ResponsesWebSearch
+from global_cs_paper_awards_agent.excel_import import import_excel
+from global_cs_paper_awards_agent.github_publish import GitHubPublisher, publish_verified, verify_publish_password
+from global_cs_paper_awards_agent.llm import LLM
+from global_cs_paper_awards_agent.model import require_text, url_syntax
+from global_cs_paper_awards_agent.network import read_local_source
+from global_cs_paper_awards_agent.providers import PROVIDER_PROFILES, provider_profile
+from global_cs_paper_awards_agent.web_helpers import (
     AWARDS, COVERAGE, STATUSES, csv_bytes, database_path, export_rows,
     import_demo, parse_years, urls_from_text, validate_filters,
 )

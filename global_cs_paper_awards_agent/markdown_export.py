@@ -57,7 +57,7 @@ def _header(title, records, prefix=""):
     counts = Counter(record["award_type"] for record in records)
     return "\n".join([
         f"# {title}", "", _nav(prefix), "",
-        f"> 自动生成于 {dt.date.today().isoformat()}。共 **{len(records)}** 条：Best Paper **{counts['best_paper']}** 条，Best Student Paper **{counts['best_student_paper']}** 条。请勿手工编辑，运行 `python -m ccf_awards render-markdown` 重新生成。",
+        f"> 自动生成于 {dt.date.today().isoformat()}。共 **{len(records)}** 条：Best Paper **{counts['best_paper']}** 条，Best Student Paper **{counts['best_student_paper']}** 条。请勿手工编辑，运行 `python -m global_cs_paper_awards_agent render-markdown` 重新生成。",
         "",
     ]) + "\n"
 

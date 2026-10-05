@@ -5,11 +5,11 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from ccf_awards.db import Database
-from ccf_awards.discovery import DeepSeekAnthropicWebSearch, OpenAIWebSearch, ResponsesWebSearch, ZhipuWebSearch
-from ccf_awards.llm import LLM
-from ccf_awards.markdown_export import render_markdown
-from ccf_awards.network import crawl
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.discovery import DeepSeekAnthropicWebSearch, OpenAIWebSearch, ResponsesWebSearch, ZhipuWebSearch
+from global_cs_paper_awards_agent.llm import LLM
+from global_cs_paper_awards_agent.markdown_export import render_markdown
+from global_cs_paper_awards_agent.network import crawl
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -162,7 +162,7 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
         response.__enter__.return_value.read.return_value = b'{"type":"message"}'
         opener = MagicMock()
         opener.open.return_value = response
-        with patch("ccf_awards.discovery.urllib.request.build_opener", return_value=opener):
+        with patch("global_cs_paper_awards_agent.discovery.urllib.request.build_opener", return_value=opener):
             self.assertEqual(search._post({"model": "deepseek-flash"})["type"], "message")
         request = opener.open.call_args.args[0]
         self.assertEqual(request.full_url, "https://api.deepseek.com/anthropic/v1/messages")
@@ -209,7 +209,7 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
             "role": "award", "text": "Best Paper Award\nA Valid Paper", "mime": "text/html",
             "retrieved_at": "2026-01-01T00:00:00Z", "acquisition": "http", "extraction_scope": "full document",
         }
-        with patch("ccf_awards.network.Fetcher.fetch", side_effect=[ValueError("unavailable"), (source, [])]):
+        with patch("global_cs_paper_awards_agent.network.Fetcher.fetch", side_effect=[ValueError("unavailable"), (source, [])]):
             sources, warnings = crawl(
                 ["https://bad.example/awards", "https://good.example/awards"],
                 max_pages=2,

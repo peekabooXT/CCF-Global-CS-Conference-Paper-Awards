@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from ccf_awards.model_catalog import _catalog_url, list_provider_models
-from ccf_awards.providers import provider_profile
+from global_cs_paper_awards_agent.model_catalog import _catalog_url, list_provider_models
+from global_cs_paper_awards_agent.providers import provider_profile
 
 
 class ModelCatalogTest(unittest.TestCase):
@@ -23,7 +23,7 @@ class ModelCatalogTest(unittest.TestCase):
             _catalog_url("custom", "http://example.org/v1")
         with self.assertRaisesRegex(ValueError, "公共互联网"):
             _catalog_url("custom", "https://127.0.0.1/v1")
-        with patch("ccf_awards.model_catalog.public_url", return_value="https://relay.example/v1") as validate:
+        with patch("global_cs_paper_awards_agent.model_catalog.public_url", return_value="https://relay.example/v1") as validate:
             self.assertEqual(_catalog_url("custom", "https://relay.example/v1"),
                              "https://relay.example/v1/models")
         validate.assert_called_once_with("https://relay.example/v1")
@@ -33,8 +33,8 @@ class ModelCatalogTest(unittest.TestCase):
         response.__enter__.return_value.read.return_value = b'{"data":[{"id":"relay-model"}]}'
         opener = MagicMock()
         opener.open.return_value = response
-        with patch("ccf_awards.model_catalog.public_url", return_value="https://relay.example/v1"), \
-             patch("ccf_awards.model_catalog.urllib.request.build_opener", return_value=opener):
+        with patch("global_cs_paper_awards_agent.model_catalog.public_url", return_value="https://relay.example/v1"), \
+             patch("global_cs_paper_awards_agent.model_catalog.urllib.request.build_opener", return_value=opener):
             models = list_provider_models("custom", "relay-key", "https://relay.example/v1")
         request = opener.open.call_args.args[0]
         self.assertEqual(request.full_url, "https://relay.example/v1/models")
@@ -49,7 +49,7 @@ class ModelCatalogTest(unittest.TestCase):
         )
         opener = MagicMock()
         opener.open.return_value = response
-        with patch("ccf_awards.model_catalog.urllib.request.build_opener", return_value=opener):
+        with patch("global_cs_paper_awards_agent.model_catalog.urllib.request.build_opener", return_value=opener):
             models = list_provider_models("deepseek", "current-key")
         request = opener.open.call_args.args[0]
         self.assertEqual(request.full_url, "https://api.deepseek.com/models")
@@ -65,6 +65,6 @@ class ModelCatalogTest(unittest.TestCase):
         )
         opener = MagicMock()
         opener.open.return_value = response
-        with patch("ccf_awards.model_catalog.urllib.request.build_opener", return_value=opener):
+        with patch("global_cs_paper_awards_agent.model_catalog.urllib.request.build_opener", return_value=opener):
             models = list_provider_models("qwen", "dashscope-key")
         self.assertEqual(models, [{"id": "qwen3.8-max", "name": "Qwen Max"}])

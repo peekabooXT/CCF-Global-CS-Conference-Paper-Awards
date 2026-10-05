@@ -6,7 +6,7 @@
 
 ## 第一步 准备项目
 
-进入 `Global-CS-Paper-Awards-Agent` 项目文件夹。根目录应能看到 `streamlit_app.py`、`requirements-web.txt` 和 `ccf_awards` 文件夹；不再使用旧版压缩包名称。
+进入 `Global-CS-Paper-Awards-Agent` 项目文件夹。根目录应能看到 `streamlit_app.py`、`requirements-web.txt` 和 `global_cs_paper_awards_agent` 文件夹；不再使用旧版压缩包名称。
 
 **如果旧版已经有自己的论文数据：**先关闭旧程序并备份旧版 `data` 文件夹，再将原来的 `data/awards.sqlite3` 和 `data/runs` 复制到新版对应位置。新版使用同一数据库结构，无需重新采集。若原来通过 `CCF_AWARDS_DB` 指定其他数据库，仍可使用那个设置；相对路径现在以项目文件夹为基准。
 
@@ -145,8 +145,8 @@ python -m streamlit run streamlit_app.py
 新增文件：
 
 - `streamlit_app.py`：网页入口，分别用函数组织四个工作区。
-- `ccf_awards/web_helpers.py`：网页显示文字、CSV 下载等适配功能。
-- ccf_awards/github_publish.py：生成已核验快照并通过 GitHub Git Data API 原子发布。
+- `global_cs_paper_awards_agent/web_helpers.py`：网页显示文字、CSV 下载等适配功能。
+- global_cs_paper_awards_agent/github_publish.py：生成已核验快照并通过 GitHub Git Data API 原子发布。
 - `requirements-web.txt`：网页依赖。
 - `.streamlit/config.toml`：本机监听地址、主题、上传限制及请求保护。
 - `tests/test_web.py`：网页交互和会话配置测试。

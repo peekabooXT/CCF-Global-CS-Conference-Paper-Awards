@@ -48,16 +48,16 @@ $env:SEARCH_MODEL = "支持 web_search 的模型名"
 
 ```bash
 # 只发现候选官方页面，不入库
-python -m ccf_awards discover --conference ACL --year 2026
+python -m global_cs_paper_awards_agent discover --conference ACL --year 2026
 
 # 自动搜索、抓取、提取、校验并保存 evidence JSON
-python -m ccf_awards autocollect --conference ACL --year 2026
+python -m global_cs_paper_awards_agent autocollect --conference ACL --year 2026
 
 # 无人值守处理最多 3 个尚无记录的会议
-python -m ccf_awards agent-run --year 2026 --limit 3
+python -m global_cs_paper_awards_agent agent-run --year 2026 --limit 3
 
 # 从当前数据库重新生成四个 GitHub Markdown 视图
-python -m ccf_awards render-markdown --root .
+python -m global_cs_paper_awards_agent render-markdown --root .
 ```
 
 仓库的 [GitHub Actions 工作流](.github/workflows/award-agent.yml) 支持手动指定会议和年份，也会每周运行一次。默认提取配置需要 Secret `DEEPSEEK_API_KEY`。若同一端点支持网页搜索，可设置 Variable `SEARCH_REUSE_LLM=1`；否则配置 Secret `SEARCH_API_KEY` 和 Variable `SEARCH_MODEL`。需要换提供商时，可设置 `LLM_PROVIDER`、`LLM_BASE_URL`、`LLM_MODEL`。工作流会从版本化 Excel、证据 JSON 和已核验快照重建临时数据库，运行 Agent，只把已核验记录渲染到公开 Markdown 索引；SQLite 文件本身不提交。
@@ -78,8 +78,8 @@ python -m ccf_awards render-markdown --root .
 安装 Python 3.10 或以上版本，在 `Global-CS-Paper-Awards-Agent` 项目文件夹中打开终端。基础功能无需安装第三方依赖。
 
 ```bash
-python -m ccf_awards demo
-python -m ccf_awards search
+python -m global_cs_paper_awards_agent demo
+python -m global_cs_paper_awards_agent search
 ```
 
 有些系统需要把 `python` 改为 `python3`，Windows 也可以使用 `py`。`demo` 会创建数据库并导入会议名单及两条样例，不需要 API、不访问网络，可以重复运行。
@@ -96,15 +96,15 @@ ACL 的奖项见[会议获奖页](https://2024.aclweb.org/program/best_papers/)�
 如果不需要样例，只创建空论文数据库：
 
 ```bash
-python -m ccf_awards init
+python -m global_cs_paper_awards_agent init
 ```
 
-默认数据库在 `data/awards.sqlite3`。切换数据库时，将 `--db` 放在子命令前，例如 `python -m ccf_awards --db data/my-papers.sqlite3 init`。备份时复制整个 `data` 目录即可。
+默认数据库在 `data/awards.sqlite3`。切换数据库时，将 `--db` 放在子命令前，例如 `python -m global_cs_paper_awards_agent --db data/my-papers.sqlite3 init`。备份时复制整个 `data` 目录即可。
 
 仓库中的核验版 Excel 位于 `data/exports/`。网页使用默认数据库且记录表为空时，会自动导入最新的 `CCF190_*_论文奖核验整理版.xlsx`。也可以手动、重复安全地执行：
 
 ```bash
-python -m ccf_awards import-excel data/exports/CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx
+python -m global_cs_paper_awards_agent import-excel data/exports/CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx
 ```
 
 重复导入不会生成重复记录；人工核验后的状态和备注会优先保留。
@@ -115,22 +115,22 @@ python -m ccf_awards import-excel data/exports/CCF190_2023-2026截至2026-09-15_
 
 ```bash
 # ACL，2020—2025 年，作者姓名包含 Julie
-python -m ccf_awards search --conference ACL --year-from 2020 --year-to 2025 --author Julie
+python -m global_cs_paper_awards_agent search --conference ACL --year-from 2020 --year-to 2025 --author Julie
 
 # 同一位作者的人名与单位必须同时匹配
-python -m ccf_awards search --author Julie --affiliation Stanford
+python -m global_cs_paper_awards_agent search --author Julie --affiliation Stanford
 
 # 查学生最佳论文奖；KDD 和 SIGKDD 都能解析到同一会议
-python -m ccf_awards search --conference KDD --award best_student_paper
+python -m global_cs_paper_awards_agent search --conference KDD --award best_student_paper
 
 # 按论文发表日期，而非会议年份筛选
-python -m ccf_awards search --published-from 2024-08-01 --published-to 2024-08-31
+python -m global_cs_paper_awards_agent search --published-from 2024-08-01 --published-to 2024-08-31
 
 # B 类会议，2021—2025 年，只查人工已核验记录并导出
-python -m ccf_awards search --rank B --year-from 2021 --year-to 2025 --status verified --csv results/papers.csv
+python -m global_cs_paper_awards_agent search --rank B --year-from 2021 --year-to 2025 --status verified --csv results/papers.csv
 
 # 返回完整 JSON，便于以后接网页前端
-python -m ccf_awards search --conference ACL --format json
+python -m global_cs_paper_awards_agent search --conference ACL --format json
 ```
 
 `--status` 默认是 `active`，包含待核验与已核验记录；已排除记录不会默认显示。只看可靠结果时使用 `--status verified`；核查历史时可用 `--status all` 或 `rejected`。
@@ -187,9 +187,9 @@ $env:SEARCH_MODEL = "支持 Responses web_search 的模型"
 先列出会议，找到名称与编号：
 
 ```bash
-python -m ccf_awards conferences --query ACL
-python -m ccf_awards conferences --rank B
-python -m ccf_awards conferences --query FSE
+python -m global_cs_paper_awards_agent conferences --query ACL
+python -m global_cs_paper_awards_agent conferences --rank B
+python -m global_cs_paper_awards_agent conferences --query FSE
 ```
 
 文档中 `FSE` 有两个含义：安全领域 Fast Software Encryption（B 类），以及软件工程领域 Foundations of Software Engineering（A 类）。输入 `FSE` 时程序会提示歧义，必须选择 `fse-95a390` 或 `fse-149830`；不会自动合并。
@@ -197,7 +197,7 @@ python -m ccf_awards conferences --query FSE
 可选地让 LLM 提供网址候选：
 
 ```bash
-python -m ccf_awards suggest --conference ACL --year 2024
+python -m global_cs_paper_awards_agent suggest --conference ACL --year 2024
 ```
 
 **`suggest` 没有搜索引擎工具，只根据模型返回候选 URL 和搜索词，候选可能过时或错误。** 先打开网址核实，再登记或传入 `collect`。也可以像你设想的那样，在其他 LLM 工具中手动找到官网后直接使用 URL。
@@ -205,14 +205,14 @@ python -m ccf_awards suggest --conference ACL --year 2024
 登记和采集：
 
 ```bash
-python -m ccf_awards source-add --conference ACL --year 2024 --url https://2024.aclweb.org/program/best_papers/
-python -m ccf_awards collect --conference ACL --year 2024
+python -m global_cs_paper_awards_agent source-add --conference ACL --year 2024 --url https://2024.aclweb.org/program/best_papers/
+python -m global_cs_paper_awards_agent collect --conference ACL --year 2024
 ```
 
 也可以不登记，直接采集一个入口：
 
 ```bash
-python -m ccf_awards collect --conference KDD --year 2024 --url https://kdd.org/kdd2024/awards/
+python -m global_cs_paper_awards_agent collect --conference KDD --year 2024 --url https://kdd.org/kdd2024/awards/
 ```
 
 采集器读取入口以及同域中带 award、best-paper 等词的链接，默认最多尝试 4 个页面。网站正文清洗后进入 LLM；被拒绝的记录会在输出 `rejected` 中显示原因，原始提取保存在 `data/runs/`。所有新记录默认待核验。`no_results` 仅表示这次没有提取到符合条件的数据。
@@ -230,7 +230,7 @@ python -m pip install -r requirements-pdf.txt
 例如补充 ACL 样例的发表信息和单位：
 
 ```bash
-python -m ccf_awards collect --conference ACL --year 2024 --url https://2024.aclweb.org/program/best_papers/ --extra-url https://aclanthology.org/2024.acl-long.787/ --extra-url https://aclanthology.org/2024.acl-long.787.pdf --max-pages 4
+python -m global_cs_paper_awards_agent collect --conference ACL --year 2024 --url https://2024.aclweb.org/program/best_papers/ --extra-url https://aclanthology.org/2024.acl-long.787/ --extra-url https://aclanthology.org/2024.acl-long.787.pdf --max-pages 4
 ```
 
 作为元数据来源的 PDF 默认读取前 3 页，并在来源中记录读取范围。它适合提取论文首页的作者单位；如果单位在后文，请将相关页导出为文本，使用下一节的文件模式。获奖 PDF 来源本身没有这个 3 页截取规则。
@@ -240,7 +240,7 @@ python -m ccf_awards collect --conference ACL --year 2024 --url https://2024.acl
 动态网页、扫描 PDF、登录页面或无法读取 robots.txt 的站点，需要手动取得允许使用的正文。把获奖正文保存为 UTF-8 文本，保留真实来源 URL。然后运行：
 
 ```bash
-python -m ccf_awards extract-file --conference ACL --year 2024 --file award-page.txt --source-url https://2024.aclweb.org/program/best_papers/
+python -m global_cs_paper_awards_agent extract-file --conference ACL --year 2024 --file award-page.txt --source-url https://2024.aclweb.org/program/best_papers/
 ```
 
 可以再附加 `--metadata-file paper.pdf --metadata-url 论文PDF的真实URL`。HTML 文件和可提取文本的 PDF 也能作为文件输入；扫描 PDF 不支持 OCR。
@@ -248,7 +248,7 @@ python -m ccf_awards extract-file --conference ACL --year 2024 --file award-page
 如果不用 LLM，可仿照 `examples/sample-acl-2024.json` 人工填写来源短摘录与记录，再运行：
 
 ```bash
-python -m ccf_awards import-json my-extraction.json
+python -m global_cs_paper_awards_agent import-json my-extraction.json
 ```
 
 该方式不访问网络；来源由导入者提供，所以本地证据校验不能证明来源网页真实，记录同样是待核验。
@@ -258,8 +258,8 @@ python -m ccf_awards import-json my-extraction.json
 搜索结果中有记录编号。打开原始来源确认奖项与论文、作者顺序、单位标号、发表日期，再标记：
 
 ```bash
-python -m ccf_awards show 记录编号
-python -m ccf_awards review 记录编号 --status verified --reviewer "你的名字" --note "已核对官方获奖段落、作者及论文首页单位"
+python -m global_cs_paper_awards_agent show 记录编号
+python -m global_cs_paper_awards_agent review 记录编号 --status verified --reviewer "你的名字" --note "已核对官方获奖段落、作者及论文首页单位"
 ```
 
 发现错误时使用 `--status rejected`；需重新检查时使用 `pending`。要更正字段，编辑对应的采集 JSON 或人工 JSON，再用 `import-json` 导入。相同身份的内容变化会归档旧版并回到待核验；完全重复导入不会清除核验状态。标题或奖项身份变化会产生新记录，旧错误记录需人工排除。
@@ -269,8 +269,8 @@ python -m ccf_awards review 记录编号 --status verified --reviewer "你的名
 查询所有会议在一个时间范围的覆盖情况：
 
 ```bash
-python -m ccf_awards coverage --year-from 2020 --year-to 2025
-python -m ccf_awards coverage --conference ACL --year-from 2024 --year-to 2024
+python -m global_cs_paper_awards_agent coverage --year-from 2020 --year-to 2025
+python -m global_cs_paper_awards_agent coverage --conference ACL --year-from 2024 --year-to 2024
 ```
 
 | 状态 | 含义 |
@@ -284,14 +284,14 @@ python -m ccf_awards coverage --conference ACL --year-from 2024 --year-to 2024
 `coverage` 针对每个会议、每年、每种奖项分别记录。记录数不等于完整性。程序绝不会因返回空数组而自动标记未设奖。人工结论示例：
 
 ```bash
-python -m ccf_awards coverage-mark --conference ACL --year 2024 --award best_paper --state partial --url https://2024.aclweb.org/program/best_papers/ --note "当前仅导入一条样例，完整名单尚待采集"
+python -m global_cs_paper_awards_agent coverage-mark --conference ACL --year 2024 --award best_paper --state partial --url https://2024.aclweb.org/program/best_papers/ --note "当前仅导入一条样例，完整名单尚待采集"
 ```
 
 登记更多会议年度入口后，可按范围批量采集：
 
 ```bash
-python -m ccf_awards batch --from-year 2020 --to-year 2025
-python -m ccf_awards runs
+python -m global_cs_paper_awards_agent batch --from-year 2020 --to-year 2025
+python -m global_cs_paper_awards_agent runs
 ```
 
 没有登记入口的会议年度会明确计入跳过数；某个任务失败后继续其他任务。再次采集会去重，可用于重试。此版未内置定时调度，也不会自动为 190 个会议生成并信任历年 URL。

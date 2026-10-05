@@ -4,10 +4,10 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ccf_awards.__main__ import auto_collect_one, collect_one
-from ccf_awards.db import Database
-from ccf_awards.discovery import ResponsesWebSearch
-from ccf_awards.llm import LLM
+from global_cs_paper_awards_agent.__main__ import auto_collect_one, collect_one
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.discovery import ResponsesWebSearch
+from global_cs_paper_awards_agent.llm import LLM
 
 
 class BatchCollectCoreTest(unittest.TestCase):
@@ -51,7 +51,7 @@ class BatchCollectCoreTest(unittest.TestCase):
                     self.assertEqual(args[3], [saved, candidate])
                     return {"seed_review": kwargs["run_details"]["seed_review"]}
 
-                with patch("ccf_awards.__main__.collect_one", side_effect=collect):
+                with patch("global_cs_paper_awards_agent.__main__.collect_one", side_effect=collect):
                     result = auto_collect_one(db, conf, 2025, output_dir=temp,
                                               search=Search(), llm=object(), notify=lambda _: None)
                 self.assertEqual(result["seed_review"]["saved_urls"], [saved])
@@ -79,7 +79,7 @@ class BatchCollectCoreTest(unittest.TestCase):
                     self.assertEqual(args[3], [saved])
                     return {"seed_review": kwargs["run_details"]["seed_review"]}
 
-                with patch("ccf_awards.__main__.collect_one", side_effect=collect):
+                with patch("global_cs_paper_awards_agent.__main__.collect_one", side_effect=collect):
                     result = auto_collect_one(db, conf, 2025, output_dir=temp,
                                               search=Search(), llm=object(), notify=lambda _: None)
                 self.assertIn("search unavailable", result["seed_review"]["search_error"])

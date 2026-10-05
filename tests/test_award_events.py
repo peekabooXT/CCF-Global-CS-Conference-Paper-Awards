@@ -3,9 +3,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ccf_awards.award_events import event_detail, import_annotations, list_events, reclassify_events, venue_for
-from ccf_awards.db import Database
-from ccf_awards.ontology import CATEGORIES, classify_award
+from global_cs_paper_awards_agent.award_events import event_detail, import_annotations, list_events, reclassify_events, venue_for
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.ontology import CATEGORIES, classify_award
 
 
 class AwardEventsTest(unittest.TestCase):

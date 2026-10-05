@@ -7,8 +7,8 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from ccf_awards.award_events import import_annotations
-from ccf_awards.db import Database
+from global_cs_paper_awards_agent.award_events import import_annotations
+from global_cs_paper_awards_agent.db import Database
 
 
 if __name__ == "__main__":

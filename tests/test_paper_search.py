@@ -3,12 +3,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ccf_awards.award_events import import_annotations
-from ccf_awards.db import Database
-from ccf_awards.paper_search import award_names, search_papers
-from ccf_awards.source_listings import import_jeffhuang
-from ccf_awards.ontology import CATEGORIES
-from ccf_awards.web_helpers import csv_bytes, import_demo
+from global_cs_paper_awards_agent.award_events import import_annotations
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.paper_search import award_names, search_papers
+from global_cs_paper_awards_agent.source_listings import import_jeffhuang
+from global_cs_paper_awards_agent.ontology import CATEGORIES
+from global_cs_paper_awards_agent.web_helpers import csv_bytes, import_demo
 
 
 class PaperSearchTest(unittest.TestCase):

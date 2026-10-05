@@ -7,9 +7,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ccf_awards.db import Database
-from ccf_awards.llm import LLM
-from ccf_awards.web_helpers import csv_bytes, export_rows, import_demo, parse_years, run_log_csv_bytes, urls_from_text
+from global_cs_paper_awards_agent.db import Database
+from global_cs_paper_awards_agent.llm import LLM
+from global_cs_paper_awards_agent.web_helpers import csv_bytes, export_rows, import_demo, parse_years, run_log_csv_bytes, urls_from_text
 
 try:
     from streamlit.testing.v1 import AppTest
@@ -144,7 +144,7 @@ class WebTest(unittest.TestCase):
         self.app.text_input(key="api_key").set_value("temporary-session-secret")
         self.app.text_input(key="model_name").set_value("test-model")
         self.app.text_area(key="urls_acl-70cc29_2024").set_value("https://2024.aclweb.org/program/best_papers/")
-        with patch("ccf_awards.network.crawl", return_value=(bundle["sources"], [])), \
+        with patch("global_cs_paper_awards_agent.network.crawl", return_value=(bundle["sources"], [])), \
              patch.object(LLM, "json", return_value={"records":bundle["records"]}) as model:
             self.button("collect_submit", "开始采集").click().run()
             self.app.run()
@@ -166,7 +166,7 @@ class WebTest(unittest.TestCase):
         cid = self.app.selectbox(key="collect_conference").value
         year = self.app.number_input(key="collect_year").value
         self.app.text_area(key=f"urls_{cid}_{year}").set_value("https://example.org/2024/awards")
-        with patch("ccf_awards.network.crawl") as network:
+        with patch("global_cs_paper_awards_agent.network.crawl") as network:
             self.button("collect_submit", "开始采集").click().run()
             network.assert_not_called()
         self.assertFalse(self.app.exception)

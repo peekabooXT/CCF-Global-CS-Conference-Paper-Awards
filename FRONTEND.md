@@ -1,12 +1,12 @@
 # 新版 Vue 前端说明
 
-在**不改动原有 `ccf_awards/` 核心逻辑和 SQLite 数据库**的前提下，新增了一层 FastAPI + Vue3 外接前端。
+在**不改动原有 `global_cs_paper_awards_agent/` 核心逻辑和 SQLite 数据库**的前提下，新增了一层 FastAPI + Vue3 外接前端。
 
 ## 结构
 
 ```
 Global-CS-Paper-Awards-Agent/
-├─ api.py                  ← 新增：FastAPI 层，把 ccf_awards 包的方法包成 JSON 接口
+├─ api.py                  ← 新增：FastAPI 层，把 global_cs_paper_awards_agent 包的方法包成 JSON 接口
 ├─ run_all.py              ← Windows 一键启动（后端 8000 + 前端 5173）
 └─ frontend/               ← 新增：Vite + Vue3 + Element Plus
    ├─ vite.config.js       ← /api 代理到 127.0.0.1:8000

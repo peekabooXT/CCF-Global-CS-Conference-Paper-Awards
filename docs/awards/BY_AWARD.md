@@ -2,7 +2,7 @@
 
 [会议/期刊字母排序](../../AWARDS.md) · [会议/期刊类别分类检索](../../docs/awards/BY_CATEGORY.md) · [年份分类检索](../../docs/awards/BY_YEAR.md) · [奖项分类检索](../../docs/awards/BY_AWARD.md)
 
-> 自动生成于 2026-09-20。共 **329** 条：Best Paper **290** 条，Best Student Paper **39** 条。请勿手工编辑，运行 `python -m ccf_awards render-markdown` 重新生成。
+> 自动生成于 2026-09-20。共 **329** 条：Best Paper **290** 条，Best Student Paper **39** 条。请勿手工编辑，运行 `python -m global_cs_paper_awards_agent render-markdown` 重新生成。
 
 ## Best Paper
 

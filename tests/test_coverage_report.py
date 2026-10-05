@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from ccf_awards.db import Database
+from global_cs_paper_awards_agent.db import Database
 
 
 class CoverageReportTest(unittest.TestCase):
