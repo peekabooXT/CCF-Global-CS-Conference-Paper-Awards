@@ -3,6 +3,7 @@ import { ref, reactive, computed, onMounted, onUnmounted, nextTick, watch } from
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { api, errMsg, collectBatchStream, collectFilesStream } from '../api.js'
 import { planCollectionBatches } from '../collectionBatches.js'
+import { JEFF_HUANG_VENUES, selectJeffHuangConferences } from '../jeffHuangConferences.js'
 
 const props = defineProps({
   meta: { type: Object, required: true },
@@ -52,6 +53,19 @@ const batch = reactive({
 })
 const allConferencesSelected = computed(() =>
   conferences.value.length > 0 && conferences.value.every(conference => batch.conference_ids.includes(conference.id)))
+const jeffHuangSelection = computed(() => selectJeffHuangConferences(conferences.value))
+const jeffHuangSelected = computed(() =>
+  jeffHuangSelection.value.unmatched.length === 0 &&
+  batch.conference_ids.length === JEFF_HUANG_VENUES.length &&
+  jeffHuangSelection.value.ids.every(id => batch.conference_ids.includes(id)))
+function selectJeffHuang() {
+  if (batchPlan.value) return
+  if (jeffHuangSelection.value.unmatched.length) {
+    ElMessage.warning(`会议目录无法准确匹配：${jeffHuangSelection.value.unmatched.join('、')}`)
+    return
+  }
+  batch.conference_ids = [...jeffHuangSelection.value.ids]
+}
 function selectAllConferences() {
   if (batchPlan.value) return
   batch.conference_ids = conferences.value.map(conference => conference.id)
@@ -571,6 +585,7 @@ async function onImportJson(e) {
               placeholder="输入会议简称并多选" class="batch-conference-select">
               <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
             </el-select>
+            <el-button size="small" :disabled="!!batchPlan || jeffHuangSelected || !conferences.length" @click="selectJeffHuang">选择 Jeff Huang 32 会</el-button>
             <el-button size="small" :disabled="!!batchPlan || allConferencesSelected || !conferences.length" @click="selectAllConferences">全选全部会议</el-button>
             <el-button size="small" :disabled="!!batchPlan || !batch.conference_ids.length" @click="clearConferences">清空</el-button>
             <span class="conference-selection-count">已选 {{ batch.conference_ids.length }} / {{ conferences.length }}</span>
