@@ -30,7 +30,7 @@ async function publish() {
 }
 </script>
 <template>
-  <el-dialog v-model="visible" title="本地审核与公开发布" width="860px" style="max-width:calc(100vw - 28px)">
+  <el-dialog v-model="visible" title="本地审核与公开发布" width="860px" align-center class="publication-dialog" style="max-width:calc(100vw - 28px)">
     <p class="hint">只发布已核验论文、获奖事件和来源收录。采集配置、API Key、运行日志、Token 用量、核验工作台和覆盖记录留在本地。</p>
     <el-alert v-if="error" type="error" :title="error" :closable="false" />
     <template v-if="preview">
@@ -50,4 +50,4 @@ async function publish() {
     <el-table :data="runs" max-height="260"><el-table-column label="开始时间" prop="started_at" min-width="180" /><el-table-column label="状态" min-width="160"><template #default="{row}">{{ labels[row.status] || row.status }}</template></el-table-column><el-table-column label="完成时间" prop="finished_at" min-width="180" /><el-table-column label="结果" min-width="200"><template #default="{row}"><a v-if="row.details.github" :href="row.details.github.commit_url" target="_blank" rel="noopener">GitHub 提交</a><span v-if="row.details.error"> {{ row.details.error }}</span><span v-else-if="row.status==='completed'"> · 两端已同步</span><p v-if="row.details.local_sync?.warning">{{ row.details.local_sync.warning }}</p></template></el-table-column></el-table>
   </el-dialog>
 </template>
-<style scoped>.publish-counts{display:flex;flex-wrap:wrap;gap:20px;padding:16px;background:#f1f7fd;border-radius:8px}.publish-counts b{margin-left:8px;color:#1476d4}.hint{font-size:13px}</style>
+<style scoped>.publish-counts{display:flex;flex-wrap:wrap;gap:20px;padding:16px;background:#f1f7fd;border-radius:8px}.publish-counts b{margin-left:8px;color:#1476d4}.hint{font-size:13px}:global(.publication-dialog .el-dialog__body){max-height:calc(100vh - 150px);overflow-y:auto}:global(.publication-dialog .el-checkbox){height:auto;align-items:flex-start}:global(.publication-dialog .el-checkbox__label){white-space:normal;line-height:1.6}</style>
