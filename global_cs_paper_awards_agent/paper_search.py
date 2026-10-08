@@ -6,6 +6,70 @@ from .model import norm
 from .ontology import CATEGORIES, classify_award
 
 
+def paper_provenance(conn, record_id, verified_only=True):
+    """Read linked listings on demand, without changing paper or award identity."""
+    record_id = str(record_id)
+    paper_ids = []
+    core_id = None
+    if record_id.startswith("event:"):
+        parts = record_id.split(":")
+        if len(parts) != 3:
+            return None
+        sql = """SELECT x.paper_id FROM award_event_papers x JOIN award_events e ON e.id=x.event_id
+            WHERE x.event_id=? AND x.paper_id=?"""
+        if verified_only:
+            sql += " AND x.status='verified' AND e.status='verified'"
+        row = conn.execute(sql, parts[1:]).fetchone()
+        if row is None:
+            return None
+        paper_ids.append(row["paper_id"])
+    elif record_id.startswith("listing:"):
+        sql = "SELECT paper_id FROM source_listings WHERE id=?"
+        if verified_only:
+            sql += " AND status='verified'"
+        row = conn.execute(sql, (record_id[len("listing:"):],)).fetchone()
+        if row is None:
+            return None
+        paper_ids.append(row["paper_id"])
+    else:
+        sql = "SELECT id FROM records WHERE id=?"
+        if verified_only:
+            sql += " AND status='verified'"
+        row = conn.execute(sql, (record_id,)).fetchone()
+        if row is None:
+            return None
+        core_id = row["id"]
+
+    if core_id is not None:
+        condition = "EXISTS (SELECT 1 FROM source_listing_records z WHERE z.listing_id=l.id AND z.record_id=?)"
+        args = [core_id]
+    else:
+        condition = "l.paper_id IN (" + ",".join("?" for _ in paper_ids) + ")"
+        args = paper_ids
+    sql = """SELECT l.*,p.title,p.year FROM source_listings l
+        JOIN award_papers p ON p.id=l.paper_id WHERE """ + condition
+    if verified_only:
+        sql += " AND l.status='verified'"
+    listings = []
+    for row in conn.execute(sql + " ORDER BY l.source_name,l.source_row,l.id", args):
+        item = {key: row[key] for key in (
+            "id", "source_name", "source_venue", "source_row", "source_url", "discovery_url",
+            "status", "area_raw", "authors_raw", "title", "year")}
+        event_sql = """SELECT DISTINCT e.id,e.official_award_name,e.venue,e.year,e.status
+            FROM award_events e JOIN award_event_papers x ON x.event_id=e.id WHERE x.paper_id=?"""
+        if verified_only:
+            event_sql += " AND e.status='verified' AND x.status='verified'"
+        item["linked_awards"] = [dict(r) for r in conn.execute(
+            event_sql + " ORDER BY e.year DESC,e.official_award_name", (row["paper_id"],))]
+        count_sql = """SELECT COUNT(DISTINCT r.id) FROM source_listing_records z
+            JOIN records r ON r.id=z.record_id WHERE z.listing_id=?"""
+        if verified_only:
+            count_sql += " AND r.status='verified'"
+        item["linked_record_count"] = conn.execute(count_sql, (row["id"],)).fetchone()[0]
+        listings.append(item)
+    return {"record_id": record_id, "listings": listings}
+
+
 def award_names(conn):
     """Return original award names, not the two legacy internal award types."""
     names = {row[0] for row in conn.execute(

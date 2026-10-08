@@ -25,7 +25,7 @@ from global_cs_paper_awards_agent.__main__ import auto_collect_one, collect_one
 from global_cs_paper_awards_agent.db import Database
 from global_cs_paper_awards_agent.award_events import event_detail, list_events
 from global_cs_paper_awards_agent.ontology import CATEGORIES
-from global_cs_paper_awards_agent.paper_search import award_names, search_papers
+from global_cs_paper_awards_agent.paper_search import award_names, search_papers, paper_provenance
 from global_cs_paper_awards_agent.source_listings import list_source_listings, source_listing_detail
 from global_cs_paper_awards_agent.discovery import DeepSeekAnthropicWebSearch, ResponsesWebSearch, ZhipuWebSearch
 from global_cs_paper_awards_agent.llm import LLM
@@ -149,6 +149,18 @@ def award_events(venue: str = "", category: str = "", query: str = "",
     db = get_db()
     try:
         return list_events(db.conn, venue, category, query, limit, offset)
+    finally:
+        db.close()
+
+
+@app.get("/api/papers/{record_id}/sources")
+def paper_sources(record_id: str):
+    db = get_db()
+    try:
+        row = paper_provenance(db.conn, record_id, verified_only=False)
+        if row is None:
+            raise HTTPException(404, "论文不存在")
+        return row
     finally:
         db.close()
 

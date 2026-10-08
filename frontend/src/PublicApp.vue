@@ -4,10 +4,9 @@ import { Reading } from '@element-plus/icons-vue'
 import { api, errMsg } from './api.js'
 import SearchView from './views/SearchView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
-import SourceListingsView from './views/SourceListingsView.vue'
 import AcknowledgementFooter from './components/AcknowledgementFooter.vue'
 const active = ref('search'), meta = ref(null), error = ref('')
-const navigation = [{ id: 'search', label: '论文检索' }, { id: 'events', label: '会议年度颁奖' }, { id: 'listings', label: '来源收录' }]
+const navigation = [{ id: 'search', label: '论文检索' }, { id: 'events', label: '会议年度颁奖' }]
 async function boot() { try { meta.value = await api.meta(); error.value = '' } catch(e) { error.value = errMsg(e) } }
 onMounted(boot)
 </script>
@@ -23,7 +22,6 @@ onMounted(boot)
         <p class="publication-stamp">最近发布：{{ meta.publication?.published_at || '尚未发布' }} · 已核验公开数据</p>
         <SearchView v-if="active==='search'" :meta="meta" />
         <AwardEventsView v-else-if="active==='events'" :meta="meta" />
-        <SourceListingsView v-else />
       </template>
     </main>
     <AcknowledgementFooter public-version />
