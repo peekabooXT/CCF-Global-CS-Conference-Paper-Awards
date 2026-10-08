@@ -61,7 +61,7 @@ def _header(title, records, prefix="", generated_at=None):
     stamp = generated_at or dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).isoformat(timespec="seconds")
     return "\n".join([
         f"# {title}", "", _nav(prefix), "",
-        f"> 更新于 **{stamp}**（Asia/Shanghai）。共 **{len(records)}** 条：最佳论文奖 **{counts['paper']}** 条，最佳学生论文奖 **{counts['student']}** 条，其他获奖 **{counts['other']}** 条。奖项原名保留在下表；通过本地“审核与发布”统一更新。",
+        f"> 更新于 **{stamp}**（Asia/Shanghai）。共 **{len(records)}** 条：最佳论文奖 **{counts['paper']}** 条，最佳学生论文奖 **{counts['student']}** 条，其他获奖 **{counts['other']}** 条。奖项原名和来源链接见下表。",
         "",
     ]) + "\n"
 
@@ -89,7 +89,7 @@ def render_markdown(db, repository_root, status="all", generated_at=None):
     alphabetical = sorted(records, key=lambda r: (r["acronym"].casefold(), -r["year"], r["title"].casefold(), r["award_type"]))
     main = _header("Global CS Paper Awards Agent：获奖论文索引", alphabetical, generated_at=generated_at)
     main += "## 会议/期刊字母排序检索\n\n"
-    main += "当前数据源以 CCF A/B 会议为主；期刊接入后将使用同一字段和索引。\n\n"
+    main += "收录范围以 CCF A/B 类会议为主，各会议的实际收录年份以以下记录为准。\n\n"
     main += _table(alphabetical) + "\n"
     (root / "AWARDS.md").write_text(main + acknowledgements_markdown(), encoding="utf-8")
 

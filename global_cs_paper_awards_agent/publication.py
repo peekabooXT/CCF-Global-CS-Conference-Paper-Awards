@@ -166,9 +166,12 @@ def _publish(path, job_id, request):
     try:
         config = load_config()
         github = GitDataPublisher(config)
+        private = GitDataPublisher({**config, "repository": config["private_repository"]}) if config.get("private_repository") else None
         server = ServerPublisher(config)
         server.check()
         github.check()
+        if private:
+            private.check()
         if not (ROOT / "frontend/dist-public/index.html").is_file():
             raise ValueError("公开前端构建缺失，请先执行 npm run build:public")
         db = Database(path)
@@ -197,8 +200,15 @@ def _publish(path, job_id, request):
         github_done = True
         _journal(path, job_id, "server", details)
         details["server"] = server.publish(release_bytes(ROOT, snapshot, files, details["github"]["commit_sha"]))
+        private_failed = False
+        if private:
+            try:
+                details["private_github"] = private.publish(files, job_id)
+            except ValueError as exc:
+                private_failed = True
+                details["error"] = "公开数据已发布；私有维护仓库同步失败：" + str(exc)
         details['local_sync'] = github.sync_local_checkout(details['github']['commit_sha'],files)
-        _journal(path, job_id, "completed", details, finished=True)
+        _journal(path, job_id, "partial" if private_failed else "completed", details, finished=True)
     except Exception as exc:
         details["error"] = str(exc)
         _journal(path, job_id, "partial" if github_done else "failed", details, finished=True)

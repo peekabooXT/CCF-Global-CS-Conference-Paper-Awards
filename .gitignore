@@ -18,6 +18,10 @@ frontend/node_modules/
 # IDE配置
 .idea/
 .vscode/
+.run/
+*.bak
+_db.txt
+maintenance/
 
 # 数据导出临时文件
 data/exports/*.json

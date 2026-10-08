@@ -192,3 +192,33 @@ class PublicationTest(unittest.TestCase):
             self.assertEqual(db.conn.execute('SELECT COUNT(*) FROM runs').fetchone()[0],1)
             self.assertEqual(db.conn.execute('SELECT started_at FROM runs').fetchone()[0],'2026-09-01T12:00:00')
         finally:db.close()
+
+    def test_private_sync_retains_successful_public_release_on_private_failure(self):
+        for private_fails in (False, True):
+            with self.subTest(private_fails=private_fails):
+                init_journal(self.db);job=('d' if private_fails else 'e')*32
+                self.db.conn.execute('INSERT INTO publication_runs VALUES (?,?,?,NULL,?)',(job,'preflight','today','{}'));self.db.conn.commit()
+                (self.root/'frontend/dist-public').mkdir(parents=True,exist_ok=True)
+                (self.root/'frontend/dist-public/index.html').write_text('ok')
+                request={'digest':review_preview(self.db)['digest'],'reviewer':'Tester','note':'Checked'}
+                from unittest.mock import MagicMock
+                public,private=MagicMock(),MagicMock()
+                public.publish.return_value={'commit_sha':'public-sha'}
+                public.sync_local_checkout.return_value={'updated':True}
+                private.publish.side_effect=ValueError('Private unavailable') if private_fails else None
+                private.publish.return_value={'commit_sha':'private-sha'}
+                with patch('global_cs_paper_awards_agent.publication.ROOT',self.root),patch('global_cs_paper_awards_agent.publication.load_config',return_value={'private_repository':'owner/private'}),patch('global_cs_paper_awards_agent.publication.GitDataPublisher',side_effect=[public,private]),patch('global_cs_paper_awards_agent.publication.ServerPublisher') as server,patch('global_cs_paper_awards_agent.publication.release_bytes',return_value=b'archive'):
+                    server.return_value.publish.return_value={'ok':True,'release_id':job}
+                    LOCK.acquire();_publish(self.root/'local.sqlite3',job,request)
+                row=self.db.conn.execute('SELECT status,details FROM publication_runs WHERE id=?',(job,)).fetchone()
+                details=json.loads(row['details'])
+                self.assertEqual(row['status'],'partial' if private_fails else 'completed')
+                self.assertTrue(details['server']['ok'])
+                self.assertEqual(details['github']['commit_sha'],'public-sha')
+                self.assertEqual(public.publish.call_args.args[0],private.publish.call_args.args[0])
+                self.assertFalse(any(name.startswith('maintenance/') for name in public.publish.call_args.args[0]))
+                public.sync_local_checkout.assert_called_once()
+                if private_fails:
+                    self.assertIn('私有维护仓库同步失败',details['error'])
+                else:
+                    self.assertEqual(details['private_github']['commit_sha'],'private-sha')
