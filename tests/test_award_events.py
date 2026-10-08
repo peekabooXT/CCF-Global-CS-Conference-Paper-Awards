@@ -9,6 +9,43 @@ from global_cs_paper_awards_agent.ontology import CATEGORIES, classify_award
 
 
 class AwardEventsTest(unittest.TestCase):
+    def test_archived_categories_are_readable_without_database_changes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            db = Database(Path(temp) / "test.sqlite3")
+            try:
+                db.init()
+                originals = [
+                    ("Best Paper Award", "best", "paper"),
+                    ("Outstanding Paper Award", "outstanding", "paper"),
+                    ("Distinguished Paper Award", "distinguished", "paper"),
+                    ("Best Poster Award", "best", "other"),
+                    ("Best Student Paper Award", "best_student", "student"),
+                ]
+                for i, (name, legacy, expected) in enumerate(originals):
+                    import_annotations(db.conn, {"format": "evidom-award-annotations-v1",
+                        "review_status": "verified", "records": [{
+                            "annotation_id": f"page-0004-r{i}", "page_id": "page-0004", "year": 2026,
+                            "official_award_name": name, "title": f"Paper {i}",
+                            "source_url": "https://aaai.org/awards", "evidence": [],
+                        }]})
+                    db.conn.execute("UPDATE award_events SET category=? WHERE official_award_name=?", (legacy, name))
+                db.conn.commit()
+                before = [tuple(r) for r in db.conn.execute("SELECT * FROM award_events ORDER BY id")]
+                self.assertEqual(list_events(db.conn)["total"], 5)
+                for name, legacy, expected in originals:
+                    result = list_events(db.conn, venue="AAAI", category=expected, query=name)
+                    self.assertEqual(result["total"], 1)
+                    event = event_detail(db.conn, result["events"][0]["id"])
+                    self.assertEqual(event["category"], expected)
+                    self.assertEqual(event["official_award_name"], name)
+                    self.assertEqual(event["status"], "verified")
+                paged = list_events(db.conn, category="paper", limit=1, offset=2)
+                self.assertEqual(paged["total"], 3)
+                self.assertEqual(len(paged["events"]), 1)
+                self.assertEqual(before, [tuple(r) for r in db.conn.execute("SELECT * FROM award_events ORDER BY id")])
+            finally:
+                db.close()
+
     def test_category_precedence_and_lossless_name(self):
         self.assertEqual(classify_award("BEST PAPER HONORABLE MENTION")["category"], "other")
         self.assertEqual(classify_award("BEST PAPER RUNNER-UP")["category"], "other")

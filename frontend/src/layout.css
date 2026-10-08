@@ -1,0 +1,2 @@
+/* Keep filters in place when a result list adds or removes the page scrollbar. */
+html { scrollbar-gutter: stable; }

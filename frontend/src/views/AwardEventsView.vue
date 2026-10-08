@@ -14,6 +14,7 @@ const pageSize = 50
 const page = computed(() => Math.floor(offset.value / pageSize) + 1)
 
 async function load(reset = false) {
+  if (loading.value) return
   if (reset) offset.value = 0
   loading.value = true
   try {
@@ -32,15 +33,17 @@ onMounted(() => load())
   <div class="events-workspace">
     <h2>获奖事件与奖项分类</h2>
     <p class="hint">一个奖项事件可关联多篇论文，一篇论文也可出现在多个奖项中。保留官网原始奖名与证据；核验状态按每条记录显示。</p>
-    <el-form inline @submit.prevent="load(true)">
+    <el-form class="events-filters" @submit.prevent="load(true)">
       <el-form-item label="会议"><el-input v-model="filters.venue" clearable placeholder="例如 SIGIR" /></el-form-item>
       <el-form-item label="统一分类">
-        <el-select v-model="filters.category" clearable placeholder="全部分类" style="width: 180px">
+        <el-select v-model="filters.category" clearable placeholder="全部分类">
           <el-option v-for="(label, key) in props.meta.award_categories" :key="key" :label="label" :value="key" />
         </el-select>
       </el-form-item>
       <el-form-item label="奖项 / 论文"><el-input v-model="filters.query" clearable placeholder="输入关键词" /></el-form-item>
-      <el-button type="primary" :loading="loading" @click="load(true)">检索</el-button>
+      <el-form-item class="events-filter-actions">
+        <el-button class="events-search-button" type="primary" native-type="submit" :loading="loading">检索</el-button>
+      </el-form-item>
     </el-form>
     <p class="hint">共 {{ result.total }} 个获奖事件；“未映射”表示尚未可靠对应 CCF 会议目录。</p>
     <el-table :data="result.events" v-loading="loading" stripe style="width: 100%">
@@ -52,7 +55,7 @@ onMounted(() => load())
       <el-table-column label="状态" width="90"><template #default="{ row }"><el-tag :type="row.status === 'verified' ? 'success' : 'warning'" size="small">{{ row.status === 'verified' ? '已核验' : '待核验' }}</el-tag></template></el-table-column>
       <el-table-column label="操作" width="80"><template #default="{ row }"><el-button link type="primary" @click="openEvent(row.id)">查看</el-button></template></el-table-column>
     </el-table>
-    <div class="pager"><el-pagination :current-page="page" :page-size="pageSize" :total="result.total" layout="prev, pager, next" @current-change="p => { offset = (p - 1) * pageSize; load() }" /></div>
+    <div class="pager"><el-pagination :current-page="page" :page-size="pageSize" :total="result.total" :disabled="loading" layout="prev, pager, next" @current-change="p => { offset = (p - 1) * pageSize; load() }" /></div>
     <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.official_award_name || '获奖事件'">
       <template v-if="selected">
         <p>{{ selected.venue }} · {{ selected.year }} · {{ selected.category_label }}<span v-if="selected.student_only"> · 学生奖</span></p>
@@ -77,8 +80,21 @@ onMounted(() => load())
 .events-workspace { background: #fff; border: 1px solid #dce5f1; border-radius: 7px; padding: 28px; }
 .events-workspace h2 { margin-top: 0; color: #173b67; }
 .hint { color: #61738c; line-height: 1.7; }
+.events-filters { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 250px) minmax(0, 310px) 88px; align-items: start; gap: 12px 20px; }
+.events-filters :deep(.el-form-item) { margin: 0; min-width: 0; }
+.events-filters :deep(.el-form-item__label) { white-space: nowrap; }
+.events-filters :deep(.el-form-item__content) { min-width: 0; }
+.events-filters :deep(.el-select) { width: 100%; }
+.events-search-button { width: 88px; height: 32px; margin: 0; }
 .pager { display: flex; justify-content: flex-end; padding-top: 20px; }
 .paper { border-bottom: 1px solid #e6ebf2; padding: 12px 0 20px; overflow-wrap: anywhere; }
 .paper h3 { font-size: 16px; }
 .paper a { color: #245b96; }
+@media (max-width: 1050px) {
+  .events-filters { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .events-workspace { padding: 18px; }
+  .events-filters { grid-template-columns: minmax(0, 1fr); }
+}
 </style>

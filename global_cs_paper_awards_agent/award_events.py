@@ -141,7 +141,10 @@ def list_events(conn, venue="", category="", query="", limit=100, offset=0):
         clauses.append("instr(fold(e.venue),?)>0")
         args.append(norm(venue))
     if category:
-        clauses.append("e.category=?")
+        # Archived databases may still contain the old, fine-grained ontology.
+        # Normalize only while reading, including before counting/pagination.
+        conn.create_function("award_category", 1, lambda name: classify_award(name)["category"])
+        clauses.append("(CASE WHEN e.category IN ('paper','student','other') THEN e.category ELSE award_category(e.official_award_name) END)=?")
         args.append(category)
     if query:
         clauses.append("(instr(fold(e.official_award_name),?)>0 OR EXISTS (SELECT 1 FROM award_event_papers x JOIN award_papers p ON p.id=x.paper_id WHERE x.event_id=e.id AND instr(fold(p.title),?)>0))")
@@ -154,6 +157,8 @@ def list_events(conn, venue="", category="", query="", limit=100, offset=0):
       LEFT JOIN award_event_papers x ON x.event_id=e.id""" + where + " GROUP BY e.id ORDER BY e.year DESC,e.venue,e.official_award_name LIMIT ? OFFSET ?"
     rows = [dict(r) for r in conn.execute(sql, [*args, limit, offset])]
     for event in rows:
+        if event["category"] not in CATEGORIES:
+            event.update(classify_award(event["official_award_name"]))
         event["category_label"] = CATEGORIES[event["category"]]
     return {"total": total, "events": rows}
 
@@ -163,6 +168,8 @@ def event_detail(conn, event_id):
     if not row:
         return None
     event = dict(row)
+    if event["category"] not in CATEGORIES:
+        event.update(classify_award(event["official_award_name"]))
     event["category_label"] = CATEGORIES[event["category"]]
     event["papers"] = []
     for r in conn.execute("""SELECT p.*,x.annotation_id,x.source_url,x.source_page_id,x.evidence,x.note,x.status
