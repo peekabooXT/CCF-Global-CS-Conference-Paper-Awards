@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-08T19:27:46+08:00",
-  "record_count": 315,
+  "generated_at": "2026-10-08T23:57:03+08:00",
+  "record_count": 327,
   "records": [
     {
       "conference_id": "aaai-8db694",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -81,8 +81,8 @@
       "conference_id": "aaai-8db694",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -139,8 +139,8 @@
       "conference_id": "aaai-8db694",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -309,8 +309,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -495,8 +495,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -617,8 +617,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -667,8 +667,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -725,8 +725,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -807,8 +807,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -905,8 +905,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -979,8 +979,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1029,8 +1029,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1087,8 +1087,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1137,8 +1137,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1203,8 +1203,8 @@
       "conference_id": "acl-70cc29",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1269,8 +1269,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1344,8 +1344,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1427,8 +1427,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1598,8 +1598,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1705,8 +1705,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1812,8 +1812,8 @@
       "conference_id": "chi-e1523c",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -1903,14 +1903,20 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Efficiently Reconstructing Dynamic Scenes One D4RT at a Time",
           "url": "https://www.thecvf.com/?page_id=413"
+        },
+        {
+          "id": "zhang-cc89afc202dffd0ee680f73e",
+          "role": "award",
+          "text": " 2026 Awards Selection Committee selected the following two papers for top honors at this year’s conference: CVPR 2026 Best Paper Efficiently Reconstructing Dynamic Scenes One D4RT at a Time , Authors: Chuhan Zhang; Guillaume Le Moing ; Skanda Koppula; Ignacio Rocco; Liliane Momeni; Junyu Xie; Shuyang Sun; Rahul Sukthankar; Joëlle K. Barral; Raia H",
+          "url": "https://cvpr.thecvf.com/Conferences/2026/News/Best_Papers"
         }
       ],
       "record": {
@@ -2049,14 +2055,20 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Native and Compact Structured Latents for 3D Generation",
           "url": "https://www.thecvf.com/?page_id=413"
+        },
+        {
+          "id": "zhang-cc89afc202dffd0ee680f73e",
+          "role": "award",
+          "text": "s a lightweight and highly scalable method that enables remarkably efficient training and inference. CVPR 2026 Best Student Paper Native and Compact Structured Latents for 3D Generation , Authors: Jianfeng Xiang; Xiaoxue Chen; Sicheng Xu; Ruicheng Wang; Zelong Lv; Yu Deng; Hongyuan Zhu; Yue Dong; Hao Zhao; Nicholas Jing Yuan; Jiaolong Yang - A",
+          "url": "https://cvpr.thecvf.com/Conferences/2026/News/Best_Papers"
         }
       ],
       "record": {
@@ -2171,8 +2183,8 @@
       "conference_id": "dac-7dded7",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -2304,8 +2316,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -2318,6 +2330,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Avicenna: Masking Slowdowns in Replicated State Machines with Counterfactual Evaluation",
           "url": "http://dl.acm.org/citation.cfm?id=3803615"
+        },
+        {
+          "id": "zhang-ddb94d75c627b1affcfcc38f",
+          "role": "award",
+          "text": "ized parameter server (EuroSys'16) Henggang Cui, Hao Zhang, Gregory R. Ganger, Phillip B. Gibbons, Eric P. Xing Best Paper Awards Avicenna: Masking Slowdowns in Replicated State Machines with Counterfactual Evaluation Christopher Hodsdon (Databricks), Zijian Qin (Princeton University), Khiem Ngo (Datadog), Siddhartha Sen (Microsoft Research), Ethan Katz-Bassett (Columbia Uni",
+          "url": "https://2026.eurosys.org/eurosys-awards.html"
         }
       ],
       "record": {
@@ -2395,8 +2413,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -2409,6 +2427,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: PaCaR: Improved Buffered I/O Locality on NUMA Systems with Page Cache Replication",
           "url": "http://dl.acm.org/citation.cfm?id=3769359"
+        },
+        {
+          "id": "zhang-ddb94d75c627b1affcfcc38f",
+          "role": "award",
+          "text": " Ngo (Datadog), Siddhartha Sen (Microsoft Research), Ethan Katz-Bassett (Columbia University), Wyatt Lloyd (Princeton University) PaCaR: Improved Buffered I/O Locality on NUMA Systems with Page Cache Replication Jérôme Coquisart (RWTH Aachen University), Julien Sopena (LIP6 UPMC/CNRS — Inria), Redha Gouicem (RWTH Aachen University) Gilles Muller Best Artifact Award Fas",
+          "url": "https://2026.eurosys.org/eurosys-awards.html"
         }
       ],
       "record": {
@@ -2462,8 +2486,8 @@
       "conference_id": "fast-ffdc52",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -2812,8 +2836,8 @@
       "conference_id": "fast-ffdc52",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -2954,8 +2978,8 @@
       "conference_id": "fpga-3a39a9",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3018,8 +3042,8 @@
       "conference_id": "hpdc-9664ae",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3093,8 +3117,8 @@
       "conference_id": "i3d-ecbc32",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3107,6 +3131,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Gen-C: Populating Virtual Worlds with Generative Crowds",
           "url": "http://dl.acm.org/citation.cfm?id=3804500"
+        },
+        {
+          "id": "zhang-b3238c7602040cf31f40b26f",
+          "role": "award",
+          "text": " Enhanced: Algorithmic Advances for Faster and More Robust ReSTIR Path Tracing Daqi Lin, Markus Kettunen and Chris Wyman DOI link Gen-C: Populating Virtual Worlds with Generative Crowds Andreas Panayiotou, Panayiotis Charalambous and Ioannis Karamouzas DOI link Best Student Paper Improving Spatial Domain Repetition of Implicit Surfaces Clément",
+          "url": "https://i3dsymposium.org/2026/awards.html"
         }
       ],
       "record": {
@@ -3160,8 +3190,8 @@
       "conference_id": "i3d-ecbc32",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3174,6 +3204,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Improving Spatial Domain Repetition of Implicit Surfaces",
           "url": "http://dl.acm.org/citation.cfm?id=3804498"
+        },
+        {
+          "id": "zhang-b3238c7602040cf31f40b26f",
+          "role": "award",
+          "text": "tual Worlds with Generative Crowds Andreas Panayiotou, Panayiotis Charalambous and Ioannis Karamouzas DOI link Best Student Paper Improving Spatial Domain Repetition of Implicit Surfaces Clément Magniez and Cédric Zanni DOI link Best Poster - Audience Choice Mobile-DDGI: Lightweight Probe-Based Global Illumination via Adaptive Budget Allocation",
+          "url": "https://i3dsymposium.org/2026/awards.html"
         }
       ],
       "record": {
@@ -3219,8 +3255,8 @@
       "conference_id": "i3d-ecbc32",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3233,6 +3269,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: ReSTIR PT Enhanced: Algorithmic Advances for Faster and More Robust ReSTIR Path Tracing",
           "url": "http://dl.acm.org/citation.cfm?id=3804494"
+        },
+        {
+          "id": "zhang-b3238c7602040cf31f40b26f",
+          "role": "award",
+          "text": "ected using the scores given by the reviewers. The awards for the best poster was selected on a vote by the audience. Best Papers ReSTIR PT Enhanced: Algorithmic Advances for Faster and More Robust ReSTIR Path Tracing Daqi Lin, Markus Kettunen and Chris Wyman DOI link Gen-C: Populating Virtual Worlds with Generative Crowds Andreas Panayiotou, Panayiotis Charalambous and Ioan",
+          "url": "https://i3dsymposium.org/2026/awards.html"
         }
       ],
       "record": {
@@ -3286,8 +3328,8 @@
       "conference_id": "icaps-072174",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3352,8 +3394,8 @@
       "conference_id": "icaps-072174",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3410,8 +3452,8 @@
       "conference_id": "icde-34cdee",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3492,8 +3534,8 @@
       "conference_id": "icde-34cdee",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3574,8 +3616,8 @@
       "conference_id": "icmr-eae771",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3665,8 +3707,8 @@
       "conference_id": "icmr-eae771",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3740,8 +3782,8 @@
       "conference_id": "ics-65bd48",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3815,8 +3857,8 @@
       "conference_id": "isca-adf18a",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -3892,8 +3934,8 @@
       "conference_id": "isca-adf18a",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4001,8 +4043,8 @@
       "conference_id": "mobisys-28151b",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4015,6 +4057,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Insecurity of Lost/Stolen Phone Reporting Services: Vulnerabilities, Attacks, and Countermeasures",
           "url": "http://dl.acm.org/citation.cfm?id=3809220"
+        },
+        {
+          "id": "zhang-b1e6dfb073123877f0cdd824",
+          "role": "award",
+          "text": "6 June 21 - 25, 2026 • Cambridge, UK Awards Congratulations to the award winners at ACM MobiSys 2026! Full Paper Best Paper Award Insecurity of Lost/Stolen Phone Reporting Services: Vulnerabilities, Attacks, and Countermeasures Min-Yue Chen (Michigan State University); Yiwen Hu (University of Maryland, Baltimore County); Yu-An Chen (Michigan State University); Chi-Yu Li (National Yang",
+          "url": "https://www.sigmobile.org/mobisys/2026/awards/"
         }
       ],
       "record": {
@@ -4092,8 +4140,8 @@
       "conference_id": "ndss-483c28",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4209,8 +4257,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4399,8 +4447,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4765,8 +4813,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4859,8 +4907,8 @@
       "conference_id": "podc-87da73",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -4934,8 +4982,8 @@
       "conference_id": "podc-87da73",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -5009,8 +5057,8 @@
       "conference_id": "pods-75addc",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -5023,6 +5071,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Unbiased Insights: Optimal Streaming Algorithms for ℓp Sampling, the Forget Model, and Beyond",
           "url": "https://dl.acm.org/doi/10.1145/3801918"
+        },
+        {
+          "id": "zhang-816dbbdcb0a26e9809c6fd9e",
+          "role": "award",
+          "text": "tri Rudra. FAQ: Questions Asked Frequently. Best Paper Award Honghao Lin, Hoai-An Nguyen, William Swartworth, and David Woodruff. Unbiased Insights: Optimal Streaming Algorithms for $\\ell_p$ Sampling, the Forget Model, and Beyond Distinguished Paper Awards Daniel Unterberger, Matthias Lanzinger, and Igor Razgon. FPT Parameterisations of Fractional and Generalised Hypertree Width Mahmoud",
+          "url": "https://2026.sigmod.org/pods_awards.shtml"
         }
       ],
       "record": {
@@ -5081,8 +5135,8 @@
       "conference_id": "ppopp-7e8103",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -5148,14 +5202,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Sequential Fair Allocation With Replenishments: A Little Envy Goes An Exponentially Long Way",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": "otify the SIG Chair, Mor Harchol-Balter (harchol@cs.cmu.edu) if you have information on missing entries. 2026: Best Paper Award: \"Sequential Fair Allocation With Replenishments: A Little Envy Goes An Exponentially Long Way\" by Chido Onyeze (Cornell University); Sean R. Sinclair (Northwestern University); Chamsi Hssaine (University of Southern California, Marshall School of Busine",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -5246,14 +5306,20 @@
       "conference_id": "sigmod-882ab4",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: CoddSpeed: Hardware Accelerated Query Processing in Microsoft Fabric",
           "url": "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+        },
+        {
+          "id": "zhang-c4b171743cab019842319465",
+          "role": "award",
+          "text": "ersity), Hui Li (Xidian University), Sourav Bhowmick (Nanyang Technological University) --> SIGMOD 2026 Industry Track Best Paper CoddSpeed: Hardware Accelerated Query Processing in Microsoft Fabric Matteo Interlandi (Microsoft)*; Nicolas Bruno (Microsoft); Brandon Haynes (Microsoft); Carlo Curino (Microsoft); Rathijit Sen (Microsoft); Yinan Li (Microsoft)",
+          "url": "https://2026.sigmod.org/sigmod_awards.shtml"
         }
       ],
       "record": {
@@ -6304,14 +6370,20 @@
       "conference_id": "sigmod-882ab4",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GPM: The Gaussian Pancake Mechanism for Planting Undetectable Backdoors in Differential Privacy",
           "url": "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+        },
+        {
+          "id": "zhang-c4b171743cab019842319465",
+          "role": "award",
+          "text": "a Glance Program --> PODS: Paper Formatting SIGMOD: Paper Formatting --> SIGMOD 2026 Awards SIGMOD 2026 Research Track Best Paper GPM: The Gaussian Pancake Mechanism for Planting Undetectable Backdoors in Differential Privacy Haochen Sun (University of Waterloo) and Xi He (University of Waterloo) --> SIGMOD 2026 Research Track Honorable Mentions F3: The Open-Source Data File Format ",
+          "url": "https://2026.sigmod.org/sigmod_awards.shtml"
         }
       ],
       "record": {
@@ -6370,8 +6442,8 @@
       "conference_id": "spaa-7e8630",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -6428,8 +6500,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -6518,8 +6590,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2026,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -6696,8 +6768,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -6762,8 +6834,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7004,8 +7076,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7054,8 +7126,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7472,8 +7544,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7538,8 +7610,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7652,8 +7724,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7734,8 +7806,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -7848,8 +7920,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8002,8 +8074,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8388,8 +8460,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8478,8 +8550,8 @@
       "conference_id": "acl-70cc29",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8536,8 +8608,8 @@
       "conference_id": "acm-mm-04fb16",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8649,8 +8721,8 @@
       "conference_id": "acm-mm-04fb16",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8762,8 +8834,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -8782,6 +8854,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: CXLfork: Fast Remote Fork over CXL Fabrics",
           "url": "http://dl.acm.org/citation.cfm?id=3715988"
+        },
+        {
+          "id": "zhang-3d6132f07ad8e3cbf1681266",
+          "role": "award",
+          "text": "m ASPLOS+EuroSys Joint Schedule Program Awards Workshops and Tutorials WACI Code of Conduct EuroSys 2025 Awards Best Paper Awards CXLfork: Fast Remote Fork over CXL Fabrics Chloe Alverti, Stratos Psomadakis, Burak Ocalan, Shashwat Jaiswal, Tianyin Xu, Josep Torrellas xUI: extended User Interrupts Berk Aydogmus, Linsong Guo, Danial",
+          "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
         }
       ],
       "record": {
@@ -8907,8 +8985,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9068,8 +9146,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9088,6 +9166,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: H-H oudini: Scalable Invariant Learning",
           "url": "http://dl.acm.org/citation.cfm?id=3707263"
+        },
+        {
+          "id": "zhang-3d6132f07ad8e3cbf1681266",
+          "role": "award",
+          "text": "xUI: extended User Interrupts Berk Aydogmus, Linsong Guo, Danial Zuberi, Tal Garfinkel, Dean Tullsen, Amy Ousterhout, Kazem Taram H-Houdini: Scalable Invariant Learning Sushant Dinesh, Yongye Zhu, Christopher W. Fletcher MetaSapiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering We",
+          "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
         }
       ],
       "record": {
@@ -9165,8 +9249,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9185,6 +9269,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: MetaSapiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering",
           "url": "http://dl.acm.org/citation.cfm?id=3707227"
+        },
+        {
+          "id": "zhang-3d6132f07ad8e3cbf1681266",
+          "role": "award",
+          "text": "n Tullsen, Amy Ousterhout, Kazem Taram H-Houdini: Scalable Invariant Learning Sushant Dinesh, Yongye Zhu, Christopher W. Fletcher MetaSapiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering Weikai Lin, YuFeng, Yuhao Zhu Orion: A Fully Homomorphic Encryption Framework for Deep Learning Austin Ebel, Karthik Garimella, Brandon Reagen SmoothE: Differe",
+          "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
         }
       ],
       "record": {
@@ -9262,8 +9352,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9282,6 +9372,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Orion: A Fully Homomorphic Encryption Framework for Deep Learning",
           "url": "http://dl.acm.org/citation.cfm?id=3716008"
+        },
+        {
+          "id": "zhang-3d6132f07ad8e3cbf1681266",
+          "role": "award",
+          "text": "apiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering Weikai Lin, YuFeng, Yuhao Zhu Orion: A Fully Homomorphic Encryption Framework for Deep Learning Austin Ebel, Karthik Garimella, Brandon Reagen SmoothE: Differentiable E-Graph Extraction Yaohui Cai, Kaixin Yang, Chenhui Deng, Cunxi Yu, Zhiru Zhang ASPLOS I",
+          "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
         }
       ],
       "record": {
@@ -9359,8 +9455,8 @@
       "conference_id": "asplos-ad52db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9379,6 +9475,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: SmoothE: Differentiable E-Graph Extraction",
           "url": "http://dl.acm.org/citation.cfm?id=3707262"
+        },
+        {
+          "id": "zhang-3d6132f07ad8e3cbf1681266",
+          "role": "award",
+          "text": "uFeng, Yuhao Zhu Orion: A Fully Homomorphic Encryption Framework for Deep Learning Austin Ebel, Karthik Garimella, Brandon Reagen SmoothE: Differentiable E-Graph Extraction Yaohui Cai, Kaixin Yang, Chenhui Deng, Cunxi Yu, Zhiru Zhang ASPLOS Influential Paper Award PowerNap: Eliminating Server Idle Power ASPLOS 2009 David Meisner, ",
+          "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
         }
       ],
       "record": {
@@ -9488,8 +9590,8 @@
       "conference_id": "crypto-dd52f6",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9547,8 +9649,8 @@
       "conference_id": "crypto-dd52f6",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9686,8 +9788,8 @@
       "conference_id": "crypto-dd52f6",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9761,8 +9863,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9835,8 +9937,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -9917,8 +10019,8 @@
       "conference_id": "eurocrypt-24a89a",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10040,8 +10142,8 @@
       "conference_id": "eurocrypt-24a89a",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10099,8 +10201,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10292,8 +10394,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10573,8 +10675,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10710,8 +10812,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10807,8 +10909,8 @@
       "conference_id": "fast-ffdc52",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10917,8 +11019,8 @@
       "conference_id": "fast-ffdc52",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -10937,6 +11039,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot",
           "url": "https://www.usenix.org/system/files/fast25-qin.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": "logy and Systems (JETS) Computing Systems Journal Search USENIX Best Papers Filter List View By: Year Conference Acronym FAST '25 Mooncake: Trading More Storage for Less Computation — A KVCache-centric Architecture for Serving LLM Chatbot Ruoyu Qin, Moonshot AI and Tsinghua University; Zheming Li, Moonshot AI; Weiran He, Moonshot AI; Jialei Cui, Moonshot AI; Feng Ren, Tsinghua University; Mingxi",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -11107,8 +11215,8 @@
       "conference_id": "fpga-3a39a9",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11259,8 +11367,8 @@
       "conference_id": "hpdc-9664ae",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11404,8 +11512,8 @@
       "conference_id": "i3d-ecbc32",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11501,8 +11609,8 @@
       "conference_id": "i3d-ecbc32",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11582,8 +11690,8 @@
       "conference_id": "iccv-e6e669",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11648,8 +11756,8 @@
       "conference_id": "iccv-e6e669",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11730,8 +11838,8 @@
       "conference_id": "icmr-eae771",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11827,8 +11935,8 @@
       "conference_id": "icpp-06337e",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -11924,8 +12032,8 @@
       "conference_id": "ics-65bd48",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12229,8 +12337,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12285,8 +12393,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12397,8 +12505,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12517,8 +12625,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12581,8 +12689,144 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Perils of Chart Deception: How Misleading Visualizations Affect Vision-Language Models",
+          "url": "https://www.ieeevis.org/year/2026/info/history/best-paper-awards/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Perils of Chart Deception: How Misleading Visualizations Affect Vision-Language Models",
+          "url": "https://doi.org/10.1109/vis60296.2025.00006"
+        }
+      ],
+      "record": {
+        "title": "The Perils of Chart Deception: How Misleading Visualizations Affect Vision-Language Models",
+        "award_name": "Best Short Papers",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Papers: The Perils of Chart Deception: How Misleading Visualizations Affect Vision-Language Models",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "The Perils of Chart Deception: How Misleading Visualizations Affect Vision-Language Models",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Ridwan Mahbub",
+              "source_id": "s1"
+            },
+            "name": "Ridwan Mahbub"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Mohammed Saidul Islam",
+              "source_id": "s1"
+            },
+            "name": "Mohammed Saidul Islam"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Md Tahmid Rahman Laskar",
+              "source_id": "s1"
+            },
+            "name": "Md Tahmid Rahman Laskar"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Mizanur Rahman",
+              "source_id": "s1"
+            },
+            "name": "Mizanur Rahman"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Mir Tafseer Nayeem",
+              "source_id": "s1"
+            },
+            "name": "Mir Tafseer Nayeem"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Enamul Hoque",
+              "source_id": "s1"
+            },
+            "name": "Enamul Hoque"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://doi.org/10.1109/vis60296.2025.00006",
+        "doi": "10.1109/vis60296.2025.00006"
+      }
+    },
+    {
+      "conference_id": "ieee-vis-632fb7",
+      "year": 2025,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Toward a Logic of Generalization about Visualization as a Decision Aid",
+          "url": "https://www.ieeevis.org/year/2026/info/history/best-paper-awards/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Toward a Logic of Generalization about Visualization as a Decision Aid",
+          "url": "https://doi.org/10.1109/vis60296.2025.00005"
+        }
+      ],
+      "record": {
+        "title": "Toward a Logic of Generalization about Visualization as a Decision Aid",
+        "award_name": "Best Short Papers",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Papers: Toward a Logic of Generalization about Visualization as a Decision Aid",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "Toward a Logic of Generalization about Visualization as a Decision Aid",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Alex Kale",
+              "source_id": "s1"
+            },
+            "name": "Alex Kale"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://doi.org/10.1109/vis60296.2025.00005",
+        "doi": "10.1109/vis60296.2025.00005"
+      }
+    },
+    {
+      "conference_id": "ieee-vis-632fb7",
+      "year": 2025,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12653,8 +12897,8 @@
       "conference_id": "imc-3ab850",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -12830,8 +13074,8 @@
       "conference_id": "isca-adf18a",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13047,8 +13291,8 @@
       "conference_id": "isca-adf18a",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13200,8 +13444,8 @@
       "conference_id": "iui-c98a95",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13297,8 +13541,8 @@
       "conference_id": "iui-c98a95",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13538,8 +13782,8 @@
       "conference_id": "lics-9f247f",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13597,8 +13841,8 @@
       "conference_id": "micro-a631fd",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13742,8 +13986,8 @@
       "conference_id": "micro-a631fd",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -13903,8 +14147,8 @@
       "conference_id": "middleware-f594fa",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14032,8 +14276,8 @@
       "conference_id": "middleware-f594fa",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14123,8 +14367,8 @@
       "conference_id": "mobicom-2a5b0a",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14143,6 +14387,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: AquaScan: A Sonar-based Underwater Sensing System for Human Activity Monitoring",
           "url": "http://dl.acm.org/citation.cfm?id=3723484"
+        },
+        {
+          "id": "zhang-96683ed1c3715f1f808c3a92",
+          "role": "award",
+          "text": "--> Venue Student Info Travel Grant Student Research Competition Mentorship Sponsorship N2Women About --> Awards Best Paper Award AquaScan: A Sonar-based Underwater Sensing System for Human Activity Monitoring Haozheng Hou, Bowen Zheng, Sitong Cheng, Xiaoguang Zhao, Peiheng Wu, Lixing He, Yunqi Guo, Guoliang Xing, Zhenyu Yan (The Chinese University of Hong Kong) Best",
+          "url": "https://www.sigmobile.org/mobicom/2025/awards.html"
         }
       ],
       "record": {
@@ -14316,8 +14566,8 @@
       "conference_id": "mobihoc-6dca17",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14445,8 +14695,8 @@
       "conference_id": "mobilehci-70f055",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14558,8 +14808,8 @@
       "conference_id": "mobisys-28151b",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14703,8 +14953,8 @@
       "conference_id": "mobisys-28151b",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14816,8 +15066,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14836,6 +15086,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: 1000 Layer Networks for Self-Supervised RL: Scaling Depth Can Enable New Goal-Reaching Capabilities",
           "url": "https://openreview.net/forum?id=s0JVsx3bx1"
+        },
+        {
+          "id": "zhang-54f6c0cd215498eb6de98055",
+          "role": "award",
+          "text": "ained to share convolutional features. For the very deep VGG-16 model, our detection system has a frame rate of 5fps … Best Paper 1000 Layer Networks for Self-Supervised RL: Scaling Depth Can Enable New Goal-Reaching Capabilities Oral Poster Kevin Wang ⋅ Ishaan Javali ⋅ Michał Bortkiewicz ⋅ Tomasz Trzcinski ⋅ Benjamin Eysenbach Exhibit Hall C,D,E Abstract Scaling up self-supervised lear",
+          "url": "https://neurips.cc/virtual/2025/awards_detail"
         }
       ],
       "record": {
@@ -14905,8 +15161,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -14925,6 +15181,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Artificial Hivemind: The Open-Ended Homogeneity of Language Models (and Beyond)",
           "url": "https://openreview.net/forum?id=saDOrrnNTz"
+        },
+        {
+          "id": "zhang-54f6c0cd215498eb6de98055",
+          "role": "award",
+          "text": " Increasing the model depth not only increases success rates but also qualitatively changes the behaviors … Best Paper (DB track) Artificial Hivemind: The Open-Ended Homogeneity of Language Models (and Beyond) Oral Poster Liwei Jiang · Yuanjun Chai · Margaret Li · Mickel Liu · Raymond Fok · Nouha Dziri · Yulia Tsvetkov · Maarten Sap · Yejin Choi Exhibit Hall C,D,E A",
+          "url": "https://neurips.cc/virtual/2025/awards_detail"
         }
       ],
       "record": {
@@ -15098,8 +15360,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15112,6 +15374,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free",
           "url": "https://openreview.net/forum?id=1b7whO4SfY"
+        },
+        {
+          "id": "zhang-54f6c0cd215498eb6de98055",
+          "role": "award",
+          "text": "tors. We confirmed that open-sourced LLMs operate in the strong superposition regime and have loss scaling inversely … Best Paper Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free Oral Poster Zihan Qiu ⋅ Zekun Wang ⋅ Bo Zheng ⋅ Zeyu Huang ⋅ Kaiyue Wen ⋅ Songlin Yang ⋅ Rui Men ⋅ Le Yu ⋅ Fei Huang ⋅ Suozhi Huang ⋅ Dayiheng Liu ⋅ Jingren Zh",
+          "url": "https://neurips.cc/virtual/2025/awards_detail"
         }
       ],
       "record": {
@@ -15245,8 +15513,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15259,6 +15527,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Why Diffusion Models Don't Memorize: The Role of Implicit Dynamical Regularization in Training",
           "url": "https://openreview.net/forum?id=BSZqpqgqM0"
+        },
+        {
+          "id": "zhang-54f6c0cd215498eb6de98055",
+          "role": "award",
+          "text": "unced Artificial Hivemind effect in open-ended generation of LMs, characterized by (1) intra-model repetition, where … Best Paper Why Diffusion Models Don’t Memorize: The Role of Implicit Dynamical Regularization in Training Oral Poster Tony Bonnaire ⋅ Raphaël Urfin ⋅ Giulio Biroli ⋅ Marc Mezard Exhibit Hall C,D,E Abstract Diffusion models have achieved remarkable success across a ",
+          "url": "https://neurips.cc/virtual/2025/awards_detail"
         }
       ],
       "record": {
@@ -15352,8 +15626,8 @@
       "conference_id": "pkc-8355e6",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15539,8 +15813,8 @@
       "conference_id": "pods-75addc",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15587,8 +15861,8 @@
       "conference_id": "pods-75addc",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15659,8 +15933,8 @@
       "conference_id": "recomb-b4b666",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15739,8 +16013,80 @@
       "conference_id": "recsys-997d90",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Beyond Top-1: Addressing Inconsistencies in Evaluating Counterfactual Explanations for Recommender Systems",
+          "url": "https://recsys.acm.org/best-papers/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Beyond Top-1: Addressing Inconsistencies in Evaluating Counterfactual Explanations for Recommender Systems",
+          "url": "https://dl.acm.org/doi/10.1145/3705328.3748028"
+        }
+      ],
+      "record": {
+        "title": "Beyond Top-1: Addressing Inconsistencies in Evaluating Counterfactual Explanations for Recommender Systems",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: Beyond Top-1: Addressing Inconsistencies in Evaluating Counterfactual Explanations for Recommender Systems",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "Beyond Top-1: Addressing Inconsistencies in Evaluating Counterfactual Explanations for Recommender Systems",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Amir Reza Mohammadi",
+              "source_id": "s1"
+            },
+            "name": "Amir Reza Mohammadi"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Andreas Peintner",
+              "source_id": "s1"
+            },
+            "name": "Andreas Peintner"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Michael Müller",
+              "source_id": "s1"
+            },
+            "name": "Michael Müller"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Eva Zangerle",
+              "source_id": "s1"
+            },
+            "name": "Eva Zangerle"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://dl.acm.org/doi/10.1145/3705328.3748028",
+        "doi": null
+      }
+    },
+    {
+      "conference_id": "recsys-997d90",
+      "year": 2025,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15827,8 +16173,234 @@
       "conference_id": "sigir-21cc23",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Do LLMs Memorize Recommendation Datasets? A Preliminary Study on MovieLens-1M",
+          "url": "https://www.acm.org/conferences/best-paper-awards"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Do LLMs Memorize Recommendation Datasets? A Preliminary Study on MovieLens-1M",
+          "url": "https://doi.org/10.1145/3726302.3730178"
+        },
+        {
+          "id": "s3",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Do LLMs Memorize Recommendation Datasets? A Preliminary Study on MovieLens-1M",
+          "url": "http://dl.acm.org/citation.cfm?id=3730178"
+        }
+      ],
+      "record": {
+        "title": "Do LLMs Memorize Recommendation Datasets? A Preliminary Study on MovieLens-1M",
+        "award_name": "Best Short Paper Award",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper Award: Do LLMs Memorize Recommendation Datasets? A Preliminary Study on MovieLens-1M",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "Do LLMs Memorize Recommendation Datasets? A Preliminary Study on MovieLens-1M",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Politecnico di Bari, Bari, Italy",
+                  "source_id": "s1"
+                },
+                "name": "Politecnico di Bari, Bari, Italy"
+              }
+            ],
+            "evidence": {
+              "quote": "Dario Di Palma",
+              "source_id": "s1"
+            },
+            "name": "Dario Di Palma"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Cognism, Remote, Italy",
+                  "source_id": "s1"
+                },
+                "name": "Cognism, Remote, Italy"
+              }
+            ],
+            "evidence": {
+              "quote": "Felice Antonio Merra",
+              "source_id": "s1"
+            },
+            "name": "Felice Antonio Merra"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Politecnico di Bari, Bari, Italy",
+                  "source_id": "s1"
+                },
+                "name": "Politecnico di Bari, Bari, Italy"
+              }
+            ],
+            "evidence": {
+              "quote": "Maurizio Sfilio",
+              "source_id": "s1"
+            },
+            "name": "Maurizio Sfilio"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Politecnico di Bari, Bari, Italy",
+                  "source_id": "s1"
+                },
+                "name": "Politecnico di Bari, Bari, Italy"
+              }
+            ],
+            "evidence": {
+              "quote": "Vito Walter Anelli",
+              "source_id": "s1"
+            },
+            "name": "Vito Walter Anelli"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Politecnico di Bari, Bari, Italy",
+                  "source_id": "s1"
+                },
+                "name": "Politecnico di Bari, Bari, Italy"
+              }
+            ],
+            "evidence": {
+              "quote": "Fedelucio Narducci",
+              "source_id": "s1"
+            },
+            "name": "Fedelucio Narducci"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Politecnico di Bari, Bari, Italy",
+                  "source_id": "s1"
+                },
+                "name": "Politecnico di Bari, Bari, Italy"
+              }
+            ],
+            "evidence": {
+              "quote": "Tommaso Di Noia",
+              "source_id": "s1"
+            },
+            "name": "Tommaso Di Noia"
+          }
+        ],
+        "publication_date": "2025-07-13",
+        "publication_date_evidence": {
+          "quote": "2025-07-13",
+          "source_id": "s1"
+        },
+        "paper_url": "http://dl.acm.org/citation.cfm?id=3730178",
+        "doi": "https://doi.org/10.1145/3726302.3730178"
+      }
+    },
+    {
+      "conference_id": "sigir-21cc23",
+      "year": 2025,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GINGER: Grounded Information Nugget-Based Generation of Responses",
+          "url": "https://www.acm.org/conferences/best-paper-awards"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GINGER: Grounded Information Nugget-Based Generation of Responses",
+          "url": "https://doi.org/10.1145/3726302.3730166"
+        },
+        {
+          "id": "s3",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GINGER: Grounded Information Nugget-Based Generation of Responses",
+          "url": "http://dl.acm.org/citation.cfm?id=3730166"
+        }
+      ],
+      "record": {
+        "title": "GINGER: Grounded Information Nugget-Based Generation of Responses",
+        "award_name": "Best Short Paper Award",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper Award: GINGER: Grounded Information Nugget-Based Generation of Responses",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "GINGER: Grounded Information Nugget-Based Generation of Responses",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "University of Stavanger",
+                  "source_id": "s1"
+                },
+                "name": "University of Stavanger"
+              }
+            ],
+            "evidence": {
+              "quote": "Weronika Łajewska",
+              "source_id": "s1"
+            },
+            "name": "Weronika Łajewska"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "University of Stavanger",
+                  "source_id": "s1"
+                },
+                "name": "University of Stavanger"
+              }
+            ],
+            "evidence": {
+              "quote": "Krisztian Balog",
+              "source_id": "s1"
+            },
+            "name": "Krisztian Balog"
+          }
+        ],
+        "publication_date": "2025-07-13",
+        "publication_date_evidence": {
+          "quote": "2025-07-13",
+          "source_id": "s1"
+        },
+        "paper_url": "http://dl.acm.org/citation.cfm?id=3730166",
+        "doi": "https://doi.org/10.1145/3726302.3730166"
+      }
+    },
+    {
+      "conference_id": "sigir-21cc23",
+      "year": 2025,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15907,8 +16479,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -15981,8 +16553,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16039,8 +16611,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16121,8 +16693,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16195,14 +16767,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Adversarial Network Optimization under Bandit Feedback: Maximizing Utility in Non-Stationary Multi-Hop Networks",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": "n Analysis of Q-Learning with Time-Varying Policies\" by Phalguni Nanda, Zaiwei Chen (Purdue University). 2025: Best Paper Award: \"Adversarial Network Optimization under Bandit Feedback: Maximizing Utility in Non-Stationary Multi-Hop Networks\" by Yan Dai (MIT) and Longbo Huang (Tsinghua University). Kenneth C. Sevcik Outstanding Student Paper Award: \"Beaver: A High-Performance and Crash-Consistent F",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -16261,8 +16839,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16335,8 +16913,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16409,8 +16987,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16547,8 +17125,8 @@
       "conference_id": "socc-558b02",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16567,6 +17145,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Valet: Efficient Data Placement on Modern SSDs",
           "url": "http://dl.acm.org/citation.cfm?id=3772256"
+        },
+        {
+          "id": "zhang-2065d24557fdf40c124a42e6",
+          "role": "award",
+          "text": "mmittee ACM Symposium on Cloud Computing 2025 SoCC'25 will be a fully virtual event November 19-21, 2025 Best Paper Award Winner: Valet: Efficient Data Placement on Modern SSDs , by Devashish R. Purandare, Peter Alvaro (University of California, Santa Cruz); Avani Wildani (Emory University and Cloudflare); Darrell D. E. Long (Universi",
+          "url": "https://acmsocc.org/2025/awards.html"
         }
       ],
       "record": {
@@ -16676,8 +17260,8 @@
       "conference_id": "sosp-13d21a",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16773,14 +17357,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Breaking the Sorting Barrier for Directed Single-Source Shortest Paths",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "orem in Near-Linear Time”, by Sepehr Assadi, Soheil Behnezhad, Sayan Bhattacharya, Martin Costa, Shay Solomon, and Tianyi Zhang. “Breaking the Sorting Barrier for Directed Single-Source Shortest Paths”, by Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu, and Longhui Yin. “Quasi-Linear Size PCPs with Small Soundness from HDX”, by Mitali Bafna, Dor Minzer, Nikhil Vy",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -16847,8 +17437,8 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -16913,14 +17503,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Quasi-Linear Size PCPs with Small Soundness from HDX",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "g the Sorting Barrier for Directed Single-Source Shortest Paths”, by Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu, and Longhui Yin. “Quasi-Linear Size PCPs with Small Soundness from HDX”, by Mitali Bafna, Dor Minzer, Nikhil Vyas, and Zhiwei Yun. STOC 2024 “Single-Source Shortest Paths with Negative Real Weights in $\\tilde O(mn^{8/9})$ Time”, b",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -16979,14 +17575,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Simulating Time in (Nearly) Square-Root Space",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "considered for the Best Paper Award, and vice versa; a paper meriting both Awards should be given both Awards. Winners STOC 2025 “Simulating Time in (Nearly) Square-Root Space”, by Ryan Williams. “Vizing’s Theorem in Near-Linear Time”, by Sepehr Assadi, Soheil Behnezhad, Sayan Bhattacharya, Martin Costa, Shay Solomon, and Tianyi Zhan",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -17021,14 +17623,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Vizing’s Theorem in Near-Linear Time",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "ng both Awards should be given both Awards. Winners STOC 2025 “Simulating Time in (Nearly) Square-Root Space”, by Ryan Williams. “Vizing’s Theorem in Near-Linear Time”, by Sepehr Assadi, Soheil Behnezhad, Sayan Bhattacharya, Martin Costa, Shay Solomon, and Tianyi Zhang. “Breaking the Sorting Barrier for Directed Single-Sourc",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -17103,8 +17711,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17217,8 +17825,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17331,8 +17939,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17413,8 +18021,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17495,8 +18103,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17609,8 +18217,8 @@
       "conference_id": "wsdm-c263db",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17786,8 +18394,8 @@
       "conference_id": "www-23efdc",
       "year": 2025,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17883,8 +18491,8 @@
       "conference_id": "aaai-8db694",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -17941,8 +18549,8 @@
       "conference_id": "aaai-8db694",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18047,8 +18655,8 @@
       "conference_id": "aaai-8db694",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18137,8 +18745,8 @@
       "conference_id": "aaai-8db694",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18243,8 +18851,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18349,8 +18957,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18519,8 +19127,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18593,8 +19201,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18691,8 +19299,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -18781,8 +19389,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19103,8 +19711,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19169,8 +19777,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19251,8 +19859,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19357,8 +19965,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19431,8 +20039,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19489,8 +20097,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19867,8 +20475,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19925,8 +20533,8 @@
       "conference_id": "acl-70cc29",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -19975,8 +20583,8 @@
       "conference_id": "acm-mm-04fb16",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -20088,8 +20696,8 @@
       "conference_id": "acm-mm-04fb16",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -20249,8 +20857,8 @@
       "conference_id": "acm-mm-04fb16",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -20426,8 +21034,8 @@
       "conference_id": "acm-sigops-atc-4398bb",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -20446,6 +21054,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise",
           "url": "https://www.usenix.org/system/files/atc24-li-hongyu.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": "rosoft; Joe Chau, Microsoft; Peng Cheng, Microsoft Research; Yongqiang Xiong, Microsoft Research; Lidong Zhou, Microsoft Research An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise Hongyu Li, Beijing University of Posts and Telecommunications; Liwei Guo, University of Electronic Science and Technology of China; Yexuan Yang, Beijing Univer",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -20552,8 +21166,8 @@
       "conference_id": "acm-sigops-atc-4398bb",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -20572,6 +21186,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: FastCommit: resource-efficient, performant and cost-effective file system journaling",
           "url": "https://www.usenix.org/system/files/atc24-shirwadkar.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": " Beijing University of Posts and Telecommunications (BUPT); Mengwei Xu, Beijing University of Posts and Telecommunications (BUPT) FastCommit: resource-efficient, performant and cost-effective file system journaling Harshad Shirwadkar, Google; Saurabh Kadekodi, Google; Theodore Tso, Google OSDI '24 Anvil: Verifying Liveness of Cluster Management Controllers Xudong Sun, Uni",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -20646,8 +21266,8 @@
       "conference_id": "acm-sigops-atc-4398bb",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -20666,6 +21286,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation",
           "url": "https://www.usenix.org/system/files/atc24-xiong.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": "us-Liebig-University Gießen; Monika C. Schuhmacher, Justus-Liebig-University Gießen; Verena Zimmermann, ETH Zurich USENIX ATC '24 SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation Yifan Xiong, Microsoft Research; Yuting Jiang, Microsoft Research; Ziyue Yang, Microsoft Research; Lei Qu, Microsoft Research; Guoshuai Zhao, Microsoft; Shugua",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -21012,8 +21638,8 @@
       "conference_id": "asiacrypt-6eac7c",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21135,8 +21761,8 @@
       "conference_id": "asiacrypt-6eac7c",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21218,8 +21844,8 @@
       "conference_id": "asiacrypt-6eac7c",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21293,8 +21919,89 @@
       "conference_id": "cikm-9361e4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GeoReasoner: Reasoning On Geospatially Grounded Context For Natural Language Understanding",
+          "url": "https://www.acm.org/articles/best-paper-awards/2024"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GeoReasoner: Reasoning On Geospatially Grounded Context For Natural Language Understanding",
+          "url": "https://doi.org/10.1145/3627673.3679934"
+        },
+        {
+          "id": "s3",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GeoReasoner: Reasoning On Geospatially Grounded Context For Natural Language Understanding",
+          "url": "http://dl.acm.org/citation.cfm?id=3679934"
+        }
+      ],
+      "record": {
+        "title": "GeoReasoner: Reasoning On Geospatially Grounded Context For Natural Language Understanding",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: GeoReasoner: Reasoning On Geospatially Grounded Context For Natural Language Understanding",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "GeoReasoner: Reasoning On Geospatially Grounded Context For Natural Language Understanding",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "National University of Singapore, Singapore, Singapore",
+                  "source_id": "s1"
+                },
+                "name": "National University of Singapore, Singapore, Singapore"
+              }
+            ],
+            "evidence": {
+              "quote": "Yibo Yan",
+              "source_id": "s1"
+            },
+            "name": "Yibo Yan"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Shanghai Zhangjiang Institute of Mathematics, Shanghai, China",
+                  "source_id": "s1"
+                },
+                "name": "Shanghai Zhangjiang Institute of Mathematics, Shanghai, China"
+              }
+            ],
+            "evidence": {
+              "quote": "Joey Lee",
+              "source_id": "s1"
+            },
+            "name": "Joey Lee"
+          }
+        ],
+        "publication_date": "2024-10-21",
+        "publication_date_evidence": {
+          "quote": "2024-10-21",
+          "source_id": "s1"
+        },
+        "paper_url": "http://dl.acm.org/citation.cfm?id=3679934",
+        "doi": "https://doi.org/10.1145/3627673.3679934"
+      }
+    },
+    {
+      "conference_id": "cikm-9361e4",
+      "year": 2024,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21390,8 +22097,8 @@
       "conference_id": "conext-58ff6c",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21503,8 +22210,8 @@
       "conference_id": "crypto-dd52f6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21578,8 +22285,8 @@
       "conference_id": "crypto-dd52f6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21685,8 +22392,8 @@
       "conference_id": "cscw-843aee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21814,8 +22521,8 @@
       "conference_id": "cscw-843aee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -21943,8 +22650,8 @@
       "conference_id": "cscw-843aee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22018,8 +22725,8 @@
       "conference_id": "cscw-843aee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22115,8 +22822,8 @@
       "conference_id": "cscw-843aee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22292,8 +22999,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22422,8 +23129,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22488,8 +23195,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22562,8 +23269,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22740,8 +23447,8 @@
       "conference_id": "eccv-19eaec",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22790,8 +23497,8 @@
       "conference_id": "fpga-3a39a9",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22886,8 +23593,8 @@
       "conference_id": "fse-95a390",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -22953,8 +23660,8 @@
       "conference_id": "fse-95a390",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23044,8 +23751,8 @@
       "conference_id": "icde-34cdee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23110,8 +23817,8 @@
       "conference_id": "icde-34cdee",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23208,8 +23915,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23280,8 +23987,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23344,8 +24051,152 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Hypertrix: An indicatrix for high-dimensional visualizations",
+          "url": "https://www.ieeevis.org/year/2026/info/history/best-paper-awards/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Hypertrix: An indicatrix for high-dimensional visualizations",
+          "url": "https://doi.org/10.1109/VIS55277.2024.00073"
+        }
+      ],
+      "record": {
+        "title": "Hypertrix: An indicatrix for high-dimensional visualizations",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: Hypertrix: An indicatrix for high-dimensional visualizations",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "Hypertrix: An indicatrix for high-dimensional visualizations",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Shivam Raval",
+              "source_id": "s1"
+            },
+            "name": "Shivam Raval"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Fernanda Viegas",
+              "source_id": "s1"
+            },
+            "name": "Fernanda Viegas"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Martin Wattenberg",
+              "source_id": "s1"
+            },
+            "name": "Martin Wattenberg"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://doi.org/10.1109/VIS55277.2024.00073",
+        "doi": "10.1109/VIS55277.2024.00073"
+      }
+    },
+    {
+      "conference_id": "ieee-vis-632fb7",
+      "year": 2024,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: PyGWalker: On-the-fly Assistant for Exploratory Visual Data Analysis",
+          "url": "https://www.ieeevis.org/year/2026/info/history/best-paper-awards/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: PyGWalker: On-the-fly Assistant for Exploratory Visual Data Analysis",
+          "url": "https://doi.org/10.1109/VIS55277.2024.00009"
+        }
+      ],
+      "record": {
+        "title": "PyGWalker: On-the-fly Assistant for Exploratory Visual Data Analysis",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: PyGWalker: On-the-fly Assistant for Exploratory Visual Data Analysis",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "PyGWalker: On-the-fly Assistant for Exploratory Visual Data Analysis",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Yue Yu",
+              "source_id": "s1"
+            },
+            "name": "Yue Yu"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Leixian Shen",
+              "source_id": "s1"
+            },
+            "name": "Leixian Shen"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Fei Long",
+              "source_id": "s1"
+            },
+            "name": "Fei Long"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Huamin Qu",
+              "source_id": "s1"
+            },
+            "name": "Huamin Qu"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Hao Chen",
+              "source_id": "s1"
+            },
+            "name": "Hao Chen"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://doi.org/10.1109/VIS55277.2024.00009",
+        "doi": "10.1109/VIS55277.2024.00009"
+      }
+    },
+    {
+      "conference_id": "ieee-vis-632fb7",
+      "year": 2024,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23416,8 +24267,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23488,8 +24339,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23568,8 +24419,8 @@
       "conference_id": "imc-3ab850",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23665,8 +24516,8 @@
       "conference_id": "imc-3ab850",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23740,8 +24591,8 @@
       "conference_id": "iss-40ccf4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23885,8 +24736,8 @@
       "conference_id": "lics-9f247f",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -23936,8 +24787,8 @@
       "conference_id": "miccai-d6a1d7",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24018,8 +24869,8 @@
       "conference_id": "middleware-f594fa",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24131,8 +24982,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24206,8 +25057,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24351,8 +25202,8 @@
       "conference_id": "neurips-1d1eb2",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24440,8 +25291,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24460,6 +25311,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Anvil: Verifying Liveness of Cluster Management Controllers",
           "url": "https://www.usenix.org/system/files/osdi24-sun-xudong.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": "ant and cost-effective file system journaling Harshad Shirwadkar, Google; Saurabh Kadekodi, Google; Theodore Tso, Google OSDI '24 Anvil: Verifying Liveness of Cluster Management Controllers Xudong Sun, University of Illinois Urbana-Champaign; Wenjie Ma, University of Illinois Urbana-Champaign; Jiawei Tyler Gu, University of Illinois Urbana-Champai",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -24662,8 +25519,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -24682,6 +25539,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: ServiceLab: Preventing Tiny Performance Regressions at Hyperscale through Pre-Production Testing",
           "url": "https://www.usenix.org/system/files/osdi24-chow.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": ", VMware Research; Lalith Suresh, Feldera; Adriana Szekeres, VMware Research; Tianyin Xu, University of Illinois Urbana-Champaign ServiceLab: Preventing Tiny Performance Regressions at Hyperscale through Pre-Production Testing Mike Chow, Meta Platforms; Yang Wang, Meta Platforms and The Ohio State University; William Wang, Meta Platforms; Ayichew Hailu, Meta Platforms; Rohan Bopardik",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -25012,8 +25875,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25032,6 +25895,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: VeriSMo: A Verified Security Module for Confidential VMs",
           "url": "https://www.usenix.org/system/files/osdi24-zhou.pdf"
+        },
+        {
+          "id": "zhang-2ec6dbf832fb88bcabc95d31",
+          "role": "award",
+          "text": "atforms; Zoltan Farkas, Meta Platforms; Caner Gocmen, Meta Platforms; Elvis Huang, Meta Platforms; Chunqiang Tang, Meta Platforms VeriSMo: A Verified Security Module for Confidential VMs Ziqiao Zhou, Microsoft Research; [node:field-speakers-first-name] Anjali, University of Wisconsin-Madison; Weiteng Chen, Microsoft Research; Sishuai Gong, Purd",
+          "url": "https://www.usenix.org/conferences/best-papers?page=1"
         }
       ],
       "record": {
@@ -25154,8 +26023,8 @@
       "conference_id": "pkc-8355e6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25245,8 +26114,8 @@
       "conference_id": "pkc-8355e6",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25304,8 +26173,8 @@
       "conference_id": "pods-75addc",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25360,8 +26229,8 @@
       "conference_id": "pods-75addc",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25432,8 +26301,8 @@
       "conference_id": "recomb-b4b666",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25488,8 +26357,88 @@
       "conference_id": "recsys-997d90",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The MovieLens Beliefs Dataset: Collecting Pre-Choice Data for Online Recommender Systems",
+          "url": "https://recsys.acm.org/best-papers/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The MovieLens Beliefs Dataset: Collecting Pre-Choice Data for Online Recommender Systems",
+          "url": "https://dl.acm.org/doi/10.1145/3640457.3688158"
+        }
+      ],
+      "record": {
+        "title": "The MovieLens Beliefs Dataset: Collecting Pre-Choice Data for Online Recommender Systems",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: The MovieLens Beliefs Dataset: Collecting Pre-Choice Data for Online Recommender Systems",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "The MovieLens Beliefs Dataset: Collecting Pre-Choice Data for Online Recommender Systems",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Guy Aridor",
+              "source_id": "s1"
+            },
+            "name": "Guy Aridor"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Duarte Goncalves",
+              "source_id": "s1"
+            },
+            "name": "Duarte Goncalves"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Ruoyan Kong",
+              "source_id": "s1"
+            },
+            "name": "Ruoyan Kong"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Daniel Kluver",
+              "source_id": "s1"
+            },
+            "name": "Daniel Kluver"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Joseph Konstan",
+              "source_id": "s1"
+            },
+            "name": "Joseph Konstan"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://dl.acm.org/doi/10.1145/3640457.3688158",
+        "doi": null
+      }
+    },
+    {
+      "conference_id": "recsys-997d90",
+      "year": 2024,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25608,8 +26557,8 @@
       "conference_id": "recsys-997d90",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25688,8 +26637,8 @@
       "conference_id": "sensys-9ab36e",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25849,8 +26798,8 @@
       "conference_id": "sigir-21cc23",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25897,8 +26846,8 @@
       "conference_id": "sigir-21cc23",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -25993,8 +26942,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -26091,8 +27040,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -26189,8 +27138,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -26407,14 +27356,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Agents of Autonomy: A Systematic Study of Robotics on Modern Hardware",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": "U), Rachid Elazouzi (University of Avignon), Cheng Han Lee and Ethan Chan (Allium), Giulia Fanti (CMU). 2024: Best Paper Awards: \"Agents of Autonomy: A Systematic Study of Robotics on Modern Hardware\" by Mohammad Bakhshalipour, Phillip B. Gibbons (Carnegie Mellon University). \"Strongly Tail-Optimal Scheduling in the Light-Tailed M/G/1\" by George Yu, Ziv Scu",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -26473,14 +27428,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: CarbonScaler: Leveraging Cloud Workload Elasticity for Optimizing Carbon-Efficiency",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": ", Andres Garcia-Saavedra (NEC Laboratories Europe) and Xavier Costa-Perez (NEC Laboratories Europe, i2CAT Foundation and ICREA). \"CarbonScaler: Leveraging Cloud Workload Elasticity for Optimizing Carbon-Efficiency\" by Walid A. Hanafy, Qianlin Liang (University of Massachusetts Amherst), Noman Bashir (Massachusetts Institute of Technology), David Irwin and and Prashant Sh",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -26587,14 +27548,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Fair Resource Allocation in Virtualized O-RAN Platforms",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": "iled M/G/1\" by George Yu, Ziv Scully (Cornell University). Stephen S. Lavenberg and Kenneth C. Sevcik Best Student Paper Awards: \"Fair Resource Allocation in Virtualized O-RAN Platforms\" by Fatih Aslan, George Iosifidis (TU Delft), Jose A. Ayala-Romero, Andres Garcia-Saavedra (NEC Laboratories Europe) and Xavier Costa-Perez (NEC Laboratories E",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -26701,14 +27668,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Strongly Tail-Optimal Scheduling in the Light-Tailed M/G/1",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": ": A Systematic Study of Robotics on Modern Hardware\" by Mohammad Bakhshalipour, Phillip B. Gibbons (Carnegie Mellon University). \"Strongly Tail-Optimal Scheduling in the Light-Tailed M/G/1\" by George Yu, Ziv Scully (Cornell University). Stephen S. Lavenberg and Kenneth C. Sevcik Best Student Paper Awards: \"Fair Resource Allocation in Virtualized ",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -26767,8 +27740,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -26817,8 +27790,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -26915,8 +27888,8 @@
       "conference_id": "sosp-13d21a",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27204,8 +28177,8 @@
       "conference_id": "sosp-13d21a",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27333,8 +28306,8 @@
       "conference_id": "sosp-13d21a",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27462,8 +28435,8 @@
       "conference_id": "spaa-7e8630",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27528,8 +28501,8 @@
       "conference_id": "spaa-7e8630",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27586,14 +28559,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Near Optimal Alphabet-Soundness Tradeoff PCPs",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "wei Yun. STOC 2024 “Single-Source Shortest Paths with Negative Real Weights in $\\tilde O(mn^{8/9})$ Time”, by Jeremy T. Fineman. “Near Optimal Alphabet-Soundness Tradeoff PCPs”, by Dor Minzer and Kai Zhe Zheng. “Parameterized Inapproximability Hypothesis under Exponential Time Hypothesis”, by Venkatesan Guruswami, Bingkai Lin, Xuandi",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -27636,14 +28615,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Parameterized Inapproximability Hypothesis under Exponential Time Hypothesis",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "ilde O(mn^{8/9})$ Time”, by Jeremy T. Fineman. “Near Optimal Alphabet-Soundness Tradeoff PCPs”, by Dor Minzer and Kai Zhe Zheng. “Parameterized Inapproximability Hypothesis under Exponential Time Hypothesis”, by Venkatesan Guruswami, Bingkai Lin, Xuandi Ren, Yican Sun, and Kewen Wu. STOC 2023 “The Randomized k-Server Conjecture is False!”, by Sebastien Bubeck, Chr",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -27710,8 +28695,8 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27776,8 +28761,8 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27842,14 +28827,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2024,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Single-Source Shortest Paths with Negative Real Weights in ˜ O (mn8/9) Time",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "Yin. “Quasi-Linear Size PCPs with Small Soundness from HDX”, by Mitali Bafna, Dor Minzer, Nikhil Vyas, and Zhiwei Yun. STOC 2024 “Single-Source Shortest Paths with Negative Real Weights in $\\tilde O(mn^{8/9})$ Time”, by Jeremy T. Fineman. “Near Optimal Alphabet-Soundness Tradeoff PCPs”, by Dor Minzer and Kai Zhe Zheng. “Parameterized Inapproximability Hypothesis under Exp",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -27884,8 +28875,8 @@
       "conference_id": "acl-70cc29",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -27982,8 +28973,8 @@
       "conference_id": "acl-70cc29",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28048,8 +29039,8 @@
       "conference_id": "acl-70cc29",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28154,8 +29145,8 @@
       "conference_id": "acm-sigops-atc-4398bb",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28174,6 +29165,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: On-demand Container Loading in AWS Lambda",
           "url": "https://www.usenix.org/system/files/atc23-brooker.pdf"
+        },
+        {
+          "id": "zhang-ce2838c081b98bea09d785a4",
+          "role": "award",
+          "text": "ff, University of Bonn; Christian Tiefenau, University of Bonn; Matthew Smith, University of Bonn, Fraunhofer FKIE USENIX ATC '23 On-demand Container Loading in AWS Lambda Marc Brooker, Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services zpoline: a system",
+          "url": "https://www.usenix.org/conferences/best-papers?page=2"
         }
       ],
       "record": {
@@ -28264,8 +29261,8 @@
       "conference_id": "acm-sigops-atc-4398bb",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28284,6 +29281,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: zpoline: a system call hook mechanism based on binary rewriting",
           "url": "https://www.usenix.org/system/files/atc23-yasukata.pdf"
+        },
+        {
+          "id": "zhang-ce2838c081b98bea09d785a4",
+          "role": "award",
+          "text": ", Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services zpoline: a system call hook mechanism based on binary rewriting Kenichi Yasukata, IIJ Research Laboratory; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei Universi",
+          "url": "https://www.usenix.org/conferences/best-papers?page=2"
         }
       ],
       "record": {
@@ -28374,8 +29377,8 @@
       "conference_id": "asiacrypt-6eac7c",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28513,8 +29516,8 @@
       "conference_id": "asiacrypt-6eac7c",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28604,8 +29607,8 @@
       "conference_id": "crypto-dd52f6",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28679,8 +29682,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28745,8 +29748,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28907,8 +29910,8 @@
       "conference_id": "cvpr-d2daf8",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -28957,8 +29960,8 @@
       "conference_id": "eurocrypt-24a89a",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29016,8 +30019,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29161,8 +30164,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29290,8 +30293,8 @@
       "conference_id": "eurosys-1a4ca5",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29403,8 +30406,8 @@
       "conference_id": "fpga-3a39a9",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29467,8 +30470,8 @@
       "conference_id": "group-cb5ac4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29534,8 +30537,8 @@
       "conference_id": "group-cb5ac4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29601,8 +30604,8 @@
       "conference_id": "iccv-e6e669",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29659,8 +30662,8 @@
       "conference_id": "iccv-e6e669",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29733,8 +30736,8 @@
       "conference_id": "iccv-e6e669",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29823,8 +30826,8 @@
       "conference_id": "ics-65bd48",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -29968,8 +30971,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30032,8 +31035,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30088,8 +31091,72 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Gridded Glyphmaps for Supporting Spatial COVID-19 Modelling",
+          "url": "https://www.ieeevis.org/year/2026/info/history/best-paper-awards/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Gridded Glyphmaps for Supporting Spatial COVID-19 Modelling",
+          "url": "https://doi.org/10.1109/VIS54172.2023.00009"
+        }
+      ],
+      "record": {
+        "title": "Gridded Glyphmaps for Supporting Spatial COVID-19 Modelling",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: Gridded Glyphmaps for Supporting Spatial COVID-19 Modelling",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "Gridded Glyphmaps for Supporting Spatial COVID-19 Modelling",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Aidan Slingsby",
+              "source_id": "s1"
+            },
+            "name": "Aidan Slingsby"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Richard Reeve",
+              "source_id": "s1"
+            },
+            "name": "Richard Reeve"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Claire Harris",
+              "source_id": "s1"
+            },
+            "name": "Claire Harris"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://doi.org/10.1109/VIS54172.2023.00009",
+        "doi": "10.1109/VIS54172.2023.00009"
+      }
+    },
+    {
+      "conference_id": "ieee-vis-632fb7",
+      "year": 2023,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30208,8 +31275,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30280,8 +31347,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30344,8 +31411,8 @@
       "conference_id": "ieee-vis-632fb7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30424,8 +31491,8 @@
       "conference_id": "imc-3ab850",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30633,8 +31700,8 @@
       "conference_id": "iss-40ccf4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30762,8 +31829,8 @@
       "conference_id": "iui-c98a95",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30891,8 +31958,8 @@
       "conference_id": "lics-9f247f",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -30942,8 +32009,8 @@
       "conference_id": "miccai-d6a1d7",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31024,8 +32091,8 @@
       "conference_id": "mobicom-2a5b0a",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31153,8 +32220,8 @@
       "conference_id": "mobicom-2a5b0a",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31250,8 +32317,8 @@
       "conference_id": "mobihoc-6dca17",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31379,8 +32446,8 @@
       "conference_id": "mobilehci-70f055",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31460,8 +32527,8 @@
       "conference_id": "nsdi-c49ab1",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31480,6 +32547,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: CausalSim: A Causal Framework for Unbiased Trace-Driven Simulation",
           "url": "https://www.usenix.org/system/files/nsdi23-alomar.pdf"
+        },
+        {
+          "id": "zhang-ce2838c081b98bea09d785a4",
+          "role": "award",
+          "text": "Sudarshan Kandi, Meta; Alejandro Xoconostle, Meta; Praveen Kumar Ramakrishnan, Meta; Xiaochen Tian, Indepenent; Anoop Tomar, Meta CausalSim: A Causal Framework for Unbiased Trace-Driven Simulation Abdullah Alomar, MIT; Pouya Hamadanian, MIT; Arash Nasr-Esfahany, MIT; Anish Agarwal, MIT; Mohammad Alizadeh, MIT; Devavrat Shah, MIT DOTE: Rethinking (Predict",
+          "url": "https://www.usenix.org/conferences/best-papers?page=2"
         }
       ],
       "record": {
@@ -31602,8 +32675,8 @@
       "conference_id": "nsdi-c49ab1",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31622,6 +32695,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: LeakyScatter: A Frequency-Agile Directional Backscatter Network Above 100 GHz",
           "url": "https://www.usenix.org/system/files/nsdi23-kludze.pdf"
+        },
+        {
+          "id": "zhang-ce2838c081b98bea09d785a4",
+          "role": "award",
+          "text": "negie Mellon University; Aurojit Panda, New York University; Justine Sherry, Carnegie Mellon University; Ren Wang, Intel NSDI '23 LeakyScatter: A Frequency-Agile Directional Backscatter Network Above 100 GHz Atsutse Kludze, Princeton University; Yasaman Ghasempour, Princeton University Building Flexible, Low-Cost Wireless Access Networks With Magma Shaddi Hasan, Vi",
+          "url": "https://www.usenix.org/conferences/best-papers?page=2"
         }
       ],
       "record": {
@@ -31680,8 +32759,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31700,6 +32779,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Ensō: A Streaming Interface for NIC-Application Communication",
           "url": "https://www.usenix.org/system/files/osdi23-sadok.pdf"
+        },
+        {
+          "id": "zhang-ce2838c081b98bea09d785a4",
+          "role": "award",
+          "text": "assachusetts Amherst; Sam Stern, University of Massachusetts Amherst; Juan Altmayer Pizzorno, University of Massachusetts Amherst Ensō: A Streaming Interface for NIC-Application Communication Hugo Sadok, Carnegie Mellon University; Nirav Atre, Carnegie Mellon University; Zhipeng Zhao, Microsoft; Daniel S. Berger, Microsoft Research and University of",
+          "url": "https://www.usenix.org/conferences/best-papers?page=2"
         }
       ],
       "record": {
@@ -31854,8 +32939,8 @@
       "conference_id": "osdi-37eeb6",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -31874,6 +32959,12 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Triangulating Python Performance Issues with SCALENE",
           "url": "https://www.usenix.org/system/files/osdi23-berger.pdf"
+        },
+        {
+          "id": "zhang-ce2838c081b98bea09d785a4",
+          "role": "award",
+          "text": "; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei University OSDI '23 Triangulating Python Performance Issues with SCALENE Emery D. Berger, University of Massachusetts Amherst; Sam Stern, University of Massachusetts Amherst; Juan Altmayer Pizzorno, University of Massachusetts Amher",
+          "url": "https://www.usenix.org/conferences/best-papers?page=2"
         }
       ],
       "record": {
@@ -31948,8 +33039,8 @@
       "conference_id": "pkc-8355e6",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32007,8 +33098,8 @@
       "conference_id": "pkc-8355e6",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32082,8 +33173,8 @@
       "conference_id": "podc-87da73",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32163,8 +33254,8 @@
       "conference_id": "podc-87da73",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32260,8 +33351,8 @@
       "conference_id": "pods-75addc",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32332,8 +33423,8 @@
       "conference_id": "ppopp-7e8103",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32407,8 +33498,8 @@
       "conference_id": "recomb-b4b666",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32471,8 +33562,8 @@
       "conference_id": "recsys-997d90",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32524,11 +33615,115 @@
       }
     },
     {
+      "conference_id": "recsys-997d90",
+      "year": 2023,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Interpretable User Retention Modeling in Recommendation",
+          "url": "https://recsys.acm.org/best-papers/"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Interpretable User Retention Modeling in Recommendation",
+          "url": "https://dl.acm.org/doi/10.1145/3604915.3608818"
+        }
+      ],
+      "record": {
+        "title": "Interpretable User Retention Modeling in Recommendation",
+        "award_name": "Best Short Paper",
+        "track": "",
+        "award_evidence": {
+          "quote": "Best Short Paper: Interpretable User Retention Modeling in Recommendation",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "Interpretable User Retention Modeling in Recommendation",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Rui Ding",
+              "source_id": "s1"
+            },
+            "name": "Rui Ding"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Ruobing Xie",
+              "source_id": "s1"
+            },
+            "name": "Ruobing Xie"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Xiaobo Hao",
+              "source_id": "s1"
+            },
+            "name": "Xiaobo Hao"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Xiaochun Yang",
+              "source_id": "s1"
+            },
+            "name": "Xiaochun Yang"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Kaikai Ge",
+              "source_id": "s1"
+            },
+            "name": "Kaikai Ge"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Xu Zhang",
+              "source_id": "s1"
+            },
+            "name": "Xu Zhang"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Jie Zhou",
+              "source_id": "s1"
+            },
+            "name": "Jie Zhou"
+          },
+          {
+            "affiliations": [],
+            "evidence": {
+              "quote": "Leyu Lin",
+              "source_id": "s1"
+            },
+            "name": "Leyu Lin"
+          }
+        ],
+        "publication_date": null,
+        "publication_date_evidence": null,
+        "paper_url": "https://dl.acm.org/doi/10.1145/3604915.3608818",
+        "doi": null
+      }
+    },
+    {
       "conference_id": "rtss-f72534",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "徐涛",
+      "review_note": "已核验",
       "sources": [
         {
           "acquisition": "http",
@@ -32625,8 +33820,8 @@
       "conference_id": "siggraph-083f25",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32708,8 +33903,8 @@
       "conference_id": "sigir-21cc23",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32772,8 +33967,137 @@
       "conference_id": "sigir-21cc23",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "sources": [
+        {
+          "id": "s1",
+          "role": "award",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+          "url": "https://www.acm.org/conferences/best-paper-awards"
+        },
+        {
+          "id": "s2",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+          "url": "https://doi.org/10.1145/3539618.3592065"
+        },
+        {
+          "id": "s3",
+          "role": "metadata",
+          "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+          "url": "http://dl.acm.org/citation.cfm?id=3592065"
+        }
+      ],
+      "record": {
+        "title": "SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+        "award_name": "SIGIR 2023 Best Short Paper Award",
+        "track": "",
+        "award_evidence": {
+          "quote": "SIGIR 2023 Best Short Paper Award: SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+          "source_id": "s1"
+        },
+        "title_evidence": {
+          "quote": "SparseEmbed: Learning Sparse Lexical Representations with Contextual Embeddings for Retrieval",
+          "source_id": "s1"
+        },
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Google Research, Mountain View, CA, USA",
+                  "source_id": "s1"
+                },
+                "name": "Google Research, Mountain View, CA, USA"
+              }
+            ],
+            "evidence": {
+              "quote": "Weize Kong",
+              "source_id": "s1"
+            },
+            "name": "Weize Kong"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Google Research, Mountain View, CA, USA",
+                  "source_id": "s1"
+                },
+                "name": "Google Research, Mountain View, CA, USA"
+              }
+            ],
+            "evidence": {
+              "quote": "Jeffrey M. Dudek",
+              "source_id": "s1"
+            },
+            "name": "Jeffrey M. Dudek"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Google Research, Mountain View, CA, USA",
+                  "source_id": "s1"
+                },
+                "name": "Google Research, Mountain View, CA, USA"
+              }
+            ],
+            "evidence": {
+              "quote": "Cheng Li",
+              "source_id": "s1"
+            },
+            "name": "Cheng Li"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Google Research, Mountain View, CA, USA",
+                  "source_id": "s1"
+                },
+                "name": "Google Research, Mountain View, CA, USA"
+              }
+            ],
+            "evidence": {
+              "quote": "Mingyang Zhang",
+              "source_id": "s1"
+            },
+            "name": "Mingyang Zhang"
+          },
+          {
+            "affiliations": [
+              {
+                "evidence": {
+                  "quote": "Google Research, Mountain View, CA, USA",
+                  "source_id": "s1"
+                },
+                "name": "Google Research, Mountain View, CA, USA"
+              }
+            ],
+            "evidence": {
+              "quote": "Michael Bendersky",
+              "source_id": "s1"
+            },
+            "name": "Michael Bendersky"
+          }
+        ],
+        "publication_date": "2023-07-18",
+        "publication_date_evidence": {
+          "quote": "2023-07-18",
+          "source_id": "s1"
+        },
+        "paper_url": "http://dl.acm.org/citation.cfm?id=3592065",
+        "doi": "https://doi.org/10.1145/3539618.3592065"
+      }
+    },
+    {
+      "conference_id": "sigir-21cc23",
+      "year": 2023,
+      "status": "verified",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32884,8 +34208,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -32958,8 +34282,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33048,8 +34372,8 @@
       "conference_id": "sigkdd-5c6996",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33154,14 +34478,20 @@
       "conference_id": "sigmetrics-cb3bbd",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Mean-field Analysis for Load Balancing on Spatial Graphs",
           "url": "https://sigmetrics.hosting.acm.org/awards.shtml"
+        },
+        {
+          "id": "zhang-83842de5bcc99ad060d375c5",
+          "role": "award",
+          "text": "tts Institute of Technology), David Irwin and and Prashant Shenoy (University of Massachusetts Amherst). 2023: Best paper award: \"Mean-field Analysis for Load Balancing on Spatial Graphs\" by Daan Rutten (Georgia Institute of Technology) and Debankur Mukherjee (Georgia Institute of Technology). Kenneth C. Sevcik Outstanding Student Paper Award: ",
+          "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
         }
       ],
       "record": {
@@ -33220,8 +34550,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33294,8 +34624,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33496,8 +34826,8 @@
       "conference_id": "sigmod-882ab4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33554,8 +34884,8 @@
       "conference_id": "socc-558b02",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33637,8 +34967,8 @@
       "conference_id": "spaa-7e8630",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33695,14 +35025,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Doubly Efficient Private Information Retrieval and Fully Homomorphic RAM Computation from Ring LWE",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "nd Kewen Wu. STOC 2023 “The Randomized k-Server Conjecture is False!”, by Sebastien Bubeck, Christian Coester, and Yuval Rabani. “Doubly Efficient Private Information Retrieval and Fully Homomorphic RAM Computation from Ring LWE”, by Wei-Kai Lin, Ethan Mook, and Daniel Wichs. STOC 2022 “Locally Testable Codes with constant rate, distance, and locality”, by Irit Dinur, Shai Evra, Ron Li",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -33753,8 +35089,8 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33803,8 +35139,8 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33853,14 +35189,20 @@
       "conference_id": "stoc-c6d2e4",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Randomized k-Server Conjecture is False!",
           "url": "https://www.sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "zhang-64d51e179b9dc9ae03b8552f",
+          "role": "award",
+          "text": "othesis under Exponential Time Hypothesis”, by Venkatesan Guruswami, Bingkai Lin, Xuandi Ren, Yican Sun, and Kewen Wu. STOC 2023 “The Randomized k-Server Conjecture is False!”, by Sebastien Bubeck, Christian Coester, and Yuval Rabani. “Doubly Efficient Private Information Retrieval and Fully Homomorphic RAM Computation from Ring LW",
+          "url": "https://sigact.org/prizes/best_paper.html"
         }
       ],
       "record": {
@@ -33911,8 +35253,8 @@
       "conference_id": "uist-836177",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -34008,8 +35350,8 @@
       "conference_id": "uist-836177",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -34099,8 +35441,8 @@
       "conference_id": "uist-836177",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -34196,8 +35538,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -34310,8 +35652,8 @@
       "conference_id": "vldb-6b36db",
       "year": 2023,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "Excel核验整理版",
+      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
       "sources": [
         {
           "id": "s1",
@@ -34424,8 +35766,8 @@
       "conference_id": "rtss-f72534",
       "year": 2022,
       "status": "verified",
-      "reviewer": "",
-      "review_note": "",
+      "reviewer": "徐涛",
+      "review_note": "已核验",
       "sources": [
         {
           "acquisition": "http",
