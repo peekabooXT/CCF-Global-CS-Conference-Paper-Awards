@@ -7,7 +7,7 @@ import AwardEventsView from './views/AwardEventsView.vue'
 import SourceListingsView from './views/SourceListingsView.vue'
 import AcknowledgementFooter from './components/AcknowledgementFooter.vue'
 const active = ref('search'), meta = ref(null), error = ref('')
-const navigation = [{ id: 'search', label: '论文检索' }, { id: 'events', label: '获奖论文展示（获奖事件）' }, { id: 'listings', label: '来源收录' }]
+const navigation = [{ id: 'search', label: '论文检索' }, { id: 'events', label: '会议年度颁奖' }, { id: 'listings', label: '来源收录' }]
 async function boot() { try { meta.value = await api.meta(); error.value = '' } catch(e) { error.value = errMsg(e) } }
 onMounted(boot)
 </script>
