@@ -1,8 +1,10 @@
 <script setup>
 import { ref, reactive, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { ArrowDown } from '@element-plus/icons-vue'
 import { api, errMsg, collectBatchStream, collectFilesStream } from '../api.js'
 import { planCollectionBatches } from '../collectionBatches.js'
+import { JEFF_HUANG_VENUES, selectJeffHuangConferences } from '../jeffHuangConferences.js'
 
 const props = defineProps({
   meta: { type: Object, required: true },
@@ -52,6 +54,19 @@ const batch = reactive({
 })
 const allConferencesSelected = computed(() =>
   conferences.value.length > 0 && conferences.value.every(conference => batch.conference_ids.includes(conference.id)))
+const jeffHuangSelection = computed(() => selectJeffHuangConferences(conferences.value))
+const jeffHuangSelected = computed(() =>
+  jeffHuangSelection.value.unmatched.length === 0 &&
+  batch.conference_ids.length === JEFF_HUANG_VENUES.length &&
+  jeffHuangSelection.value.ids.every(id => batch.conference_ids.includes(id)))
+function selectJeffHuang() {
+  if (batchPlan.value) return
+  if (jeffHuangSelection.value.unmatched.length) {
+    ElMessage.warning(`会议目录无法准确匹配：${jeffHuangSelection.value.unmatched.join('、')}`)
+    return
+  }
+  batch.conference_ids = [...jeffHuangSelection.value.ids]
+}
 function selectAllConferences() {
   if (batchPlan.value) return
   batch.conference_ids = conferences.value.map(conference => conference.id)
@@ -345,6 +360,7 @@ const running = ref(false)
 const result = ref(null)
 const logLines = ref([])
 const logBox = ref(null)
+const showUpload = ref(false)
 const showLiveLog = ref(false)
 const showHistory = ref(false)
 const runHistory = ref([])
@@ -571,6 +587,7 @@ async function onImportJson(e) {
               placeholder="输入会议简称并多选" class="batch-conference-select">
               <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
             </el-select>
+            <el-button size="small" :disabled="!!batchPlan || jeffHuangSelected || !conferences.length" @click="selectJeffHuang">选择 Jeff Huang 32 会</el-button>
             <el-button size="small" :disabled="!!batchPlan || allConferencesSelected || !conferences.length" @click="selectAllConferences">全选全部会议</el-button>
             <el-button size="small" :disabled="!!batchPlan || !batch.conference_ids.length" @click="clearConferences">清空</el-button>
             <span class="conference-selection-count">已选 {{ batch.conference_ids.length }} / {{ conferences.length }}</span>
@@ -670,8 +687,13 @@ async function onImportJson(e) {
     </el-dialog>
 
     <section class="upload-card" aria-labelledby="upload-title">
-      <div class="upload-heading"><div><span class="section-eyebrow">备用采集方式</span><h3 id="upload-title">上传文件采集</h3><p>网页无法直接读取时，上传单个会议年度的获奖页文件；论文文件可选。</p></div><span class="upload-format">支持 PDF · HTML · TXT</span></div>
-      <el-form label-position="top" class="upload-form">
+      <button class="upload-heading" type="button" :aria-expanded="showUpload" aria-controls="upload-content" @click="showUpload = !showUpload">
+        <span class="upload-heading-copy"><span class="section-eyebrow">备用采集方式</span><span id="upload-title" class="upload-title" role="heading" aria-level="3">上传文件采集</span><span class="upload-description">网页无法直接读取时，上传单个会议年度的获奖页文件；论文文件可选。</span></span>
+        <span class="upload-format">支持 PDF · HTML · TXT</span>
+        <el-icon class="collapse-chevron" :class="{ open: showUpload }"><ArrowDown /></el-icon>
+      </button>
+      <div v-show="showUpload" id="upload-content">
+        <el-form label-position="top" class="upload-form">
         <div class="upload-targets">
           <el-form-item label="会议">
             <el-select v-model="form.conference_id" filterable clearable placeholder="输入会议简称或名称" :filter-method="filterConferences" @visible-change="onConferenceDropdown">
@@ -696,15 +718,16 @@ async function onImportJson(e) {
           </div>
         </div>
         <div class="upload-actions"><el-button type="primary" :loading="running" :disabled="batchRunning" @click="runFileCollect">上传并提取</el-button><label class="json-picker"><input type="file" accept=".json,application/json" @change="onImportJson" />导入已有 JSON</label><span>上传文件仅用于本次任务，不替代会议年度已保存网址。</span></div>
-      </el-form>
+        </el-form>
+      </div>
     </section>
 
     <!-- 实时滚动日志 -->
     <el-card shadow="never" class="logcard" :body-style="showLiveLog ? {} : { padding: '0' }">
       <template #header>
-        <button class="collapse-title" type="button" :aria-expanded="showLiveLog" @click="showLiveLog = !showLiveLog"><span>实时日志 <el-tag v-if="running || batchRunning" type="warning" size="small">采集中…</el-tag><small v-else-if="logLines.length">{{ logLines.length }} 条</small></span><span class="collapse-chevron" :class="{open:showLiveLog}">⌄</span></button>
+        <button class="collapse-title" type="button" :aria-expanded="showLiveLog" aria-controls="live-log-content" @click="showLiveLog = !showLiveLog"><span>实时日志 <el-tag v-if="running || batchRunning" type="warning" size="small">采集中…</el-tag><small v-else-if="logLines.length">{{ logLines.length }} 条</small></span><el-icon class="collapse-chevron" :class="{open:showLiveLog}"><ArrowDown /></el-icon></button>
       </template>
-      <div v-show="showLiveLog" ref="logBox" class="logbox">
+      <div v-show="showLiveLog" id="live-log-content" ref="logBox" class="logbox">
         <div v-for="(line, i) in logLines" :key="i" class="logline">{{ line }}</div>
         <div v-if="!logLines.length" class="empty">（暂无日志，点击“开始采集”或“上传并提取”）</div>
       </div>
@@ -727,9 +750,10 @@ async function onImportJson(e) {
 
     <el-card shadow="never" class="history" :body-style="showHistory ? {} : { padding: '0' }">
       <template #header>
-        <div class="history-head">
-          <button class="collapse-title" type="button" :aria-expanded="showHistory" @click="toggleHistory"><span>运行日志与 Token 用量 <small v-if="showHistory" class="history-live">● 自动刷新（3 秒）</small></span><span class="collapse-chevron" :class="{open:showHistory}">⌄</span></button>
-          <div v-if="showHistory" class="history-actions">
+        <button class="collapse-title" type="button" :aria-expanded="showHistory" aria-controls="history-content" @click="toggleHistory"><span>运行日志与 Token 用量 <small v-if="showHistory" class="history-live">● 自动刷新（3 秒）</small></span><el-icon class="collapse-chevron" :class="{open:showHistory}"><ArrowDown /></el-icon></button>
+      </template>
+      <div v-show="showHistory" id="history-content">
+        <div class="history-actions">
             <el-dropdown split-button size="small" :disabled="!historyTotal" @click="exportRuns('all')" @command="exportRuns">
               导出筛选范围 CSV
               <template #dropdown>
@@ -741,11 +765,8 @@ async function onImportJson(e) {
             </el-dropdown>
             <el-button size="small" type="danger" plain :loading="deletingRuns" @click="deleteRunRange">按时间删除</el-button>
             <el-button size="small" :loading="historyLoading" @click="loadRuns()">刷新</el-button>
-          </div>
         </div>
-      </template>
-      <div v-show="showHistory">
-      <div class="history-filters">
+        <div class="history-filters">
         <span>开始时间</span>
         <el-date-picker v-model="historyDates" type="datetimerange" value-format="x" start-placeholder="起始日期时间" end-placeholder="结束日期时间" range-separator="至" style="width:370px" />
         <el-select v-model="historyConference" clearable filterable placeholder="全部会议" style="width:180px">
@@ -832,7 +853,23 @@ h2 { margin: 0; }
 .review-panel{margin-top:22px;padding:20px;border:1px solid #bfdaf4;border-radius:12px;background:#f4f9ff}.review-heading{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;color:#163a64}.review-heading span{color:#70839b;font-size:12px}.review-target{background:white;border:1px solid #deebf7;border-radius:10px;padding:16px;margin-top:13px}.review-target .el-textarea{margin:8px 0 10px}.review-target .seed-target-title{margin-bottom:12px}.review-columns,.confirm-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:12px 0}.review-columns>div,.confirm-columns>div{min-width:0}.review-label{display:block;font-size:12px;font-weight:700;color:#627b99;margin-bottom:6px}.candidate-list>div{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px}.candidate-list a{min-width:0;overflow-wrap:anywhere;color:#1675c9;font-size:12px}.review-warning{color:#a36a19;font-size:12px;margin:6px 0}.confirm-columns>div{border:1px solid #e0e9f4;background:#f7faff;border-radius:8px;padding:12px}.confirm-columns p{font-size:12px;overflow-wrap:anywhere;margin:8px 0;color:#456487}
 .upload-card{margin:24px 0 16px;padding:25px;background:#fff;border:1px solid #dce8f5;border-radius:12px;box-shadow:0 7px 22px rgba(27,65,111,.045)}.upload-heading{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid #e8eff7}.section-eyebrow{font-size:11px;font-weight:750;color:#2680d9;letter-spacing:.12em}.upload-heading h3{margin:6px 0 4px;color:#173b66;font-size:20px}.upload-heading p{margin:0;color:#70839b;font-size:13px}.upload-format{white-space:nowrap;background:#edf6ff;color:#3776b1;padding:7px 10px;border-radius:6px;font-size:12px;font-weight:650}.upload-targets{display:grid;grid-template-columns:minmax(240px,2fr) repeat(2,minmax(120px,1fr));gap:16px;margin-top:20px}.upload-targets :deep(.el-select),.upload-targets :deep(.el-input-number){width:100%}.upload-form :deep(.el-form-item__label){color:#526b88;font-weight:650}.upload-sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:4px}.upload-source{padding:18px;border:1px solid #e0ebf6;border-radius:10px;background:#f8fbff}.source-heading{display:flex;align-items:center;gap:10px;margin-bottom:15px}.source-heading strong{display:block;color:#23476e;font-size:14px}.source-heading small{display:block;color:#8294a9;margin-top:3px}.source-heading em{font-size:11px;font-style:normal;color:#1d7ccc;background:#e7f3ff;padding:2px 6px;border-radius:4px}.source-heading em.optional{color:#6b819a;background:#edf2f8}.source-number{color:#4093de;font-weight:800;font-size:18px}.file-picker{position:relative;min-height:74px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;border:1px dashed #a9caec;border-radius:8px;background:white;color:#357bb5;font-size:13px;font-weight:650;overflow-wrap:anywhere;padding:10px;text-align:center}.file-picker:hover,.file-picker:focus-within{border-color:#1880dc;background:#f1f8ff}.picker-symbol{font-size:21px;line-height:1}.file-picker input,.json-picker input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip-path:inset(50%)}.upload-source .el-form-item{margin:13px 0 0}.upload-source :deep(.el-input){width:100%}.upload-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:19px}.upload-actions>span{color:#8a9ab0;font-size:12px}.json-picker{position:relative;display:inline-flex;align-items:center;justify-content:center;border:1px solid #d6e4f2;border-radius:6px;padding:9px 14px;color:#446b91;cursor:pointer;font-size:13px;background:#fff}.json-picker:hover,.json-picker:focus-within{border-color:#1880dc;color:#1880dc}
 .collapse-title{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:1;min-width:0;padding:0;border:0;background:none;text-align:left;color:#183c63;font-size:16px;font-weight:650;cursor:pointer}.collapse-title small{margin-left:9px;color:#8494a8;font-size:12px;font-weight:400}.collapse-chevron{display:inline-block;color:#7a93ad;font-size:21px;transition:transform .2s}.collapse-chevron.open{transform:rotate(180deg)}.history-head{gap:16px}.history-actions{flex-wrap:wrap}.logcard,.history{border-radius:10px;border-color:#dce8f5}.logcard :deep(.el-card__header),.history :deep(.el-card__header){padding:16px 19px}
+.upload-card { padding: 0; }
+.upload-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto 20px; width: 100%; align-items: center; gap: 18px; padding: 19px; border: 0; background: none; text-align: left; font: inherit; cursor: pointer; }
+.upload-heading[aria-expanded="true"] { border-bottom: 1px solid #e8eff7; }
+.upload-heading-copy { display: flex; flex-direction: column; min-width: 0; }
+.upload-title { margin: 6px 0 4px; color: #173b66; font-size: 20px; font-weight: 700; }
+.upload-description { color: #70839b; font-size: 13px; }
+#upload-content { padding: 0 19px 19px; }
+.collapse-title { width: 100%; }
+.collapse-title > span:first-child { min-width: 0; }
+.collapse-chevron { display: inline-flex; width: 20px; height: 20px; align-items: center; justify-content: center; flex: none; margin-left: auto; font-size: 18px; }
+.upload-heading .collapse-chevron { margin-left: 0; }
+.upload-heading:focus-visible, .collapse-title:focus-visible { outline: 2px solid #1675c9; outline-offset: -3px; }
+.logcard :deep(.el-card__header), .history :deep(.el-card__header) { padding: 0; }
+.logcard .collapse-title, .history .collapse-title { padding: 16px 19px; }
+.history-actions { justify-content: flex-end; margin-bottom: 14px; }
 @media(max-width:900px){.upload-targets{grid-template-columns:repeat(2,minmax(0,1fr))}.upload-targets .el-form-item:first-child{grid-column:1/-1}.upload-sources,.review-columns,.confirm-columns{grid-template-columns:1fr}.history-head{align-items:stretch;flex-direction:column}.history-actions{justify-content:flex-start}}
 @media(max-width:600px){.batch-conference-select{width:100%}.upload-card{padding:16px}.upload-heading{flex-direction:column}.upload-targets{grid-template-columns:1fr;gap:0}.upload-targets .el-form-item:first-child{grid-column:auto}.upload-format{white-space:normal}.candidate-list>div{flex-direction:column;gap:2px}}
+@media(max-width:600px){.upload-card{padding:0}.upload-heading{grid-template-columns:minmax(0,1fr) 20px;padding:16px 19px}.upload-heading .collapse-chevron{grid-column:2;grid-row:1 / span 2;align-self:center}.upload-format{grid-column:1;grid-row:2;justify-self:start}#upload-content{padding:0 16px 16px}}
 </style>
 

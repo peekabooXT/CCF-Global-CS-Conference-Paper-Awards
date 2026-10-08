@@ -84,7 +84,7 @@ onMounted(runSearch)
 <template>
   <div class="search-workspace">
     <aside class="filter-sidebar" aria-label="检索设置">
-      <div class="sidebar-heading"><span class="heading-mark">◈</span><h2>检索设置</h2></div>
+      <div class="sidebar-heading"><h2>检索设置</h2></div>
       <el-form :model="filters" label-position="top" class="filter-form" @submit.prevent="runSearch">
         <el-form-item label="CCF 等级">
           <el-select v-model="filters.rank" placeholder="全部（CCF A / B）" clearable>
@@ -183,10 +183,10 @@ onMounted(runSearch)
 
 <style scoped>
 .search-workspace{display:grid;grid-template-columns:270px minmax(0,1fr);align-items:start;gap:32px}
-.filter-sidebar{background:#f2f7fd;border:1px solid #e2ebf5;border-radius:14px;padding:22px 20px;box-shadow:0 10px 28px rgba(19,65,118,.04)}
-.sidebar-heading{display:flex;align-items:center;gap:10px;margin-bottom:18px}.sidebar-heading h2{font-size:18px;margin:0;color:#123765}.heading-mark{width:30px;height:30px;border-radius:9px;background:#dcebfc;color:#1974d2;display:grid;place-items:center;font-size:22px;line-height:1}
-.filter-form{display:block}.filter-form :deep(.el-form-item){display:block;margin-bottom:17px}.filter-form :deep(.el-form-item__label){font-weight:650;color:#506784;margin-bottom:6px;padding:0;line-height:1.3}.filter-form :deep(.el-form-item__content){display:block}.filter-form :deep(.el-select),.filter-form :deep(.el-input),.filter-form :deep(.el-date-editor){width:100%}.filter-form :deep(.el-input__wrapper),.filter-form :deep(.el-select__wrapper){min-height:38px;box-shadow:0 0 0 1px #d7e3f0 inset;border-radius:8px}
-.year-fields{display:flex;align-items:center;gap:6px}.year-fields :deep(.el-input-number){width:calc(50% - 10px)}.year-fields>span{color:#8191a6}.date-fields{display:grid;gap:8px}.filter-actions{display:grid;gap:9px;margin-top:21px}.filter-actions .el-button{margin:0;width:100%;height:39px;border-radius:8px}
+.filter-sidebar{background:#fff;border:1px solid #dce8f5;border-radius:8px;padding:20px;box-shadow:0 7px 22px rgba(27,65,111,.035)}
+.sidebar-heading{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #e8eff7}.sidebar-heading h2{font-size:18px;margin:0;color:#173b66}
+.filter-form{display:block}.filter-form :deep(.el-form-item){display:block;margin-bottom:15px}.filter-form :deep(.el-form-item__label){font-weight:650;color:#526b88;margin-bottom:6px;padding:0;line-height:1.3}.filter-form :deep(.el-form-item__content){display:block}.filter-form :deep(.el-select),.filter-form :deep(.el-input),.filter-form :deep(.el-date-editor){width:100%}.filter-form :deep(.el-input__wrapper),.filter-form :deep(.el-select__wrapper){min-height:38px;box-shadow:0 0 0 1px #dce7f3 inset;border-radius:6px}
+.year-fields{display:flex;align-items:center;gap:6px}.year-fields :deep(.el-input-number){width:calc(50% - 10px)}.year-fields>span{color:#8191a6}.date-fields{display:grid;gap:8px}.filter-actions{display:grid;gap:9px;margin-top:20px}.filter-actions .el-button{margin:0;width:100%;height:38px;border-radius:6px}
 .results-content{min-width:0}.search-intro{padding:7px 0 18px}.eyebrow{font-size:11px;font-weight:750;letter-spacing:.14em;color:#2780df}.search-intro h1{font-size:32px;line-height:1.2;letter-spacing:-.02em;color:#102f59;margin:8px 0 9px}.search-intro p{font-size:14px;color:#70839b;margin:0;line-height:1.6}
 .results-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:4px 0 14px;padding-top:14px;border-top:1px solid #e7edf5}.results-count{color:#233e63;font-weight:680}.page-count{color:#70839b;font-size:13px;margin-left:12px}.results-heading .el-button{border-radius:8px}
 .paper-list{min-height:180px}.paper-card{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:22px;background:#fff;border:1px solid #dce8f5;border-radius:12px;padding:21px 22px;margin-bottom:13px;box-shadow:0 7px 22px rgba(27,65,111,.045);transition:border-color .2s,box-shadow .2s}.paper-card:hover{border-color:#9dccf9;box-shadow:0 10px 28px rgba(27,99,177,.1)}.paper-card:first-child{border-color:#9cc9f5}
