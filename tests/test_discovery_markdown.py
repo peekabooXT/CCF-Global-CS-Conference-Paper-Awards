@@ -248,15 +248,21 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
     def test_acknowledgement_links_are_shared_by_both_frontends_and_indexes(self):
         footer = (ROOT / "frontend/src/components/AcknowledgementFooter.vue").read_text(encoding="utf-8")
         for url in ("https://www.hnust.edu.cn/", "https://computer.hnust.edu.cn/",
-                    "https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm"):
+                    "https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050037/chinese/index.html",
+                    "https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050148/chinese/index.html",
+                    "https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050135/chinese/index.html"):
             self.assertIn(url, footer)
             self.assertIn(url, acknowledgements_markdown())
         for name in ("App.vue", "PublicApp.vue"):
             self.assertIn("<AcknowledgementFooter", (ROOT / "frontend/src" / name).read_text(encoding="utf-8"))
         self.assertIn('rel="noopener noreferrer"', footer)
-        self.assertIn("刘建勋（副校长、二级教授）", acknowledgements_markdown())
+        self.assertIn("刘建勋", acknowledgements_markdown())
         self.assertIn("黄晶", acknowledgements_markdown())
-        self.assertIn("王焕宇教授", acknowledgements_markdown())
+        self.assertIn("王焕宇", acknowledgements_markdown())
+        self.assertIn('<span v-else>{{ institution.name }}</span>', footer)
+        for content in (footer, acknowledgements_markdown(), (ROOT / 'README.md').read_text(encoding='utf-8')):
+            self.assertNotIn('4403db98401440288088d39953e56d4d', content)
+            self.assertNotIn('[服务计算与软件服务新技术湖南省重点实验室]', content)
 
 
 if __name__ == "__main__":

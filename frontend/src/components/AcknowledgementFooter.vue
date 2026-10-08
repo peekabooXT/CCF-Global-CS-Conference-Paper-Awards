@@ -4,7 +4,12 @@ defineProps({ publicVersion: Boolean })
 const institutions = [
   { name: '湖南科技大学', url: 'https://www.hnust.edu.cn/', title: '访问学校官网（新窗口）' },
   { name: '湖南科技大学计算机科学与工程学院', url: 'https://computer.hnust.edu.cn/', title: '访问学院官网（新窗口）' },
-  { name: '服务计算与软件服务新技术湖南省重点实验室', url: 'https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm', title: '查看学院官网的实验室介绍（新窗口）' },
+  { name: '服务计算与软件服务新技术湖南省重点实验室' },
+]
+const teachers = [
+  { name: '刘建勋', url: 'https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050037/chinese/index.html' },
+  { name: '王焕宇', url: 'https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050148/chinese/index.html' },
+  { name: '黄晶', url: 'https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050135/chinese/index.html' },
 ]
 </script>
 
@@ -16,9 +21,18 @@ const institutions = [
     </div>
     <div class="footer-acknowledgements">
       <span class="acknowledgement-label">致谢</span>
-      <ul aria-label="致谢单位官方网站与介绍">
-        <li v-for="institution in institutions" :key="institution.url">
-          <a :href="institution.url" :title="institution.title" target="_blank" rel="noopener noreferrer">{{ institution.name }}</a>
+      <ul aria-label="致谢单位">
+        <li v-for="institution in institutions" :key="institution.name">
+          <a v-if="institution.url" :href="institution.url" :title="institution.title" target="_blank" rel="noopener noreferrer">{{ institution.name }}</a>
+          <span v-else>{{ institution.name }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-acknowledgements teacher-acknowledgements">
+      <span class="acknowledgement-label">特别致谢</span>
+      <ul aria-label="致谢老师的个人介绍">
+        <li v-for="teacher in teachers" :key="teacher.name">
+          <a :href="teacher.url" :title="`查看${teacher.name}老师的介绍（新窗口）`" target="_blank" rel="noopener noreferrer">{{ teacher.name }}</a>
         </li>
       </ul>
     </div>
@@ -30,6 +44,7 @@ const institutions = [
 .public-footer{max-width:1600px;padding-inline:38px}
 .footer-summary{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px}
 .footer-acknowledgements{display:flex;align-items:baseline;gap:14px;margin-top:14px}
+.teacher-acknowledgements{margin-top:8px}
 .acknowledgement-label{flex-shrink:0;font-weight:600;color:#45566c}
 ul{display:flex;flex-wrap:wrap;gap:8px 24px;padding:0;margin:0;list-style:none}
 li{min-width:0}

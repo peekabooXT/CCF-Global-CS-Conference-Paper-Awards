@@ -22,9 +22,9 @@
 
 ## 致谢
 
-感谢[湖南科技大学](https://www.hnust.edu.cn/)、[湖南科技大学计算机科学与工程学院](https://computer.hnust.edu.cn/)以及[服务计算与软件服务新技术湖南省重点实验室](https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm)提供的学习与科研环境。实验室链接指向学院官网介绍。
+感谢[湖南科技大学](https://www.hnust.edu.cn/)、[湖南科技大学计算机科学与工程学院](https://computer.hnust.edu.cn/)以及服务计算与软件服务新技术湖南省重点实验室提供的学习与科研环境。
 
-特别感谢刘建勋教授、王焕宇教授、黄晶教授在本项目建设过程中的帮助、指导与把关。谨向三位老师致以诚挚的谢意。
+特别感谢[刘建勋](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050037/chinese/index.html)教授、[王焕宇](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050148/chinese/index.html)教授、[黄晶](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050135/chinese/index.html)教授在本项目建设过程中的帮助、指导与把关。谨向三位老师致以诚挚的谢意。
 
 
 ## 自主搜索并记录
