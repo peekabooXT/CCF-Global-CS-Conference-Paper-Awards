@@ -8,7 +8,7 @@ from unittest.mock import MagicMock, patch
 from global_cs_paper_awards_agent.db import Database
 from global_cs_paper_awards_agent.discovery import DeepSeekAnthropicWebSearch, OpenAIWebSearch, ResponsesWebSearch, ZhipuWebSearch
 from global_cs_paper_awards_agent.llm import LLM
-from global_cs_paper_awards_agent.markdown_export import render_markdown
+from global_cs_paper_awards_agent.markdown_export import acknowledgements_markdown, render_markdown
 from global_cs_paper_awards_agent.network import crawl
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -236,12 +236,27 @@ class DiscoveryAndMarkdownTest(unittest.TestCase):
                 temp / "docs/awards/BY_AWARD.md",
             ]
             self.assertTrue(all(path.exists() for path in expected))
+            for path in expected:
+                self.assertIn(acknowledgements_markdown(), path.read_text(encoding="utf-8"))
             main = expected[0].read_text(encoding="utf-8")
             self.assertIn("会议/期刊字母排序", main)
             self.assertIn("作者及单位", main)
             self.assertIn("Stanford University", main)
             self.assertLess(main.index("| ACL |"), main.index("| SIGKDD |"))
             self.assertIn("[会议/期刊类别分类检索](docs/awards/BY_CATEGORY.md)", main)
+
+    def test_acknowledgement_links_are_shared_by_both_frontends_and_indexes(self):
+        footer = (ROOT / "frontend/src/components/AcknowledgementFooter.vue").read_text(encoding="utf-8")
+        for url in ("https://www.hnust.edu.cn/", "https://computer.hnust.edu.cn/",
+                    "https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm"):
+            self.assertIn(url, footer)
+            self.assertIn(url, acknowledgements_markdown())
+        for name in ("App.vue", "PublicApp.vue"):
+            self.assertIn("<AcknowledgementFooter", (ROOT / "frontend/src" / name).read_text(encoding="utf-8"))
+        self.assertIn('rel="noopener noreferrer"', footer)
+        self.assertIn("刘建勋（副校长、二级教授）", acknowledgements_markdown())
+        self.assertIn("黄晶", acknowledgements_markdown())
+        self.assertIn("王焕宇教授", acknowledgements_markdown())
 
 
 if __name__ == "__main__":

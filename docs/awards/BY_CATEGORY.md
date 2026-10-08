@@ -396,3 +396,9 @@
 | SOSP | 会议 | A | 软件工程 / 系统软件 / 程序设计语言 | 2024 | Best Paper | [LazyLog: A New Shared Log Abstraction for Low-Latency Applications](http://dl.acm.org/citation.cfm?id=3695983) | Xuhao Luo（University of Illinois Urbana-Champaign, Urbana, US）; Shreesha G. Bhat（University of Illinois Urbana-Champaign, Urbana, US）; Jiyu Hu（University of Illinois Urbana-Champaign, Urbana, US）; Ramnatthan Alagappan（University of Illinois Urbana-Champaign and VMware Research, Urbana, US）; Aishwarya Ganesan（University of Illinois Urbana-Champaign and VMware Research, Urbana, US） | 2024-11-04 | 已核验 | [来源](https://www.acm.org/articles/best-paper-awards/2024) |
 | SOSP | 会议 | A | 软件工程 / 系统软件 / 程序设计语言 | 2024 | Best Paper | [OZZ: Identifying Kernel Out-of-Order Concurrency Bugs with In-Vivo Memory Access Reordering](http://dl.acm.org/citation.cfm?id=3695944) | Dae R. Jeong（Georgia Tech, Atlanta, Georgia, USA）; Yewon Choi（KAIST, Daejeon, Republic of Korea）; Byoungyoung Lee（Seoul National University, Seoul, Republic of Korea）; Insik Shin（KAIST, Daejeon, Republic of Korea; Fluiz, Daejeon, Republic of Korea）; Youngjin Kwon（KAIST, Daejeon, Republic of Korea） | 2024-11-04 | 已核验 | [来源](https://www.acm.org/articles/best-paper-awards/2024) |
 
+
+## 致谢
+
+感谢[湖南科技大学](https://www.hnust.edu.cn/)、[湖南科技大学计算机科学与工程学院](https://computer.hnust.edu.cn/)以及[服务计算与软件服务新技术湖南省重点实验室](https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm)提供的学习与科研环境。实验室链接指向学院官网介绍。
+
+特别感谢刘建勋（副校长、二级教授）、黄晶副教授、王焕宇教授在本项目建设过程中的帮助、指导与把关。谨向三位老师致以诚挚的谢意。

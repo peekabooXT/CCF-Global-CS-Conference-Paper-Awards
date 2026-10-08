@@ -10,6 +10,7 @@ import CoverageView from './views/CoverageView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
 import SourceListingsView from './views/SourceListingsView.vue'
 import PublicationDialog from './components/PublicationDialog.vue'
+import AcknowledgementFooter from './components/AcknowledgementFooter.vue'
 const publishDialog = ref(false)
 const active = ref('search')
 const settingsDialogVisible = ref(false)
@@ -181,7 +182,7 @@ onMounted(boot)
       </template>
     </el-dialog>
 
-    <footer class="site-footer"><span>Global CS Paper Awards Agent · 学术资料索引</span><span>保留原始来源 · 缺失信息标注未知 · 核验状态可追溯</span></footer>
+    <AcknowledgementFooter />
     <PublicationDialog v-model="publishDialog" @published="boot" />
   </div>
 </template>

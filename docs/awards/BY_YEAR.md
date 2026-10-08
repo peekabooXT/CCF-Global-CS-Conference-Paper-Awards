@@ -362,3 +362,9 @@
 | --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- | --- |
 | RTSS | 会议 | A | 交叉 / 综合 / 新兴 | 2022 | Best Student Paper | Edge-RT: OS Support for Controlled Latency in the Multi-Tenant, Real-Time Edge | Wenyuan Shao（单位未知）; Bite Ye（单位未知）; Huachuan Wang（单位未知）; Gabriel Parmer（单位未知）; Yuxin Ren（单位未知） | 未知 | 已核验 | [来源](https://2022.rtss.org/awards/index.html) |
 
+
+## 致谢
+
+感谢[湖南科技大学](https://www.hnust.edu.cn/)、[湖南科技大学计算机科学与工程学院](https://computer.hnust.edu.cn/)以及[服务计算与软件服务新技术湖南省重点实验室](https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm)提供的学习与科研环境。实验室链接指向学院官网介绍。
+
+特别感谢刘建勋（副校长、二级教授）、黄晶副教授、王焕宇教授在本项目建设过程中的帮助、指导与把关。谨向三位老师致以诚挚的谢意。

@@ -66,6 +66,20 @@ def _header(title, records, prefix="", generated_at=None):
     ]) + "\n"
 
 
+def acknowledgements_markdown():
+    """Keep acknowledgements in every index, including future local publications."""
+    return (
+        "\n## 致谢\n\n"
+        "感谢[湖南科技大学](https://www.hnust.edu.cn/)、"
+        "[湖南科技大学计算机科学与工程学院](https://computer.hnust.edu.cn/)以及"
+        "[服务计算与软件服务新技术湖南省重点实验室]"
+        "(https://computer.hnust.edu.cn/xyxw/4403db98401440288088d39953e56d4d.htm)"
+        "提供的学习与科研环境。实验室链接指向学院官网介绍。\n\n"
+        "特别感谢刘建勋（副校长、二级教授）、黄晶副教授、王焕宇教授"
+        "在本项目建设过程中的帮助、指导与把关。谨向三位老师致以诚挚的谢意。\n"
+    )
+
+
 def render_markdown(db, repository_root, status="all", generated_at=None):
     root = Path(repository_root)
     docs = root / "docs" / "awards"
@@ -77,7 +91,7 @@ def render_markdown(db, repository_root, status="all", generated_at=None):
     main += "## 会议/期刊字母排序检索\n\n"
     main += "当前数据源以 CCF A/B 会议为主；期刊接入后将使用同一字段和索引。\n\n"
     main += _table(alphabetical) + "\n"
-    (root / "AWARDS.md").write_text(main, encoding="utf-8")
+    (root / "AWARDS.md").write_text(main + acknowledgements_markdown(), encoding="utf-8")
 
     by_category = defaultdict(list)
     for record in records:
@@ -86,7 +100,7 @@ def render_markdown(db, repository_root, status="all", generated_at=None):
     page += "## 类别目录\n\n" + "\n".join(f"- [{_cell(category)}](#{category.replace(' ', '-').lower()})" for category in sorted(by_category)) + "\n\n"
     for category in sorted(by_category):
         page += f"## {category}\n\n" + _table(sorted(by_category[category], key=lambda r: (r["acronym"].casefold(), -r["year"], r["title"].casefold()))) + "\n\n"
-    (docs / "BY_CATEGORY.md").write_text(page, encoding="utf-8")
+    (docs / "BY_CATEGORY.md").write_text(page + acknowledgements_markdown(), encoding="utf-8")
 
     by_year = defaultdict(list)
     for record in records:
@@ -95,7 +109,7 @@ def render_markdown(db, repository_root, status="all", generated_at=None):
     page += "## 年份目录\n\n" + " · ".join(f"[{year}](#{year})" for year in sorted(by_year, reverse=True)) + "\n\n"
     for year in sorted(by_year, reverse=True):
         page += f"## {year}\n\n" + _table(sorted(by_year[year], key=lambda r: (r["acronym"].casefold(), r["title"].casefold()))) + "\n\n"
-    (docs / "BY_YEAR.md").write_text(page, encoding="utf-8")
+    (docs / "BY_YEAR.md").write_text(page + acknowledgements_markdown(), encoding="utf-8")
 
     by_award = defaultdict(list)
     for record in records:
@@ -104,6 +118,6 @@ def render_markdown(db, repository_root, status="all", generated_at=None):
     for award_type in CATEGORIES:
         group = sorted(by_award[award_type], key=lambda r: (r["acronym"].casefold(), -r["year"], r["title"].casefold()))
         page += f"## {CATEGORIES[award_type]}\n\n" + _table(group) + "\n\n"
-    (docs / "BY_AWARD.md").write_text(page, encoding="utf-8")
+    (docs / "BY_AWARD.md").write_text(page + acknowledgements_markdown(), encoding="utf-8")
 
     return {"records": len(records), "files": [str(root / "AWARDS.md"), str(docs / "BY_CATEGORY.md"), str(docs / "BY_YEAR.md"), str(docs / "BY_AWARD.md")]}
