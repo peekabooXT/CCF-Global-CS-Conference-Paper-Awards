@@ -119,6 +119,14 @@ def main():
     if not VENV_PYTHON.exists():
         sys.exit(f"找不到虚拟环境 Python：{VENV_PYTHON}")
 
+    public_index = FRONTEND / 'dist-public' / 'index.html'
+    source_files = [*FRONTEND.joinpath('src').rglob('*'), FRONTEND / 'vite.config.js', FRONTEND / 'index.html']
+    if not public_index.is_file() or any(p.is_file() and p.stat().st_mtime > public_index.stat().st_mtime for p in source_files):
+        print('[run_all] 准备服务器公开前端（管理功能不会进入此构建）...')
+        result = subprocess.run([node, str(vite_js), 'build', '--mode', 'public', '--outDir', 'dist-public'], cwd=FRONTEND)
+        if result.returncode:
+            sys.exit('公开前端构建失败，未启动管理版；请修复上方构建错误。')
+
     # 后端：直接用 venv 的 python 跑 uvicorn（不经 shell）
     backend = subprocess.Popen(
         [str(VENV_PYTHON), "-m", "uvicorn", "api:app", "--host", "127.0.0.1", "--port", "8000"],

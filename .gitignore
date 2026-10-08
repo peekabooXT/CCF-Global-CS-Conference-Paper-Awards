@@ -23,3 +23,7 @@ frontend/node_modules/
 data/exports/*.json
 
 tmp/
+data/backups/
+data/publications/
+data/local-publish-config.json
+frontend/dist-public/

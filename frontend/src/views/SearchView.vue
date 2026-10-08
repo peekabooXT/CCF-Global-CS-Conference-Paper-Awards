@@ -5,6 +5,9 @@ import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
 
 const props = defineProps({ meta: { type: Object, required: true } })
+const emptyDescription = import.meta.env.VITE_APP_MODE === 'public'
+  ? '暂无匹配的已核验论文，可调整筛选条件或等待下一次数据发布。'
+  : '暂无匹配论文；可调整筛选条件，或前往“采集与导入”开始收集。'
 
 const conferences = computed(() => props.meta?.conferences || [])
 const awardCategories = computed(() => props.meta?.award_categories || {})
@@ -14,7 +17,7 @@ const defaults = () => ({
   conference: null, rank: null, category: null,
   year_from: null, year_to: null,
   author: '', affiliation: '', title: '',
-  status: 'active', published_from: null, published_to: null,
+  status: props.meta.mode === 'public' ? 'verified' : 'active', published_from: null, published_to: null,
 })
 
 const filters = reactive(defaults())
@@ -166,7 +169,7 @@ onMounted(runSearch)
             <span class="status-pill" :class="`status-${record.status}`">{{ meta.statuses[record.status] || record.status }}</span>
           </div>
         </article>
-        <el-empty v-if="!loading && !records.length" description="暂无匹配论文；可调整筛选条件，或前往“采集与导入”开始收集。" />
+        <el-empty v-if="!loading && !records.length" :description="emptyDescription" />
       </div>
       <el-pagination v-if="records.length" v-model:current-page="page" :page-size="pageSize" :total="records.length" layout="total, prev, pager, next" :pager-count="5" :disabled="loading" class="result-pages" />
       <p class="results-note">“最佳论文奖”采用 JeffHuang 收录口径；学生论文奖单列，其他奖项保留原名并归入其他获奖。</p>

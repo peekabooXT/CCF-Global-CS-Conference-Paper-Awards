@@ -60,7 +60,7 @@ class WebTest(unittest.TestCase):
         self.app.selectbox(key="provider_name").set_value("openai").run()
         self.assertFalse(self.app.exception)
         self.assertEqual(self.app.text_input(key="base_url").value, "https://api.openai.com/v1")
-        self.assertEqual(self.app.text_input(key="model_name").value, "")
+        self.assertEqual(self.app.text_input(key="model_name").value, "gpt-5-mini")
     def test_batch_collection_controls_accept_multiple_conferences_and_ranges(self):
         self.app.radio(key="section").set_value("采集与导入").run()
         self.assertEqual(self.app.radio(key="collection_mode").value, "自动搜索官网（批量）")

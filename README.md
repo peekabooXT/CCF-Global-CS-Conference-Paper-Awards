@@ -10,7 +10,7 @@
 
 以上页面由数据库自动生成，包含 Best Paper、Best Student Paper、论文名、作者及单位、会议、获奖年份、发表时间、核验状态和官方来源链接。
 
-**v0.4 已加入统一 AI 连接与核验后发布。** 结构化提取和 Responses web_search 可复用同一组 API 地址、模型和密钥；不兼容网页搜索的端点仍可在同一设置面板中使用高级搜索连接。记录核验后可从网页把全部已核验论文、四个 Markdown 索引和可回放 JSON 快照一次提交到 GitHub。Agent 随后读取网页、校验证据并写入 SQLite。
+**v1.0：本地管理 / 服务器公开分离。** 服务器仅部署论文检索、获奖论文展示（获奖事件）和来源收录。本地保留采集与导入、记录核验、采集覆盖、LLM 连接与日志。右上角“审核与发布到服务器 / GitHub”可在人工确认后统一发布已核验数据、四个 Markdown 索引与更新时间。详见 [本地审核与公开发布说明](docs/LOCAL-PUBLIC-PUBLISH.md)。
 
 网页的“采集与导入”支持 **会议多选 × 多个年份/年份区间** 的批量任务，选择数量不受单批上限限制。页面会把计划拆成每批最多 100 个会议年度任务、最多 20 个年份；每批须由用户单独确认，完成后不会自动启动下一批。当前标签页会保存计划进度，切换页面后可继续；连接中断时须先核对日志，重试可能重复调用并产生费用。每批结束后会在同一页面显示任务统计、论文明细、CSV 下载、逐任务状态、耗时和 API token 日志；搜索与结构化提取分别记录输入、输出和总 tokens，最近 50 次底层采集运行也会持久化展示。仅当服务商在响应中返回 `usage` 时才能记录，旧日志无法事后准确补算。
 
@@ -60,18 +60,13 @@ python -m global_cs_paper_awards_agent agent-run --year 2026 --limit 3
 python -m global_cs_paper_awards_agent render-markdown --root .
 ```
 
-仓库的 [GitHub Actions 工作流](.github/workflows/award-agent.yml) 支持手动指定会议和年份，也会每周运行一次。默认提取配置需要 Secret `DEEPSEEK_API_KEY`。若同一端点支持网页搜索，可设置 Variable `SEARCH_REUSE_LLM=1`；否则配置 Secret `SEARCH_API_KEY` 和 Variable `SEARCH_MODEL`。需要换提供商时，可设置 `LLM_PROVIDER`、`LLM_BASE_URL`、`LLM_MODEL`。工作流会从版本化 Excel、证据 JSON 和已核验快照重建临时数据库，运行 Agent，只把已核验记录渲染到公开 Markdown 索引；SQLite 文件本身不提交。
+仓库的 [GitHub Actions 工作流](.github/workflows/award-agent.yml) 现在仅验证公开快照和索引时间一致性；不再自动采集、导入或推送数据。所有采集与人工审核均在本机进行。
 
-### 从“记录核验”发布到 GitHub
+### 从本地“审核与发布”同步两端
 
-网页只发布状态为 **已核验** 的记录；待核验和已排除记录不会进入公开索引。发布过程比较 Git blob 内容，只有文件真实变化时才创建一个原子提交。服务器需配置：
+本地填写审核人并确认已核对来源后，可一键将有效待审核数据标为已核验，然后更新服务器公开数据和 GitHub 的 `AWARDS.md` 等索引。被排除的数据不发布；空数据发布需另行确认。发布时间使用同一个 Asia/Shanghai 时间，页面保留两端成功、失败或部分成功的记录。
 
-    GITHUB_TOKEN=具有目标仓库 Contents 写权限的细粒度令牌
-    GITHUB_REPOSITORY=peekabooXT/Global-CS-Paper-Awards-Agent
-    GITHUB_BRANCH=main
-    PUBLISH_PASSWORD_SHA256=发布验证密码的SHA-256摘要
-
-出于安全考虑，Token 只从服务器环境读取，页面不会提供输入框。发布按钮还要求输入验证密码，服务器仅保存 PUBLISH_PASSWORD_SHA256，不把明文密码写入仓库或配置文件。当前网站仍为 HTTP，正式使用还应配置 HTTPS，避免网络传输中的密码被窃听。发布的 data/exports/verified-records.json 会被 GitHub Actions 重新导入，避免后续数据库重建丢失人工核验状态。
+发布使用本机 Git 登录和受限 SSH 发布密钥，不使用服务器 GitHub Token 或浏览器 API Key。服务器没有审核、采集或发布 HTTP 接口。配置、备份与重试规则详见 [v1.0 发布说明](docs/LOCAL-PUBLIC-PUBLISH.md)。
 
 ## 1 先在本机运行离线样例
 

@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json as json_lib
+import ipaddress
 import queue
 import tempfile
 import threading
@@ -29,6 +30,8 @@ from global_cs_paper_awards_agent.source_listings import list_source_listings, s
 from global_cs_paper_awards_agent.discovery import DeepSeekAnthropicWebSearch, ResponsesWebSearch, ZhipuWebSearch
 from global_cs_paper_awards_agent.llm import LLM
 from global_cs_paper_awards_agent.model_catalog import list_provider_models
+from global_cs_paper_awards_agent.public_data import review_preview, publication_time
+from global_cs_paper_awards_agent.publication import configuration_status, history as publication_history, start_publication
 from global_cs_paper_awards_agent.network import read_local_source
 from global_cs_paper_awards_agent.web_helpers import (
     AWARDS,
@@ -49,6 +52,22 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def local_management_only(request: Request, call_next):
+    """Management API must never be reachable through a public reverse proxy."""
+    try:
+        local = ipaddress.ip_address(request.client.host).is_loopback
+    except (ValueError, AttributeError):
+        local = request.client is not None and request.client.host == "testclient"
+    origin = request.headers.get("origin")
+    host = urlsplit("http://" + request.headers.get("host", "")).hostname
+    if not local or host not in {"localhost", "127.0.0.1", "::1", "testserver"}:
+        return JSONResponse(status_code=403, content={"detail": "管理接口仅允许本机访问"})
+    if origin and urlsplit(origin).hostname not in {"localhost", "127.0.0.1", "::1"}:
+        return JSONResponse(status_code=403, content={"detail": "不允许其他网站调用本地管理接口"})
+    return await call_next(request)
 
 
 def get_db() -> Database:
@@ -72,6 +91,7 @@ def meta():
     db = get_db()
     try:
         return {
+            "mode": "local",
             "awards": AWARDS,
             "statuses": STATUSES,
             "coverage": COVERAGE,
@@ -81,6 +101,46 @@ def meta():
         }
     finally:
         db.close()
+
+
+@app.get("/api/publication/preview")
+def publication_preview():
+    db = get_db()
+    try:
+        return {**review_preview(db), "configuration": configuration_status()}
+    finally:
+        db.close()
+
+
+@app.get("/api/publication/history")
+def publication_runs():
+    db = get_db()
+    try:
+        return {"runs": publication_history(db)}
+    finally:
+        db.close()
+
+
+class PublishReq(BaseModel):
+    digest: str = Field(min_length=64, max_length=64)
+    reviewer: str = Field(min_length=1, max_length=100)
+    note: str = Field(default="", max_length=2000)
+    confirm_review: bool = False
+    allow_empty: bool = False
+
+
+@app.post("/api/publication/start")
+def publish(req: PublishReq):
+    if not req.confirm_review or not req.reviewer.strip():
+        raise ValueError("请明确确认人工核对并填写审核人")
+    db = get_db()
+    try:
+        preview = review_preview(db)
+        if preview["digest"] != req.digest or preview["errors"]:
+            raise ValueError("审核数据已变化或存在证据问题，请刷新预览")
+    finally:
+        db.close()
+    return start_publication(database_path(), req.model_dump())
 
 
 @app.get("/api/award-events")
@@ -207,7 +267,20 @@ class ReviewReq(BaseModel):
 def review(req: ReviewReq):
     db = get_db()
     try:
-        db.review(req.id, req.state, req.reviewer, req.note)
+        if req.state not in ('pending', 'verified', 'rejected') or not req.reviewer.strip():
+            raise ValueError('请填写审核人并选择有效核验状态')
+        if req.id.startswith('event:'):
+            _, event_id, paper_id = req.id.split(':')
+            with db.conn:
+                changed = db.conn.execute('UPDATE award_event_papers SET status=?,note=COALESCE(note,\'\') || ? WHERE event_id=? AND paper_id=?',
+                    (req.state, f'\n审核：{req.reviewer}；{publication_time()}；{req.note}', event_id, paper_id)).rowcount
+                if not changed: raise ValueError('获奖关联不存在')
+        elif req.id.startswith('listing:'):
+            with db.conn:
+                changed = db.conn.execute('UPDATE source_listings SET status=? WHERE id=?', (req.state, req.id[8:])).rowcount
+                if not changed: raise ValueError('来源收录不存在')
+        else:
+            db.review(req.id, req.state, req.reviewer, req.note)
         return {"ok": True}
     finally:
         db.close()

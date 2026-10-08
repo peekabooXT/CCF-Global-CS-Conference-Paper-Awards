@@ -9,6 +9,8 @@ import ReviewView from './views/ReviewView.vue'
 import CoverageView from './views/CoverageView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
 import SourceListingsView from './views/SourceListingsView.vue'
+import PublicationDialog from './components/PublicationDialog.vue'
+const publishDialog = ref(false)
 const active = ref('search')
 const settingsDialogVisible = ref(false)
 const importing = ref(false)
@@ -124,6 +126,8 @@ onMounted(boot)
       <template v-else>
         <div class="utility-bar" aria-label="设置与数据工具">
           <span>资料库工具</span>
+          <el-tag size="small" effect="plain">本地管理版</el-tag>
+          <el-button type="primary" @click="publishDialog=true">审核与发布到服务器 / GitHub</el-button>
           <el-button @click="openSettings">
             LLM 连接
             <el-tag v-if="hasSessionSettings" type="success" size="small" effect="plain" class="configured-tag">已配置</el-tag>
@@ -178,6 +182,7 @@ onMounted(boot)
     </el-dialog>
 
     <footer class="site-footer"><span>Global CS Paper Awards Agent · 学术资料索引</span><span>保留原始来源 · 缺失信息标注未知 · 核验状态可追溯</span></footer>
+    <PublicationDialog v-model="publishDialog" @published="boot" />
   </div>
 </template>
 

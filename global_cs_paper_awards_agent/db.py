@@ -9,12 +9,18 @@ _UNSET = object()
 
 
 class Database:
-    def __init__(self, path):
-        Path(path).parent.mkdir(parents=True, exist_ok=True)
-        self.conn = sqlite3.connect(path)
+    def __init__(self, path, read_only=False):
+        if read_only:
+            self.conn = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True)
+        else:
+            Path(path).parent.mkdir(parents=True, exist_ok=True)
+            self.conn = sqlite3.connect(path)
         self.conn.row_factory = sqlite3.Row
         self.conn.create_function("fold", 1, lambda x: norm(x or ""), deterministic=True)
         self.conn.execute("PRAGMA foreign_keys=ON")
+        if read_only:
+            self.conn.execute("PRAGMA query_only=ON")
+            return
         self.conn.executescript("""
         CREATE TABLE IF NOT EXISTS conferences (
           id TEXT PRIMARY KEY, acronym TEXT NOT NULL, rank TEXT NOT NULL,

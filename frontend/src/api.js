@@ -5,6 +5,9 @@ const http = axios.create({ baseURL: '/api', timeout: 600000 })
 
 export const api = {
   meta: () => http.get('/meta').then(r => r.data),
+  publicationPreview: () => http.get('/publication/preview').then(r => r.data),
+  publicationHistory: () => http.get('/publication/history').then(r => r.data),
+  publish: body => http.post('/publication/start', body).then(r => r.data),
   llmModels: (llm) => http.post('/llm-models', llm).then(r => r.data),
   awardEvents: (params) => http.get('/award-events', { params }).then(r => r.data),
   awardEvent: (id) => http.get(`/award-events/${id}`).then(r => r.data),
