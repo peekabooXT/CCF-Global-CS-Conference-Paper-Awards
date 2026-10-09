@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-08T23:57:03+08:00",
+  "generated_at": "2026-10-09T23:26:45+08:00",
   "record_count": 327,
   "records": [
     {
@@ -625,6 +625,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Characterizing the Expressivity of Local Attention in Transformers",
           "url": "https://2026.aclweb.org/program/best_papers/"
+        },
+        {
+          "id": "supplement-ff34d7b7d678a6dc85ee0670",
+          "role": "paper",
+          "url": "https://aclanthology.org/2026.acl-long.1739.pdf"
         }
       ],
       "record": {
@@ -659,7 +664,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://aclanthology.org/2026.acl-long.1739.pdf",
         "doi": null
       }
     },
@@ -1037,6 +1042,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Memory Efficiency and Resource-Rational Encoding in Sentence Processing",
           "url": "https://2026.aclweb.org/program/best_papers/"
+        },
+        {
+          "id": "supplement-4a4b3cd784104011fd1ae2b8",
+          "role": "paper",
+          "url": "https://aclanthology.org/2026.acl-long.1550.pdf"
         }
       ],
       "record": {
@@ -1079,7 +1089,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://aclanthology.org/2026.acl-long.1550.pdf",
         "doi": null
       }
     },
@@ -1095,6 +1105,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Imperfective Paradox in Large Language Models",
           "url": "https://2026.aclweb.org/program/best_papers/"
+        },
+        {
+          "id": "supplement-58f7df05686cebd6c759b3cb",
+          "role": "paper",
+          "url": "https://aclanthology.org/2026.acl-long.689.pdf"
         }
       ],
       "record": {
@@ -1129,7 +1144,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://aclanthology.org/2026.acl-long.689.pdf",
         "doi": null
       }
     },
@@ -1917,6 +1932,11 @@
           "role": "award",
           "text": " 2026 Awards Selection Committee selected the following two papers for top honors at this year’s conference: CVPR 2026 Best Paper Efficiently Reconstructing Dynamic Scenes One D4RT at a Time , Authors: Chuhan Zhang; Guillaume Le Moing ; Skanda Koppula; Ignacio Rocco; Liliane Momeni; Junyu Xie; Shuyang Sun; Rahul Sukthankar; Joëlle K. Barral; Raia H",
           "url": "https://cvpr.thecvf.com/Conferences/2026/News/Best_Papers"
+        },
+        {
+          "id": "supplement-1c5940caa87f09b7f08ef346",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2512.08924"
         }
       ],
       "record": {
@@ -2047,7 +2067,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2512.08924",
         "doi": null
       }
     },
@@ -2069,6 +2089,11 @@
           "role": "award",
           "text": "s a lightweight and highly scalable method that enables remarkably efficient training and inference. CVPR 2026 Best Student Paper Native and Compact Structured Latents for 3D Generation , Authors: Jianfeng Xiang; Xiaoxue Chen; Sicheng Xu; Ruicheng Wang; Zelong Lv; Yu Deng; Hongyuan Zhu; Yue Dong; Hao Zhao; Nicholas Jing Yuan; Jiaolong Yang - A",
           "url": "https://cvpr.thecvf.com/Conferences/2026/News/Best_Papers"
+        },
+        {
+          "id": "supplement-02a074bdab2b66ea9062b11c",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2512.14692"
         }
       ],
       "record": {
@@ -2175,7 +2200,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2512.14692",
         "doi": null
       }
     },
@@ -2336,6 +2361,11 @@
           "role": "award",
           "text": "ized parameter server (EuroSys'16) Henggang Cui, Hao Zhang, Gregory R. Ganger, Phillip B. Gibbons, Eric P. Xing Best Paper Awards Avicenna: Masking Slowdowns in Replicated State Machines with Counterfactual Evaluation Christopher Hodsdon (Databricks), Zijian Qin (Princeton University), Khiem Ngo (Datadog), Siddhartha Sen (Microsoft Research), Ethan Katz-Bassett (Columbia Uni",
           "url": "https://2026.eurosys.org/eurosys-awards.html"
+        },
+        {
+          "id": "supplement-979cc2cb4dfceb578258e56b",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3767295.3803615"
         }
       ],
       "record": {
@@ -2433,6 +2463,11 @@
           "role": "award",
           "text": " Ngo (Datadog), Siddhartha Sen (Microsoft Research), Ethan Katz-Bassett (Columbia University), Wyatt Lloyd (Princeton University) PaCaR: Improved Buffered I/O Locality on NUMA Systems with Page Cache Replication Jérôme Coquisart (RWTH Aachen University), Julien Sopena (LIP6 UPMC/CNRS — Inria), Redha Gouicem (RWTH Aachen University) Gilles Muller Best Artifact Award Fas",
           "url": "https://2026.eurosys.org/eurosys-awards.html"
+        },
+        {
+          "id": "supplement-0bb3ce1f74b5b4d7d62b229c",
+          "role": "paper",
+          "url": "https://hal.science/hal-05411611/document"
         }
       ],
       "record": {
@@ -2856,6 +2891,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Sharpen the Spec, Cut the Code: A Case for Generative File System with SYSSPEC",
           "url": "https://www.usenix.org/system/files/fast26-liu-qingyuan.pdf"
+        },
+        {
+          "id": "supplement-c616463e74e0924cbcac55a2",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2512.13047"
         }
       ],
       "record": {
@@ -3137,6 +3177,11 @@
           "role": "award",
           "text": " Enhanced: Algorithmic Advances for Faster and More Robust ReSTIR Path Tracing Daqi Lin, Markus Kettunen and Chris Wyman DOI link Gen-C: Populating Virtual Worlds with Generative Crowds Andreas Panayiotou, Panayiotis Charalambous and Ioannis Karamouzas DOI link Best Student Paper Improving Spatial Domain Repetition of Implicit Surfaces Clément",
           "url": "https://i3dsymposium.org/2026/awards.html"
+        },
+        {
+          "id": "supplement-61b3d6374b68505a75b64ba4",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2504.01924"
         }
       ],
       "record": {
@@ -3402,6 +3447,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Learning Lifted Action Models from Unsupervised Visual Traces",
           "url": "https://icaps26.icaps-conference.org/program/awards/"
+        },
+        {
+          "id": "supplement-7daa6ead065526ddee7917a2",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2604.19043"
         }
       ],
       "record": {
@@ -3444,7 +3494,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2604.19043",
         "doi": null
       }
     },
@@ -3630,6 +3680,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Frozen LVLMs for Micro-Video Recommendation: A Systematic Study of Feature Extraction and Fusion",
           "url": "http://dl.acm.org/citation.cfm?id=3810736"
+        },
+        {
+          "id": "supplement-3b58f948c3bfae452c18c3ba",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2512.21863"
         }
       ],
       "record": {
@@ -3721,6 +3776,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Text4Radar-V2X: Text-guided 4D Radar for Cooperative 3D Object Detection",
           "url": "http://dl.acm.org/citation.cfm?id=3810832"
+        },
+        {
+          "id": "supplement-8a70bc5fa09f6079ba943510",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3805622.3810832"
         }
       ],
       "record": {
@@ -3796,6 +3856,16 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: OCTANE: Breaking the Neighbor-List Bottleneck in GPU Molecular Dynamics",
           "url": "http://dl.acm.org/citation.cfm?id=3807878"
+        },
+        {
+          "id": "supplement-7a174b0fcde833e5a17890f1",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3797905.3807878"
+        },
+        {
+          "id": "supplement-0906b6279c4877587bad7b31",
+          "role": "award",
+          "url": "https://dipsa-qub.github.io/ICS2026-webpage/"
         }
       ],
       "record": {
@@ -4063,6 +4133,11 @@
           "role": "award",
           "text": "6 June 21 - 25, 2026 • Cambridge, UK Awards Congratulations to the award winners at ACM MobiSys 2026! Full Paper Best Paper Award Insecurity of Lost/Stolen Phone Reporting Services: Vulnerabilities, Attacks, and Countermeasures Min-Yue Chen (Michigan State University); Yiwen Hu (University of Maryland, Baltimore County); Yu-An Chen (Michigan State University); Chi-Yu Li (National Yang",
           "url": "https://www.sigmobile.org/mobisys/2026/awards/"
+        },
+        {
+          "id": "supplement-0b815c10abaadf03774c03f8",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3745756.3809220"
         }
       ],
       "record": {
@@ -5077,6 +5152,11 @@
           "role": "award",
           "text": "tri Rudra. FAQ: Questions Asked Frequently. Best Paper Award Honghao Lin, Hoai-An Nguyen, William Swartworth, and David Woodruff. Unbiased Insights: Optimal Streaming Algorithms for $\\ell_p$ Sampling, the Forget Model, and Beyond Distinguished Paper Awards Daniel Unterberger, Matthias Lanzinger, and Igor Razgon. FPT Parameterisations of Fractional and Generalised Hypertree Width Mahmoud",
           "url": "https://2026.sigmod.org/pods_awards.shtml"
+        },
+        {
+          "id": "supplement-12a1feb8aaa503187a16dea4",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2508.07067"
         }
       ],
       "record": {
@@ -5216,6 +5296,11 @@
           "role": "award",
           "text": "otify the SIG Chair, Mor Harchol-Balter (harchol@cs.cmu.edu) if you have information on missing entries. 2026: Best Paper Award: \"Sequential Fair Allocation With Replenishments: A Little Envy Goes An Exponentially Long Way\" by Chido Onyeze (Cornell University); Sean R. Sinclair (Northwestern University); Chamsi Hssaine (University of Southern California, Marshall School of Busine",
           "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
+        },
+        {
+          "id": "supplement-8824c0fdaf89791147297ef3",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2508.21753"
         }
       ],
       "record": {
@@ -5298,7 +5383,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2508.21753",
         "doi": null
       }
     },
@@ -6384,6 +6469,11 @@
           "role": "award",
           "text": "a Glance Program --> PODS: Paper Formatting SIGMOD: Paper Formatting --> SIGMOD 2026 Awards SIGMOD 2026 Research Track Best Paper GPM: The Gaussian Pancake Mechanism for Planting Undetectable Backdoors in Differential Privacy Haochen Sun (University of Waterloo) and Xi He (University of Waterloo) --> SIGMOD 2026 Research Track Honorable Mentions F3: The Open-Source Data File Format ",
           "url": "https://2026.sigmod.org/sigmod_awards.shtml"
+        },
+        {
+          "id": "supplement-397562d923dd2b72bc177482",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2509.23834"
         }
       ],
       "record": {
@@ -6434,7 +6524,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2509.23834",
         "doi": null
       }
     },
@@ -8860,6 +8950,11 @@
           "role": "award",
           "text": "m ASPLOS+EuroSys Joint Schedule Program Awards Workshops and Tutorials WACI Code of Conduct EuroSys 2025 Awards Best Paper Awards CXLfork: Fast Remote Fork over CXL Fabrics Chloe Alverti, Stratos Psomadakis, Burak Ocalan, Shashwat Jaiswal, Tianyin Xu, Josep Torrellas xUI: extended User Interrupts Berk Aydogmus, Linsong Guo, Danial",
           "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
+        },
+        {
+          "id": "supplement-cb621a6b5d6a97882c085bf7",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3676641.3715988"
         }
       ],
       "record": {
@@ -9275,6 +9370,11 @@
           "role": "award",
           "text": "n Tullsen, Amy Ousterhout, Kazem Taram H-Houdini: Scalable Invariant Learning Sushant Dinesh, Yongye Zhu, Christopher W. Fletcher MetaSapiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering Weikai Lin, YuFeng, Yuhao Zhu Orion: A Fully Homomorphic Encryption Framework for Deep Learning Austin Ebel, Karthik Garimella, Brandon Reagen SmoothE: Differe",
           "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
+        },
+        {
+          "id": "supplement-765fc069c9d9c980becdd6b6",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2407.00435"
         }
       ],
       "record": {
@@ -9378,6 +9478,11 @@
           "role": "award",
           "text": "apiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering Weikai Lin, YuFeng, Yuhao Zhu Orion: A Fully Homomorphic Encryption Framework for Deep Learning Austin Ebel, Karthik Garimella, Brandon Reagen SmoothE: Differentiable E-Graph Extraction Yaohui Cai, Kaixin Yang, Chenhui Deng, Cunxi Yu, Zhiru Zhang ASPLOS I",
           "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
+        },
+        {
+          "id": "supplement-179a39047cd2755070664eee",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2311.03470"
         }
       ],
       "record": {
@@ -12052,6 +12157,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: DIMPLES: Distributed Influence Maximization for Pandemic pLanning on Exascale Systems",
           "url": "http://dl.acm.org/citation.cfm?id=3730414"
+        },
+        {
+          "id": "supplement-3b332090a1a4c3848f1e972e",
+          "role": "award",
+          "url": "https://hpcrl.github.io/ICS2025-webpage/"
         }
       ],
       "record": {
@@ -13561,6 +13671,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Text-to-Image Generation for Vocabulary Learning Using the Keyword Method",
           "url": "http://dl.acm.org/citation.cfm?id=3712073"
+        },
+        {
+          "id": "supplement-72643125df6ad3e399d1398c",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2501.17099"
         }
       ],
       "record": {
@@ -15092,6 +15207,11 @@
           "role": "award",
           "text": "ained to share convolutional features. For the very deep VGG-16 model, our detection system has a frame rate of 5fps … Best Paper 1000 Layer Networks for Self-Supervised RL: Scaling Depth Can Enable New Goal-Reaching Capabilities Oral Poster Kevin Wang ⋅ Ishaan Javali ⋅ Michał Bortkiewicz ⋅ Tomasz Trzcinski ⋅ Benjamin Eysenbach Exhibit Hall C,D,E Abstract Scaling up self-supervised lear",
           "url": "https://neurips.cc/virtual/2025/awards_detail"
+        },
+        {
+          "id": "supplement-571673cd5f8250b3f0344634",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2503.14858"
         }
       ],
       "record": {
@@ -15187,6 +15307,11 @@
           "role": "award",
           "text": " Increasing the model depth not only increases success rates but also qualitatively changes the behaviors … Best Paper (DB track) Artificial Hivemind: The Open-Ended Homogeneity of Language Models (and Beyond) Oral Poster Liwei Jiang · Yuanjun Chai · Margaret Li · Mickel Liu · Raymond Fok · Nouha Dziri · Yulia Tsvetkov · Maarten Sap · Yejin Choi Exhibit Hall C,D,E A",
           "url": "https://neurips.cc/virtual/2025/awards_detail"
+        },
+        {
+          "id": "supplement-1368dbba3f33308052542ce9",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2510.22954"
         }
       ],
       "record": {
@@ -15380,6 +15505,11 @@
           "role": "award",
           "text": "tors. We confirmed that open-sourced LLMs operate in the strong superposition regime and have loss scaling inversely … Best Paper Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free Oral Poster Zihan Qiu ⋅ Zekun Wang ⋅ Bo Zheng ⋅ Zeyu Huang ⋅ Kaiyue Wen ⋅ Songlin Yang ⋅ Rui Men ⋅ Le Yu ⋅ Fei Huang ⋅ Suozhi Huang ⋅ Dayiheng Liu ⋅ Jingren Zh",
           "url": "https://neurips.cc/virtual/2025/awards_detail"
+        },
+        {
+          "id": "supplement-4905b0660285e3f33cd03827",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2505.06708"
         }
       ],
       "record": {
@@ -16413,6 +16543,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: WARP: An Efficient Engine for Multi-Vector Retrieval",
           "url": "https://dl.acm.org/doi/10.1145/3726302.3729904"
+        },
+        {
+          "id": "supplement-f7126981932a56004bce712f",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2501.17788"
         }
       ],
       "record": {
@@ -16487,6 +16622,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Evaluating Decision Rules Across Many Weak Experiments",
           "url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-1aae644b7b4be2a50fd6349a",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2502.08763"
         }
       ],
       "record": {
@@ -16545,7 +16685,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2502.08763",
         "doi": null
       }
     },
@@ -16561,6 +16701,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Improving Group Robustness on Spurious Correlation via Evidential Alignment",
           "url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-18a9908ae1119d5b52b74d54",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2506.11347"
         }
       ],
       "record": {
@@ -16603,7 +16748,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2506.11347",
         "doi": null
       }
     },
@@ -16619,6 +16764,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Taming Recommendation Bias with Causal Intervention on Evolving Personal Popularity",
           "url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-859f413ef204f8e6a9bb18c9",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2505.14310"
         }
       ],
       "record": {
@@ -16685,7 +16835,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2505.14310",
         "doi": null
       }
     },
@@ -16701,6 +16851,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: When Heterophily Meets Heterogeneity: Challenges and a New Large-Scale Graph Benchmark",
           "url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-8498f8b4fbecbf94c15f58c4",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2407.10916"
         }
       ],
       "record": {
@@ -16759,7 +16914,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2407.10916",
         "doi": null
       }
     },
@@ -16781,6 +16936,11 @@
           "role": "award",
           "text": "n Analysis of Q-Learning with Time-Varying Policies\" by Phalguni Nanda, Zaiwei Chen (Purdue University). 2025: Best Paper Award: \"Adversarial Network Optimization under Bandit Feedback: Maximizing Utility in Non-Stationary Multi-Hop Networks\" by Yan Dai (MIT) and Longbo Huang (Tsinghua University). Kenneth C. Sevcik Outstanding Student Paper Award: \"Beaver: A High-Performance and Crash-Consistent F",
           "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
+        },
+        {
+          "id": "supplement-8fef65b0dab588d4190b5ccd",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2408.16215"
         }
       ],
       "record": {
@@ -16831,7 +16991,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2408.16215",
         "doi": null
       }
     },
@@ -17151,6 +17311,11 @@
           "role": "award",
           "text": "mmittee ACM Symposium on Cloud Computing 2025 SoCC'25 will be a fully virtual event November 19-21, 2025 Best Paper Award Winner: Valet: Efficient Data Placement on Modern SSDs , by Devashish R. Purandare, Peter Alvaro (University of California, Santa Cruz); Avani Wildani (Emory University and Cloudflare); Darrell D. E. Long (Universi",
           "url": "https://acmsocc.org/2025/awards.html"
+        },
+        {
+          "id": "supplement-01c7ea8908572babc346dd25",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2501.00977"
         }
       ],
       "record": {
@@ -17371,6 +17536,11 @@
           "role": "award",
           "text": "orem in Near-Linear Time”, by Sepehr Assadi, Soheil Behnezhad, Sayan Bhattacharya, Martin Costa, Shay Solomon, and Tianyi Zhang. “Breaking the Sorting Barrier for Directed Single-Source Shortest Paths”, by Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu, and Longhui Yin. “Quasi-Linear Size PCPs with Small Soundness from HDX”, by Mitali Bafna, Dor Minzer, Nikhil Vy",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-05b53dde2de790870e111fd4",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2504.17033"
         }
       ],
       "record": {
@@ -17429,7 +17599,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2504.17033",
         "doi": null
       }
     },
@@ -17517,6 +17687,11 @@
           "role": "award",
           "text": "g the Sorting Barrier for Directed Single-Source Shortest Paths”, by Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu, and Longhui Yin. “Quasi-Linear Size PCPs with Small Soundness from HDX”, by Mitali Bafna, Dor Minzer, Nikhil Vyas, and Zhiwei Yun. STOC 2024 “Single-Source Shortest Paths with Negative Real Weights in $\\tilde O(mn^{8/9})$ Time”, b",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-8f0b546f0065a47c493a21fa",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2407.12762"
         }
       ],
       "record": {
@@ -17567,7 +17742,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2407.12762",
         "doi": null
       }
     },
@@ -17637,6 +17812,11 @@
           "role": "award",
           "text": "ng both Awards should be given both Awards. Winners STOC 2025 “Simulating Time in (Nearly) Square-Root Space”, by Ryan Williams. “Vizing’s Theorem in Near-Linear Time”, by Sepehr Assadi, Soheil Behnezhad, Sayan Bhattacharya, Martin Costa, Shay Solomon, and Tianyi Zhang. “Breaking the Sorting Barrier for Directed Single-Sourc",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-b1b00476c13c787316da258f",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2410.05240"
         }
       ],
       "record": {
@@ -17703,7 +17883,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2410.05240",
         "doi": null
       }
     },
@@ -21292,6 +21472,11 @@
           "role": "award",
           "text": "us-Liebig-University Gießen; Monika C. Schuhmacher, Justus-Liebig-University Gießen; Verena Zimmermann, ETH Zurich USENIX ATC '24 SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation Yifan Xiong, Microsoft Research; Yuting Jiang, Microsoft Research; Ziyue Yang, Microsoft Research; Lei Qu, Microsoft Research; Guoshuai Zhao, Microsoft; Shugua",
           "url": "https://www.usenix.org/conferences/best-papers?page=1"
+        },
+        {
+          "id": "supplement-271b04b7145e56dffa5d4752",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2402.06194"
         }
       ],
       "record": {
@@ -24611,6 +24796,16 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: GestureGPT: Toward Zero-Shot Free-Form Hand Gesture Understanding with Large Language Model Agents",
           "url": "https://dl.acm.org/doi/10.1145/3698145"
+        },
+        {
+          "id": "supplement-6687dee2a3e913dfbf76ca57",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2310.12821"
+        },
+        {
+          "id": "supplement-071a053af8d13e8ac5fce01b",
+          "role": "award",
+          "url": "https://iss2024.acm.org/info/awards"
         }
       ],
       "record": {
@@ -24795,6 +24990,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: RoCoSDF: Row-Column Scanned Neural Signed Distance Fields for Freehand 3D Ultrasound Imaging Shape Reconstruction",
           "url": "https://miccai.org/conference-awards/best-paper-award-and-young-scientist-award/"
+        },
+        {
+          "id": "supplement-f6c8d1a179ffacd8793b535d",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2408.07325"
         }
       ],
       "record": {
@@ -24861,7 +25061,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2408.07325",
         "doi": null
       }
     },
@@ -26571,6 +26771,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Unlocking the Hidden Treasures: Enhancing Recommendations with Unlabeled Data",
           "url": "https://dl.acm.org/doi/10.1145/3640457.3688149"
+        },
+        {
+          "id": "supplement-25f39e2f932f600926ef12cd",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2412.18170"
         }
       ],
       "record": {
@@ -26812,6 +27017,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: A Workbench for Autograding Retrieve/Generate Systems",
           "url": "https://dl.acm.org/doi/10.1145/3626772.3657871"
+        },
+        {
+          "id": "supplement-9da2a6e203c43e10d5e8b1fc",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2405.13177"
         }
       ],
       "record": {
@@ -26860,6 +27070,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Scaling Laws For Dense Retrieval",
           "url": "https://dl.acm.org/doi/10.1145/3626772.3657743"
+        },
+        {
+          "id": "supplement-91b8556e6f27e20ea68798ca",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2403.18684"
         }
       ],
       "record": {
@@ -26950,6 +27165,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: CAT: Interpretable Concept-based Taylor Additive Models",
           "url": "https://kdd.org/awards/view/2024-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-737a06408a273353e8eeda6a",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2406.17931"
         }
       ],
       "record": {
@@ -27032,7 +27252,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2406.17931",
         "doi": null
       }
     },
@@ -27048,6 +27268,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Dataset Regeneration for Sequential Recommendation",
           "url": "https://kdd.org/awards/view/2024-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-84e98ceaac4e5b978213ee42",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2405.17795"
         }
       ],
       "record": {
@@ -27130,7 +27355,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2405.17795",
         "doi": null
       }
     },
@@ -27146,6 +27371,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: LiGNN: Graph Neural Networks at LinkedIn",
           "url": "https://kdd.org/awards/view/2024-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-93f1a4d3ba86649bf454c631",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2402.11139"
         }
       ],
       "record": {
@@ -27348,7 +27578,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2402.11139",
         "doi": null
       }
     },
@@ -27442,6 +27672,11 @@
           "role": "award",
           "text": ", Andres Garcia-Saavedra (NEC Laboratories Europe) and Xavier Costa-Perez (NEC Laboratories Europe, i2CAT Foundation and ICREA). \"CarbonScaler: Leveraging Cloud Workload Elasticity for Optimizing Carbon-Efficiency\" by Walid A. Hanafy, Qianlin Liang (University of Massachusetts Amherst), Noman Bashir (Massachusetts Institute of Technology), David Irwin and and Prashant Sh",
           "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
+        },
+        {
+          "id": "supplement-0e1330ada3bdcd0e2941c127",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2302.08681"
         }
       ],
       "record": {
@@ -27540,7 +27775,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2302.08681",
         "doi": null
       }
     },
@@ -27562,6 +27797,11 @@
           "role": "award",
           "text": "iled M/G/1\" by George Yu, Ziv Scully (Cornell University). Stephen S. Lavenberg and Kenneth C. Sevcik Best Student Paper Awards: \"Fair Resource Allocation in Virtualized O-RAN Platforms\" by Fatih Aslan, George Iosifidis (TU Delft), Jose A. Ayala-Romero, Andres Garcia-Saavedra (NEC Laboratories Europe) and Xavier Costa-Perez (NEC Laboratories E",
           "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
+        },
+        {
+          "id": "supplement-7c6e96eaf4dd489bc4a87e36",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2402.11285"
         }
       ],
       "record": {
@@ -27660,7 +27900,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2402.11285",
         "doi": null
       }
     },
@@ -27682,6 +27922,11 @@
           "role": "award",
           "text": ": A Systematic Study of Robotics on Modern Hardware\" by Mohammad Bakhshalipour, Phillip B. Gibbons (Carnegie Mellon University). \"Strongly Tail-Optimal Scheduling in the Light-Tailed M/G/1\" by George Yu, Ziv Scully (Cornell University). Stephen S. Lavenberg and Kenneth C. Sevcik Best Student Paper Awards: \"Fair Resource Allocation in Virtualized ",
           "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
+        },
+        {
+          "id": "supplement-f0cf4bc58ca55c8b86cabdc4",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2404.08826"
         }
       ],
       "record": {
@@ -27732,7 +27977,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2404.08826",
         "doi": null
       }
     },
@@ -27908,6 +28153,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: FBDetect: Catching Tiny Performance Regressions at Hyperscale through In-Production Monitoring",
           "url": "http://dl.acm.org/citation.cfm?id=3695977"
+        },
+        {
+          "id": "supplement-7ecff797c24d8a6920c5e3d4",
+          "role": "award",
+          "url": "https://www.acm.org/conferences/best-paper-awards-2024"
         }
       ],
       "record": {
@@ -28197,6 +28447,16 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: LazyLog: A New Shared Log Abstraction for Low-Latency Applications",
           "url": "http://dl.acm.org/citation.cfm?id=3695983"
+        },
+        {
+          "id": "supplement-c3c8373043354a1e12d1b4e9",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3694715.3695983"
+        },
+        {
+          "id": "supplement-7ecff797c24d8a6920c5e3d4",
+          "role": "award",
+          "url": "https://www.acm.org/conferences/best-paper-awards-2024"
         }
       ],
       "record": {
@@ -28326,6 +28586,16 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: OZZ: Identifying Kernel Out-of-Order Concurrency Bugs with In-Vivo Memory Access Reordering",
           "url": "http://dl.acm.org/citation.cfm?id=3695944"
+        },
+        {
+          "id": "supplement-588a3d4ae37babee019bc807",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3694715.3695944"
+        },
+        {
+          "id": "supplement-7ecff797c24d8a6920c5e3d4",
+          "role": "award",
+          "url": "https://www.acm.org/conferences/best-paper-awards-2024"
         }
       ],
       "record": {
@@ -28573,6 +28843,11 @@
           "role": "award",
           "text": "wei Yun. STOC 2024 “Single-Source Shortest Paths with Negative Real Weights in $\\tilde O(mn^{8/9})$ Time”, by Jeremy T. Fineman. “Near Optimal Alphabet-Soundness Tradeoff PCPs”, by Dor Minzer and Kai Zhe Zheng. “Parameterized Inapproximability Hypothesis under Exponential Time Hypothesis”, by Venkatesan Guruswami, Bingkai Lin, Xuandi",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-4cb28f7e9bcd2584ba42d50a",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2404.07441"
         }
       ],
       "record": {
@@ -28607,7 +28882,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2404.07441",
         "doi": null
       }
     },
@@ -28629,6 +28904,11 @@
           "role": "award",
           "text": "ilde O(mn^{8/9})$ Time”, by Jeremy T. Fineman. “Near Optimal Alphabet-Soundness Tradeoff PCPs”, by Dor Minzer and Kai Zhe Zheng. “Parameterized Inapproximability Hypothesis under Exponential Time Hypothesis”, by Venkatesan Guruswami, Bingkai Lin, Xuandi Ren, Yican Sun, and Kewen Wu. STOC 2023 “The Randomized k-Server Conjecture is False!”, by Sebastien Bubeck, Chr",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-060c2c39d6e37efa5ba6d093",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3618260.3649771"
         }
       ],
       "record": {
@@ -28687,7 +28967,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://dl.acm.org/doi/pdf/10.1145/3618260.3649771",
         "doi": null
       }
     },
@@ -28841,6 +29121,11 @@
           "role": "award",
           "text": "Yin. “Quasi-Linear Size PCPs with Small Soundness from HDX”, by Mitali Bafna, Dor Minzer, Nikhil Vyas, and Zhiwei Yun. STOC 2024 “Single-Source Shortest Paths with Negative Real Weights in $\\tilde O(mn^{8/9})$ Time”, by Jeremy T. Fineman. “Near Optimal Alphabet-Soundness Tradeoff PCPs”, by Dor Minzer and Kai Zhe Zheng. “Parameterized Inapproximability Hypothesis under Exp",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-c1c93a86f8089bb10bd6bc69",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2311.02520"
         }
       ],
       "record": {
@@ -28867,7 +29152,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2311.02520",
         "doi": null
       }
     },
@@ -29171,6 +29456,11 @@
           "role": "award",
           "text": "ff, University of Bonn; Christian Tiefenau, University of Bonn; Matthew Smith, University of Bonn, Fraunhofer FKIE USENIX ATC '23 On-demand Container Loading in AWS Lambda Marc Brooker, Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services zpoline: a system",
           "url": "https://www.usenix.org/conferences/best-papers?page=2"
+        },
+        {
+          "id": "supplement-cd4dce77393369c6857e498b",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2305.13162"
         }
       ],
       "record": {
@@ -31720,6 +32010,16 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: BlendMR: A Computational Method to Create Ambient Mixed Reality Interfaces",
           "url": "http://dl.acm.org/citation.cfm?id=3626472"
+        },
+        {
+          "id": "supplement-058fee8e73a84170cbd8a699",
+          "role": "paper",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/3626472"
+        },
+        {
+          "id": "supplement-f9afc46bc600534800940fbd",
+          "role": "award",
+          "url": "https://www.acm.org/conferences/best-paper-awards-2023"
         }
       ],
       "record": {
@@ -31849,6 +32149,16 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Appropriate Reliance on AI Advice: Conceptualization and the Effect of Explanations",
           "url": "http://dl.acm.org/citation.cfm?id=3584066"
+        },
+        {
+          "id": "supplement-400fdff471c90284495d5426",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2302.02187"
+        },
+        {
+          "id": "supplement-f9afc46bc600534800940fbd",
+          "role": "award",
+          "url": "https://www.acm.org/conferences/best-paper-awards-2023"
         }
       ],
       "record": {
@@ -32017,6 +32327,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Robust T-Loss for Medical Image Segmentation",
           "url": "https://miccai.org/conference-awards/best-paper-award-and-young-scientist-award/"
+        },
+        {
+          "id": "supplement-c1b48d4c04334d06e05b6920",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2306.00753"
         }
       ],
       "record": {
@@ -32083,7 +32398,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2306.00753",
         "doi": null
       }
     },
@@ -32553,6 +32868,11 @@
           "role": "award",
           "text": "Sudarshan Kandi, Meta; Alejandro Xoconostle, Meta; Praveen Kumar Ramakrishnan, Meta; Xiaochen Tian, Indepenent; Anoop Tomar, Meta CausalSim: A Causal Framework for Unbiased Trace-Driven Simulation Abdullah Alomar, MIT; Pouya Hamadanian, MIT; Arash Nasr-Esfahany, MIT; Anish Agarwal, MIT; Mohammad Alizadeh, MIT; Devavrat Shah, MIT DOTE: Rethinking (Predict",
           "url": "https://www.usenix.org/conferences/best-papers?page=2"
+        },
+        {
+          "id": "supplement-5751a53339c5ac31e99ef06b",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2201.01811"
         }
       ],
       "record": {
@@ -32965,6 +33285,11 @@
           "role": "award",
           "text": "; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei University OSDI '23 Triangulating Python Performance Issues with SCALENE Emery D. Berger, University of Massachusetts Amherst; Sam Stern, University of Massachusetts Amherst; Juan Altmayer Pizzorno, University of Massachusetts Amher",
           "url": "https://www.usenix.org/conferences/best-papers?page=2"
+        },
+        {
+          "id": "supplement-f1e51499cfe24197824dd5ac",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2212.07597"
         }
       ],
       "record": {
@@ -34110,6 +34435,11 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Information Retrieval Experiment Platform",
           "url": "https://dl.acm.org/doi/10.1145/3539618.3591888"
+        },
+        {
+          "id": "supplement-a312198f2f35addb5b298607",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2305.18932"
         }
       ],
       "record": {
@@ -34216,6 +34546,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: All in One: Multi-task Prompting for Graph Neural Networks",
           "url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-bcacb3c5416eb6b24523f0b9",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2307.01504"
         }
       ],
       "record": {
@@ -34274,7 +34609,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2307.01504",
         "doi": null
       }
     },
@@ -34290,6 +34625,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations",
           "url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-2c8cf54a85d79a37b7356ce1",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2209.13446"
         }
       ],
       "record": {
@@ -34364,7 +34704,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2209.13446",
         "doi": null
       }
     },
@@ -34380,6 +34720,11 @@
           "role": "award",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Improving Training Stability for Multitask Ranking Models in Recommender Systems",
           "url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners"
+        },
+        {
+          "id": "supplement-d95b94cb4eb0e5c34c5b9a3f",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2302.09178"
         }
       ],
       "record": {
@@ -34470,7 +34815,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2302.09178",
         "doi": null
       }
     },
@@ -34492,6 +34837,11 @@
           "role": "award",
           "text": "tts Institute of Technology), David Irwin and and Prashant Shenoy (University of Massachusetts Amherst). 2023: Best paper award: \"Mean-field Analysis for Load Balancing on Spatial Graphs\" by Daan Rutten (Georgia Institute of Technology) and Debankur Mukherjee (Georgia Institute of Technology). Kenneth C. Sevcik Outstanding Student Paper Award: ",
           "url": "https://www.sigmetrics.org/awards.shtml#paperawards"
+        },
+        {
+          "id": "supplement-d1d4a23235c941643209b7a8",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2301.03493"
         }
       ],
       "record": {
@@ -34542,7 +34892,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2301.03493",
         "doi": null
       }
     },
@@ -35203,6 +35553,11 @@
           "role": "award",
           "text": "othesis under Exponential Time Hypothesis”, by Venkatesan Guruswami, Bingkai Lin, Xuandi Ren, Yican Sun, and Kewen Wu. STOC 2023 “The Randomized k-Server Conjecture is False!”, by Sebastien Bubeck, Christian Coester, and Yuval Rabani. “Doubly Efficient Private Information Retrieval and Fully Homomorphic RAM Computation from Ring LW",
           "url": "https://sigact.org/prizes/best_paper.html"
+        },
+        {
+          "id": "supplement-c4eed48b5aa235653688305e",
+          "role": "paper",
+          "url": "https://arxiv.org/pdf/2211.05753"
         }
       ],
       "record": {
@@ -35245,7 +35600,7 @@
         ],
         "publication_date": null,
         "publication_date_evidence": null,
-        "paper_url": null,
+        "paper_url": "https://arxiv.org/pdf/2211.05753",
         "doi": null
       }
     },
