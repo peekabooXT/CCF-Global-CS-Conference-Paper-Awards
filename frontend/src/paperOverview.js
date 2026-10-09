@@ -1,7 +1,8 @@
 // Presentation-only helpers. Award identities and review status are never changed.
 import { externalPaperUrl, sourceUrl } from './paperLinks.js'
-const fold = value => String(value ?? '').normalize('NFKC').toLocaleLowerCase().trim()
+const fold = value => String(value ?? '').normalize('NFKC').toLocaleLowerCase().trim().replace(/\s+/g, ' ')
 const compare = (a, b) => String(a ?? '').localeCompare(String(b ?? ''), 'en', { numeric: true, sensitivity: 'base' })
+const titleIdentity = value => fold(value).replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
 
 export function authorText(record) {
   return record.authors?.length
@@ -48,7 +49,7 @@ export function overviewStats(records) {
   return {
     records: records.length,
     conferences: new Set(records.map(record => fold(record.acronym))).size,
-    papers: new Set(records.map(record => JSON.stringify([fold(record.acronym), record.year, fold(record.title)]))).size,
+    papers: new Set(records.map(record => JSON.stringify([fold(record.acronym), record.year, titleIdentity(record.title)]))).size,
     yearFrom: years.length ? Math.min(...years) : null,
     yearTo: years.length ? Math.max(...years) : null,
   }

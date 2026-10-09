@@ -84,7 +84,7 @@ onMounted(load)
     <p v-if="invalidYears" class="overview-error" role="alert">起始年份不能晚于结束年份，请调整年份范围。</p>
     <div v-if="loadError" class="overview-error" role="alert">数据加载失败：{{ loadError }}<el-button link type="primary" @click="load">重试</el-button></div>
     <div class="overview-toolbar">
-      <div class="overview-summary" role="status" aria-live="polite"><strong>{{ stats.records.toLocaleString() }} 条记录</strong><span>{{ stats.papers.toLocaleString() }} 篇论文 · {{ stats.conferences }} 个会议<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
+      <div class="overview-summary" role="status" aria-live="polite"><strong>{{ stats.papers.toLocaleString() }} 篇论文（去重）</strong><span>{{ stats.records.toLocaleString() }} 条获奖／收录记录 · {{ stats.conferences }} 个会议<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
       <div class="overview-tools"><el-checkbox v-model="expanded" size="small">展开长文本</el-checkbox><el-select v-model="pageSize" size="small" aria-label="每页条数" class="page-size"><el-option v-for="size in [50, 100, 200, 500]" :key="size" :value="size" :label="`每页 ${size} 条`" /></el-select><el-button size="small" :disabled="loading || !!loadError || !rows.length" @click="downloadCsv">导出筛选结果 CSV</el-button></div>
     </div>
     <div class="overview-table-shell" :class="{ expanded }">
@@ -97,7 +97,7 @@ onMounted(load)
         <el-table-column label="链接" width="90"><template #default="{ row }"><div class="table-links"><a v-if="externalPaperUrl(row)" :href="externalPaperUrl(row)" target="_blank" rel="noopener noreferrer">外部论文 ↗</a><a v-if="sourceUrl(row)" :href="sourceUrl(row)" target="_blank" rel="noopener noreferrer">来源 ↗</a><button @click="openDetail(row)">详情</button></div></template></el-table-column>
       </el-table>
     </div>
-    <div class="overview-bottom"><p>点击题名跳转 Google Scholar；“详情”查看本站记录。本站仅提供外部链接，不托管或提供论文文件下载。导出仅包含筛选后的书目信息，不含论文附件。</p><el-pagination v-if="rows.length" v-model:current-page="page" :page-size="pageSize" :total="rows.length" :pager-count="5" size="small" layout="total, prev, pager, next" /></div>
+    <div class="overview-bottom"><p>论文数按会议、获奖年份与标准化题名去重；一篇论文的多项获奖或不同来源奖名可对应多条记录，表格、分页及 CSV 按记录展示。点击题名跳转 Google Scholar；本站仅提供外部链接，不托管论文文件。</p><el-pagination v-if="rows.length" v-model:current-page="page" :page-size="pageSize" :total="rows.length" :pager-count="5" size="small" layout="total, prev, pager, next" /></div>
     <el-drawer v-model="drawer" size="min(760px, 100vw)" title="论文详情"><RecordDetail v-if="selected" :record="selected" :awards="meta.awards" /></el-drawer>
   </section>
 </template>

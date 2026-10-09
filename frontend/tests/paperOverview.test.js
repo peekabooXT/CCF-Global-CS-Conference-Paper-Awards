@@ -41,6 +41,15 @@ test('authors and units retain known source fields without fabricating metadata'
   assert.equal(paperLink({ paper_url: 'javascript:alert(1)', sources: [{ url: 'https://safe.example' }] }), 'https://safe.example/')
 })
 
+test('paper count is distinct from award row count and normalizes whitespace', () => {
+  const same = [rows[0], rows[1], { ...rows[0], id: 'spacing', title: ' Learning   Memory ' }]
+  assert.equal(overviewStats(same).papers, 1)
+  assert.equal(overviewStats(same).records, 3)
+  assert.equal(overviewStats([...same, {...rows[0], year:2025}]).papers, 2)
+  assert.equal(overviewStats([...same, {...rows[0], acronym:'ACL'}]).papers, 2)
+  assert.equal(overviewStats([{...rows[0],title:"Why Models Don't Memorize"}, {...rows[0],title:'Why Models Don’t Memorize'}]).papers,1)
+})
+
 test('CSV exports all filtered rows, escapes quotes and guards formulas', () => {
   const many = Array.from({ length: 250 }, (_, i) => ({ ...rows[0], id: String(i), title: i ? `Paper "${i}"` : ' =HYPERLINK("bad")' }))
   const csv = overviewCsv(overviewRows(many), { verified: '已核验' })

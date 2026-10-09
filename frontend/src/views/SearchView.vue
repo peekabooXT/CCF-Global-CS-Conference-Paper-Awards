@@ -5,6 +5,7 @@ import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
 import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
 import { alphabeticalConferences } from '../conferenceOptions.js'
+import { overviewStats } from '../paperOverview.js'
 
 const props = defineProps({ meta: { type: Object, required: true } })
 const emptyDescription = import.meta.env.VITE_APP_MODE === 'public'
@@ -29,6 +30,7 @@ const pageRecords = computed(() => records.value.slice((page.value-1)*pageSize, 
 function resetFilters() { Object.assign(filters, defaults()); runSearch() }
 const loading = ref(false)
 const records = ref([])
+const stats = computed(() => overviewStats(records.value))
 const applied = ref(null)
 const selectedId = ref(null)
 const drawer = ref(false)
@@ -139,8 +141,8 @@ onMounted(runSearch)
       </div>
       <div class="results-heading">
         <div>
-          <span class="results-count" role="status" aria-live="polite">{{ loading ? '正在检索…' : `共检索到 ${records.length} 条论文` }}</span>
-          <span v-if="records.length" class="page-count">当前显示 {{ (page - 1) * pageSize + 1 }}–{{ Math.min(page * pageSize, records.length) }} 条</span>
+          <span class="results-count" role="status" aria-live="polite">{{ loading ? '正在检索…' : `共检索到 ${stats.papers.toLocaleString()} 篇论文（去重）` }}</span>
+          <span v-if="records.length" class="page-count">{{ records.length.toLocaleString() }} 条获奖／收录记录 · 当前显示 {{ (page - 1) * pageSize + 1 }}–{{ Math.min(page * pageSize, records.length) }} 条记录</span>
         </div>
         <el-button :disabled="!applied || loading || !records.length" @click="downloadCsv">导出当前结果 CSV</el-button>
       </div>

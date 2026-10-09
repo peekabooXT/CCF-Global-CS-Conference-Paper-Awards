@@ -4,6 +4,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from .paper_search import search_papers
 from .ontology import CATEGORIES, classify_award
+from .model import norm
 
 AWARDS = {"best_paper": "Best Paper", "best_student_paper": "Best Student Paper"}
 STATUSES = {"pending": "待核验", "verified": "已核验", "rejected": "已排除"}
@@ -58,10 +59,13 @@ def _nav(prefix=""):
 
 def _header(title, records, prefix="", generated_at=None):
     counts = Counter(record.get("category") or classify_award(record.get("award_name"))["category"] for record in records)
+    def title_key(value):
+        return norm(value).translate(str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"'}))
+    paper_count = len({(norm(r['acronym']), r['year'], title_key(r['title'])) for r in records})
     stamp = generated_at or dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).isoformat(timespec="seconds")
     return "\n".join([
         f"# {title}", "", _nav(prefix), "",
-        f"> 更新于 **{stamp}**（Asia/Shanghai）。共 **{len(records)}** 条：最佳论文奖 **{counts['paper']}** 条，最佳学生论文奖 **{counts['student']}** 条，其他获奖 **{counts['other']}** 条。奖项原名和来源链接见下表。",
+        f"> 更新于 **{stamp}**（Asia/Shanghai）。共 **{paper_count}** 篇论文（按会议、获奖年份与标准化题名去重），对应 **{len(records)}** 条获奖／收录记录：最佳论文奖 **{counts['paper']}** 条，最佳学生论文奖 **{counts['student']}** 条，其他获奖 **{counts['other']}** 条。多项获奖与不同来源奖名分别保留，不重复计为论文。奖项原名和来源链接见下表。",
         "",
     ]) + "\n"
 
