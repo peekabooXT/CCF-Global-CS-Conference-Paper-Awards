@@ -4,13 +4,14 @@ import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
 import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
+import { alphabeticalConferences } from '../conferenceOptions.js'
 
 const props = defineProps({ meta: { type: Object, required: true } })
 const emptyDescription = import.meta.env.VITE_APP_MODE === 'public'
   ? '暂无匹配的已核验论文，可调整筛选条件或等待下一次数据发布。'
   : '暂无匹配论文；可调整筛选条件，或前往“采集与导入”开始收集。'
 
-const conferences = computed(() => props.meta?.conferences || [])
+const conferences = computed(() => alphabeticalConferences(props.meta?.conferences || []))
 const awardCategories = computed(() => props.meta?.award_categories || {})
 const statusKeys = computed(() => Object.keys(props.meta?.statuses || {}))
 
