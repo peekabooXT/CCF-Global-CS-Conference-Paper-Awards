@@ -2,6 +2,7 @@
 import { ref, reactive, onMounted, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
+import { scholarUrl, externalPaperUrl, externalUrl } from '../paperLinks.js'
 
 const props = defineProps({ meta: { type: Object, required: true } })
 const filters = reactive({ venue: '', category: '', query: '' })
@@ -66,8 +67,8 @@ onMounted(() => load())
           <p>核验状态：{{ paper.status === 'verified' ? '已核验' : '待核验' }}</p>
           <p v-if="paper.authors_raw">作者（原文）：{{ paper.authors_raw }}</p>
           <p v-else>作者：待补全</p>
-          <p v-if="paper.paper_url"><a :href="paper.paper_url" target="_blank" rel="noopener noreferrer">论文链接</a></p>
-          <p><a :href="paper.source_url" target="_blank" rel="noopener noreferrer">奖项来源页</a> · {{ paper.annotation_id }}</p>
+          <p><a :href="scholarUrl(paper)" target="_blank" rel="noopener noreferrer">Google Scholar 检索 ↗</a><template v-if="externalPaperUrl(paper)"> · <a :href="externalPaperUrl(paper)" target="_blank" rel="noopener noreferrer">外部论文 / 出版页面 ↗</a></template></p>
+          <p><a v-if="externalUrl(paper.source_url)" :href="externalUrl(paper.source_url)" target="_blank" rel="noopener noreferrer">奖项来源页</a> · {{ paper.annotation_id }}</p>
           <p v-if="paper.note" class="hint">标注疑点：{{ paper.note }}</p>
           <details v-if="paper.evidence.length"><summary>原文证据片段（{{ paper.evidence.length }}）</summary><ul><li v-for="(item, i) in paper.evidence" :key="i">{{ item.relation }}：{{ item.quote }}</li></ul></details>
         </article>

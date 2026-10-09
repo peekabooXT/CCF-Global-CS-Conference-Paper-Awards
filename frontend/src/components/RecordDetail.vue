@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch, onBeforeUnmount } from 'vue'
 import { api, errMsg } from '../api.js'
+import { externalUrl, externalPaperUrl, scholarUrl } from '../paperLinks.js'
 
 const props = defineProps({
   record: { type: Object, required: true },
@@ -30,6 +31,7 @@ const listings = computed(() => provenance.value?.listings || [])
 const baseSources = computed(() => {
   const seen = new Set()
   return (props.record.sources || []).filter(source => {
+    if (!externalUrl(source.url)) return false
     if (source.role === 'listing' && listings.value.some(item => item.source_url === source.url)) return false
     const key = `${source.role}:${source.url}`
     if (seen.has(key)) return false
@@ -67,15 +69,19 @@ const statusLabel = status => ({ verified: '已核验', pending: '待核验', re
     <p v-else-if="record.authors_raw">{{ record.authors_raw }}</p>
     <el-alert v-else type="info" :title="'来源尚未提供作者信息'" :closable="false" />
 
+    <h4>论文访问（外部网站）</h4>
+    <div class="listing-links">
+      <a :href="scholarUrl(record, listings)" target="_blank" rel="noopener noreferrer">Google Scholar 检索 ↗</a>
+      <a v-if="externalPaperUrl(record)" :href="externalPaperUrl(record)" target="_blank" rel="noopener noreferrer">外部论文 / 出版页面 ↗</a>
+    </div>
+    <p class="source-hint">本站仅整理书目信息与来源链接，不托管、镜像或提供论文文件下载；本地上传的附件不公开发布。外部访问或下载由原网站提供，请遵守其访问许可与版权要求。</p>
+
     <h4>来源与收录依据</h4>
     <div v-for="(s, i) in baseSources" :key="`${s.role}:${s.url}`" class="src">
       <el-link :href="s.url" target="_blank" rel="noopener noreferrer" type="primary">
         来源 {{ i + 1 }} · {{ s.role === 'award' ? '获奖页面' : s.role === 'listing' ? '聚合收录（未提供逐条奖名）' : '论文元数据' }}
       </el-link>
     </div>
-    <el-link v-if="record.paper_url" :href="record.paper_url" target="_blank" rel="noopener noreferrer" type="success">
-      打开论文
-    </el-link>
 
     <p v-if="sourceLoading" class="source-hint" role="status">正在读取关联来源…</p>
     <div v-else-if="sourceError" class="source-error" role="alert">
@@ -94,8 +100,8 @@ const statusLabel = status => ({ verified: '已核验', pending: '待核验', re
         <p v-if="item.area_raw">来源领域：{{ item.area_raw }}</p>
         <p v-if="item.authors_raw">作者及单位（来源原文）：{{ item.authors_raw }}</p>
         <div class="listing-links">
-          <a :href="item.source_url" target="_blank" rel="noopener noreferrer">打开收录来源 ↗</a>
-          <a v-if="item.discovery_url" :href="item.discovery_url" target="_blank" rel="noopener noreferrer">Google Scholar 检索 ↗</a>
+          <a v-if="externalUrl(item.source_url)" :href="externalUrl(item.source_url)" target="_blank" rel="noopener noreferrer">打开收录来源 ↗</a>
+          <a :href="scholarUrl(record, [item])" target="_blank" rel="noopener noreferrer">Google Scholar 检索 ↗</a>
         </div>
         <p v-if="item.discovery_url" class="source-hint">Google Scholar 检索链接不是官方授奖证据或论文正文。</p>
         <p v-if="item.linked_awards.length">已关联年度颁奖记录：{{ item.linked_awards.map(award => `${award.venue} ${award.year} · ${award.official_award_name}`).join('；') }}</p>

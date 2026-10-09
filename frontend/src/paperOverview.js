@@ -1,4 +1,5 @@
 // Presentation-only helpers. Award identities and review status are never changed.
+import { externalPaperUrl, sourceUrl } from './paperLinks.js'
 const fold = value => String(value ?? '').normalize('NFKC').toLocaleLowerCase().trim()
 const compare = (a, b) => String(a ?? '').localeCompare(String(b ?? ''), 'en', { numeric: true, sensitivity: 'base' })
 
@@ -14,8 +15,7 @@ export function affiliationText(record) {
 }
 
 export function paperLink(record) {
-  const candidates = [record.paper_url, ...(record.sources || []).map(source => source.url)]
-  return candidates.find(url => /^https?:\/\//i.test(url || '')) || ''
+  return externalPaperUrl(record) || sourceUrl(record)
 }
 
 export function overviewRows(records, filters = {}, sort = 'conference') {

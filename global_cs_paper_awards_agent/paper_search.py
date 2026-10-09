@@ -1,6 +1,7 @@
 """Search legacy records and verified award-event papers together."""
 
 import json
+from urllib.parse import urlsplit
 
 from .model import norm
 from .ontology import CATEGORIES, classify_award
@@ -82,6 +83,36 @@ def award_names(conn):
     return sorted(names, key=norm)
 
 
+def _with_discovery_urls(conn, rows):
+    """Attach verified, saved Scholar links in two batched reads, without changing data."""
+    by_paper, by_listing, by_record = {}, {}, {}
+    for row in conn.execute("""SELECT id,paper_id,discovery_url FROM source_listings
+        WHERE status='verified' AND discovery_url IS NOT NULL ORDER BY source_name,source_row,id"""):
+        try:
+            url = urlsplit(row['discovery_url'])
+            if (url.scheme != 'https' or url.hostname not in {'scholar.google.com', 'scholar.google.com.hk'}
+                    or url.path != '/scholar' or url.username or url.password or url.port not in (None, 443)):
+                continue
+        except ValueError:
+            continue
+        by_listing[row['id']] = row['discovery_url']
+        by_paper.setdefault(row['paper_id'], row['discovery_url'])
+    for row in conn.execute('SELECT listing_id,record_id FROM source_listing_records ORDER BY listing_id,record_id'):
+        if row['listing_id'] in by_listing:
+            by_record.setdefault(row['record_id'], by_listing[row['listing_id']])
+    for row in rows:
+        identifier = row['id']
+        if identifier.startswith('event:'):
+            address = by_paper.get(identifier.rsplit(':', 1)[-1])
+        elif identifier.startswith('listing:'):
+            address = by_listing.get(identifier[len('listing:'):])
+        else:
+            address = by_record.get(identifier)
+        if address:
+            row['discovery_url'] = address
+    return rows
+
+
 def search_papers(db, filters):
     """Search all paper sources with one broad category per returned item."""
     filters = dict(filters)
@@ -100,7 +131,7 @@ def search_papers(db, filters):
     seen = {(norm(row["acronym"]), row["year"], norm(row["title"]),
              norm(row.get("award_name", ""))) for row in core}
     if legacy_award:
-        return core
+        return _with_discovery_urls(db.conn, core)
 
     where, args = [], []
     for column, value, operator in (
@@ -115,7 +146,7 @@ def search_papers(db, filters):
     status = filters.get("status", "active")
     if status not in ("active", "all"):
         if status == "rejected":
-            return core
+            return _with_discovery_urls(db.conn, core)
         where.append("x.status=?")
         args.append(status)
     if filters.get("title"):
@@ -130,7 +161,7 @@ def search_papers(db, filters):
     # EviDOM annotations do not contain structured author affiliations or
     # publication dates. They cannot truthfully satisfy those filters.
     if filters.get("affiliation") or filters.get("published_from") or filters.get("published_to"):
-        return core
+        return _with_discovery_urls(db.conn, core)
     sql = """SELECT x.annotation_id,x.event_id,x.source_url,x.evidence,x.note,x.status,
         e.venue,e.year,e.official_award_name,e.category,e.student_only,
         p.id AS paper_id,p.title,p.authors_raw,p.paper_url,
@@ -221,5 +252,5 @@ def search_papers(db, filters):
                 "paper_url": row["paper_url"], "doi": None,
                 "sources": [{"id": row["id"], "role": "listing", "url": row["source_url"]}],
             })
-    return sorted([*core, *event_rows.values(), *listings], key=lambda row: (
-        -row["year"], norm(row["acronym"]), norm(row["title"]), norm(row.get("award_name") or "")))
+    return _with_discovery_urls(db.conn, sorted([*core, *event_rows.values(), *listings], key=lambda row: (
+        -row["year"], norm(row["acronym"]), norm(row["title"]), norm(row.get("award_name") or ""))))

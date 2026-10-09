@@ -38,7 +38,7 @@ test('authors and units retain known source fields without fabricating metadata'
   assert.equal(affiliationText(rows[0]), 'HNUST')
   assert.equal(affiliationText(rows[1]), '')
   assert.equal(paperLink(rows[0]), 'https://example.com/award')
-  assert.equal(paperLink({ paper_url: 'javascript:alert(1)', sources: [{ url: 'https://safe.example' }] }), 'https://safe.example')
+  assert.equal(paperLink({ paper_url: 'javascript:alert(1)', sources: [{ url: 'https://safe.example' }] }), 'https://safe.example/')
 })
 
 test('CSV exports all filtered rows, escapes quotes and guards formulas', () => {

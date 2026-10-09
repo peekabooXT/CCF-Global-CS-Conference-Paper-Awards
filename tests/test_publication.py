@@ -77,6 +77,8 @@ class PublicationTest(unittest.TestCase):
             for url in ('/api/collect-stream','/api/review','/api/coverage','/api/llm-models','/api/seeds','/api/publication/start','/api/runs'):
                 self.assertEqual(client.post(url,json={}).status_code,404)
                 self.assertEqual(client.get(url).status_code,404)
+            for url in ('/uploads/paper.pdf', '/api/download', '/api/papers/example/download'):
+                self.assertEqual(client.get(url).status_code, 404)
         db=public_api.Database(path)
         with self.assertRaises(sqlite3.OperationalError): db.conn.execute('DELETE FROM records')
         self.assertFalse(hasattr(db,'review')); db.close()
@@ -112,12 +114,18 @@ class PublicationTest(unittest.TestCase):
             path=fake/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes((ROOT/name).read_bytes())
         import shutil
         shutil.copytree(ROOT/'global_cs_paper_awards_agent',fake/'global_cs_paper_awards_agent',ignore=shutil.ignore_patterns('__pycache__'))
+        attachments = fake / 'data/uploads'
+        attachments.mkdir(parents=True)
+        (attachments / 'paper.pdf').write_bytes(b'%PDF-local-only-test')
         archive=release_bytes(fake,snapshot,{})
         dest=self.root/'extracted';dest.mkdir();receiver.unpack(archive,dest);receiver.validate_database(dest/'data/public.sqlite3')
         self.assertFalse((dest/'api.py').exists());self.assertFalse((dest/'global_cs_paper_awards_agent/llm.py').exists())
+        self.assertFalse((dest/'data/uploads').exists())
+        self.assertFalse(any(path.suffix == '.pdf' for path in dest.rglob('*')))
         self.assertNotIn('def import_annotations',(dest/'global_cs_paper_awards_agent/award_events.py').read_text(encoding='utf-8'))
         self.assertNotIn('def import_jeffhuang',(dest/'global_cs_paper_awards_agent/source_listings.py').read_text(encoding='utf-8'))
-        for name in ('../escape','api.py','data/local-publish-config.json','frontend/dist/assets/../../api.py'):
+        for name in ('../escape','api.py','data/local-publish-config.json','frontend/dist/assets/../../api.py',
+                     'data/uploads/paper.pdf', 'frontend/dist/paper.pdf'):
             self.assertFalse(receiver.allowed(name))
         bad=io.BytesIO()
         with tarfile.open(fileobj=bad,mode='w:gz') as a:

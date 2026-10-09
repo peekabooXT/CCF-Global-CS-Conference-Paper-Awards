@@ -3,6 +3,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
+import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
 
 const props = defineProps({ meta: { type: Object, required: true } })
 const emptyDescription = import.meta.env.VITE_APP_MODE === 'public'
@@ -73,7 +74,6 @@ const selected = computed(() => records.value.find(r => r.id === selectedId.valu
 const authorLine = (record) => record.authors?.length
   ? record.authors.map(author => author.name).filter(Boolean).join('、')
   : record.authors_raw || ''
-const primarySource = (record) => record.paper_url || record.sources?.find(source => source.url)?.url || ''
 
 function downloadCsv() {
   if (applied.value) window.open(api.exportUrl(applied.value), '_blank', 'noopener')
@@ -159,7 +159,9 @@ onMounted(runSearch)
                 <span>发表日期 {{ record.publication_date || '未知' }}</span>
               </div>
               <div class="paper-links">
-                <a v-if="primarySource(record)" :href="primarySource(record)" target="_blank" rel="noopener noreferrer">查看论文或来源 ↗</a>
+                <a :href="scholarUrl(record)" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
+                <a v-if="externalPaperUrl(record)" :href="externalPaperUrl(record)" target="_blank" rel="noopener noreferrer">外部论文 ↗</a>
+                <a v-if="sourceUrl(record)" :href="sourceUrl(record)" target="_blank" rel="noopener noreferrer">来源 ↗</a>
                 <button @click="openDetail(record.id)">查看详情 →</button>
               </div>
             </div>

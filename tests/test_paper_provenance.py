@@ -82,6 +82,18 @@ class PaperProvenanceTest(unittest.TestCase):
         for key in ('event:invalid', 'event:one:two:extra', 'listing:missing', "' OR 1=1 --"):
             self.assertIsNone(paper_provenance(self.db.conn, key))
 
+    def test_search_attaches_only_verified_saved_scholar_links_without_writes(self):
+        before = self.db.conn.total_changes
+        event = self.record('Event Paper')
+        self.assertEqual(event['discovery_url'], 'https://scholar.google.com/scholar?q=Event+Paper')
+        self.assertEqual(self.db.conn.total_changes, before)
+        self.db.conn.execute("UPDATE source_listings SET status='pending' WHERE source_row=10")
+        self.db.conn.commit()
+        self.assertNotIn('discovery_url', self.record('Event Paper'))
+        self.db.conn.execute("UPDATE source_listings SET status='verified',discovery_url='https://evil.example/scholar' WHERE source_row=10")
+        self.db.conn.commit()
+        self.assertNotIn('discovery_url', self.record('Event Paper'))
+
     def test_public_endpoint_works_on_read_only_database(self):
         path = self.root / 'public.sqlite3'
         write_public_database(public_snapshot(self.db), path)
