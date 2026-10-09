@@ -96,12 +96,16 @@ class PaperProvenanceTest(unittest.TestCase):
             self.assertEqual(client.get('/api/papers/missing/sources').status_code, 404)
         self.assertEqual(before, path.read_bytes())
 
-    def test_public_frontend_keeps_only_two_navigation_entries(self):
+    def test_public_frontend_has_overview_between_search_and_annual_awards(self):
         public = (ROOT / 'frontend/src/PublicApp.vue').read_text(encoding='utf-8')
         self.assertNotIn('SourceListingsView', public)
         self.assertNotIn("id: 'listings'", public)
         self.assertIn("id: 'search'", public)
         self.assertIn("id: 'events'", public)
+        self.assertIn("id: 'overview'", public)
+        self.assertLess(public.index("id: 'search'"), public.index("id: 'overview'"))
+        self.assertLess(public.index("id: 'overview'"), public.index("id: 'events'"))
+        self.assertIn('PaperOverviewView', public)
         self.assertIn('SourceListingsView', (ROOT / 'frontend/src/App.vue').read_text(encoding='utf-8'))
 
 

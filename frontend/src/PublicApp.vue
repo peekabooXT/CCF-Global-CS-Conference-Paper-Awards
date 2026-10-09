@@ -3,10 +3,11 @@ import { ref, onMounted } from 'vue'
 import { Reading } from '@element-plus/icons-vue'
 import { api, errMsg } from './api.js'
 import SearchView from './views/SearchView.vue'
+import PaperOverviewView from './views/PaperOverviewView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
 import AcknowledgementFooter from './components/AcknowledgementFooter.vue'
 const active = ref('search'), meta = ref(null), error = ref('')
-const navigation = [{ id: 'search', label: '论文检索' }, { id: 'events', label: '会议年度颁奖' }]
+const navigation = [{ id: 'search', label: '论文检索' }, { id: 'overview', label: '论文总览' }, { id: 'events', label: '会议年度颁奖' }]
 async function boot() { try { meta.value = await api.meta(); error.value = '' } catch(e) { error.value = errMsg(e) } }
 onMounted(boot)
 </script>
@@ -21,6 +22,7 @@ onMounted(boot)
       <template v-else>
         <p class="publication-stamp">最近发布：{{ meta.publication?.published_at || '尚未发布' }} · 已核验公开数据</p>
         <SearchView v-if="active==='search'" :meta="meta" />
+        <PaperOverviewView v-else-if="active==='overview'" :meta="meta" />
         <AwardEventsView v-else-if="active==='events'" :meta="meta" />
       </template>
     </main>
