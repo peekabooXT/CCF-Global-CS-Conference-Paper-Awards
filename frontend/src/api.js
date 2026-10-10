@@ -8,6 +8,8 @@ export const api = {
   publicationPreview: () => http.get('/publication/preview').then(r => r.data),
   publicationHistory: () => http.get('/publication/history').then(r => r.data),
   publish: body => http.post('/publication/start', body).then(r => r.data),
+  duplicates: () => http.get('/duplicates').then(r => r.data),
+  resolveDuplicates: body => http.post('/duplicates/resolve',body).then(r => r.data),
   llmModels: (llm) => http.post('/llm-models', llm).then(r => r.data),
   awardEvents: (params) => http.get('/award-events', { params }).then(r => r.data),
   awardEvent: (id) => http.get(`/award-events/${id}`).then(r => r.data),

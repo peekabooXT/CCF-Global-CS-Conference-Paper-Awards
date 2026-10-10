@@ -84,7 +84,7 @@ onMounted(load)
     <p v-if="invalidYears" class="overview-error" role="alert">起始年份不能晚于结束年份，请调整年份范围。</p>
     <div v-if="loadError" class="overview-error" role="alert">数据加载失败：{{ loadError }}<el-button link type="primary" @click="load">重试</el-button></div>
     <div class="overview-toolbar">
-      <div class="overview-summary" role="status" aria-live="polite"><strong>{{ stats.papers.toLocaleString() }} 篇论文（去重）</strong><span>{{ stats.records.toLocaleString() }} 条获奖／收录记录 · {{ stats.conferences }} 个会议<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
+      <div class="overview-summary" role="status" aria-live="polite"><strong>{{ rows.length.toLocaleString() }} 篇论文</strong><span>{{ stats.conferences }} 个会议<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
       <div class="overview-tools"><el-checkbox v-model="expanded" size="small">展开长文本</el-checkbox><el-select v-model="pageSize" size="small" aria-label="每页条数" class="page-size"><el-option v-for="size in [50, 100, 200, 500]" :key="size" :value="size" :label="`每页 ${size} 条`" /></el-select><el-button size="small" :disabled="loading || !!loadError || !rows.length" @click="downloadCsv">导出筛选结果 CSV</el-button></div>
     </div>
     <div class="overview-table-shell" :class="{ expanded }">
@@ -92,12 +92,12 @@ onMounted(load)
         <el-table-column label="会议 / 年份" width="125" fixed="left"><template #default="{ row }"><strong class="table-conference">{{ row.acronym }}</strong><div class="table-muted">{{ row.year }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></div></template></el-table-column>
         <el-table-column label="论文题名" min-width="380"><template #default="{ row }"><a class="table-title clamped" :href="scholarUrl(row)" :title="`${row.title} · 在 Google Scholar 检索（外部网站）`" target="_blank" rel="noopener noreferrer">{{ row.title }}</a></template></el-table-column>
         <el-table-column label="作者 / 单位" min-width="240"><template #default="{ row }"><span class="clamped" :title="authorText(row)">{{ expanded ? authorText(row) || '作者未提供' : authorSummary(row) }}</span><span v-if="affiliationText(row)" class="table-muted clamped" :title="affiliationText(row)">{{ affiliationText(row) }}</span></template></el-table-column>
-        <el-table-column label="分类 / 奖项原名" min-width="250"><template #default="{ row }"><span class="table-category">{{ meta.award_categories[row.category] || row.category_label || '其他获奖' }}</span><span class="table-muted clamped" :title="row.award_name || '来源未提供'">{{ row.award_name || '来源未提供' }}</span></template></el-table-column>
+        <el-table-column label="分类 / 奖项原名" min-width="250"><template #default="{ row }"><span class="table-category">{{ row.category_label || meta.award_categories[row.category] || '其他获奖' }}</span><span class="table-muted clamped" :title="row.award_name || '来源未提供'">{{ row.award_name || '来源未提供' }}</span></template></el-table-column>
         <el-table-column label="状态" width="80"><template #default="{ row }"><span class="table-status" :class="`status-${row.status}`">{{ meta.statuses[row.status] || row.status }}</span></template></el-table-column>
         <el-table-column label="链接" width="90"><template #default="{ row }"><div class="table-links"><a v-if="externalPaperUrl(row)" :href="externalPaperUrl(row)" target="_blank" rel="noopener noreferrer">外部论文 ↗</a><a v-if="sourceUrl(row)" :href="sourceUrl(row)" target="_blank" rel="noopener noreferrer">来源 ↗</a><button @click="openDetail(row)">详情</button></div></template></el-table-column>
       </el-table>
     </div>
-    <div class="overview-bottom"><p>论文数按会议、获奖年份与标准化题名去重；一篇论文的多项获奖或不同来源奖名可对应多条记录，表格、分页及 CSV 按记录展示。点击题名跳转 Google Scholar；本站仅提供外部链接，不托管论文文件。</p><el-pagination v-if="rows.length" v-model:current-page="page" :page-size="pageSize" :total="rows.length" :pager-count="5" size="small" layout="total, prev, pager, next" /></div>
+    <div class="overview-bottom"><p>每行一篇论文，多项奖和来源合并显示；表格、分页及 CSV 使用同一论文数量。点击题名跳转 Google Scholar；本站仅提供外部链接，不托管论文文件。</p><el-pagination v-if="rows.length" v-model:current-page="page" :page-size="pageSize" :total="rows.length" :pager-count="5" size="small" layout="prev, pager, next" /></div>
     <el-drawer v-model="drawer" size="min(760px, 100vw)" title="论文详情"><RecordDetail v-if="selected" :record="selected" :awards="meta.awards" /></el-drawer>
   </section>
 </template>

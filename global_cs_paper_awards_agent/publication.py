@@ -14,6 +14,7 @@ from .markdown_export import render_markdown
 from .paper_search import search_papers
 from .public_data import review_preview, confirm_review, public_snapshot, write_public_database, publication_time
 from .public_release import ServerPublisher, release_bytes
+from .deduplication import duplicate_preview, apply_resolutions
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "data/local-publish-config.json"
@@ -178,6 +179,11 @@ def _publish(path, job_id, request):
         try:
             db.conn.execute("BEGIN IMMEDIATE")
             details["reviewed"] = confirm_review(db, request["digest"], request["reviewer"], request.get("note", ""))
+            duplicates = duplicate_preview(db)
+            if duplicates['auto_safe_groups']:
+                if not request.get('cleanup_duplicates'):
+                    raise ValueError('发现重复论文，请先使用本地重复排查，或勾选发布前一键合并重复数据')
+                details['duplicate_cleanup'] = apply_resolutions(db,duplicates['digest'],auto=True,reviewer=request['reviewer'])
             snapshot = public_snapshot(db, release_id=job_id)
             if not any(snapshot["tables"][t] for t in ("records", "award_event_papers", "source_listings")) and not request.get("allow_empty"):
                 raise ValueError("本次发布内容为空；请在预览中明确确认空数据发布")

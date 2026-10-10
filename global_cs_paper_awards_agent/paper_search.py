@@ -1,13 +1,64 @@
 """Search legacy records and verified award-event papers together."""
 
 import json
+from collections import defaultdict
 from urllib.parse import urlsplit
 
 from .model import norm
 from .ontology import CATEGORIES, classify_award
 
 
-def paper_provenance(conn, record_id, verified_only=True):
+def title_identity(value):
+    """Conservative identity: typography only, never fuzzy title matching."""
+    return norm(value).translate(str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"'}))
+
+
+def conference_aliases(conn):
+    names = defaultdict(set)
+    for row in conn.execute('SELECT id,acronym,data FROM conferences'):
+        for label in [row['acronym'], *json.loads(row['data']).get('aliases', [])]:
+            names[norm(label)].add(row['id'])
+    return {name: next(iter(ids)) for name, ids in names.items() if len(ids) == 1}
+
+
+def paper_identity(aliases, venue, year, title):
+    return aliases.get(norm(venue), norm(venue)), int(year), title_identity(title)
+
+
+def merge_paper_results(rows, aliases=None):
+    """One paper per result; retain every award and evidence, not extra rows."""
+    groups = defaultdict(list)
+    for row in rows:
+        groups[paper_identity(aliases or {}, row['acronym'], row['year'], row['title'])].append(row)
+    merged = []
+    for members in groups.values():
+        primary = next((r for r in members if r.get('authors')), members[0])
+        item = dict(primary)
+        item['related_record_ids'] = list(dict.fromkeys(r['id'] for r in members))
+        item['awards'] = []
+        seen_awards = set()
+        for member in members:
+            name = member.get('award_name')
+            key = title_identity(name or '')
+            if name and key not in seen_awards:
+                seen_awards.add(key)
+                item['awards'].append({k: member.get(k) for k in (
+                    'id', 'event_id', 'award_name', 'category', 'category_label', 'status')})
+        item['award_name'] = '；'.join(a['award_name'] for a in item['awards']) or None
+        item['categories'] = list(dict.fromkeys(r['category'] for r in members))
+        item['category_labels'] = list(dict.fromkeys(r['category_label'] for r in members))
+        item['category_label'] = ' / '.join(item['category_labels'])
+        item['sources'] = list({(s.get('id'), s.get('url')): s for r in members for s in r.get('sources', [])}.values())
+        item['evidence'] = [e for r in members for e in r.get('evidence', [])]
+        for field in ('paper_url', 'doi', 'discovery_url', 'authors_raw', 'publication_date'):
+            if field == 'discovery_url' and not any(r.get(field) for r in members):
+                continue
+            item[field] = next((r[field] for r in members if r.get(field)), item.get(field))
+        merged.append(item)
+    return sorted(merged, key=lambda r: (-r['year'], norm(r['acronym']), norm(r['title'])))
+
+
+def _record_provenance(conn, record_id, verified_only=True):
     """Read linked listings on demand, without changing paper or award identity."""
     record_id = str(record_id)
     paper_ids = []
@@ -113,7 +164,7 @@ def _with_discovery_urls(conn, rows):
     return rows
 
 
-def search_papers(db, filters):
+def search_paper_records(db, filters):
     """Search all paper sources with one broad category per returned item."""
     filters = dict(filters)
     award_name = filters.pop("award_name", None)
@@ -144,6 +195,8 @@ def search_papers(db, filters):
             where.append(f"{column} {operator} ?")
             args.append(value)
     status = filters.get("status", "active")
+    if status == 'active':
+        where.append("x.status!='rejected'")
     if status not in ("active", "all"):
         if status == "rejected":
             return _with_discovery_urls(db.conn, core)
@@ -222,6 +275,8 @@ def search_papers(db, filters):
                 listing_args.append(value)
         if status == "rejected":
             listing_where.append("1=0")
+        elif status == 'active':
+            listing_where.append("l.status!='rejected'")
         elif status not in ("active", "all"):
             listing_where.append("l.status=?")
             listing_args.append(status)
@@ -254,3 +309,33 @@ def search_papers(db, filters):
             })
     return _with_discovery_urls(db.conn, sorted([*core, *event_rows.values(), *listings], key=lambda row: (
         -row["year"], norm(row["acronym"]), norm(row["title"]), norm(row.get("award_name") or ""))))
+
+
+def search_papers(db, filters):
+    return merge_paper_results(search_paper_records(db, filters), conference_aliases(db.conn))
+
+
+def paper_provenance(conn, record_id, verified_only=True):
+    original = _record_provenance(conn, record_id, verified_only)
+    if original is None:
+        return None
+    # Reuse the same result identity to include provenance from every linked row.
+    class View:
+        def __init__(self, connection):
+            self.conn = connection
+        def search(self, **filters):
+            if verified_only:
+                from .public_db import Database
+            else:
+                from .db import Database
+            view = object.__new__(Database)
+            view.conn = self.conn
+            return view.search(**filters)
+    rows = search_papers(View(conn), {'status': 'verified' if verified_only else 'all'})
+    paper = next((r for r in rows if record_id in r['related_record_ids']), None)
+    if paper:
+        listings = {r['id']: r for identifier in paper['related_record_ids']
+                    for r in (_record_provenance(conn, identifier, verified_only) or {}).get('listings', [])}
+        original['listings'] = list(listings.values())
+        original['awards'] = paper['awards']
+    return original

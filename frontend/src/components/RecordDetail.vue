@@ -105,7 +105,7 @@ const statusLabel = status => ({ verified: '已核验', pending: '待核验', re
         </div>
         <p v-if="item.discovery_url" class="source-hint">Google Scholar 检索链接不是官方授奖证据或论文正文。</p>
         <p v-if="item.linked_awards.length">已关联年度颁奖记录：{{ item.linked_awards.map(award => `${award.venue} ${award.year} · ${award.official_award_name}`).join('；') }}</p>
-        <p v-if="item.linked_record_count">已关联现有论文记录：{{ item.linked_record_count }} 条（去重关联，不新增获奖事件）</p>
+        <p v-if="item.linked_record_count">已关联采集依据：{{ item.linked_record_count }} 条（不新增论文或获奖事件）</p>
         <p v-if="!item.linked_awards.length && !item.linked_record_count" class="source-hint">尚未匹配到独立颁奖记录或其他论文记录；这不影响本条收录的核验状态。</p>
       </article>
     </template>

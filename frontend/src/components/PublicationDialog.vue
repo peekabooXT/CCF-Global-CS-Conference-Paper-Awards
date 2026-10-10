@@ -3,9 +3,10 @@ import { ref, computed, watch, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
 const props = defineProps({ modelValue: Boolean })
-const emit = defineEmits(['update:modelValue', 'published'])
+const emit = defineEmits(['update:modelValue', 'published','duplicates'])
 const visible = computed({get:()=>props.modelValue,set:v=>emit('update:modelValue',v)})
 const preview=ref(null), runs=ref([]), reviewer=ref(''), note=ref(''), confirmed=ref(false), emptyConfirmed=ref(false), busy=ref(false), error=ref('')
+const cleanupDuplicates=ref(false)
 const labels={preflight:'连接检查',github:'更新 GitHub',server:'上传服务器',completed:'发布完成',partial:'GitHub 已更新，服务器失败',failed:'发布失败'}
 const running=computed(()=>runs.value.some(r=>['preflight','github','server'].includes(r.status)))
 const total=computed(()=>Object.values(preview.value?.verified||{}).reduce((a,b)=>a+b,0)+(preview.value?.pending_total||0))
@@ -20,11 +21,11 @@ async function poll() {
     if(previous&&!running.value){ await refresh(); emit('published'); confirmed.value=false }
   } catch(e){error.value=errMsg(e)}
 }
-watch(visible,async v=>{clearInterval(timer);if(v){confirmed.value=false;emptyConfirmed.value=false;await refresh();timer=setInterval(poll,2000)}})
+watch(visible,async v=>{clearInterval(timer);if(v){confirmed.value=false;emptyConfirmed.value=false;cleanupDuplicates.value=false;await refresh();timer=setInterval(poll,2000)}})
 onUnmounted(()=>clearInterval(timer))
 async function publish() {
   busy.value=true
-  try {await api.publish({digest:preview.value.digest,reviewer:reviewer.value,note:note.value,confirm_review:confirmed.value,allow_empty:emptyConfirmed.value});await poll();ElMessage.success('发布任务已启动，可查看下方进度')}
+  try {await api.publish({digest:preview.value.digest,reviewer:reviewer.value,note:note.value,confirm_review:confirmed.value,allow_empty:emptyConfirmed.value,cleanup_duplicates:cleanupDuplicates.value});await poll();ElMessage.success('发布任务已启动，可查看下方进度')}
   catch(e){ElMessage.error(errMsg(e));await refresh()}
   finally{busy.value=false}
 }
@@ -37,7 +38,10 @@ async function publish() {
       <p>目标：{{ preview.configuration.repository }} · {{ preview.configuration.server || '尚未配置服务器' }}</p>
       <el-alert v-if="!preview.configuration.configured || !preview.configuration.public_frontend_ready" type="warning" title="发布连接或公开前端构建尚未准备好，请查看本地发布配置说明。" :closable="false" />
       <div class="publish-counts"><span>待审核论文 <b>{{ preview.pending.records }}</b></span><span>待审核获奖关联 <b>{{ preview.pending.event_papers }}</b></span><span>待审核来源收录 <b>{{ preview.pending.source_listings }}</b></span></div>
-      <p>已有已核验数据 {{ Object.values(preview.verified).reduce((a,b)=>a+b,0) }} 条（不同来源可能对应同一论文，发布时统一去重展示）。</p>
+      <p>已有已核验来源与获奖证据 {{ Object.values(preview.verified).reduce((a,b)=>a+b,0) }} 条；公开检索、总览和导出均按一篇论文一条展示。</p>
+      <el-alert v-if="preview.duplicates?.group_count" type="warning" :closable="false" :title="`发现 ${preview.duplicates.group_count} 组重复实体，请先排查或确认发布前合并。`" />
+      <p><el-button @click="emit('duplicates')">打开重复数据排查，选择保留／删除</el-button></p>
+      <el-checkbox v-model="cleanupDuplicates">发布前一键合并已核验重复实体（自动备份，保留推荐记录及全部奖项／来源关联）</el-checkbox>
       <el-alert v-if="preview.errors.length" type="error" title="以下数据缺少有效证据，暂不能批量审核，请先逐条修正或排除。" :closable="false" />
       <ul v-if="preview.errors.length"><li v-for="item in preview.errors.slice(0,10)" :key="item.id">{{ item.title || item.id }}：{{ item.reason }}</li></ul>
       <el-form label-position="top"><el-form-item label="审核人"><el-input v-model="reviewer" /></el-form-item><el-form-item label="审核 / 发布说明"><el-input v-model="note" type="textarea" :rows="2" /></el-form-item></el-form>

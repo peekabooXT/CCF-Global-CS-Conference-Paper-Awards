@@ -11,6 +11,8 @@ import CoverageView from './views/CoverageView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
 import SourceListingsView from './views/SourceListingsView.vue'
 import PublicationDialog from './components/PublicationDialog.vue'
+import DuplicateDialog from './components/DuplicateDialog.vue'
+const duplicateDialog = ref(false)
 import AcknowledgementFooter from './components/AcknowledgementFooter.vue'
 const publishDialog = ref(false)
 const active = ref('search')
@@ -130,6 +132,7 @@ onMounted(boot)
           <span>资料库工具</span>
           <el-tag size="small" effect="plain">本地管理版</el-tag>
           <el-button type="primary" @click="publishDialog=true">审核与发布到服务器 / GitHub</el-button>
+          <el-button @click="duplicateDialog=true">重复数据排查</el-button>
           <el-button @click="openSettings">
             LLM 连接
             <el-tag v-if="hasSessionSettings" type="success" size="small" effect="plain" class="configured-tag">已配置</el-tag>
@@ -185,7 +188,8 @@ onMounted(boot)
     </el-dialog>
 
     <AcknowledgementFooter />
-    <PublicationDialog v-model="publishDialog" @published="boot" />
+    <PublicationDialog v-model="publishDialog" @published="boot" @duplicates="publishDialog=false;duplicateDialog=true" />
+    <DuplicateDialog v-model="duplicateDialog" @changed="searchVersion++;boot()" />
   </div>
 </template>
 

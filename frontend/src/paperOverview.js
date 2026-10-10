@@ -25,7 +25,7 @@ export function overviewRows(records, filters = {}, sort = 'conference') {
   const rows = records.filter(record => {
     if (conferences.size && !conferences.has(fold(record.acronym))) return false
     if (filters.rank && record.rank !== filters.rank) return false
-    if (filters.category && record.category !== filters.category) return false
+    if (filters.category && !(record.categories || [record.category]).includes(filters.category)) return false
     if (filters.status && !['active', 'all'].includes(filters.status) && record.status !== filters.status) return false
     if (filters.status === 'active' && record.status === 'rejected') return false
     if (filters.year_from != null && record.year < filters.year_from) return false

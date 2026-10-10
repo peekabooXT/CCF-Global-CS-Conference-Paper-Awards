@@ -74,8 +74,8 @@ def export_rows(records):
                      "原始奖项": r.get("award_name") or "", "发表日期": r["publication_date"] or "未知",
                      "日期精度": {"day":"日", "month":"月", "year":"年", "unknown":"未知"}[r["date_precision"]],
                      "作者及单位": "; ".join(a["name"] + " [" + ("; ".join(b["name"] for b in a["affiliations"]) or "单位未知") + "]" for a in r["authors"]) or r.get("authors_raw") or "未知",
-                     "状态": STATUSES[r["status"]], "获奖来源": "" if is_listing else source,
-                     "聚合收录来源": source if is_listing else "",
+                     "状态": STATUSES[r["status"]], "获奖来源": "" if is_listing else '\n'.join(dict.fromkeys(s['url'] for s in r['sources'] if s.get('role')!='listing')) or source,
+                     "聚合收录来源": '\n'.join(dict.fromkeys(s['url'] for s in r['sources'] if s.get('role')=='listing')) or (source if is_listing else ''),
                      "论文链接": r["paper_url"] or "", "DOI": r["doi"] or "", "记录编号": r["id"]})
     return rows
 

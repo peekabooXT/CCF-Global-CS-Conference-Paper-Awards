@@ -74,7 +74,7 @@ class PublicationTest(unittest.TestCase):
             self.assertTrue(all(r['status']=='verified' for r in result['records']))
             self.assertEqual(client.get('/api/award-events').json()['total'],2)
             self.assertEqual(client.get('/api/source-listings').json()['total'],1)
-            for url in ('/api/collect-stream','/api/review','/api/coverage','/api/llm-models','/api/seeds','/api/publication/start','/api/runs'):
+            for url in ('/api/collect-stream','/api/review','/api/coverage','/api/llm-models','/api/seeds','/api/publication/start','/api/runs','/api/duplicates','/api/duplicates/resolve'):
                 self.assertEqual(client.post(url,json={}).status_code,404)
                 self.assertEqual(client.get(url).status_code,404)
             for url in ('/uploads/paper.pdf', '/api/download', '/api/papers/example/download'):
@@ -94,7 +94,7 @@ class PublicationTest(unittest.TestCase):
     @unittest.skipUnless((ROOT/'frontend/dist-public/index.html').exists(), 'Build the public frontend first')
     def test_public_frontend_contains_no_management_endpoints(self):
         content='\n'.join(p.read_text(encoding='utf-8') for p in (ROOT/'frontend/dist-public/assets').glob('*.js'))
-        for endpoint in ('publication/start','collect-stream','llm-models','seeds/lookup','runs/delete','mark-coverage',"'/review'",'"/review"'):
+        for endpoint in ('publication/start','collect-stream','llm-models','seeds/lookup','runs/delete','mark-coverage','duplicates/resolve',"'/review'",'"/review"'):
             self.assertNotIn(endpoint,content)
 
     def test_timestamps_and_names_match_all_indexes(self):

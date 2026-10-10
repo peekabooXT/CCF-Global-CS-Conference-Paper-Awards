@@ -32,6 +32,7 @@ from global_cs_paper_awards_agent.llm import LLM
 from global_cs_paper_awards_agent.model_catalog import list_provider_models
 from global_cs_paper_awards_agent.public_data import review_preview, publication_time
 from global_cs_paper_awards_agent.publication import configuration_status, history as publication_history, start_publication
+from global_cs_paper_awards_agent.deduplication import duplicate_preview, apply_resolutions
 from global_cs_paper_awards_agent.network import read_local_source
 from global_cs_paper_awards_agent.web_helpers import (
     AWARDS,
@@ -107,7 +108,9 @@ def meta():
 def publication_preview():
     db = get_db()
     try:
-        return {**review_preview(db), "configuration": configuration_status()}
+        duplicates = duplicate_preview(db)
+        return {**review_preview(db), "configuration": configuration_status(),
+                "duplicates": {k: duplicates[k] for k in ('group_count','extra_rows','auto_safe_groups')}}
     finally:
         db.close()
 
@@ -127,6 +130,37 @@ class PublishReq(BaseModel):
     note: str = Field(default="", max_length=2000)
     confirm_review: bool = False
     allow_empty: bool = False
+    cleanup_duplicates: bool = False
+
+
+@app.get('/api/duplicates')
+def duplicates():
+    db=get_db()
+    try:
+        return duplicate_preview(db)
+    finally:
+        db.close()
+
+
+class DuplicateReq(BaseModel):
+    digest: str = Field(min_length=64,max_length=64)
+    reviewer: str = Field(min_length=1,max_length=100)
+    decisions: list[dict] = Field(default_factory=list)
+    auto: bool = False
+    confirmed: bool = False
+
+
+@app.post('/api/duplicates/resolve')
+def resolve_duplicates(req: DuplicateReq):
+    if not req.confirmed:
+        raise ValueError('请确认保留、合并或删除操作')
+    db=get_db()
+    try:
+        with db.conn:
+            db.conn.execute('BEGIN IMMEDIATE')
+            return apply_resolutions(db,req.digest,req.decisions,req.auto,req.reviewer)
+    finally:
+        db.close()
 
 
 @app.post("/api/publication/start")

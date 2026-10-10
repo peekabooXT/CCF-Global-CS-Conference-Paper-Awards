@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .model import norm, validate_bundle, url_syntax
 from .ontology import classify_award
+from .paper_search import conference_aliases, paper_identity
 
 PUBLIC_TABLES = ("conferences", "records", "award_events", "award_papers",
                  "award_event_papers", "source_listings", "source_listing_records")
@@ -100,7 +101,8 @@ def public_snapshot(db, published_at=None, release_id=None):
     listings = [r for r in _rows(db.conn, "source_listings") if r["status"] == "verified"]
     paper_ids = {r["paper_id"] for r in [*links, *listings]}
     papers = {r["id"]: r for r in _rows(db.conn, "award_papers") if r["id"] in paper_ids}
-    paper_keys = {(norm(r["venue"]), r["year"], norm(r["title"])): r["id"] for r in papers.values()}
+    aliases = conference_aliases(db.conn)
+    paper_keys = {paper_identity(aliases,r['venue'],r['year'],r['title']):r['id'] for r in papers.values()}
     event_keys = {(norm(r["venue"]), r["year"], norm(r["official_award_name"])): r["id"] for r in events.values()}
     conference_map = {r["id"]: r for r in tables["conferences"]}
     for row in tables["records"]:
@@ -113,7 +115,7 @@ def public_snapshot(db, published_at=None, release_id=None):
         events.setdefault(event_id, {"id": event_id, "venue": venue, "conference_id": row["conference_id"],
             "year": row["year"], "official_award_name": name, "category": label["category"],
             "student_only": int(label["student_only"]), "status": "verified", "created_at": row["created_at"]})
-        paper_key = (norm(venue), row["year"], norm(row["title"]))
+        paper_key = paper_identity(aliases,venue,row['year'],row['title'])
         paper_id = paper_keys.setdefault(paper_key, _id(venue, row["year"], norm(row["title"])))
         papers.setdefault(paper_id, {"id": paper_id, "venue": venue, "year": row["year"], "title": row["title"],
             "authors_raw": "; ".join(a["name"] for a in record.get("authors", [])), "paper_url": record.get("paper_url")})

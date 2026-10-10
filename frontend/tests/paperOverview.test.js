@@ -41,6 +41,13 @@ test('authors and units retain known source fields without fabricating metadata'
   assert.equal(paperLink({ paper_url: 'javascript:alert(1)', sources: [{ url: 'https://safe.example' }] }), 'https://safe.example/')
 })
 
+test('one merged paper remains searchable by every award category',()=>{
+  const merged={...rows[0],categories:['paper','student'],category_label:'最佳论文奖 / 最佳学生论文奖',award_name:'Outstanding Paper；Best Student Paper'}
+  assert.equal(overviewRows([merged],{category:'student'}).length,1)
+  assert.equal(overviewRows([merged],{category:'paper'}).length,1)
+  assert.equal(overviewStats([merged]).papers,1)
+})
+
 test('paper count is distinct from award row count and normalizes whitespace', () => {
   const same = [rows[0], rows[1], { ...rows[0], id: 'spacing', title: ' Learning   Memory ' }]
   assert.equal(overviewStats(same).papers, 1)

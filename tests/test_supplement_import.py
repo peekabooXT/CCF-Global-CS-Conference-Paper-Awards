@@ -59,8 +59,10 @@ class SupplementTests(unittest.TestCase):
         student['records'][0]['award_name']='Best Student Paper'
         self.assertEqual(import_supplement(self.db,student)['new_papers'],0)
         rows=search_papers(self.db,{'status':'verified'})
-        self.assertEqual({r['category'] for r in rows},{'paper','student'})
-        self.assertEqual(len(rows),2)
+        self.assertEqual(set(rows[0]['categories']),{'paper','student'})
+        self.assertEqual(len(rows),1)
+        self.assertEqual(len(rows[0]['awards']),2)
+        self.assertEqual(len(search_papers(self.db,{'status':'verified','category':'student'})),1)
 
     def test_multiple_awards_with_different_urls_do_not_flip_urls_on_reimport(self):
         document=copy.deepcopy(self.document)
