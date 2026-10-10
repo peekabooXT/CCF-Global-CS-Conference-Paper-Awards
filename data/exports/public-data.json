@@ -1,18 +1,18 @@
 {
   "schema_version": 2,
   "publication": {
-    "release_id": "8ed58c3e6f42483cba54228ec89a61c3",
-    "published_at": "2026-10-09T23:26:45+08:00",
+    "release_id": "28d7159b822a49d08bdf1939908cb073",
+    "published_at": "2026-10-10T22:57:42+08:00",
     "timezone": "Asia/Shanghai",
     "counts": {
       "records": 327,
       "award_events": 882,
-      "award_papers": 3037,
+      "award_papers": 3019,
       "award_event_papers": 2073,
       "source_listings": 1947,
       "source_listing_records": 86
     },
-    "paper_results": 3112
+    "paper_results": 3018
   },
   "schema": {
     "conferences": "CREATE TABLE conferences (\n          id TEXT PRIMARY KEY, acronym TEXT NOT NULL, rank TEXT NOT NULL,\n          area TEXT NOT NULL, full_name TEXT NOT NULL, data TEXT NOT NULL)",
@@ -16494,14 +16494,6 @@
         "paper_url": null
       },
       {
-        "id": "000518fbadb32962ab6edb97",
-        "venue": "USENIX ATC",
-        "year": 2024,
-        "title": "An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise",
-        "authors_raw": "Hongyu Li, Beijing University of Posts and Telecommunications; Liwei Guo, University of Electronic Science and Technology of China; Yexuan Yang, Beijing University of Posts and Telecommunications; Shangguang Wang, Beijing University of Posts and Telecommunications (BUPT); Mengwei Xu, Beijing University of Posts and Telecommunications (BUPT)",
-        "paper_url": "https://www.usenix.org/conference/atc24/presentation/li-hongyu"
-      },
-      {
         "id": "000a1933c2b1080693717f78",
         "venue": "SIGMOD",
         "year": 2022,
@@ -18518,14 +18510,6 @@
         "paper_url": null
       },
       {
-        "id": "15bf6107392a442f323c9d41",
-        "venue": "KDD",
-        "year": 2023,
-        "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
-        "authors_raw": "Jiaxi Tang, Yoel Drori, Daryl Chang, Maheswaran Sathiamoorthy, Justin Gilmer, Li Wei, Xinyang Yi, Lichan Hong, Ed H. Chi",
-        "paper_url": null
-      },
-      {
         "id": "15c4bfcc3e03fa4544d73a25",
         "venue": "ICML",
         "year": 2023,
@@ -18934,14 +18918,6 @@
         "paper_url": null
       },
       {
-        "id": "19a5404f37b3f548bcec55f9",
-        "venue": "KDD",
-        "year": 2025,
-        "title": "Evaluating Decision Rules Across Many Weak Experiments",
-        "authors_raw": "Winston Chou, Colin Gray, Nathan Kallus, Aurélien Bibaut, Simon Ejdemyr",
-        "paper_url": null
-      },
-      {
         "id": "19b9e8cf7a689bba54758ddd",
         "venue": "I3D",
         "year": 2026,
@@ -18972,14 +18948,6 @@
         "title": "History-Independent Dynamic Partitioning: Operation-Order Privacy in Ordered Data Structures",
         "authors_raw": "Michael A. Bender, Martin Farach-Colton, Michael T. Goodrich, and Hanna Komlos:",
         "paper_url": "https://dl.acm.org/doi/10.1145/3651609"
-      },
-      {
-        "id": "19feb58ff2213d614e8a30b1",
-        "venue": "KDD",
-        "year": 2023,
-        "title": "All in One: Multi-task Prompting for Graph Neural Networks",
-        "authors_raw": "Xiangguo Sun, Hong Cheng, Jia Li, Bo Liu, Jihong Guan",
-        "paper_url": null
       },
       {
         "id": "1a057edfff5d08ee01db0e08",
@@ -23566,14 +23534,6 @@
         "paper_url": null
       },
       {
-        "id": "4bf331e7187a93159e909232",
-        "venue": "NeurIPS",
-        "year": 2025,
-        "title": "Why Diffusion Models Don't Memorize: The Role of Implicit Dynamical Regularization in Training",
-        "authors_raw": "Tony Bonnaire; Raphaël Urfin; Giulio Biroli; Marc Mézard",
-        "paper_url": "https://openreview.net/forum?id=BSZqpqgqM0"
-      },
-      {
         "id": "4bf4cb433c4374300f711e42",
         "venue": "SIGCOMM",
         "year": 2020,
@@ -23836,14 +23796,6 @@
         "title": "TxFS: Leveraging File-System Crash Consistency to Provide ACID Transactions",
         "authors_raw": "Yige Hu, The University of Texas at Austin; Zhiting Zhu, The University of Texas at Austin; Ian Neal, The University of Texas at Austin; Youngjin Kwon, The University of Texas at Austin; Tianyu Cheng, The University of Texas at Austin; Vijay Chidambaram, The University of Texas at Austin and VMware Research; Emmett Witchel, The University of Texas at Austin",
         "paper_url": "https://www.usenix.org/conference/atc18/presentation/hu"
-      },
-      {
-        "id": "4ed144201ae6f0463a85d67e",
-        "venue": "KDD",
-        "year": 2025,
-        "title": "Improving Group Robustness on Spurious Correlation via Evidential Alignment",
-        "authors_raw": "Wenqian Ye, Guangtao Zheng, Aidong Zhang",
-        "paper_url": null
       },
       {
         "id": "4ed2acddf02cda7919df2684",
@@ -25366,14 +25318,6 @@
         "paper_url": null
       },
       {
-        "id": "5fa418f1a7957a5b83289288",
-        "venue": "USENIX ATC",
-        "year": 2023,
-        "title": "zpoline: a system call hook mechanism based on binary rewriting",
-        "authors_raw": "Kenichi Yasukata, IIJ Research Laboratory; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei University",
-        "paper_url": "https://www.usenix.org/conference/atc23/presentation/yasukata"
-      },
-      {
         "id": "5faffbf1a0bd1daf79e96d3d",
         "venue": "NeurIPS",
         "year": 2016,
@@ -25830,14 +25774,6 @@
         "paper_url": "https://doi.org/10.1109/TVCG.2023.3326573"
       },
       {
-        "id": "6451c020e9867172613f7b4a",
-        "venue": "KDD",
-        "year": 2024,
-        "title": "CAT: Interpretable Concept-based Taylor Additive Models",
-        "authors_raw": "Viet Duong, Qiong Wu, Zhengyi Zhou, Hongjue Zhao, Chenxiang Luo, Eric Zavesky, Huaxiu Yao, Huajie Shao",
-        "paper_url": null
-      },
-      {
         "id": "646296ebd758169387d1a4f3",
         "venue": "FSE",
         "year": 2017,
@@ -26203,14 +26139,6 @@
         "year": 1998,
         "title": "Optimal Structure from Motion: Local Ambiguities and Global Estimates",
         "authors_raw": "A. Chiuso, R. Brockett, S. Soatto",
-        "paper_url": null
-      },
-      {
-        "id": "67d5e88b75e6451ad7aa6eab",
-        "venue": "KDD",
-        "year": 2024,
-        "title": "Dataset Regeneration for Sequential Recommendation",
-        "authors_raw": "Mingjia Yin, Hao Wang, Wei Guo, Yong Liu, Suojuan Zhang, Sirui Zhao, Defu Lian, Enhong Chen",
         "paper_url": null
       },
       {
@@ -27622,14 +27550,6 @@
         "paper_url": "https://www.iacr.org/cryptodb/data/paper.php?pubkey=35114"
       },
       {
-        "id": "779f0c1711955570c7bd3463",
-        "venue": "USENIX ATC",
-        "year": 2024,
-        "title": "SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation",
-        "authors_raw": "Yifan Xiong, Microsoft Research; Yuting Jiang, Microsoft Research; Ziyue Yang, Microsoft Research; Lei Qu, Microsoft Research; Guoshuai Zhao, Microsoft; Shuguang Liu, Microsoft; Dong Zhong, Microsoft; Boris Pinzur, Microsoft; Jie Zhang, Microsoft; Yang Wang, Microsoft; Jithin Jose, Microsoft; Hossein Pourreza, Microsoft; Jeff Baxter, Microsoft; Kushal Datta, Microsoft; Prabhat Ram, Microsoft; Luke Melton, Microsoft; Joe Chau, Microsoft; Peng Cheng, Microsoft Research; Yongqiang Xiong, Microsoft Research; Lidong Zhou, Microsoft Research",
-        "paper_url": "https://www.usenix.org/conference/atc24/presentation/xiong"
-      },
-      {
         "id": "77cfbcc4865e4b745e1cd191",
         "venue": "FAST",
         "year": 2020,
@@ -28075,14 +27995,6 @@
         "year": 2023,
         "title": "Paying the Price: When Intimate Partners Use Technology for Financial Harm",
         "authors_raw": "Rosanna Bellini, Cornell University",
-        "paper_url": null
-      },
-      {
-        "id": "7c0f62597ee994e92eb0a31a",
-        "venue": "ACL",
-        "year": 2023,
-        "title": "Do Androids Laugh at Electric Sheep? Humor “Understanding” Benchmarks from The New Yorker Caption Contest",
-        "authors_raw": "Jack Hessel; Ana Marasovic; Jena D. Hwang; Lillian Lee; Jeff Da; Rowan Zellers; Robert Mankoff; Yejin Choi",
         "paper_url": null
       },
       {
@@ -29388,14 +29300,6 @@
         "title": "Leveraging Cryptographic Simulator Synthesis for Formally Verifying the FOO E-Voting Protocol",
         "authors_raw": "David Baelde, Univ Rennes, CNRS, IRISA; Adrien Koutsos, Inria; Justine Sauvage, Inria",
         "paper_url": "https://www.usenix.org/system/files/usenixsecurity26-baelde.pdf"
-      },
-      {
-        "id": "8ab76f3276c9708fae8c53ca",
-        "venue": "USENIX ATC",
-        "year": 2024,
-        "title": "FastCommit: resource-efficient, performant and cost-effective file system journaling",
-        "authors_raw": "Harshad Shirwadkar, Google; Saurabh Kadekodi, Google; Theodore Tso, Google",
-        "paper_url": "https://www.usenix.org/conference/atc24/presentation/shirwadkar"
       },
       {
         "id": "8ac596382c466f483baa0b24",
@@ -33550,14 +33454,6 @@
         "paper_url": null
       },
       {
-        "id": "b7028ad1fdc1df8b09254e90",
-        "venue": "KDD",
-        "year": 2024,
-        "title": "LiGNN: Graph Neural Networks at LinkedIn",
-        "authors_raw": "Fedor Borisyuk, Shihai He, Yunbo Ouyang, Morteza Ramezani, Peng Du, Xiaochen Hou, Chengming Jiang, Nitin Pasumarthy, Priya Bannur, Birjodh Tiwana, Ping Liu, Siddharth Dangi, Daqi Sun, Zhoutao Pei, Xiao Shi, Sirou Zhu, Kay Shen, Kuang-Hsuan Lee, David Stein, Baolei Li, Haichao Wei, Amol Ghoting, Souvik Ghosh",
-        "paper_url": null
-      },
-      {
         "id": "b70b8d6a2a479f6e60b2c223",
         "venue": "SIGMOD",
         "year": 2019,
@@ -35324,14 +35220,6 @@
         "title": "An Optimal Algorithm for the Distinct Elements Problem",
         "authors_raw": "Daniel M. Kane, Jelani Nelson, David P. Woodruff:",
         "paper_url": "http://doi.acm.org/10.1145/1807085.1807094"
-      },
-      {
-        "id": "c88fdf511b8f25b8d05cbdb2",
-        "venue": "KDD",
-        "year": 2025,
-        "title": "Taming Recommendation Bias with Causal Intervention on Evolving Personal Popularity",
-        "authors_raw": "Shiyin Tan, Dongyuan Li, Renhe Jiang, Zhen Wang, Xingtong Yu, Manabu Okumura",
-        "paper_url": null
       },
       {
         "id": "c8d5e859c5ae9501cd0ff123",
@@ -37403,14 +37291,6 @@
         "year": 1997,
         "title": "Disco: running commodity operating systems on scalable multiprocessors",
         "authors_raw": "Edouard Bugnion, Stanford University; Scott Devine, Stanford University; Mendel Rosenblum, Stanford University",
-        "paper_url": null
-      },
-      {
-        "id": "dd1bdff89efa652d4e8ea1b4",
-        "venue": "KDD",
-        "year": 2023,
-        "title": "Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations",
-        "authors_raw": "Vy Vo, Trung Le, Van Nguyen, He Zhao, Edwin Bonilla, Gholamreza Haffari, Dinh Phung",
         "paper_url": null
       },
       {
@@ -39646,14 +39526,6 @@
         "paper_url": null
       },
       {
-        "id": "f45402758c6f1a84b40fffd7",
-        "venue": "KDD",
-        "year": 2025,
-        "title": "When Heterophily Meets Heterogeneity: Challenges and a New Large-Scale Graph Benchmark",
-        "authors_raw": "Junhong Lin, Xiaojie Guo, Shuaicheng Zhang, Yada Zhu, Julian Shun",
-        "paper_url": null
-      },
-      {
         "id": "f4a3a76f68c9c3a3c3e3e07a",
         "venue": "CHI",
         "year": 2015,
@@ -39876,14 +39748,6 @@
         "title": "To Search or to Crawl? Towards a Query Optimizer for Text-Centric Tasks",
         "authors_raw": ". Panagiotis Ipeirotis, Eugene Agichtein, Pranay Jain, and Luis Gravano",
         "paper_url": "http://doi.acm.org/10.1145/1142473.1142504"
-      },
-      {
-        "id": "f74177d4d4a6841e135ff7b9",
-        "venue": "STOC",
-        "year": 2025,
-        "title": "Vizing's Theorem in Near-Linear Time",
-        "authors_raw": "Sepehr Assadi, University of Waterloo; Soheil Behnezhad, Northeastern University; Sayan Bhattacharya, University of Warwick; Martín Costa, University of Warwick; Shay Solomon, Tel Aviv University; Tianyi Zhang, ETH Zurich",
-        "paper_url": null
       },
       {
         "id": "f75f542984c06686eb61488b",
@@ -40612,14 +40476,6 @@
         "title": "On the Alignment of Large Language Models with Global Human Opinion",
         "authors_raw": "Yang Liu; Masahiro Kaneko; Chenhui Chu",
         "paper_url": null
-      },
-      {
-        "id": "ff78779867a9631535b71cbf",
-        "venue": "USENIX ATC",
-        "year": 2023,
-        "title": "On-demand Container Loading in AWS Lambda",
-        "authors_raw": "Marc Brooker, Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services",
-        "paper_url": "https://www.usenix.org/conference/atc23/presentation/brooker"
       },
       {
         "id": "ff7e97dc29c377a6d71ee3fc",
@@ -43946,7 +43802,7 @@
       {
         "annotation_id": "page-0009-r022",
         "event_id": "8a684f0053a3baffadf2fc1a",
-        "paper_id": "8ab76f3276c9708fae8c53ca",
+        "paper_id": "44a350a75e82902fddad47ba",
         "source_url": "https://www.usenix.org/conferences/best-papers?page=1",
         "source_page_id": "page-0009",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000096\", \"kind\": \"text\", \"start\": 0, \"end\": 84, \"link_index\": null, \"quote\": \"FastCommit: resource-efficient, performant and cost-effective file system journaling\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000096\", \"kind\": \"text\", \"start\": 0, \"end\": 84, \"link_index\": null, \"quote\": \"FastCommit: resource-efficient, performant and cost-effective file system journaling\"}, {\"relation\": \"paper_author\", \"value\": \"Harshad Shirwadkar, Google; Saurabh Kadekodi, Google; Theodore Tso, Google\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000096\", \"kind\": \"text\", \"start\": 0, \"end\": 84, \"link_index\": null, \"quote\": \"FastCommit: resource-efficient, performant and cost-effective file system journaling\"}, {\"relation\": \"paper_author\", \"value\": \"Harshad Shirwadkar, Google; Saurabh Kadekodi, Google; Theodore Tso, Google\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000097\", \"kind\": \"text\", \"start\": 0, \"end\": 74, \"link_index\": null, \"quote\": \"Harshad Shirwadkar, Google; Saurabh Kadekodi, Google; Theodore Tso, Google\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc24/presentation/shirwadkar\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000096\", \"kind\": \"text\", \"start\": 0, \"end\": 84, \"link_index\": null, \"quote\": \"FastCommit: resource-efficient, performant and cost-effective file system journaling\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc24/presentation/shirwadkar\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000096\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://www.usenix.org/conference/atc24/presentation/shirwadkar\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000096\", \"kind\": \"text\", \"start\": 0, \"end\": 84, \"link_index\": null, \"quote\": \"FastCommit: resource-efficient, performant and cost-effective file system journaling\"}]",
@@ -43956,7 +43812,7 @@
       {
         "annotation_id": "page-0009-r023",
         "event_id": "8a684f0053a3baffadf2fc1a",
-        "paper_id": "779f0c1711955570c7bd3463",
+        "paper_id": "c394b6e8532f311f22462647",
         "source_url": "https://www.usenix.org/conferences/best-papers?page=1",
         "source_page_id": "page-0009",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000098\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000098\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation\"}, {\"relation\": \"paper_author\", \"value\": \"Yifan Xiong, Microsoft Research; Yuting Jiang, Microsoft Research; Ziyue Yang, Microsoft Research; Lei Qu, Microsoft Research; Guoshuai Zhao, Microsoft; Shuguang Liu, Microsoft; Dong Zhong, Microsoft; Boris Pinzur, Microsoft; Jie Zhang, Microsoft; Yang Wang, Microsoft; Jithin Jose, Microsoft; Hossein Pourreza, Microsoft; Jeff Baxter, Microsoft; Kushal Datta, Microsoft; Prabhat Ram, Microsoft; Luke Melton, Microsoft; Joe Chau, Microsoft; Peng Cheng, Microsoft Research; Yongqiang Xiong, Microsoft Research; Lidong Zhou, Microsoft Research\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000098\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation\"}, {\"relation\": \"paper_author\", \"value\": \"Yifan Xiong, Microsoft Research; Yuting Jiang, Microsoft Research; Ziyue Yang, Microsoft Research; Lei Qu, Microsoft Research; Guoshuai Zhao, Microsoft; Shuguang Liu, Microsoft; Dong Zhong, Microsoft; Boris Pinzur, Microsoft; Jie Zhang, Microsoft; Yang Wang, Microsoft; Jithin Jose, Microsoft; Hossein Pourreza, Microsoft; Jeff Baxter, Microsoft; Kushal Datta, Microsoft; Prabhat Ram, Microsoft; Luke Melton, Microsoft; Joe Chau, Microsoft; Peng Cheng, Microsoft Research; Yongqiang Xiong, Microsoft Research; Lidong Zhou, Microsoft Research\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000099\", \"kind\": \"text\", \"start\": 0, \"end\": 541, \"link_index\": null, \"quote\": \"Yifan Xiong, Microsoft Research; Yuting Jiang, Microsoft Research; Ziyue Yang, Microsoft Research; Lei Qu, Microsoft Research; Guoshuai Zhao, Microsoft; Shuguang Liu, Microsoft; Dong Zhong, Microsoft; Boris Pinzur, Microsoft; Jie Zhang, Microsoft; Yang Wang, Microsoft; Jithin Jose, Microsoft; Hossein Pourreza, Microsoft; Jeff Baxter, Microsoft; Kushal Datta, Microsoft; Prabhat Ram, Microsoft; Luke Melton, Microsoft; Joe Chau, Microsoft; Peng Cheng, Microsoft Research; Yongqiang Xiong, Microsoft Research; Lidong Zhou, Microsoft Research\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc24/presentation/xiong\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000098\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc24/presentation/xiong\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000098\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://www.usenix.org/conference/atc24/presentation/xiong\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000098\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"SuperBench: Improving Cloud AI Infrastructure Reliability with Proactive Validation\"}]",
@@ -43966,7 +43822,7 @@
       {
         "annotation_id": "page-0009-r024",
         "event_id": "8a684f0053a3baffadf2fc1a",
-        "paper_id": "000518fbadb32962ab6edb97",
+        "paper_id": "f1cfa3ec14ed05c122c0955a",
         "source_url": "https://www.usenix.org/conferences/best-papers?page=1",
         "source_page_id": "page-0009",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000100\", \"kind\": \"text\", \"start\": 0, \"end\": 82, \"link_index\": null, \"quote\": \"An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000100\", \"kind\": \"text\", \"start\": 0, \"end\": 82, \"link_index\": null, \"quote\": \"An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise\"}, {\"relation\": \"paper_author\", \"value\": \"Hongyu Li, Beijing University of Posts and Telecommunications; Liwei Guo, University of Electronic Science and Technology of China; Yexuan Yang, Beijing University of Posts and Telecommunications; Shangguang Wang, Beijing University of Posts and Telecommunications (BUPT); Mengwei Xu, Beijing University of Posts and Telecommunications (BUPT)\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000100\", \"kind\": \"text\", \"start\": 0, \"end\": 82, \"link_index\": null, \"quote\": \"An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise\"}, {\"relation\": \"paper_author\", \"value\": \"Hongyu Li, Beijing University of Posts and Telecommunications; Liwei Guo, University of Electronic Science and Technology of China; Yexuan Yang, Beijing University of Posts and Telecommunications; Shangguang Wang, Beijing University of Posts and Telecommunications (BUPT); Mengwei Xu, Beijing University of Posts and Telecommunications (BUPT)\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000101\", \"kind\": \"text\", \"start\": 0, \"end\": 342, \"link_index\": null, \"quote\": \"Hongyu Li, Beijing University of Posts and Telecommunications; Liwei Guo, University of Electronic Science and Technology of China; Yexuan Yang, Beijing University of Posts and Telecommunications; Shangguang Wang, Beijing University of Posts and Telecommunications (BUPT); Mengwei Xu, Beijing University of Posts and Telecommunications (BUPT)\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc24/presentation/li-hongyu\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000100\", \"kind\": \"text\", \"start\": 0, \"end\": 82, \"link_index\": null, \"quote\": \"An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc24/presentation/li-hongyu\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000100\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://www.usenix.org/conference/atc24/presentation/li-hongyu\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000095\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '24\"}, {\"relation\": \"record_scope\", \"value\": \"2024 USENIX Best Paper / USENIX ATC '24\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000100\", \"kind\": \"text\", \"start\": 0, \"end\": 82, \"link_index\": null, \"quote\": \"An Empirical Study of Rust-for-Linux: The Success, Dissatisfaction, and Compromise\"}]",
@@ -45256,7 +45112,7 @@
       {
         "annotation_id": "page-0014-r003",
         "event_id": "0833e16f5f0c1a21dc642ed9",
-        "paper_id": "ff78779867a9631535b71cbf",
+        "paper_id": "701cc378a97ca62ed9493e9a",
         "source_url": "https://www.usenix.org/conferences/best-papers?page=2",
         "source_page_id": "page-0014",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 41, \"link_index\": null, \"quote\": \"On-demand Container Loading in AWS Lambda\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 41, \"link_index\": null, \"quote\": \"On-demand Container Loading in AWS Lambda\"}, {\"relation\": \"paper_author\", \"value\": \"Marc Brooker, Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 41, \"link_index\": null, \"quote\": \"On-demand Container Loading in AWS Lambda\"}, {\"relation\": \"paper_author\", \"value\": \"Marc Brooker, Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000057\", \"kind\": \"text\", \"start\": 0, \"end\": 141, \"link_index\": null, \"quote\": \"Marc Brooker, Amazon Web Services; Mike Danilov, Amazon Web Services; Chris Greenwood, Amazon Web Services; Phil Piwonka, Amazon Web Services\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc23/presentation/brooker\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 41, \"link_index\": null, \"quote\": \"On-demand Container Loading in AWS Lambda\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc23/presentation/brooker\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000056\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://www.usenix.org/conference/atc23/presentation/brooker\"}, {\"relation\": \"record_scope\", \"value\": \"2023 USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"record_scope\", \"value\": \"2023 USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"record_scope\", \"value\": \"2023 USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 41, \"link_index\": null, \"quote\": \"On-demand Container Loading in AWS Lambda\"}]",
@@ -45266,7 +45122,7 @@
       {
         "annotation_id": "page-0014-r004",
         "event_id": "0833e16f5f0c1a21dc642ed9",
-        "paper_id": "5fa418f1a7957a5b83289288",
+        "paper_id": "cc79ea5497bf4f9a6df9a808",
         "source_url": "https://www.usenix.org/conferences/best-papers?page=2",
         "source_page_id": "page-0014",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000058\", \"kind\": \"text\", \"start\": 0, \"end\": 63, \"link_index\": null, \"quote\": \"zpoline: a system call hook mechanism based on binary rewriting\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"award_paper\", \"value\": \"USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000058\", \"kind\": \"text\", \"start\": 0, \"end\": 63, \"link_index\": null, \"quote\": \"zpoline: a system call hook mechanism based on binary rewriting\"}, {\"relation\": \"paper_author\", \"value\": \"Kenichi Yasukata, IIJ Research Laboratory; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei University\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000058\", \"kind\": \"text\", \"start\": 0, \"end\": 63, \"link_index\": null, \"quote\": \"zpoline: a system call hook mechanism based on binary rewriting\"}, {\"relation\": \"paper_author\", \"value\": \"Kenichi Yasukata, IIJ Research Laboratory; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei University\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000059\", \"kind\": \"text\", \"start\": 0, \"end\": 161, \"link_index\": null, \"quote\": \"Kenichi Yasukata, IIJ Research Laboratory; Hajime Tazaki, IIJ Research Laboratory; Pierre-Louis Aublin, IIJ Research Laboratory; Kenta Ishiguro, Hosei University\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc23/presentation/yasukata\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000058\", \"kind\": \"text\", \"start\": 0, \"end\": 63, \"link_index\": null, \"quote\": \"zpoline: a system call hook mechanism based on binary rewriting\"}, {\"relation\": \"paper_link\", \"value\": \"https://www.usenix.org/conference/atc23/presentation/yasukata\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000058\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://www.usenix.org/conference/atc23/presentation/yasukata\"}, {\"relation\": \"record_scope\", \"value\": \"2023 USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"record_scope\", \"value\": \"2023 USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"USENIX ATC '23\"}, {\"relation\": \"record_scope\", \"value\": \"2023 USENIX Best Paper / USENIX ATC '23\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000058\", \"kind\": \"text\", \"start\": 0, \"end\": 63, \"link_index\": null, \"quote\": \"zpoline: a system call hook mechanism based on binary rewriting\"}]",
@@ -49626,7 +49482,7 @@
       {
         "annotation_id": "page-0034-r001",
         "event_id": "6e3119573d3d79e3ccb12714",
-        "paper_id": "4ed144201ae6f0463a85d67e",
+        "paper_id": "7f204ccb6826143c5764ec28",
         "source_url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0034",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 76, \"link_index\": null, \"quote\": \"Improving Group Robustness on Spurious Correlation via Evidential Alignment​\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000037\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 76, \"link_index\": null, \"quote\": \"Improving Group Robustness on Spurious Correlation via Evidential Alignment​\"}, {\"relation\": \"paper_author\", \"value\": \"Wenqian Ye, Guangtao Zheng, Aidong Zhang\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 76, \"link_index\": null, \"quote\": \"Improving Group Robustness on Spurious Correlation via Evidential Alignment​\"}, {\"relation\": \"paper_author\", \"value\": \"Wenqian Ye, Guangtao Zheng, Aidong Zhang\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000039\", \"kind\": \"text\", \"start\": 0, \"end\": 40, \"link_index\": null, \"quote\": \"Wenqian Ye, Guangtao Zheng, Aidong Zhang\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000037\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 76, \"link_index\": null, \"quote\": \"Improving Group Robustness on Spurious Correlation via Evidential Alignment​\"}]",
@@ -49636,7 +49492,7 @@
       {
         "annotation_id": "page-0034-r004",
         "event_id": "80354067f7a7b95f314cb9a3",
-        "paper_id": "c88fdf511b8f25b8d05cbdb2",
+        "paper_id": "2fff95bc5911a084caee4d33",
         "source_url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0034",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000047\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"Taming Recommendation Bias with Causal Intervention on Evolving Personal Popularity\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000046\", \"kind\": \"text\", \"start\": 0, \"end\": 24, \"link_index\": null, \"quote\": \"BEST STUDENT PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000047\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"Taming Recommendation Bias with Causal Intervention on Evolving Personal Popularity\"}, {\"relation\": \"paper_author\", \"value\": \"Shiyin Tan, Dongyuan Li, Renhe Jiang, Zhen Wang, Xingtong Yu, Manabu Okumura\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000047\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"Taming Recommendation Bias with Causal Intervention on Evolving Personal Popularity\"}, {\"relation\": \"paper_author\", \"value\": \"Shiyin Tan, Dongyuan Li, Renhe Jiang, Zhen Wang, Xingtong Yu, Manabu Okumura\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000048\", \"kind\": \"text\", \"start\": 0, \"end\": 76, \"link_index\": null, \"quote\": \"Shiyin Tan, Dongyuan Li, Renhe Jiang, Zhen Wang, Xingtong Yu, Manabu Okumura\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000046\", \"kind\": \"text\", \"start\": 0, \"end\": 24, \"link_index\": null, \"quote\": \"BEST STUDENT PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000047\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"Taming Recommendation Bias with Causal Intervention on Evolving Personal Popularity\"}]",
@@ -49646,7 +49502,7 @@
       {
         "annotation_id": "page-0034-r007",
         "event_id": "7388c42e9360c91c07d2665c",
-        "paper_id": "19a5404f37b3f548bcec55f9",
+        "paper_id": "244ef3b324dd07204c16a1bb",
         "source_url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0034",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000057\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"Evaluating Decision Rules Across Many Weak Experiments​\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 26, \"link_index\": null, \"quote\": \"Applied Data Science Track\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000057\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"Evaluating Decision Rules Across Many Weak Experiments​\"}, {\"relation\": \"paper_author\", \"value\": \"Winston Chou, Colin Gray, Nathan Kallus, Aurélien Bibaut, Simon Ejdemyr\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000057\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"Evaluating Decision Rules Across Many Weak Experiments​\"}, {\"relation\": \"paper_author\", \"value\": \"Winston Chou, Colin Gray, Nathan Kallus, Aurélien Bibaut, Simon Ejdemyr\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000058\", \"kind\": \"text\", \"start\": 0, \"end\": 72, \"link_index\": null, \"quote\": \"Winston Chou, Colin Gray, ​Nathan Kallus, Aurélien Bibaut, Simon Ejdemyr\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000055\", \"kind\": \"text\", \"start\": 0, \"end\": 26, \"link_index\": null, \"quote\": \"Applied Data Science Track\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000056\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000057\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"Evaluating Decision Rules Across Many Weak Experiments​\"}]",
@@ -49656,7 +49512,7 @@
       {
         "annotation_id": "page-0034-r011",
         "event_id": "5a78f9bbb36372fe43485afb",
-        "paper_id": "f45402758c6f1a84b40fffd7",
+        "paper_id": "82339e6b61dc07668936ab92",
         "source_url": "https://kdd.org/awards/view/2025-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0034",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2025\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000071\", \"kind\": \"text\", \"start\": 0, \"end\": 86, \"link_index\": null, \"quote\": \"When Heterophily Meets Heterogeneity: Challenges and a New Large-Scale Graph Benchmark\"}, {\"relation\": \"award_paper\", \"value\": \"Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000069\", \"kind\": \"text\", \"start\": 0, \"end\": 27, \"link_index\": null, \"quote\": \"Dataset and Benchmark Track\"}, {\"relation\": \"award_paper\", \"value\": \"Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000070\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000071\", \"kind\": \"text\", \"start\": 0, \"end\": 86, \"link_index\": null, \"quote\": \"When Heterophily Meets Heterogeneity: Challenges and a New Large-Scale Graph Benchmark\"}, {\"relation\": \"paper_author\", \"value\": \"Junhong Lin, Xiaojie Guo, Shuaicheng Zhang, Yada Zhu, Julian Shun\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000071\", \"kind\": \"text\", \"start\": 0, \"end\": 86, \"link_index\": null, \"quote\": \"When Heterophily Meets Heterogeneity: Challenges and a New Large-Scale Graph Benchmark\"}, {\"relation\": \"paper_author\", \"value\": \"Junhong Lin, Xiaojie Guo, Shuaicheng Zhang, Yada Zhu, Julian Shun\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000072\", \"kind\": \"text\", \"start\": 0, \"end\": 65, \"link_index\": null, \"quote\": \"Junhong Lin, Xiaojie Guo, Shuaicheng Zhang, Yada Zhu, Julian Shun\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2025 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000069\", \"kind\": \"text\", \"start\": 0, \"end\": 27, \"link_index\": null, \"quote\": \"Dataset and Benchmark Track\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000070\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2025 Dataset and Benchmark Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000071\", \"kind\": \"text\", \"start\": 0, \"end\": 86, \"link_index\": null, \"quote\": \"When Heterophily Meets Heterogeneity: Challenges and a New Large-Scale Graph Benchmark\"}]",
@@ -49706,7 +49562,7 @@
       {
         "annotation_id": "page-0036-r001",
         "event_id": "2e3585ac3560172f1cbf5319",
-        "paper_id": "6451c020e9867172613f7b4a",
+        "paper_id": "85ed7e4239346b5d3e974744",
         "source_url": "https://kdd.org/awards/view/2024-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0036",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2024 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"CAT: Interpretable Concept-based Taylor Additive Models\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000037\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"CAT: Interpretable Concept-based Taylor Additive Models\"}, {\"relation\": \"paper_author\", \"value\": \"Viet Duong, Qiong Wu, Zhengyi Zhou, Hongjue Zhao, Chenxiang Luo, Eric Zavesky, Huaxiu Yao, Huajie Shao\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"CAT: Interpretable Concept-based Taylor Additive Models\"}, {\"relation\": \"paper_author\", \"value\": \"Viet Duong, Qiong Wu, Zhengyi Zhou, Hongjue Zhao, Chenxiang Luo, Eric Zavesky, Huaxiu Yao, Huajie Shao\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000039\", \"kind\": \"text\", \"start\": 0, \"end\": 102, \"link_index\": null, \"quote\": \"Viet Duong, Qiong Wu, Zhengyi Zhou, Hongjue Zhao, Chenxiang Luo, Eric Zavesky, Huaxiu Yao, Huajie Shao\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2024 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000037\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 55, \"link_index\": null, \"quote\": \"CAT: Interpretable Concept-based Taylor Additive Models\"}]",
@@ -49716,7 +49572,7 @@
       {
         "annotation_id": "page-0036-r002",
         "event_id": "e1ce4e3d122ccfdd3837c411",
-        "paper_id": "67d5e88b75e6451ad7aa6eab",
+        "paper_id": "a109a9ee45356abbbfc85d0f",
         "source_url": "https://kdd.org/awards/view/2024-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0036",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2024 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 50, \"link_index\": null, \"quote\": \"Dataset Regeneration for Sequential Recommendation\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000040\", \"kind\": \"text\", \"start\": 0, \"end\": 24, \"link_index\": null, \"quote\": \"BEST STUDENT PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 50, \"link_index\": null, \"quote\": \"Dataset Regeneration for Sequential Recommendation\"}, {\"relation\": \"paper_author\", \"value\": \"Mingjia Yin, Hao Wang, Wei Guo, Yong Liu, Suojuan Zhang, Sirui Zhao, Defu Lian, Enhong Chen\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 50, \"link_index\": null, \"quote\": \"Dataset Regeneration for Sequential Recommendation\"}, {\"relation\": \"paper_author\", \"value\": \"Mingjia Yin, Hao Wang, Wei Guo, Yong Liu, Suojuan Zhang, Sirui Zhao, Defu Lian, Enhong Chen\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000042\", \"kind\": \"text\", \"start\": 0, \"end\": 91, \"link_index\": null, \"quote\": \"Mingjia Yin, Hao Wang, Wei Guo, Yong Liu, Suojuan Zhang, Sirui Zhao, Defu Lian, Enhong Chen\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2024 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000040\", \"kind\": \"text\", \"start\": 0, \"end\": 24, \"link_index\": null, \"quote\": \"BEST STUDENT PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 50, \"link_index\": null, \"quote\": \"Dataset Regeneration for Sequential Recommendation\"}]",
@@ -49726,7 +49582,7 @@
       {
         "annotation_id": "page-0036-r003",
         "event_id": "bdc697c22f2309cf6f6a95ca",
-        "paper_id": "b7028ad1fdc1df8b09254e90",
+        "paper_id": "89a430a906bd18d06debaf1e",
         "source_url": "https://kdd.org/awards/view/2024-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0036",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2024 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2024\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 40, \"link_index\": null, \"quote\": \"LiGNN: Graph Neural Networks at LinkedIn\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000043\", \"kind\": \"text\", \"start\": 0, \"end\": 26, \"link_index\": null, \"quote\": \"Applied Data Science Track\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000044\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 40, \"link_index\": null, \"quote\": \"LiGNN: Graph Neural Networks at LinkedIn\"}, {\"relation\": \"paper_author\", \"value\": \"Fedor Borisyuk, Shihai He, Yunbo Ouyang, Morteza Ramezani, Peng Du, Xiaochen Hou, Chengming Jiang, Nitin Pasumarthy, Priya Bannur, Birjodh Tiwana, Ping Liu, Siddharth Dangi, Daqi Sun, Zhoutao Pei, Xiao Shi, Sirou Zhu, Kay Shen, Kuang-Hsuan Lee, David Stein, Baolei Li, Haichao Wei, Amol Ghoting, Souvik Ghosh\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 40, \"link_index\": null, \"quote\": \"LiGNN: Graph Neural Networks at LinkedIn\"}, {\"relation\": \"paper_author\", \"value\": \"Fedor Borisyuk, Shihai He, Yunbo Ouyang, Morteza Ramezani, Peng Du, Xiaochen Hou, Chengming Jiang, Nitin Pasumarthy, Priya Bannur, Birjodh Tiwana, Ping Liu, Siddharth Dangi, Daqi Sun, Zhoutao Pei, Xiao Shi, Sirou Zhu, Kay Shen, Kuang-Hsuan Lee, David Stein, Baolei Li, Haichao Wei, Amol Ghoting, Souvik Ghosh\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000046\", \"kind\": \"text\", \"start\": 0, \"end\": 308, \"link_index\": null, \"quote\": \"Fedor Borisyuk, Shihai He, Yunbo Ouyang, Morteza Ramezani, Peng Du, Xiaochen Hou, Chengming Jiang, Nitin Pasumarthy, Priya Bannur, Birjodh Tiwana, Ping Liu, Siddharth Dangi, Daqi Sun, Zhoutao Pei, Xiao Shi, Sirou Zhu, Kay Shen, Kuang-Hsuan Lee, David Stein, Baolei Li, Haichao Wei, Amol Ghoting, Souvik Ghosh\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2024 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000043\", \"kind\": \"text\", \"start\": 0, \"end\": 26, \"link_index\": null, \"quote\": \"Applied Data Science Track\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000044\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2024 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 40, \"link_index\": null, \"quote\": \"LiGNN: Graph Neural Networks at LinkedIn\"}]",
@@ -49786,7 +49642,7 @@
       {
         "annotation_id": "page-0042-r001",
         "event_id": "eeeb14f15c1048db0ad73b29",
-        "paper_id": "19feb58ff2213d614e8a30b1",
+        "paper_id": "148e91b66422979c63c61ef7",
         "source_url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0042",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2023 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 58, \"link_index\": null, \"quote\": \"All in One: Multi-task Prompting for Graph Neural Networks\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000037\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 58, \"link_index\": null, \"quote\": \"All in One: Multi-task Prompting for Graph Neural Networks\"}, {\"relation\": \"paper_author\", \"value\": \"Xiangguo Sun, Hong Cheng, Jia Li, Bo Liu, Jihong Guan\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 58, \"link_index\": null, \"quote\": \"All in One: Multi-task Prompting for Graph Neural Networks\"}, {\"relation\": \"paper_author\", \"value\": \"Xiangguo Sun, Hong Cheng, Jia Li, Bo Liu, Jihong Guan\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000039\", \"kind\": \"text\", \"start\": 0, \"end\": 53, \"link_index\": null, \"quote\": \"Xiangguo Sun, Hong Cheng, Jia Li, Bo Liu, Jihong Guan\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2023 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000037\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000038\", \"kind\": \"text\", \"start\": 0, \"end\": 58, \"link_index\": null, \"quote\": \"All in One: Multi-task Prompting for Graph Neural Networks\"}]",
@@ -49796,7 +49652,7 @@
       {
         "annotation_id": "page-0042-r002",
         "event_id": "68d95801bbdd2eaaffc0b342",
-        "paper_id": "dd1bdff89efa652d4e8ea1b4",
+        "paper_id": "ef62fccfedee5c7b40de58de",
         "source_url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0042",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2023 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 85, \"link_index\": null, \"quote\": \"Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000040\", \"kind\": \"text\", \"start\": 0, \"end\": 24, \"link_index\": null, \"quote\": \"BEST STUDENT PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 85, \"link_index\": null, \"quote\": \"Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations\"}, {\"relation\": \"paper_author\", \"value\": \"Vy Vo, Trung Le, Van Nguyen, He Zhao, Edwin Bonilla, Gholamreza Haffari, Dinh Phung\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 85, \"link_index\": null, \"quote\": \"Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations\"}, {\"relation\": \"paper_author\", \"value\": \"Vy Vo, Trung Le, Van Nguyen, He Zhao, Edwin Bonilla, Gholamreza Haffari, Dinh Phung\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000042\", \"kind\": \"text\", \"start\": 0, \"end\": 83, \"link_index\": null, \"quote\": \"Vy Vo, Trung Le, Van Nguyen, He Zhao, Edwin Bonilla, Gholamreza Haffari, Dinh Phung\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2023 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000036\", \"kind\": \"text\", \"start\": 0, \"end\": 14, \"link_index\": null, \"quote\": \"Research Track\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000040\", \"kind\": \"text\", \"start\": 0, \"end\": 24, \"link_index\": null, \"quote\": \"BEST STUDENT PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Research Track / BEST STUDENT PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000041\", \"kind\": \"text\", \"start\": 0, \"end\": 85, \"link_index\": null, \"quote\": \"Feature-based Learning for Diverse and Privacy-Preserving Counterfactual Explanations\"}]",
@@ -49806,7 +49662,7 @@
       {
         "annotation_id": "page-0042-r003",
         "event_id": "1107be9b8ca67810cb720369",
-        "paper_id": "15bf6107392a442f323c9d41",
+        "paper_id": "c05b23ca85a2ef16f3dc00d3",
         "source_url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners",
         "source_page_id": "page-0042",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2023 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"year_paper\", \"value\": \"2023\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 80, \"link_index\": null, \"quote\": \"Improving Training Stability for Multitask Ranking Models in Recommender Systems\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000043\", \"kind\": \"text\", \"start\": 0, \"end\": 26, \"link_index\": null, \"quote\": \"Applied Data Science Track\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000044\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"award_paper\", \"value\": \"Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 80, \"link_index\": null, \"quote\": \"Improving Training Stability for Multitask Ranking Models in Recommender Systems\"}, {\"relation\": \"paper_author\", \"value\": \"Jiaxi Tang, Yoel Drori, Daryl Chang, Maheswaran Sathiamoorthy, Justin Gilmer, Li Wei, Xinyang Yi, Lichan Hong, Ed H. Chi\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 80, \"link_index\": null, \"quote\": \"Improving Training Stability for Multitask Ranking Models in Recommender Systems\"}, {\"relation\": \"paper_author\", \"value\": \"Jiaxi Tang, Yoel Drori, Daryl Chang, Maheswaran Sathiamoorthy, Justin Gilmer, Li Wei, Xinyang Yi, Lichan Hong, Ed H. Chi\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000046\", \"kind\": \"text\", \"start\": 0, \"end\": 120, \"link_index\": null, \"quote\": \"Jiaxi Tang, Yoel Drori, Daryl Chang, Maheswaran Sathiamoorthy, Justin Gilmer, Li Wei, Xinyang Yi, Lichan Hong, Ed H. Chi\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000033\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"2023 SIGKDD Best Paper Award Winners\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000043\", \"kind\": \"text\", \"start\": 0, \"end\": 26, \"link_index\": null, \"quote\": \"Applied Data Science Track\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000044\", \"kind\": \"text\", \"start\": 0, \"end\": 16, \"link_index\": null, \"quote\": \"BEST PAPER AWARD\"}, {\"relation\": \"record_scope\", \"value\": \"2023 Applied Data Science Track / BEST PAPER AWARD\", \"alternative_group\": 1, \"fragment\": 4, \"node_id\": \"n000045\", \"kind\": \"text\", \"start\": 0, \"end\": 80, \"link_index\": null, \"quote\": \"Improving Training Stability for Multitask Ranking Models in Recommender Systems\"}]",
@@ -51096,7 +50952,7 @@
       {
         "annotation_id": "record:N00105",
         "event_id": "405790ed92652df5608c8ccf",
-        "paper_id": "4bf331e7187a93159e909232",
+        "paper_id": "a470e9cfdf3bb254b3da394f",
         "source_url": "https://blog.neurips.cc/2025/11/26/announcing-the-neurips-2025-best-paper-awards/",
         "source_page_id": "s1",
         "evidence": "[{\"quote\": \"Best Paper Award: Why Diffusion Models Don't Memorize: The Role of Implicit Dynamical Regularization in Training\", \"source_id\": \"s1\"}]",
@@ -53006,7 +52862,7 @@
       {
         "annotation_id": "record:P01253",
         "event_id": "a4ad508ac52fa1701df4b237",
-        "paper_id": "7c0f62597ee994e92eb0a31a",
+        "paper_id": "0487c61190e321afa3507349",
         "source_url": "https://2023.aclweb.org/program/best_papers/",
         "source_page_id": "s1",
         "evidence": "[{\"quote\": \"Best Paper Award: Do Androids Laugh at Electric Sheep? Humor “Understanding” Benchmarks from The New Yorker Caption Contest\", \"source_id\": \"s1\"}]",
@@ -64276,7 +64132,7 @@
       {
         "id": "jeffhuang-19feb58ff2213d614e8a30b1",
         "source_name": "jeffhuang",
-        "paper_id": "19feb58ff2213d614e8a30b1",
+        "paper_id": "148e91b66422979c63c61ef7",
         "source_venue": "KDD",
         "conference_id": "sigkdd-5c6996",
         "source_row": 538,
@@ -69974,7 +69830,7 @@
       {
         "id": "jeffhuang-4ed144201ae6f0463a85d67e",
         "source_name": "jeffhuang",
-        "paper_id": "4ed144201ae6f0463a85d67e",
+        "paper_id": "7f204ccb6826143c5764ec28",
         "source_venue": "KDD",
         "conference_id": "sigkdd-5c6996",
         "source_row": 255,
@@ -72214,7 +72070,7 @@
       {
         "id": "jeffhuang-6451c020e9867172613f7b4a",
         "source_name": "jeffhuang",
-        "paper_id": "6451c020e9867172613f7b4a",
+        "paper_id": "85ed7e4239346b5d3e974744",
         "source_venue": "KDD",
         "conference_id": "sigkdd-5c6996",
         "source_row": 410,
@@ -87838,7 +87694,7 @@
       {
         "id": "jeffhuang-f74177d4d4a6841e135ff7b9",
         "source_name": "jeffhuang",
-        "paper_id": "f74177d4d4a6841e135ff7b9",
+        "paper_id": "c7589d39cb9e23593a97b2d2",
         "source_venue": "STOC",
         "conference_id": "stoc-c6d2e4",
         "source_row": 300,
