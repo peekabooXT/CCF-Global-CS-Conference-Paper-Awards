@@ -252,11 +252,31 @@ class CoreTest(unittest.TestCase):
         self.assertEqual(scoped[0]["links"], [])
         self.assertEqual(source["extraction_scope"], "full document")
 
-    def test_long_page_without_target_year_section_still_fails(self):
+    def test_long_page_without_target_year_section_is_preserved(self):
         source = {"id": "s1", "url": "https://example.org/awards", "role": "award",
-                  "text": "Awards without year headings\n" + "x" * 100_000}
-        with self.assertRaisesRegex(ValueError, "无法按 2025 年度标题"):
-            scope_sources_to_year([source], 2025)
+                  "text": "Awards without year headings\n" + "x" * 1_000_000,
+                  "links": [{"url": "https://example.org/paper", "label": "Paper"}]}
+        self.assertEqual(scope_sources_to_year([source], 2025), [source])
+
+    def test_large_target_section_and_metadata_are_not_blocked(self):
+        award = {"id": "s1", "role": "award", "text":
+                 "2026\nNewer Winner\n2025\nBest Paper Award\n" + "target filler\n" * 20_000 +
+                 "2024\nOlder Winner\n"}
+        metadata = {"id": "s2", "role": "metadata", "text": "metadata\n" * 20_000}
+        scoped = scope_sources_to_year([award, metadata], 2025)
+        self.assertGreater(len(scoped[0]['text']), 100_000)
+        self.assertIn('Best Paper Award', scoped[0]['text'])
+        self.assertNotIn('Newer Winner', scoped[0]['text'])
+        self.assertEqual(scoped[1], metadata)
+
+    def test_extract_sends_long_sources_to_model_without_local_size_cap(self):
+        sources = [{"id": "s1", "role": "award", "url": "https://example.org/awards",
+                    "text": "Best Paper Award\n" + "x" * 1_000_000}]
+        llm = LLM(api_key='test-key')
+        with patch.object(llm, 'json', return_value={"records": []}) as request:
+            result = llm.extract(self.db.resolve('ACL'), 2025, sources)
+        self.assertEqual(request.call_args.args[1]['sources'], sources)
+        self.assertEqual(result['sources'], sources)
 
     def test_collect_to_sqlite_with_mocked_api_and_fetch(self):
         # Simulated network/model, real coordinator -> validator -> SQLite -> search.

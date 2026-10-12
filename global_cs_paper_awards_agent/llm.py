@@ -10,13 +10,13 @@ from .network import NoRedirect
 from .providers import provider_profile
 from .usage import normalize_usage
 
-MAX_EXTRACTION_CHARS = 100_000
+YEAR_SCOPE_THRESHOLD_CHARS = 100_000
 YEAR_HEADING = re.compile(r"(?m)^[ \t]*((?:19|20|21)\d{2})[ \t]*$")
 
 
-def scope_sources_to_year(sources, year, limit=MAX_EXTRACTION_CHARS):
-    """Narrow long multi-year award pages to the requested year's section."""
-    if sum(len(source["text"]) for source in sources) <= limit:
+def scope_sources_to_year(sources, year):
+    """Optionally narrow multi-year archives, without imposing a text-size cap."""
+    if sum(len(source["text"]) for source in sources) <= YEAR_SCOPE_THRESHOLD_CHARS:
         return sources
 
     scoped = []
@@ -59,11 +59,6 @@ def scope_sources_to_year(sources, year, limit=MAX_EXTRACTION_CHARS):
         narrowed["extraction_scope"] = f"{previous_scope}; {year_scope}" if previous_scope else year_scope
         scoped.append(narrowed)
 
-    if sum(len(source["text"]) for source in scoped) > limit:
-        raise ValueError(
-            f"来源总正文超过 {limit} 字符，且无法按 {year} 年度标题缩小到安全范围；"
-            "请使用更具体的获奖页或提供只含目标年度的文本"
-        )
     return scoped
 
 SCHEMA_EXAMPLE = {
