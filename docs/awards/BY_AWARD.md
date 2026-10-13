@@ -2,7 +2,7 @@
 
 [会议/期刊字母排序](../../AWARDS.md) · [会议/期刊类别分类检索](../../docs/awards/BY_CATEGORY.md) · [年份分类检索](../../docs/awards/BY_YEAR.md) · [奖项分类检索](../../docs/awards/BY_AWARD.md)
 
-> 更新于 **2026-10-10T22:57:42+08:00**（Asia/Shanghai）。共 **3018** 篇论文：最佳论文奖 **2859** 篇，最佳学生论文奖 **153** 篇，其他获奖 **12** 篇。一篇论文可获多个奖，分类数量不可直接相加。每行一篇论文，奖项原名与来源信息合并保留。
+> 更新于 **2026-10-13T14:02:47+08:00**（Asia/Shanghai）。共 **3021** 篇论文：最佳论文奖 **2859** 篇，最佳学生论文奖 **156** 篇，其他获奖 **12** 篇。一篇论文可获多个奖，分类数量不可直接相加。每行一篇论文，奖项原名与来源信息合并保留。
 
 ## 最佳论文奖
 
@@ -2927,10 +2927,13 @@
 | CVPR | 会议 | A | 人工智能 | 2001 | Best Student Paper | Tracking and modeling non-rigid objects with rank constraints | L. Torresani, D. Yang, E. Alexander, C. Bregler | 未知 | 已核验 | [来源](https://tc.computer.org/tcpami/awards/cvpr-paper-awards/) |
 | CVPR | 会议 | A | 人工智能 | 1994 | Best Student Paper | Occluding Contour Detection Using Affine Invariants and Purposive Viewpoint Control | K. Kutulakos and C. Dyer | 未知 | 已核验 | [来源](https://tc.computer.org/tcpami/awards/cvpr-paper-awards/) |
 | CVPR | 会议 | A | 人工智能 | 1993 | Best Student Paper | Information Theoretic Clustering of Large Structural Modelbases | K. Sengupta and K. L. Boyer | 未知 | 已核验 | [来源](https://tc.computer.org/tcpami/awards/cvpr-paper-awards/) |
+| ESA | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper | Greedy Completion for Weighted (α,β)-Spanners | Elad Tzalik | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-esa-paper) |
 | EuroSys | 会议 | A | 计算机体系结构 / 并行与分布计算 / 存储系统 | 2025 | Best Student Paper Award of EuroSys 2025 | [Enabling Virtual Priority in Data Center Congestion Control](http://dl.acm.org/citation.cfm?id=3717463) | Zhaochen Zhang（Nanjing University）; Feiyang Xue（Nanjing University）; Keqiang He（Shanghai Jiao Tong University）; Zhimeng Yin（City University of Hong Kong）; Gianni Antichi（Queen Mary University of London）; Jiaqi Gao（单位未知）; Yizhi Wang（Nanjing University）; Rui Ning（Nanjing University）; Haixin Nan（Nanjing University）; Xu Zhang（Nanjing University）; Peirui Cao（Nanjing University）; Xiaoliang Wang（Nanjing University）; Wanchun Dou（Nanjing University）; Guihai Chen（Nanjing University）; Chen Tian（Nanjing University） | 2025-03-26 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
 | EuroSys | 会议 | A | 计算机体系结构 / 并行与分布计算 / 存储系统 | 2025 | Best Student Paper Award of EuroSys 2025 | [Understanding the Linux Kernel, Visually](http://dl.acm.org/citation.cfm?id=3696095) | Hanzhi Liu（Nanjing University）; Yanyan Jiang（Nanjing University）; Chang Xu（Nanjing University） | 2025-03-26 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
 | I3D | 会议 | B | 计算机图形学与多媒体 | 2026 | Best Student Paper | [Improving Spatial Domain Repetition of Implicit Surfaces](http://dl.acm.org/citation.cfm?id=3804498) | Clément Magniez（单位未知）; Cédric Zanni（单位未知） | 2026 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
 | I3D | 会议 | B | 计算机图形学与多媒体 | 2025 | Best Student Paper | [Foveated Animations for Efficient Crowd Simulation](http://dl.acm.org/citation.cfm?id=3728306) | Florin-Vladimir Stancu（University of Leeds）; Tomer Weiss（New Jersey Institute of Technology）; Rafael Kuffner dos Anjos（University of Leeds） | 2025-05-22 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
+| ICALP | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper — Track B | Deciding DFA-Primality is NP-Hard | Daniel Alexander Spenner | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-icalp-paper) |
+| ICALP | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper — Track A | Recursive Jump Operators and Optimal Proof Systems | Fabian Egidy | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-icalp-paper) |
 | ICAPS | 会议 | B | 人工智能 | 2026 | Best Student Paper Award | I Always Told My Mom That Order Is Overrated: Unordered HTN Planning is in PSPACE and Models Problems Beyond STRIPS | Pascal Lauer（单位未知）; Yifan Zhang（单位未知）; Patrik Haslum（单位未知）; Pascal Bercher（单位未知） | 未知 | 已核验 | [来源](https://icaps26.icaps-conference.org/program/awards/) |
 | ICCV | 会议 | A | 人工智能 | 2025 | Best Student Paper；Best Student Paper Award | FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models | V. Kulikov（单位未知）; M. Kleiner（单位未知）; I. Huberman-Spiegelglas（单位未知）; T. Michaeli（单位未知） | 未知 | 已核验 | [来源](https://www.thecvf.com/?page_id=413) |
 | ICCV | 会议 | A | 人工智能 | 2023 | Best Student Paper；Best Student Paper Award | Tracking Everything Everywhere All at Once | Q. Wang（单位未知）; Y.-. Chang（单位未知）; R. Cai（单位未知）; Z. Li（单位未知）; B. Hariharan（单位未知）; A. Holynski（单位未知）; N. Snavely（单位未知） | 未知 | 已核验 | [来源](https://www.thecvf.com/?page_id=413) |

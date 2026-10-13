@@ -2,7 +2,7 @@
 
 [会议/期刊字母排序](../../AWARDS.md) · [会议/期刊类别分类检索](../../docs/awards/BY_CATEGORY.md) · [年份分类检索](../../docs/awards/BY_YEAR.md) · [奖项分类检索](../../docs/awards/BY_AWARD.md)
 
-> 更新于 **2026-10-10T22:57:42+08:00**（Asia/Shanghai）。共 **3018** 篇论文：最佳论文奖 **2859** 篇，最佳学生论文奖 **153** 篇，其他获奖 **12** 篇。一篇论文可获多个奖，分类数量不可直接相加。每行一篇论文，奖项原名与来源信息合并保留。
+> 更新于 **2026-10-13T14:02:47+08:00**（Asia/Shanghai）。共 **3021** 篇论文：最佳论文奖 **2859** 篇，最佳学生论文奖 **156** 篇，其他获奖 **12** 篇。一篇论文可获多个奖，分类数量不可直接相加。每行一篇论文，奖项原名与来源信息合并保留。
 
 ## 类别目录
 
@@ -2187,6 +2187,7 @@
 | CCC | 会议 | B | 计算机科学理论 | 2022 | Best Student Paper Award | [Derandomization from Time-Space Tradeoffs](https://drops.dagstuhl.de/storage/00lipics/lipics-vol234-ccc2022/LIPIcs.CCC.2022.37/LIPIcs.CCC.2022.37.pdf) | Oliver Korten | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-student-ccc-paper) |
 | CCC | 会议 | B | 计算机科学理论 | 2022 | Best Student Paper Award | [Improved Pseudorandom Generators for AC^0 Circuits](https://drops.dagstuhl.de/storage/00lipics/lipics-vol234-ccc2022/LIPIcs.CCC.2022.34/LIPIcs.CCC.2022.34.pdf) | Xin Lyu | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-student-ccc-paper) |
 | ESA | 会议 | B | 计算机科学理论 | 2026 | Best Paper Award (Track A) | [Fast Metric Decompositions in High Dimension](https://arxiv.org/pdf/2608.22488) | Robert Krauthgamer, Asaf Petruschka and Nir Petruschka | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
+| ESA | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper | Greedy Completion for Weighted (α,β)-Spanners | Elad Tzalik | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-esa-paper) |
 | ESA | 会议 | B | 计算机科学理论 | 2026 | Best Paper Award (Track E) | [SimdQuickHeap: The QuickHeap Reconsidered](https://arxiv.org/pdf/2604.25681) | Johannes Breitling, Ragnar Groot Koerkamp and Marvin Williams | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
 | ESA | 会议 | B | 计算机科学理论 | 2026 | Best Paper Award (Track S) | [The Power of the Score Sequence of a Tournament](https://arxiv.org/pdf/2607.15260) | Prantar Ghosh, Sahil Kuchlous, Shravan Mehra and Sagnik Mukhopadhyay | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
 | ESA | 会议 | B | 计算机科学理论 | 2025 | Best Paper Award (Track A) | [Combined Search and Encoding for Seeds, with an Application to Minimal Perfect Hashing](https://arxiv.org/pdf/2502.05613) | Hans-Peter Lehmann, Peter Sanders, Stefan Walzer and Jonatan Ziegler | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
@@ -2251,6 +2252,8 @@
 | FOCS | 会议 | A | 计算机科学理论 | 2002 | 来源未提供奖项原名 | Constant-Round Coin-Tossing with a Man in the Middle or Realizing the Shared Random String Model | Boaz Barak, Weizmann Institute of Science | 未知 | 已核验 | [来源](https://jeffhuang.com/best_paper_awards/) |
 | FOCS | 会议 | A | 计算机科学理论 | 2002 | 来源未提供奖项原名 | Minimizing Congestion in General Networks | Harald Räcke, University of Paderborn | 未知 | 已核验 | [来源](https://jeffhuang.com/best_paper_awards/) |
 | HSCC | 会议 | B | 计算机科学理论 | 2023 | Best Paper Award | [Distributionally Robust Strategy Synthesis for Switched Stochastic Systems](https://dl.acm.org/doi/pdf/10.1145/3575870.3587127) | Ibón Gracia Merino, Dimitris Boskos, Luca Laurenti and Manuel Mazo Jr | 未知 | 已核验 | [来源](https://hscc.acm.org/2023/awards/) |
+| ICALP | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper — Track B | Deciding DFA-Primality is NP-Hard | Daniel Alexander Spenner | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-icalp-paper) |
+| ICALP | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper — Track A | Recursive Jump Operators and Optimal Proof Systems | Fabian Egidy | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-icalp-paper) |
 | LICS | 会议 | A | 计算机科学理论 | 2025 | Kleene Award for the Best Student Paper | [The Steenrod squares via unordered joins](https://lics.siglog.org/archive/2025/LjungstromWarn-TheSteenrodsquaresv.html) | Axel Ljungström（单位未知）; David Wärn（单位未知） | 2025-06 | 已核验 | [来源](https://lics.siglog.org/archive/kleene-award.html) |
 | LICS | 会议 | A | 计算机科学理论 | 2024 | Kleene Award for the Best Student Paper | [Relevant S is Undecidable](https://lics.siglog.org/archive/2024/Knudstorp-RelevantSisUndecida.html) | Søren Brinck Knudstorp（单位未知） | 2024-07 | 已核验 | [来源](https://lics.siglog.org/archive/kleene-award.html) |
 | LICS | 会议 | A | 计算机科学理论 | 2023 | Kleene Award for the Best Student Paper | [The Identity Problem in the special affine group of Z2](https://lics.siglog.org/archive/2023/Dong-TheIdentityProblemi.html) | Ruiwen Dong（单位未知） | 2023-06 | 已核验 | [来源](https://lics.siglog.org/archive/kleene-award.html) |

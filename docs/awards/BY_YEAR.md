@@ -2,7 +2,7 @@
 
 [会议/期刊字母排序](../../AWARDS.md) · [会议/期刊类别分类检索](../../docs/awards/BY_CATEGORY.md) · [年份分类检索](../../docs/awards/BY_YEAR.md) · [奖项分类检索](../../docs/awards/BY_AWARD.md)
 
-> 更新于 **2026-10-10T22:57:42+08:00**（Asia/Shanghai）。共 **3018** 篇论文：最佳论文奖 **2859** 篇，最佳学生论文奖 **153** 篇，其他获奖 **12** 篇。一篇论文可获多个奖，分类数量不可直接相加。每行一篇论文，奖项原名与来源信息合并保留。
+> 更新于 **2026-10-13T14:02:47+08:00**（Asia/Shanghai）。共 **3021** 篇论文：最佳论文奖 **2859** 篇，最佳学生论文奖 **156** 篇，其他获奖 **12** 篇。一篇论文可获多个奖，分类数量不可直接相加。每行一篇论文，奖项原名与来源信息合并保留。
 
 ## 年份目录
 
@@ -135,6 +135,7 @@
 | DSN | 会议 | B | 网络与信息安全 | 2026 | Best Paper Award；Distinguished Paper Award | Thinking Inside the Box: Injecting Realistic Radiation Faults in ML Accelerators | B. Coelho, M. Sadati, A. Chan, A. Hands, K. Pattabiraman, P. Rech | 未知 | 已核验 | [来源](https://www.dependability.org/?page_id=370) |
 | ECCV | 会议 | B | 人工智能 | 2026 | Best Paper Award | [Heat Kernel Textures -- the Geodesic Gaussians That Do Not Splat](https://arxiv.org/pdf/2609.07557) | Simone Foti ⋅ Caner Korkmaz ⋅ Stefanos Zafeiriou ⋅ Tolga Birdal | 未知 | 已核验 | [来源](https://eccv.ecva.net/virtual/2026/awards_detail) |
 | ESA | 会议 | B | 计算机科学理论 | 2026 | Best Paper Award (Track A) | [Fast Metric Decompositions in High Dimension](https://arxiv.org/pdf/2608.22488) | Robert Krauthgamer, Asaf Petruschka and Nir Petruschka | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
+| ESA | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper | Greedy Completion for Weighted (α,β)-Spanners | Elad Tzalik | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-esa-paper) |
 | ESA | 会议 | B | 计算机科学理论 | 2026 | Best Paper Award (Track E) | [SimdQuickHeap: The QuickHeap Reconsidered](https://arxiv.org/pdf/2604.25681) | Johannes Breitling, Ragnar Groot Koerkamp and Marvin Williams | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
 | ESA | 会议 | B | 计算机科学理论 | 2026 | Best Paper Award (Track S) | [The Power of the Score Sequence of a Tournament](https://arxiv.org/pdf/2607.15260) | Prantar Ghosh, Sahil Kuchlous, Shravan Mehra and Sagnik Mukhopadhyay | 未知 | 已核验 | [来源](https://www.eatcs.org/index.php/best-esa-paper) |
 | ETAPS | 会议 | B | 软件工程 / 系统软件 / 程序设计语言 | 2026 | Distinguished Paper Awards | [A Case Study in Firmware Verification: Applying Formal Methods to Intel TDX Module](https://link.springer.com/content/pdf/10.1007/978-3-032-22749-2_3) | Dirk Beyer, Po-Chun Chien, Bo-Yuan Huang, Nian-Ze Lee and Thomas Lemberger | 未知 | 已核验 | [来源](https://etaps.org/awards/best-paper/) |
@@ -176,6 +177,8 @@
 | I3D | 会议 | B | 计算机图形学与多媒体 | 2026 | Best Paper (1 of 2 tied) | [Gen-C: Populating Virtual Worlds with Generative Crowds](http://dl.acm.org/citation.cfm?id=3804500) | Andreas Panayiotou（单位未知）; Panayiotis Charalambous（单位未知）; Ioannis Karamouzas（单位未知） | 2026 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
 | I3D | 会议 | B | 计算机图形学与多媒体 | 2026 | Best Student Paper | [Improving Spatial Domain Repetition of Implicit Surfaces](http://dl.acm.org/citation.cfm?id=3804498) | Clément Magniez（单位未知）; Cédric Zanni（单位未知） | 2026 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
 | I3D | 会议 | B | 计算机图形学与多媒体 | 2026 | Best Paper (1 of 2 tied) | [ReSTIR PT Enhanced: Algorithmic Advances for Faster and More Robust ReSTIR Path Tracing](http://dl.acm.org/citation.cfm?id=3804494) | Daqi Lin（单位未知）; Markus Kettunen（单位未知）; Chris Wyman（单位未知） | 2026 | 已核验 | [来源](https://www.acm.org/conferences/best-paper-awards) |
+| ICALP | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper — Track B | Deciding DFA-Primality is NP-Hard | Daniel Alexander Spenner | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-icalp-paper) |
+| ICALP | 会议 | B | 计算机科学理论 | 2026 | Best Student Paper — Track A | Recursive Jump Operators and Optimal Proof Systems | Fabian Egidy | 未知 | 已核验 | [来源](https://eatcs.org/index.php/best-student-icalp-paper) |
 | ICAPS | 会议 | B | 人工智能 | 2026 | Best Student Paper Award | I Always Told My Mom That Order Is Overrated: Unordered HTN Planning is in PSPACE and Models Problems Beyond STRIPS | Pascal Lauer（单位未知）; Yifan Zhang（单位未知）; Patrik Haslum（单位未知）; Pascal Bercher（单位未知） | 未知 | 已核验 | [来源](https://icaps26.icaps-conference.org/program/awards/) |
 | ICAPS | 会议 | B | 人工智能 | 2026 | Best Paper Award | [Learning Lifted Action Models from Unsupervised Visual Traces](https://arxiv.org/pdf/2604.19043) | Kai Xi（单位未知）; Stephen Gould（单位未知）; Sylvie Thiebaux（单位未知） | 未知 | 已核验 | [来源](https://icaps26.icaps-conference.org/program/awards/) |
 | ICDE | 会议 | A | 数据库 / 数据挖掘 / 内容检索 | 2026 | Best Research Paper | MICRO: A Lightweight Middleware for Optimizing Cross-store Cross-model Graph-Relation Joins | Xiuwen Zheng（UC San Diego）; Arun Kumar（UC San Diego）; Amarnath Gupta（UC San Diego） | 未知 | 已核验 | [来源](https://icde2026.github.io/awards.html) |
