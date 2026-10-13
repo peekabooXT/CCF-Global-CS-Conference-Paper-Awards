@@ -21,15 +21,15 @@ def conference_aliases(conn):
     return {name: next(iter(ids)) for name, ids in names.items() if len(ids) == 1}
 
 
-def paper_identity(aliases, venue, year, title):
-    return aliases.get(norm(venue), norm(venue)), int(year), title_identity(title)
+def paper_identity(aliases, venue, year, title, conference_id=None):
+    return conference_id or aliases.get(norm(venue), norm(venue)), int(year), title_identity(title)
 
 
 def merge_paper_results(rows, aliases=None):
     """One paper per result; retain every award and evidence, not extra rows."""
     groups = defaultdict(list)
     for row in rows:
-        groups[paper_identity(aliases or {}, row['acronym'], row['year'], row['title'])].append(row)
+        groups[paper_identity(aliases or {}, row['acronym'], row['year'], row['title'], row.get('conference_id'))].append(row)
     merged = []
     for members in groups.values():
         primary = next((r for r in members if r.get('authors')), members[0])
@@ -179,7 +179,7 @@ def search_paper_records(db, filters):
         row.update(classify_award(row.get("award_name")))
     if category:
         core = [row for row in core if row["category"] == category]
-    seen = {(norm(row["acronym"]), row["year"], norm(row["title"]),
+    seen = {(row.get('conference_id') or norm(row["acronym"]), row["year"], norm(row["title"]),
              norm(row.get("award_name", ""))) for row in core}
     if legacy_award:
         return _with_discovery_urls(db.conn, core)
@@ -216,7 +216,7 @@ def search_paper_records(db, filters):
     if filters.get("affiliation") or filters.get("published_from") or filters.get("published_to"):
         return _with_discovery_urls(db.conn, core)
     sql = """SELECT x.annotation_id,x.event_id,x.source_url,x.evidence,x.note,x.status,
-        e.venue,e.year,e.official_award_name,e.category,e.student_only,
+        e.venue,e.conference_id,e.year,e.official_award_name,e.category,e.student_only,
         p.id AS paper_id,p.title,p.authors_raw,p.paper_url,
         c.acronym,c.rank,c.area
         FROM award_event_papers x
@@ -239,7 +239,7 @@ def search_paper_records(db, filters):
             existing["evidence"].extend(json.loads(row["evidence"]))
             continue
         acronym = row["acronym"] or row["venue"]
-        identity = (norm(acronym), row["year"], norm(row["title"]), norm(row["official_award_name"]))
+        identity = (row['conference_id'] or norm(acronym), row["year"], norm(row["title"]), norm(row["official_award_name"]))
         if identity in seen:
             continue
         seen.add(identity)
@@ -248,6 +248,7 @@ def search_paper_records(db, filters):
             "source_kind": "award_event", "event_id": row["event_id"],
             "title": row["title"], "acronym": acronym, "rank": row["rank"],
             "area": row["area"], "year": row["year"],
+            "conference_id": row["conference_id"],
             "award_name": row["official_award_name"], "award_type": label["category"],
             "category": label["category"], "category_label": label["category_label"],
             "student_only": label["student_only"], "status": row["status"],
@@ -286,7 +287,7 @@ def search_paper_records(db, filters):
         if filters.get("author"):
             listing_where.append("instr(fold(COALESCE(l.authors_raw,'')),?)>0")
             listing_args.append(norm(filters["author"]))
-        listing_sql = """SELECT l.id,l.paper_id,l.source_venue,l.authors_raw,l.source_url,l.status,
+        listing_sql = """SELECT l.id,l.paper_id,l.conference_id,l.source_venue,l.authors_raw,l.source_url,l.status,
             p.title,p.year,p.paper_url,c.acronym,c.rank,c.area
             FROM source_listings l JOIN award_papers p ON p.id=l.paper_id
             LEFT JOIN conferences c ON c.id=l.conference_id
@@ -300,6 +301,7 @@ def search_paper_records(db, filters):
                 "id": "listing:" + row["id"], "source_kind": "source_listing",
                 "title": row["title"], "acronym": row["acronym"] or row["source_venue"],
                 "rank": row["rank"], "area": row["area"], "year": row["year"],
+                "conference_id": row["conference_id"],
                 "award_name": None, "award_type": "paper", "category": "paper",
                 "category_label": CATEGORIES["paper"], "student_only": False,
                 "status": row["status"], "authors": [], "authors_raw": row["authors_raw"],

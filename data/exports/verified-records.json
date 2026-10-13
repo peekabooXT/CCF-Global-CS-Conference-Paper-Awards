@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-13T15:33:53+08:00",
+  "generated_at": "2026-10-13T22:20:30+08:00",
   "record_count": 327,
   "records": [
     {
@@ -9276,6 +9276,11 @@
           "role": "award",
           "text": "xUI: extended User Interrupts Berk Aydogmus, Linsong Guo, Danial Zuberi, Tal Garfinkel, Dean Tullsen, Amy Ousterhout, Kazem Taram H-Houdini: Scalable Invariant Learning Sushant Dinesh, Yongye Zhu, Christopher W. Fletcher MetaSapiens: Real-Time Neural Rendering with Efficiency-Aware Pruning and Accelerated Foveated Rendering We",
           "url": "https://www.asplos-conference.org/asplos2025/awards/index.html"
+        },
+        {
+          "id": "supplement-164eda7b1bfbd38d8b29f84d",
+          "role": "award",
+          "url": "https://www.asplos-conference.org/asplos2025/awards/"
         }
       ],
       "record": {

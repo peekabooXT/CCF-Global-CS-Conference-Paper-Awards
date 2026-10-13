@@ -112,6 +112,47 @@ class SupplementTests(unittest.TestCase):
         import_supplement(self.db,self.document)
         self.assertEqual(before,[dict(r) for r in self.db.conn.execute("SELECT * FROM records WHERE status='pending'")])
 
+    def test_shared_fse_acronym_uses_conference_ids_not_alias_order(self):
+        choices=[r for r in self.db.conferences() if r['acronym']=='FSE']
+        self.assertEqual(len(choices),2)
+        for i, conference in enumerate(choices):
+            doc=copy.deepcopy(self.document)
+            doc['source_sha256']=str(i+1)*64
+            doc['records'][0]['conference_id']=conference['id']
+            stats=import_supplement(self.db,doc)
+            self.assertEqual(stats['new_papers'],1)
+            self.assertEqual(import_supplement(self.db,doc)['new_papers'],0)
+        self.assertEqual(self.db.conn.execute('SELECT COUNT(*) FROM award_papers').fetchone()[0],2)
+        links=self.db.conn.execute('''SELECT e.conference_id,x.paper_id FROM award_events e
+            JOIN award_event_papers x ON e.id=x.event_id''').fetchall()
+        self.assertEqual(len({r['conference_id'] for r in links}),2)
+        self.assertEqual(len({r['paper_id'] for r in links}),2)
+        results=search_papers(self.db,{'status':'verified'})
+        self.assertEqual(len(results),2)
+        self.assertEqual({r['conference_id'] for r in results},{r['id'] for r in choices})
+        from global_cs_paper_awards_agent.public_data import public_snapshot
+        snapshot=public_snapshot(self.db)
+        self.assertEqual(len(snapshot['tables']['award_papers']),2)
+        self.assertEqual(len(snapshot['tables']['award_events']),2)
+
+    def test_shared_fse_acronym_core_snapshot_does_not_cross_link(self):
+        from global_cs_paper_awards_agent.public_data import public_snapshot
+        sample=Path(__file__).resolve().parents[1]/'examples/sample-acl-2024.json'
+        choices=[r for r in self.db.conferences() if r['acronym']=='FSE']
+        for conference in choices:
+            bundle=json.loads(sample.read_text(encoding='utf-8'))
+            bundle['conference_id']=conference['id']
+            result=self.db.ingest(bundle)
+            self.assertFalse(result['rejected'])
+            for rid in result['record_ids']:
+                self.db.review(rid,'verified','test','Synthetic fixture for conference identity')
+        snapshot=public_snapshot(self.db)
+        self.assertEqual(len(snapshot['tables']['award_papers']),2)
+        self.assertEqual(len(snapshot['tables']['award_events']),2)
+        self.assertEqual({r['conference_id'] for r in snapshot['tables']['award_events']},
+                         {r['id'] for r in choices})
+        self.assertEqual(len({r['paper_id'] for r in snapshot['tables']['award_event_papers']}),2)
+
 
 if __name__=='__main__':
     unittest.main()

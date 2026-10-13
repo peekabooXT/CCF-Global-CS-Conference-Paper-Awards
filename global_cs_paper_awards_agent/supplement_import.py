@@ -44,9 +44,26 @@ def import_supplement(db, document):
                  annotations=0, paper_urls_updated=0, core_records_updated=0)
     conferences = {r['id']: r['acronym'] for r in db.conn.execute('SELECT id,acronym FROM conferences')}
     aliases = _alias_map(db.conn)
+    # An acronym can name distinct conferences (e.g. FSE in software engineering
+    # and cryptography). Existing event/listing IDs take precedence over aliases.
+    acronym_ids = defaultdict(set)
+    for cid, acronym in conferences.items():
+        acronym_ids[norm(acronym)].add(cid)
+    paper_cids = defaultdict(set)
+    for r in db.conn.execute('''SELECT DISTINCT x.paper_id,e.conference_id
+            FROM award_event_papers x JOIN award_events e ON e.id=x.event_id
+            WHERE e.conference_id IS NOT NULL
+            UNION SELECT paper_id,conference_id FROM source_listings
+            WHERE conference_id IS NOT NULL'''):
+        paper_cids[r['paper_id']].add(r['conference_id'])
     papers = defaultdict(list)
     for p in db.conn.execute('SELECT * FROM award_papers'):
-        papers[(aliases.get(norm(p['venue']), norm(p['venue'])), p['year'], keytext(p['title']))].append(dict(p))
+        cids = paper_cids[p['id']]
+        if not cids and len(acronym_ids[norm(p['venue'])]) > 1:
+            # No reliable conference association: leave it for explicit review.
+            continue
+        for cid in cids or {aliases.get(norm(p['venue']), norm(p['venue']))}:
+            papers[(cid, p['year'], keytext(p['title']))].append(dict(p))
     core = defaultdict(list)
     for r in db.conn.execute("SELECT * FROM records WHERE status='verified'"):
         core[(r['conference_id'], r['year'], keytext(r['title']))].append(dict(r))
@@ -96,7 +113,7 @@ def import_supplement(db, document):
                 paper = matches[0]
                 pid = paper['id']
             else:
-                pid = _id(venue, year, norm(title))
+                pid = _id(cid if len(acronym_ids[norm(venue)]) > 1 else venue, year, norm(title))
                 paper = dict(id=pid, venue=venue, year=year, title=title,
                              authors_raw=row.get('authors_raw'), paper_url=None)
                 db.conn.execute('INSERT INTO award_papers VALUES (?,?,?,?,?,?)', tuple(paper.values()))
@@ -115,7 +132,8 @@ def import_supplement(db, document):
             candidates = [dict(e) for e in db.conn.execute('''SELECT DISTINCT e.* FROM award_events e
                 JOIN award_event_papers x ON x.event_id=e.id
                 WHERE x.paper_id=? AND x.status='verified' ORDER BY e.id''', (pid,))
-                if classify_award(e['official_award_name'])['category'] == category['category']]
+                if e['conference_id'] == cid
+                and classify_award(e['official_award_name'])['category'] == category['category']]
             exact = [e for e in candidates if norm(e['official_award_name']) == norm(name)]
             # Generic workbook labels supplement existing specific track names.
             selected = (exact or candidates)
@@ -127,7 +145,7 @@ def import_supplement(db, document):
                     if classify_award(json.loads(r['payload']).get('award_name'))['category'] == category['category']]
                 if same_category_core:
                     name = json.loads(same_category_core[0]['payload']).get('award_name') or name
-                eid = _id(venue, year, norm(name))
+                eid = _id(cid if len(acronym_ids[norm(venue)]) > 1 else venue, year, norm(name))
                 if not db.conn.execute('SELECT 1 FROM award_events WHERE id=?', (eid,)).fetchone():
                     label = classify_award(name)
                     db.conn.execute('INSERT INTO award_events VALUES (?,?,?,?,?,?,?,?,?)',

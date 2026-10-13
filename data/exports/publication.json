@@ -1,14 +1,14 @@
 {
-  "release_id": "2bbeed3c94b3494e867a84f59a10e729",
-  "published_at": "2026-10-13T15:33:53+08:00",
+  "release_id": "e7eee9c98320470cbf1b4cc01a621f77",
+  "published_at": "2026-10-13T22:20:30+08:00",
   "timezone": "Asia/Shanghai",
   "counts": {
     "records": 327,
-    "award_events": 888,
-    "award_papers": 3022,
-    "award_event_papers": 2113,
+    "award_events": 2180,
+    "award_papers": 5008,
+    "award_event_papers": 4107,
     "source_listings": 1947,
     "source_listing_records": 86
   },
-  "paper_results": 3021
+  "paper_results": 5007
 }

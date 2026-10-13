@@ -1,0 +1,18 @@
+{
+  "total": 2579,
+  "status_counts": {
+    "award_verified": 1993,
+    "award_relation_unconfirmed": 253,
+    "title_not_located": 59,
+    "source_unavailable": 211,
+    "award_policy_review": 57,
+    "award_scope_conflict": 6
+  },
+  "metadata_changed": 1091,
+  "sources_fetched": 344,
+  "protocol": "No generic title-only acceptance; explicit source-specific award/year parsing; all uncertainties excluded from publication",
+  "completed_at": "2026-10-13T22:19:31+08:00",
+  "bibliographic_records_completed": 765,
+  "ambiguous_bibliographic_versions": 16,
+  "verified_with_missing_metadata": 753
+}

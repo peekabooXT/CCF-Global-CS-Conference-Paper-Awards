@@ -102,21 +102,36 @@ def public_snapshot(db, published_at=None, release_id=None):
     paper_ids = {r["paper_id"] for r in [*links, *listings]}
     papers = {r["id"]: r for r in _rows(db.conn, "award_papers") if r["id"] in paper_ids}
     aliases = conference_aliases(db.conn)
-    paper_keys = {paper_identity(aliases,r['venue'],r['year'],r['title']):r['id'] for r in papers.values()}
-    event_keys = {(norm(r["venue"]), r["year"], norm(r["official_award_name"])): r["id"] for r in events.values()}
+    paper_conferences = {}
+    for link in links:
+        cid = events[link['event_id']].get('conference_id')
+        if cid:
+            paper_conferences.setdefault(link['paper_id'], set()).add(cid)
+    for listing in listings:
+        if listing.get('conference_id'):
+            paper_conferences.setdefault(listing['paper_id'], set()).add(listing['conference_id'])
+    paper_keys = {}
+    for paper in papers.values():
+        for cid in paper_conferences.get(paper['id'], {None}):
+            paper_keys[paper_identity(aliases,paper['venue'],paper['year'],paper['title'],cid)] = paper['id']
+    event_keys = {(r.get('conference_id') or norm(r["venue"]), r["year"], norm(r["official_award_name"])): r["id"] for r in events.values()}
+    acronym_ids = {}
+    for conference in tables['conferences']:
+        acronym_ids.setdefault(norm(conference['acronym']), set()).add(conference['id'])
     conference_map = {r["id"]: r for r in tables["conferences"]}
     for row in tables["records"]:
         record = json.loads(row["payload"])
         venue = conference_map[row["conference_id"]]["acronym"]
         name = record.get("award_name") or "来源未提供奖项原名"
-        event_key = (norm(venue), row["year"], norm(name))
-        event_id = event_keys.setdefault(event_key, _id(venue, row["year"], norm(name)))
+        identity_venue = row['conference_id'] if len(acronym_ids[norm(venue)]) > 1 else venue
+        event_key = (row['conference_id'], row["year"], norm(name))
+        event_id = event_keys.setdefault(event_key, _id(identity_venue, row["year"], norm(name)))
         label = classify_award(name)
         events.setdefault(event_id, {"id": event_id, "venue": venue, "conference_id": row["conference_id"],
             "year": row["year"], "official_award_name": name, "category": label["category"],
             "student_only": int(label["student_only"]), "status": "verified", "created_at": row["created_at"]})
-        paper_key = paper_identity(aliases,venue,row['year'],row['title'])
-        paper_id = paper_keys.setdefault(paper_key, _id(venue, row["year"], norm(row["title"])))
+        paper_key = paper_identity(aliases,venue,row['year'],row['title'],row['conference_id'])
+        paper_id = paper_keys.setdefault(paper_key, _id(identity_venue, row["year"], norm(row["title"])))
         papers.setdefault(paper_id, {"id": paper_id, "venue": venue, "year": row["year"], "title": row["title"],
             "authors_raw": "; ".join(a["name"] for a in record.get("authors", [])), "paper_url": record.get("paper_url")})
         if not any(x["event_id"] == event_id and x["paper_id"] == paper_id for x in links):
