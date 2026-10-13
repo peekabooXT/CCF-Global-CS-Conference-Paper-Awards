@@ -1,0 +1,112 @@
+{
+  "format": "user-confirmed-html-award-corrections-v1",
+  "review_status": "verified",
+  "review_basis": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
+  "confirmed_at": "2026-10-13T15:31:04+08:00",
+  "source_html": "获奖论文档案_清理版.html",
+  "source_sha256": "24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b",
+  "records": [
+    {
+      "html_id": "9d49c0f0b41f0b60",
+      "venue": "ACM MM",
+      "year": 2025,
+      "title": "Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
+      "html_original_award_name": "Best Student Paper",
+      "source_url": "https://acmmm2025.org/awards/",
+      "awards": [
+        "Best Student Paper"
+      ],
+      "expected_categories": [
+        "student"
+      ]
+    },
+    {
+      "html_id": "8ad2898092259f3e",
+      "venue": "LICS",
+      "year": 2025,
+      "title": "The Steenrod squares via unordered joins",
+      "html_original_award_name": "Distinguished Paper",
+      "source_url": "https://lics.siglog.org/archive/distinguished-papers.html",
+      "awards": [
+        "Distinguished Paper"
+      ],
+      "expected_categories": [
+        "paper"
+      ]
+    },
+    {
+      "html_id": "4038632bddf07108",
+      "venue": "LICS",
+      "year": 2024,
+      "title": "Relevant S is Undecidable",
+      "html_original_award_name": "Distinguished Paper",
+      "source_url": "https://lics.siglog.org/archive/distinguished-papers.html",
+      "awards": [
+        "Distinguished Paper"
+      ],
+      "expected_categories": [
+        "paper"
+      ]
+    },
+    {
+      "html_id": "055346a81534bf26",
+      "venue": "RECOMB",
+      "year": 2023,
+      "title": "HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2",
+      "html_original_award_name": "Best Paper Award; Best Student / Young Scientist Paper Award",
+      "source_url": "https://recomb.org/awards/",
+      "awards": [
+        "Best Paper Award",
+        "Best Student / Young Scientist Paper Award"
+      ],
+      "expected_categories": [
+        "paper",
+        "student"
+      ]
+    },
+    {
+      "html_id": "6720002f6c29f503",
+      "venue": "LICS",
+      "year": 2023,
+      "title": "The Identity Problem in the special affine group of Z2",
+      "html_original_award_name": "Distinguished Paper",
+      "source_url": "https://lics.siglog.org/archive/distinguished-papers.html",
+      "awards": [
+        "Distinguished Paper"
+      ],
+      "expected_categories": [
+        "paper"
+      ]
+    },
+    {
+      "html_id": "d79fa61d5439421f",
+      "venue": "ESA",
+      "year": 2022,
+      "title": "Improved Search of Relevant Points for Nearest-Neighbor Classification",
+      "html_original_award_name": "Best Student Paper — Track S",
+      "source_url": "https://eatcs.org/index.php/best-student-esa-paper",
+      "awards": [
+        "Best Student Paper — Track S"
+      ],
+      "expected_categories": [
+        "student"
+      ]
+    },
+    {
+      "html_id": "1b4f1ddcd4fa1082",
+      "venue": "SIGMETRICS",
+      "year": 2013,
+      "title": "Queueing System Topologies with Limited Flexibility",
+      "html_original_award_name": "Best Paper Award and the Ken Sevcik Outstanding Student Paper Award",
+      "source_url": "https://www.sigmetrics.org/awards.shtml",
+      "awards": [
+        "Best Paper Award",
+        "Ken Sevcik Outstanding Student Paper Award"
+      ],
+      "expected_categories": [
+        "paper",
+        "student"
+      ]
+    }
+  ]
+}

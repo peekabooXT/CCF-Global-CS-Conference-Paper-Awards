@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "publication": {
-    "release_id": "f029b0015d464aedb0c226155fbc0272",
-    "published_at": "2026-10-13T14:02:47+08:00",
+    "release_id": "2bbeed3c94b3494e867a84f59a10e729",
+    "published_at": "2026-10-13T15:33:53+08:00",
     "timezone": "Asia/Shanghai",
     "counts": {
       "records": 327,
-      "award_events": 885,
+      "award_events": 888,
       "award_papers": 3022,
-      "award_event_papers": 2111,
+      "award_event_papers": 2113,
       "source_listings": 1947,
       "source_listing_records": 86
     },
@@ -2223,15 +2223,15 @@
         "id": "N00042",
         "conference_id": "acm-mm-04fb16",
         "year": 2025,
-        "award_type": "best_paper",
+        "award_type": "best_student_paper",
         "title": "Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
         "date_start": "2025-10-25",
         "date_end": "2025-10-25",
         "status": "verified",
-        "payload": "{\"authors\": [{\"affiliations\": [{\"evidence\": {\"quote\": \"Beijing Academy of Artificial Intelligence\", \"source_id\": \"s1\"}, \"name\": \"Beijing Academy of Artificial Intelligence\"}], \"evidence\": {\"quote\": \"Junyu Gao\", \"source_id\": \"s1\"}, \"name\": \"Junyu Gao\"}, {\"affiliations\": [{\"evidence\": {\"quote\": \"Beijing Academy of Artificial Intelligence\", \"source_id\": \"s1\"}, \"name\": \"Beijing Academy of Artificial Intelligence\"}], \"evidence\": {\"quote\": \"Xuan Yao\", \"source_id\": \"s1\"}, \"name\": \"Xuan Yao\"}, {\"affiliations\": [{\"evidence\": {\"quote\": \"Lenovo (China)\", \"source_id\": \"s1\"}, \"name\": \"Lenovo (China)\"}], \"evidence\": {\"quote\": \"Yong Rui\", \"source_id\": \"s1\"}, \"name\": \"Yong Rui\"}, {\"affiliations\": [{\"evidence\": {\"quote\": \"Beijing Academy of Artificial Intelligence\", \"source_id\": \"s1\"}, \"name\": \"Beijing Academy of Artificial Intelligence\"}], \"evidence\": {\"quote\": \"Changsheng Xu\", \"source_id\": \"s1\"}, \"name\": \"Changsheng Xu\"}], \"award_evidence\": {\"quote\": \"Best Paper Award: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"source_id\": \"s1\"}, \"award_name\": \"Best Paper Award\", \"award_type\": \"best_paper\", \"conference_id\": \"acm-mm-04fb16\", \"date_end\": \"2025-10-25\", \"date_precision\": \"day\", \"date_start\": \"2025-10-25\", \"doi\": \"https://doi.org/10.1145/3746027.3754880\", \"id\": \"N00042\", \"paper_url\": \"http://dl.acm.org/citation.cfm?id=3754880\", \"publication_date\": \"2025-10-25\", \"publication_date_evidence\": {\"quote\": \"2025-10-25\", \"source_id\": \"s1\"}, \"title\": \"Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"title_evidence\": {\"quote\": \"Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2025}",
-        "sources": "[{\"id\": \"s1\", \"role\": \"award\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"https://www.acm.org/conferences/best-paper-awards\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"https://doi.org/10.1145/3746027.3754880\"}, {\"id\": \"s3\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"http://dl.acm.org/citation.cfm?id=3754880\"}]",
+        "payload": "{\"authors\": [{\"affiliations\": [{\"evidence\": {\"quote\": \"Beijing Academy of Artificial Intelligence\", \"source_id\": \"s1\"}, \"name\": \"Beijing Academy of Artificial Intelligence\"}], \"evidence\": {\"quote\": \"Junyu Gao\", \"source_id\": \"s1\"}, \"name\": \"Junyu Gao\"}, {\"affiliations\": [{\"evidence\": {\"quote\": \"Beijing Academy of Artificial Intelligence\", \"source_id\": \"s1\"}, \"name\": \"Beijing Academy of Artificial Intelligence\"}], \"evidence\": {\"quote\": \"Xuan Yao\", \"source_id\": \"s1\"}, \"name\": \"Xuan Yao\"}, {\"affiliations\": [{\"evidence\": {\"quote\": \"Lenovo (China)\", \"source_id\": \"s1\"}, \"name\": \"Lenovo (China)\"}], \"evidence\": {\"quote\": \"Yong Rui\", \"source_id\": \"s1\"}, \"name\": \"Yong Rui\"}, {\"affiliations\": [{\"evidence\": {\"quote\": \"Beijing Academy of Artificial Intelligence\", \"source_id\": \"s1\"}, \"name\": \"Beijing Academy of Artificial Intelligence\"}], \"evidence\": {\"quote\": \"Changsheng Xu\", \"source_id\": \"s1\"}, \"name\": \"Changsheng Xu\"}], \"award_evidence\": {\"quote\": \"ACM MM 2025 / Best Student Paper: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"source_id\": \"html-confirmed-9d49c0f0b41f0b60\"}, \"award_name\": \"Best Student Paper\", \"award_type\": \"best_student_paper\", \"conference_id\": \"acm-mm-04fb16\", \"date_end\": \"2025-10-25\", \"date_precision\": \"day\", \"date_start\": \"2025-10-25\", \"doi\": \"https://doi.org/10.1145/3746027.3754880\", \"id\": \"N00042\", \"paper_url\": \"http://dl.acm.org/citation.cfm?id=3754880\", \"publication_date\": \"2025-10-25\", \"publication_date_evidence\": {\"quote\": \"2025-10-25\", \"source_id\": \"s1\"}, \"title\": \"Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"title_evidence\": {\"quote\": \"Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2025}",
+        "sources": "[{\"id\": \"s1\", \"prior_role\": \"award\", \"role\": \"metadata\", \"superseded_by\": \"html-confirmed-9d49c0f0b41f0b60\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"https://www.acm.org/conferences/best-paper-awards\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"https://doi.org/10.1145/3746027.3754880\"}, {\"id\": \"s3\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"http://dl.acm.org/citation.cfm?id=3754880\"}, {\"id\": \"html-confirmed-9d49c0f0b41f0b60\", \"review_basis\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"role\": \"award\", \"text\": \"User-confirmed HTML award row: ACM MM 2025 / Best Student Paper: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"url\": \"https://acmmm2025.org/awards/\"}]",
         "created_at": "2026-09-15T14:46:14+00:00",
-        "updated_at": "2026-09-15T14:46:14+00:00",
+        "updated_at": "2026-10-13T15:31:04+08:00",
         "reviewer": null,
         "review_note": null
       },
@@ -5316,10 +5316,10 @@
         "date_start": null,
         "date_end": null,
         "status": "verified",
-        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Sara C. Schulte\", \"source_id\": \"s1\"}, \"name\": \"Sara C. Schulte\"}, {\"affiliations\": [], \"evidence\": {\"quote\": \"Alexander Dilthey\", \"source_id\": \"s1\"}, \"name\": \"Alexander Dilthey\"}, {\"affiliations\": [], \"evidence\": {\"quote\": \"Gunnar W. Klau\", \"source_id\": \"s1\"}, \"name\": \"Gunnar W. Klau\"}], \"award_evidence\": {\"quote\": \"Best Paper Award: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"source_id\": \"s1\"}, \"award_name\": \"Best Paper Award\", \"award_type\": \"best_paper\", \"conference_id\": \"recomb-b4b666\", \"date_end\": null, \"date_precision\": \"unknown\", \"date_start\": null, \"doi\": null, \"id\": \"P00564\", \"paper_url\": \"https://www.biorxiv.org/content/10.1101/2023.01.09.523288v1\", \"publication_date\": null, \"publication_date_evidence\": null, \"title\": \"HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"title_evidence\": {\"quote\": \"HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2023}",
-        "sources": "[{\"id\": \"s1\", \"role\": \"award\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"url\": \"https://recomb.org/awards/\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"url\": \"https://www.biorxiv.org/content/10.1101/2023.01.09.523288v1\"}]",
+        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Sara C. Schulte\", \"source_id\": \"s1\"}, \"name\": \"Sara C. Schulte\"}, {\"affiliations\": [], \"evidence\": {\"quote\": \"Alexander Dilthey\", \"source_id\": \"s1\"}, \"name\": \"Alexander Dilthey\"}, {\"affiliations\": [], \"evidence\": {\"quote\": \"Gunnar W. Klau\", \"source_id\": \"s1\"}, \"name\": \"Gunnar W. Klau\"}], \"award_evidence\": {\"quote\": \"RECOMB 2023 / Best Paper Award: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"source_id\": \"html-confirmed-055346a81534bf26\"}, \"award_name\": \"Best Paper Award\", \"award_type\": \"best_paper\", \"conference_id\": \"recomb-b4b666\", \"date_end\": null, \"date_precision\": \"unknown\", \"date_start\": null, \"doi\": null, \"id\": \"P00564\", \"paper_url\": \"https://www.biorxiv.org/content/10.1101/2023.01.09.523288v1\", \"publication_date\": null, \"publication_date_evidence\": null, \"title\": \"HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"title_evidence\": {\"quote\": \"HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2023}",
+        "sources": "[{\"id\": \"s1\", \"role\": \"award\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"url\": \"https://recomb.org/awards/\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"url\": \"https://www.biorxiv.org/content/10.1101/2023.01.09.523288v1\"}, {\"id\": \"html-confirmed-055346a81534bf26\", \"review_basis\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"role\": \"award\", \"text\": \"User-confirmed HTML award row: RECOMB 2023 / Best Paper Award: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"url\": \"https://recomb.org/awards/\"}]",
         "created_at": "2026-09-15T14:46:14+00:00",
-        "updated_at": "2026-09-15T14:46:14+00:00",
+        "updated_at": "2026-10-13T15:31:04+08:00",
         "reviewer": null,
         "review_note": null
       },
@@ -5487,15 +5487,15 @@
         "id": "P00612",
         "conference_id": "lics-9f247f",
         "year": 2025,
-        "award_type": "best_student_paper",
+        "award_type": "best_paper",
         "title": "The Steenrod squares via unordered joins",
         "date_start": "2025-06-01",
         "date_end": "2025-06-30",
         "status": "verified",
-        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Axel Ljungström\", \"source_id\": \"s1\"}, \"name\": \"Axel Ljungström\"}, {\"affiliations\": [], \"evidence\": {\"quote\": \"David Wärn\", \"source_id\": \"s1\"}, \"name\": \"David Wärn\"}], \"award_evidence\": {\"quote\": \"Kleene Award for the Best Student Paper: The Steenrod squares via unordered joins\", \"source_id\": \"s1\"}, \"award_name\": \"Kleene Award for the Best Student Paper\", \"award_type\": \"best_student_paper\", \"conference_id\": \"lics-9f247f\", \"date_end\": \"2025-06-30\", \"date_precision\": \"month\", \"date_start\": \"2025-06-01\", \"doi\": null, \"id\": \"P00612\", \"paper_url\": \"https://lics.siglog.org/archive/2025/LjungstromWarn-TheSteenrodsquaresv.html\", \"publication_date\": \"2025-06\", \"publication_date_evidence\": {\"quote\": \"2025-06\", \"source_id\": \"s1\"}, \"title\": \"The Steenrod squares via unordered joins\", \"title_evidence\": {\"quote\": \"The Steenrod squares via unordered joins\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2025}",
-        "sources": "[{\"id\": \"s1\", \"role\": \"award\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Steenrod squares via unordered joins\", \"url\": \"https://lics.siglog.org/archive/kleene-award.html\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Steenrod squares via unordered joins\", \"url\": \"https://lics.siglog.org/archive/2025/LjungstromWarn-TheSteenrodsquaresv.html\"}]",
+        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Axel Ljungström\", \"source_id\": \"s1\"}, \"name\": \"Axel Ljungström\"}, {\"affiliations\": [], \"evidence\": {\"quote\": \"David Wärn\", \"source_id\": \"s1\"}, \"name\": \"David Wärn\"}], \"award_evidence\": {\"quote\": \"LICS 2025 / Distinguished Paper: The Steenrod squares via unordered joins\", \"source_id\": \"html-confirmed-8ad2898092259f3e\"}, \"award_name\": \"Distinguished Paper\", \"award_type\": \"best_paper\", \"conference_id\": \"lics-9f247f\", \"date_end\": \"2025-06-30\", \"date_precision\": \"month\", \"date_start\": \"2025-06-01\", \"doi\": null, \"id\": \"P00612\", \"paper_url\": \"https://lics.siglog.org/archive/2025/LjungstromWarn-TheSteenrodsquaresv.html\", \"publication_date\": \"2025-06\", \"publication_date_evidence\": {\"quote\": \"2025-06\", \"source_id\": \"s1\"}, \"title\": \"The Steenrod squares via unordered joins\", \"title_evidence\": {\"quote\": \"The Steenrod squares via unordered joins\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2025}",
+        "sources": "[{\"id\": \"s1\", \"prior_role\": \"award\", \"role\": \"metadata\", \"superseded_by\": \"html-confirmed-8ad2898092259f3e\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Steenrod squares via unordered joins\", \"url\": \"https://lics.siglog.org/archive/kleene-award.html\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Steenrod squares via unordered joins\", \"url\": \"https://lics.siglog.org/archive/2025/LjungstromWarn-TheSteenrodsquaresv.html\"}, {\"id\": \"html-confirmed-8ad2898092259f3e\", \"review_basis\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"role\": \"award\", \"text\": \"User-confirmed HTML award row: LICS 2025 / Distinguished Paper: The Steenrod squares via unordered joins\", \"url\": \"https://lics.siglog.org/archive/distinguished-papers.html\"}]",
         "created_at": "2026-09-15T14:46:14+00:00",
-        "updated_at": "2026-09-15T14:46:14+00:00",
+        "updated_at": "2026-10-13T15:31:04+08:00",
         "reviewer": null,
         "review_note": null
       },
@@ -5503,15 +5503,15 @@
         "id": "P00613",
         "conference_id": "lics-9f247f",
         "year": 2024,
-        "award_type": "best_student_paper",
+        "award_type": "best_paper",
         "title": "Relevant S is Undecidable",
         "date_start": "2024-07-01",
         "date_end": "2024-07-31",
         "status": "verified",
-        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Søren Brinck Knudstorp\", \"source_id\": \"s1\"}, \"name\": \"Søren Brinck Knudstorp\"}], \"award_evidence\": {\"quote\": \"Kleene Award for the Best Student Paper: Relevant S is Undecidable\", \"source_id\": \"s1\"}, \"award_name\": \"Kleene Award for the Best Student Paper\", \"award_type\": \"best_student_paper\", \"conference_id\": \"lics-9f247f\", \"date_end\": \"2024-07-31\", \"date_precision\": \"month\", \"date_start\": \"2024-07-01\", \"doi\": null, \"id\": \"P00613\", \"paper_url\": \"https://lics.siglog.org/archive/2024/Knudstorp-RelevantSisUndecida.html\", \"publication_date\": \"2024-07\", \"publication_date_evidence\": {\"quote\": \"2024-07\", \"source_id\": \"s1\"}, \"title\": \"Relevant S is Undecidable\", \"title_evidence\": {\"quote\": \"Relevant S is Undecidable\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2024}",
-        "sources": "[{\"id\": \"s1\", \"role\": \"award\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Relevant S is Undecidable\", \"url\": \"https://lics.siglog.org/archive/kleene-award.html\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Relevant S is Undecidable\", \"url\": \"https://lics.siglog.org/archive/2024/Knudstorp-RelevantSisUndecida.html\"}]",
+        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Søren Brinck Knudstorp\", \"source_id\": \"s1\"}, \"name\": \"Søren Brinck Knudstorp\"}], \"award_evidence\": {\"quote\": \"LICS 2024 / Distinguished Paper: Relevant S is Undecidable\", \"source_id\": \"html-confirmed-4038632bddf07108\"}, \"award_name\": \"Distinguished Paper\", \"award_type\": \"best_paper\", \"conference_id\": \"lics-9f247f\", \"date_end\": \"2024-07-31\", \"date_precision\": \"month\", \"date_start\": \"2024-07-01\", \"doi\": null, \"id\": \"P00613\", \"paper_url\": \"https://lics.siglog.org/archive/2024/Knudstorp-RelevantSisUndecida.html\", \"publication_date\": \"2024-07\", \"publication_date_evidence\": {\"quote\": \"2024-07\", \"source_id\": \"s1\"}, \"title\": \"Relevant S is Undecidable\", \"title_evidence\": {\"quote\": \"Relevant S is Undecidable\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2024}",
+        "sources": "[{\"id\": \"s1\", \"prior_role\": \"award\", \"role\": \"metadata\", \"superseded_by\": \"html-confirmed-4038632bddf07108\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Relevant S is Undecidable\", \"url\": \"https://lics.siglog.org/archive/kleene-award.html\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Relevant S is Undecidable\", \"url\": \"https://lics.siglog.org/archive/2024/Knudstorp-RelevantSisUndecida.html\"}, {\"id\": \"html-confirmed-4038632bddf07108\", \"review_basis\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"role\": \"award\", \"text\": \"User-confirmed HTML award row: LICS 2024 / Distinguished Paper: Relevant S is Undecidable\", \"url\": \"https://lics.siglog.org/archive/distinguished-papers.html\"}]",
         "created_at": "2026-09-15T14:46:14+00:00",
-        "updated_at": "2026-09-15T14:46:14+00:00",
+        "updated_at": "2026-10-13T15:31:04+08:00",
         "reviewer": null,
         "review_note": null
       },
@@ -5519,15 +5519,15 @@
         "id": "P00614",
         "conference_id": "lics-9f247f",
         "year": 2023,
-        "award_type": "best_student_paper",
+        "award_type": "best_paper",
         "title": "The Identity Problem in the special affine group of Z2",
         "date_start": "2023-06-01",
         "date_end": "2023-06-30",
         "status": "verified",
-        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Ruiwen Dong\", \"source_id\": \"s1\"}, \"name\": \"Ruiwen Dong\"}], \"award_evidence\": {\"quote\": \"Kleene Award for the Best Student Paper: The Identity Problem in the special affine group of Z2\", \"source_id\": \"s1\"}, \"award_name\": \"Kleene Award for the Best Student Paper\", \"award_type\": \"best_student_paper\", \"conference_id\": \"lics-9f247f\", \"date_end\": \"2023-06-30\", \"date_precision\": \"month\", \"date_start\": \"2023-06-01\", \"doi\": null, \"id\": \"P00614\", \"paper_url\": \"https://lics.siglog.org/archive/2023/Dong-TheIdentityProblemi.html\", \"publication_date\": \"2023-06\", \"publication_date_evidence\": {\"quote\": \"2023-06\", \"source_id\": \"s1\"}, \"title\": \"The Identity Problem in the special affine group of Z2\", \"title_evidence\": {\"quote\": \"The Identity Problem in the special affine group of Z2\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2023}",
-        "sources": "[{\"id\": \"s1\", \"role\": \"award\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Identity Problem in the special affine group of Z2\", \"url\": \"https://lics.siglog.org/archive/kleene-award.html\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Identity Problem in the special affine group of Z2\", \"url\": \"https://lics.siglog.org/archive/2023/Dong-TheIdentityProblemi.html\"}]",
+        "payload": "{\"authors\": [{\"affiliations\": [], \"evidence\": {\"quote\": \"Ruiwen Dong\", \"source_id\": \"s1\"}, \"name\": \"Ruiwen Dong\"}], \"award_evidence\": {\"quote\": \"LICS 2023 / Distinguished Paper: The Identity Problem in the special affine group of Z2\", \"source_id\": \"html-confirmed-6720002f6c29f503\"}, \"award_name\": \"Distinguished Paper\", \"award_type\": \"best_paper\", \"conference_id\": \"lics-9f247f\", \"date_end\": \"2023-06-30\", \"date_precision\": \"month\", \"date_start\": \"2023-06-01\", \"doi\": null, \"id\": \"P00614\", \"paper_url\": \"https://lics.siglog.org/archive/2023/Dong-TheIdentityProblemi.html\", \"publication_date\": \"2023-06\", \"publication_date_evidence\": {\"quote\": \"2023-06\", \"source_id\": \"s1\"}, \"title\": \"The Identity Problem in the special affine group of Z2\", \"title_evidence\": {\"quote\": \"The Identity Problem in the special affine group of Z2\", \"source_id\": \"s1\"}, \"track\": \"\", \"workbook_source\": \"CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx\", \"year\": 2023}",
+        "sources": "[{\"id\": \"s1\", \"prior_role\": \"award\", \"role\": \"metadata\", \"superseded_by\": \"html-confirmed-6720002f6c29f503\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Identity Problem in the special affine group of Z2\", \"url\": \"https://lics.siglog.org/archive/kleene-award.html\"}, {\"id\": \"s2\", \"role\": \"metadata\", \"text\": \"Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Identity Problem in the special affine group of Z2\", \"url\": \"https://lics.siglog.org/archive/2023/Dong-TheIdentityProblemi.html\"}, {\"id\": \"html-confirmed-6720002f6c29f503\", \"review_basis\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"role\": \"award\", \"text\": \"User-confirmed HTML award row: LICS 2023 / Distinguished Paper: The Identity Problem in the special affine group of Z2\", \"url\": \"https://lics.siglog.org/archive/distinguished-papers.html\"}]",
         "created_at": "2026-09-15T14:46:14+00:00",
-        "updated_at": "2026-09-15T14:46:14+00:00",
+        "updated_at": "2026-10-13T15:31:04+08:00",
         "reviewer": null,
         "review_note": null
       },
@@ -6791,17 +6791,6 @@
         "student_only": 0,
         "status": "verified",
         "created_at": "2026-10-08T15:56:35+00:00"
-      },
-      {
-        "id": "00313d2173f754054dfcaa61",
-        "venue": "LICS",
-        "conference_id": "lics-9f247f",
-        "year": 2025,
-        "official_award_name": "Kleene Award for the Best Student Paper",
-        "category": "student",
-        "student_only": 1,
-        "status": "verified",
-        "created_at": "2026-09-18T13:59:15+00:00"
       },
       {
         "id": "01848877f6cb265f13d3cf41",
@@ -8597,6 +8586,17 @@
         "created_at": "2026-09-29 03:57:44"
       },
       {
+        "id": "2b9e424b30727f8b06b09e28",
+        "venue": "LICS",
+        "conference_id": "lics-9f247f",
+        "year": 2023,
+        "official_award_name": "Distinguished Paper",
+        "category": "paper",
+        "student_only": 0,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
+      },
+      {
         "id": "2c571dde4d0decfc03afe1ff",
         "venue": "SIGMOD",
         "conference_id": "sigmod-882ab4",
@@ -10104,6 +10104,17 @@
         "created_at": "2026-09-29 03:57:44"
       },
       {
+        "id": "563b4596efbc686e3588cbc6",
+        "venue": "RECOMB",
+        "conference_id": "recomb-b4b666",
+        "year": 2023,
+        "official_award_name": "Best Student / Young Scientist Paper Award",
+        "category": "student",
+        "student_only": 1,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
+      },
+      {
         "id": "564e846a2f79c02cb70ce9eb",
         "venue": "USENIX Security",
         "conference_id": "usenix-security-92ae50",
@@ -10144,17 +10155,6 @@
         "official_award_name": "AAAI-23 Distinguished Paper Award",
         "category": "distinguished",
         "student_only": 0,
-        "status": "verified",
-        "created_at": "2026-09-29 03:57:44"
-      },
-      {
-        "id": "570714299c95ae0fac0ebfae",
-        "venue": "SIGMETRICS",
-        "conference_id": "sigmetrics-cb3bbd",
-        "year": 2013,
-        "official_award_name": "Best Paper Award and the Ken Sevcik Outstanding Student Paper Award",
-        "category": "outstanding",
-        "student_only": 1,
         "status": "verified",
         "created_at": "2026-09-29 03:57:44"
       },
@@ -10423,17 +10423,6 @@
         "created_at": "2026-09-29 03:57:44"
       },
       {
-        "id": "5d72375456494b67c2da8b18",
-        "venue": "LICS",
-        "conference_id": "lics-9f247f",
-        "year": 2023,
-        "official_award_name": "Kleene Award for the Best Student Paper",
-        "category": "student",
-        "student_only": 1,
-        "status": "verified",
-        "created_at": "2026-09-18T13:59:15+00:00"
-      },
-      {
         "id": "5d97822433187f800e91f4e1",
         "venue": "HotStorage",
         "conference_id": null,
@@ -10443,17 +10432,6 @@
         "student_only": 0,
         "status": "verified",
         "created_at": "2026-09-29 03:57:44"
-      },
-      {
-        "id": "5dd289e051f1dd948a948e08",
-        "venue": "ESA",
-        "conference_id": "esa-c703e4",
-        "year": 2022,
-        "official_award_name": "Best Paper Award (Track S)",
-        "category": "paper",
-        "student_only": 0,
-        "status": "verified",
-        "created_at": "2026-10-08T15:56:35+00:00"
       },
       {
         "id": "5e05c24045f9a6ed011deeb7",
@@ -11248,6 +11226,28 @@
         "created_at": "2026-09-29 03:57:44"
       },
       {
+        "id": "760638147837d0541083193d",
+        "venue": "ESA",
+        "conference_id": "esa-c703e4",
+        "year": 2022,
+        "official_award_name": "Best Student Paper — Track S",
+        "category": "student",
+        "student_only": 1,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
+      },
+      {
+        "id": "764f530a8ab5ce5fb1cecae5",
+        "venue": "ACM MM",
+        "conference_id": "acm-mm-04fb16",
+        "year": 2025,
+        "official_award_name": "Best Student Paper",
+        "category": "student",
+        "student_only": 1,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
+      },
+      {
         "id": "76a49c846128636c99eeb97a",
         "venue": "KDD",
         "conference_id": "sigkdd-5c6996",
@@ -12040,6 +12040,17 @@
         "created_at": "2026-09-29 03:57:44"
       },
       {
+        "id": "8aa99838e0d741e4143c009e",
+        "venue": "LICS",
+        "conference_id": "lics-9f247f",
+        "year": 2024,
+        "official_award_name": "Distinguished Paper",
+        "category": "paper",
+        "student_only": 0,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
+      },
+      {
         "id": "8ad8fc783a5b5ee6233d8de2",
         "venue": "ISWC",
         "conference_id": "iswc-db8582",
@@ -12203,6 +12214,17 @@
         "student_only": 0,
         "status": "verified",
         "created_at": "2026-09-29 03:57:44"
+      },
+      {
+        "id": "901eba31c715d5996c59b8c5",
+        "venue": "SIGMETRICS",
+        "conference_id": "sigmetrics-cb3bbd",
+        "year": 2013,
+        "official_award_name": "Best Paper Award",
+        "category": "paper",
+        "student_only": 0,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
       },
       {
         "id": "90b835c9e060dca3a63b4a0f",
@@ -14350,17 +14372,6 @@
         "created_at": "2026-09-29 03:57:44"
       },
       {
-        "id": "c70865e017d2c60de0107ea2",
-        "venue": "LICS",
-        "conference_id": "lics-9f247f",
-        "year": 2024,
-        "official_award_name": "Kleene Award for the Best Student Paper",
-        "category": "student",
-        "student_only": 1,
-        "status": "verified",
-        "created_at": "2026-09-18T13:59:15+00:00"
-      },
-      {
         "id": "c70920fcc2c14f08ce8a16c6",
         "venue": "ISWC",
         "conference_id": "iswc-db8582",
@@ -14414,6 +14425,17 @@
         "student_only": 1,
         "status": "verified",
         "created_at": "2026-09-29 03:57:44"
+      },
+      {
+        "id": "c8ce5f87dc83503c63cd21a3",
+        "venue": "LICS",
+        "conference_id": "lics-9f247f",
+        "year": 2025,
+        "official_award_name": "Distinguished Paper",
+        "category": "paper",
+        "student_only": 0,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
       },
       {
         "id": "c9123b1e97c75fa1a27db260",
@@ -15778,6 +15800,17 @@
         "student_only": 0,
         "status": "verified",
         "created_at": "2026-10-08T15:56:35+00:00"
+      },
+      {
+        "id": "f12f05f2e54d9b9fc04326ff",
+        "venue": "SIGMETRICS",
+        "conference_id": "sigmetrics-cb3bbd",
+        "year": 2013,
+        "official_award_name": "Ken Sevcik Outstanding Student Paper Award",
+        "category": "student",
+        "student_only": 1,
+        "status": "verified",
+        "created_at": "2026-10-13T15:31:04+08:00"
       },
       {
         "id": "f18ae453c2996914f2b641b8",
@@ -40697,6 +40730,96 @@
     ],
     "award_event_papers": [
       {
+        "annotation_id": "html-correction:03012c55fa536b8947e83a14",
+        "event_id": "2b9e424b30727f8b06b09e28",
+        "paper_id": "daa2db20719eaaf75747be98",
+        "source_url": "https://lics.siglog.org/archive/distinguished-papers.html",
+        "source_page_id": "html:6720002f6c29f503",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"6720002f6c29f503\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Distinguished Paper\", \"award_name\": \"Distinguished Paper\", \"title\": \"The Identity Problem in the special affine group of Z2\", \"year\": 2023, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:0f2cdf838e4c3414bf96a1f1",
+        "event_id": "563b4596efbc686e3588cbc6",
+        "paper_id": "ebfd3dff893aef777f2ffb26",
+        "source_url": "https://recomb.org/awards/",
+        "source_page_id": "html:055346a81534bf26",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"055346a81534bf26\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Best Paper Award; Best Student / Young Scientist Paper Award\", \"award_name\": \"Best Student / Young Scientist Paper Award\", \"title\": \"HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"year\": 2023, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:15d48d98d77a535c75dd5cf9",
+        "event_id": "764f530a8ab5ce5fb1cecae5",
+        "paper_id": "2abd122e9588ad77300a037c",
+        "source_url": "https://acmmm2025.org/awards/",
+        "source_page_id": "html:9d49c0f0b41f0b60",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"9d49c0f0b41f0b60\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Best Student Paper\", \"award_name\": \"Best Student Paper\", \"title\": \"Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"year\": 2025, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:2966ebe80f39e8d7ce6e0d2c",
+        "event_id": "c8ce5f87dc83503c63cd21a3",
+        "paper_id": "c6560bed2e70c0510fcb9918",
+        "source_url": "https://lics.siglog.org/archive/distinguished-papers.html",
+        "source_page_id": "html:8ad2898092259f3e",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"8ad2898092259f3e\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Distinguished Paper\", \"award_name\": \"Distinguished Paper\", \"title\": \"The Steenrod squares via unordered joins\", \"year\": 2025, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:4d7549c7b600bae50d86f25a",
+        "event_id": "8aa99838e0d741e4143c009e",
+        "paper_id": "417ce646c553a371f76ffc8e",
+        "source_url": "https://lics.siglog.org/archive/distinguished-papers.html",
+        "source_page_id": "html:4038632bddf07108",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"4038632bddf07108\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Distinguished Paper\", \"award_name\": \"Distinguished Paper\", \"title\": \"Relevant S is Undecidable\", \"year\": 2024, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:91821ec6be1614d731335280",
+        "event_id": "760638147837d0541083193d",
+        "paper_id": "80a208c224db537feeb5e375",
+        "source_url": "https://eatcs.org/index.php/best-student-esa-paper",
+        "source_page_id": "html:d79fa61d5439421f",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"d79fa61d5439421f\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Best Student Paper — Track S\", \"award_name\": \"Best Student Paper — Track S\", \"title\": \"Improved Search of Relevant Points for Nearest-Neighbor Classification\", \"year\": 2022, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:b358aca3be73d2f68d08f7f7",
+        "event_id": "d6f092d0bc741e65834cc4b0",
+        "paper_id": "ebfd3dff893aef777f2ffb26",
+        "source_url": "https://recomb.org/awards/",
+        "source_page_id": "html:055346a81534bf26",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"055346a81534bf26\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Best Paper Award; Best Student / Young Scientist Paper Award\", \"award_name\": \"Best Paper Award\", \"title\": \"HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2\", \"year\": 2023, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:d957265430dfc0fc3c8d848d",
+        "event_id": "901eba31c715d5996c59b8c5",
+        "paper_id": "b0d88e5ced0d41368bca4c20",
+        "source_url": "https://www.sigmetrics.org/awards.shtml",
+        "source_page_id": "html:1b4f1ddcd4fa1082",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"1b4f1ddcd4fa1082\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"award_name\": \"Best Paper Award\", \"title\": \"Queueing System Topologies with Limited Flexibility\", \"year\": 2013, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
+        "annotation_id": "html-correction:e767a6285bdf9d1e80f6779a",
+        "event_id": "f12f05f2e54d9b9fc04326ff",
+        "paper_id": "b0d88e5ced0d41368bca4c20",
+        "source_url": "https://www.sigmetrics.org/awards.shtml",
+        "source_page_id": "html:1b4f1ddcd4fa1082",
+        "evidence": "[{\"kind\": \"user_confirmed_html_award_correction\", \"html_record_id\": \"1b4f1ddcd4fa1082\", \"source_html\": \"获奖论文档案_清理版.html\", \"source_sha256\": \"24f55f5d74109dac33f310fee2e7a244b5e39a1627861640d479a315bf1e597b\", \"original_combined_award_name\": \"Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"award_name\": \"Ken Sevcik Outstanding Student Paper Award\", \"title\": \"Queueing System Topologies with Limited Flexibility\", \"year\": 2013, \"confirmation\": \"用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。\", \"confirmed_at\": \"2026-10-13T15:31:04+08:00\"}]",
+        "note": null,
+        "status": "verified"
+      },
+      {
         "annotation_id": "page-0003-r001",
         "event_id": "0aafa1b003ce15b510cc58bc",
         "paper_id": "a1ea77e7acb1e032506394d1",
@@ -40963,16 +41086,6 @@
         "source_url": "https://www.sigmetrics.org/awards.shtml",
         "source_page_id": "page-0003",
         "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2014\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000565\", \"kind\": \"text\", \"start\": 0, \"end\": 5, \"link_index\": null, \"quote\": \"2014:\"}, {\"relation\": \"year_paper\", \"value\": \"2014\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000570\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"\\\"A Measurement Study of Google Play\\\"\"}, {\"relation\": \"award_paper\", \"value\": \"Kenneth C. Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000569\", \"kind\": \"text\", \"start\": 0, \"end\": 50, \"link_index\": null, \"quote\": \"Kenneth C. Sevcik Outstanding Student Paper Award:\"}, {\"relation\": \"award_paper\", \"value\": \"Kenneth C. Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000570\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"\\\"A Measurement Study of Google Play\\\"\"}, {\"relation\": \"paper_author\", \"value\": \"by Nicolas Viennot (Columbia University); Edward Garcia (Columbia University); Jason Nieh (Columbia University).\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000570\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"\\\"A Measurement Study of Google Play\\\"\"}, {\"relation\": \"paper_author\", \"value\": \"by Nicolas Viennot (Columbia University); Edward Garcia (Columbia University); Jason Nieh (Columbia University).\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000571\", \"kind\": \"text\", \"start\": 0, \"end\": 112, \"link_index\": null, \"quote\": \"by Nicolas Viennot (Columbia University); Edward Garcia (Columbia University); Jason Nieh (Columbia University).\"}, {\"relation\": \"paper_link\", \"value\": \"https://dl.acm.org/doi/10.1145/2591971.2592003\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000570\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"\\\"A Measurement Study of Google Play\\\"\"}, {\"relation\": \"paper_link\", \"value\": \"https://dl.acm.org/doi/10.1145/2591971.2592003\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000570\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://dl.acm.org/doi/10.1145/2591971.2592003\"}, {\"relation\": \"record_scope\", \"value\": \"2014 Kenneth C. Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000565\", \"kind\": \"text\", \"start\": 0, \"end\": 5, \"link_index\": null, \"quote\": \"2014:\"}, {\"relation\": \"record_scope\", \"value\": \"2014 Kenneth C. Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000569\", \"kind\": \"text\", \"start\": 0, \"end\": 50, \"link_index\": null, \"quote\": \"Kenneth C. Sevcik Outstanding Student Paper Award:\"}, {\"relation\": \"record_scope\", \"value\": \"2014 Kenneth C. Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000570\", \"kind\": \"text\", \"start\": 0, \"end\": 36, \"link_index\": null, \"quote\": \"\\\"A Measurement Study of Google Play\\\"\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "page-0003-r034",
-        "event_id": "570714299c95ae0fac0ebfae",
-        "paper_id": "b0d88e5ced0d41368bca4c20",
-        "source_url": "https://www.sigmetrics.org/awards.shtml",
-        "source_page_id": "page-0003",
-        "evidence": "[{\"relation\": \"year_paper\", \"value\": \"2013\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000572\", \"kind\": \"text\", \"start\": 0, \"end\": 5, \"link_index\": null, \"quote\": \"2013:\"}, {\"relation\": \"year_paper\", \"value\": \"2013\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000574\", \"kind\": \"text\", \"start\": 0, \"end\": 53, \"link_index\": null, \"quote\": \"\\\"Queueing System Topologies with Limited Flexibility\\\"\"}, {\"relation\": \"award_paper\", \"value\": \"Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000573\", \"kind\": \"text\", \"start\": 0, \"end\": 68, \"link_index\": null, \"quote\": \"Best Paper Award and the Ken Sevcik Outstanding Student Paper Award:\"}, {\"relation\": \"award_paper\", \"value\": \"Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000574\", \"kind\": \"text\", \"start\": 0, \"end\": 53, \"link_index\": null, \"quote\": \"\\\"Queueing System Topologies with Limited Flexibility\\\"\"}, {\"relation\": \"paper_author\", \"value\": \"by John N. Tsitsiklis (Massachusetts Institute of Technology) and Kuang Xu (Massachusetts Institute of Technology)\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000574\", \"kind\": \"text\", \"start\": 0, \"end\": 53, \"link_index\": null, \"quote\": \"\\\"Queueing System Topologies with Limited Flexibility\\\"\"}, {\"relation\": \"paper_author\", \"value\": \"by John N. Tsitsiklis (Massachusetts Institute of Technology) and Kuang Xu (Massachusetts Institute of Technology)\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000575\", \"kind\": \"text\", \"start\": 0, \"end\": 114, \"link_index\": null, \"quote\": \"by John N. Tsitsiklis (Massachusetts Institute of Technology) and Kuang Xu (Massachusetts Institute of Technology)\"}, {\"relation\": \"paper_link\", \"value\": \"https://dl.acm.org/doi/10.1145/2465529.2465757\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000574\", \"kind\": \"text\", \"start\": 0, \"end\": 53, \"link_index\": null, \"quote\": \"\\\"Queueing System Topologies with Limited Flexibility\\\"\"}, {\"relation\": \"paper_link\", \"value\": \"https://dl.acm.org/doi/10.1145/2465529.2465757\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000574\", \"kind\": \"href\", \"start\": null, \"end\": null, \"link_index\": 0, \"quote\": \"https://dl.acm.org/doi/10.1145/2465529.2465757\"}, {\"relation\": \"record_scope\", \"value\": \"2013 Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 1, \"node_id\": \"n000572\", \"kind\": \"text\", \"start\": 0, \"end\": 5, \"link_index\": null, \"quote\": \"2013:\"}, {\"relation\": \"record_scope\", \"value\": \"2013 Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 2, \"node_id\": \"n000573\", \"kind\": \"text\", \"start\": 0, \"end\": 68, \"link_index\": null, \"quote\": \"Best Paper Award and the Ken Sevcik Outstanding Student Paper Award:\"}, {\"relation\": \"record_scope\", \"value\": \"2013 Best Paper Award and the Ken Sevcik Outstanding Student Paper Award\", \"alternative_group\": 1, \"fragment\": 3, \"node_id\": \"n000574\", \"kind\": \"text\", \"start\": 0, \"end\": 53, \"link_index\": null, \"quote\": \"\\\"Queueing System Topologies with Limited Flexibility\\\"\"}]",
         "note": null,
         "status": "verified"
       },
@@ -50397,16 +50510,6 @@
         "status": "verified"
       },
       {
-        "annotation_id": "record:N00042",
-        "event_id": "146e18fec359e3a65e03237e",
-        "paper_id": "2abd122e9588ad77300a037c",
-        "source_url": "https://www.acm.org/conferences/best-paper-awards",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Best Paper Award: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
         "annotation_id": "record:N00043",
         "event_id": "146e18fec359e3a65e03237e",
         "paper_id": "e42dd76bd0396737620fbe6a",
@@ -52253,36 +52356,6 @@
         "source_url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners",
         "source_page_id": "s1",
         "evidence": "[{\"quote\": \"BEST PAPER AWARD — Applied Data Science Track: Improving Training Stability for Multitask Ranking Models in Recommender Systems\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "record:P00612",
-        "event_id": "00313d2173f754054dfcaa61",
-        "paper_id": "c6560bed2e70c0510fcb9918",
-        "source_url": "https://lics.siglog.org/archive/kleene-award.html",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Kleene Award for the Best Student Paper: The Steenrod squares via unordered joins\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "record:P00613",
-        "event_id": "c70865e017d2c60de0107ea2",
-        "paper_id": "417ce646c553a371f76ffc8e",
-        "source_url": "https://lics.siglog.org/archive/kleene-award.html",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Kleene Award for the Best Student Paper: Relevant S is Undecidable\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "record:P00614",
-        "event_id": "5d72375456494b67c2da8b18",
-        "paper_id": "daa2db20719eaaf75747be98",
-        "source_url": "https://lics.siglog.org/archive/kleene-award.html",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Kleene Award for the Best Student Paper: The Identity Problem in the special affine group of Z2\", \"source_id\": \"s1\"}]",
         "note": null,
         "status": "verified"
       },
@@ -55793,16 +55866,6 @@
         "source_url": "https://conf.researchr.org/info/icse-2026/awards",
         "source_page_id": "2026:35",
         "evidence": "[{\"kind\": \"reviewed_workbook_row\", \"original_title\": \"Accelerating IC3 Verification by Exploiting Unsatisfiable Cores and Satisfying Models\", \"paper_url\": \"https://dl.acm.org/doi/pdf/10.1145/3744916.3787819\", \"quote\": \"Distinguished Papers: Accelerating IC3 Verification by Exploiting Unsatisfiable Cores and Satisfying Models\", \"row\": 35, \"sheet\": \"2026\", \"source_url\": \"https://conf.researchr.org/info/icse-2026/awards\", \"verification_note\": \"2026-10-09 数据所有者在本对话确认：都已核验，可公开发布。仅核验此补充表，不更改原有待核验任务。\", \"workbook\": \"CCF会议获奖论文_公开下载地址续补2.xlsx\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "supplement:82def3503c5bc7587d5e6084",
-        "event_id": "5dd289e051f1dd948a948e08",
-        "paper_id": "80a208c224db537feeb5e375",
-        "source_url": "https://www.eatcs.org/index.php/best-esa-paper",
-        "source_page_id": "2022:43",
-        "evidence": "[{\"kind\": \"reviewed_workbook_row\", \"original_title\": \"Improved Search of Relevant Points for Nearest-Neighbor Classification\", \"paper_url\": \"https://arxiv.org/pdf/2203.03567\", \"quote\": \"Best Paper: Improved Search of Relevant Points for Nearest-Neighbor Classification\", \"row\": 43, \"sheet\": \"2022\", \"source_url\": \"https://www.eatcs.org/index.php/best-esa-paper\", \"verification_note\": \"2026-10-09 数据所有者在本对话确认：都已核验，可公开发布。仅核验此补充表，不更改原有待核验任务。\", \"workbook\": \"CCF会议获奖论文_公开下载地址续补2.xlsx\"}]",
         "note": null,
         "status": "verified"
       },
@@ -60283,16 +60346,6 @@
         "source_url": "https://conf.researchr.org/info/icse-2026/awards",
         "source_page_id": "CCF会议获奖论文 张智豪(1).xlsx:2026:37",
         "evidence": "[{\"source_workbook\": \"CCF会议获奖论文 张智豪(1).xlsx\", \"source_sha256\": \"4da68108cab3af25341bc9d4087d889e09f43fafd98991bb659e6b2cd0b4d9a3\", \"sheet\": \"2026\", \"row\": 37, \"original_title\": \"An Empirical Study on Static Application Security Testing (SAST) Tools for Python\", \"original_award_name\": \"Distinguished Paper Awards\", \"authors_raw\": \"Zhuohang Liu, Zhi Wang, Haotong Liu, Wanpeng Li\", \"source_url\": \"https://conf.researchr.org/info/icse-2026/awards\", \"quote\": \"opers: Harnessing Community Knowledge for Structured Code Reasoning Chengran Yang, Zhensu Sun, Hong Jin Kang, Jieke Shi, David Lo An Empirical Study on Static Application Security Testing (SAST) Tools for Python Zhuohang Liu, Zhi Wang, Haotong Liu, Wanpeng Li The Hidden Cost of Readability: How Code Formatting Silently Consumes Your LLM Budget Dangfeng Pan, Zhensu Sun,\", \"validation\": \"official_award_page_title\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "zhang-excel-86ca20855d896da76ab5b3be",
-        "event_id": "5dd289e051f1dd948a948e08",
-        "paper_id": "80a208c224db537feeb5e375",
-        "source_url": "https://www.eatcs.org/index.php/best-esa-paper",
-        "source_page_id": "CCF会议获奖论文 张智豪(1).xlsx:2022:43",
-        "evidence": "[{\"source_workbook\": \"CCF会议获奖论文 张智豪(1).xlsx\", \"source_sha256\": \"4da68108cab3af25341bc9d4087d889e09f43fafd98991bb659e6b2cd0b4d9a3\", \"sheet\": \"2022\", \"row\": 43, \"original_title\": \"Improved Search of Relevant Points for Nearest-Neighbor Classification\", \"original_award_name\": \"Best Paper Award (Track S)\", \"authors_raw\": \"Alejandro Flores-Velazco\", \"source_url\": \"https://www.eatcs.org/index.php/best-esa-paper\", \"quote\": \"ris Schwiegelshohn and Omar Ali Sheikh-Omar: \\\" An Empirical Evaluation of k-Means Coresets \\\" Track S: Alejandro Flores-Velazco: \\\" Improved Search of Relevant Points for Nearest-Neighbor Classification \\\" 2021 / Lisbon, Portugal Track A: Zhiyang He, Jason Li and Magnus Wahlström: \\\" Near-linear-time, Optimal Vertex Cut Sparsifiers in Directed Acyclic Graphs \\\" T\", \"validation\": \"official_award_page_title\"}]",
         "note": null,
         "status": "verified"
       },

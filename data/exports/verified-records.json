@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-13T14:02:47+08:00",
+  "generated_at": "2026-10-13T15:33:53+08:00",
   "record_count": 327,
   "records": [
     {
@@ -8698,12 +8698,14 @@
       "conference_id": "acm-mm-04fb16",
       "year": 2025,
       "status": "verified",
-      "reviewer": "Excel核验整理版",
-      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "reviewer": "用户确认，Codex 执行",
+      "review_note": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
       "sources": [
         {
           "id": "s1",
-          "role": "award",
+          "prior_role": "award",
+          "role": "metadata",
+          "superseded_by": "html-confirmed-9d49c0f0b41f0b60",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
           "url": "https://www.acm.org/conferences/best-paper-awards"
         },
@@ -8718,15 +8720,22 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
           "url": "http://dl.acm.org/citation.cfm?id=3754880"
+        },
+        {
+          "id": "html-confirmed-9d49c0f0b41f0b60",
+          "review_basis": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
+          "role": "award",
+          "text": "User-confirmed HTML award row: ACM MM 2025 / Best Student Paper: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
+          "url": "https://acmmm2025.org/awards/"
         }
       ],
       "record": {
         "title": "Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
-        "award_name": "Best Paper Award",
+        "award_name": "Best Student Paper",
         "track": "",
         "award_evidence": {
-          "quote": "Best Paper Award: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
-          "source_id": "s1"
+          "quote": "ACM MM 2025 / Best Student Paper: Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
+          "source_id": "html-confirmed-9d49c0f0b41f0b60"
         },
         "title_evidence": {
           "quote": "Building Embodied EvoAgent: A Brain-inspired Paradigm for Bridging Multimodal Large Models and World Models",
@@ -13897,12 +13906,14 @@
       "conference_id": "lics-9f247f",
       "year": 2025,
       "status": "verified",
-      "reviewer": "Excel核验整理版",
-      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "reviewer": "用户确认，Codex 执行",
+      "review_note": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
       "sources": [
         {
           "id": "s1",
-          "role": "award",
+          "prior_role": "award",
+          "role": "metadata",
+          "superseded_by": "html-confirmed-8ad2898092259f3e",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Steenrod squares via unordered joins",
           "url": "https://lics.siglog.org/archive/kleene-award.html"
         },
@@ -13911,15 +13922,22 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Steenrod squares via unordered joins",
           "url": "https://lics.siglog.org/archive/2025/LjungstromWarn-TheSteenrodsquaresv.html"
+        },
+        {
+          "id": "html-confirmed-8ad2898092259f3e",
+          "review_basis": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
+          "role": "award",
+          "text": "User-confirmed HTML award row: LICS 2025 / Distinguished Paper: The Steenrod squares via unordered joins",
+          "url": "https://lics.siglog.org/archive/distinguished-papers.html"
         }
       ],
       "record": {
         "title": "The Steenrod squares via unordered joins",
-        "award_name": "Kleene Award for the Best Student Paper",
+        "award_name": "Distinguished Paper",
         "track": "",
         "award_evidence": {
-          "quote": "Kleene Award for the Best Student Paper: The Steenrod squares via unordered joins",
-          "source_id": "s1"
+          "quote": "LICS 2025 / Distinguished Paper: The Steenrod squares via unordered joins",
+          "source_id": "html-confirmed-8ad2898092259f3e"
         },
         "title_evidence": {
           "quote": "The Steenrod squares via unordered joins",
@@ -24931,12 +24949,14 @@
       "conference_id": "lics-9f247f",
       "year": 2024,
       "status": "verified",
-      "reviewer": "Excel核验整理版",
-      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "reviewer": "用户确认，Codex 执行",
+      "review_note": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
       "sources": [
         {
           "id": "s1",
-          "role": "award",
+          "prior_role": "award",
+          "role": "metadata",
+          "superseded_by": "html-confirmed-4038632bddf07108",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Relevant S is Undecidable",
           "url": "https://lics.siglog.org/archive/kleene-award.html"
         },
@@ -24945,15 +24965,22 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: Relevant S is Undecidable",
           "url": "https://lics.siglog.org/archive/2024/Knudstorp-RelevantSisUndecida.html"
+        },
+        {
+          "id": "html-confirmed-4038632bddf07108",
+          "review_basis": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
+          "role": "award",
+          "text": "User-confirmed HTML award row: LICS 2024 / Distinguished Paper: Relevant S is Undecidable",
+          "url": "https://lics.siglog.org/archive/distinguished-papers.html"
         }
       ],
       "record": {
         "title": "Relevant S is Undecidable",
-        "award_name": "Kleene Award for the Best Student Paper",
+        "award_name": "Distinguished Paper",
         "track": "",
         "award_evidence": {
-          "quote": "Kleene Award for the Best Student Paper: Relevant S is Undecidable",
-          "source_id": "s1"
+          "quote": "LICS 2024 / Distinguished Paper: Relevant S is Undecidable",
+          "source_id": "html-confirmed-4038632bddf07108"
         },
         "title_evidence": {
           "quote": "Relevant S is Undecidable",
@@ -32268,12 +32295,14 @@
       "conference_id": "lics-9f247f",
       "year": 2023,
       "status": "verified",
-      "reviewer": "Excel核验整理版",
-      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "reviewer": "用户确认，Codex 执行",
+      "review_note": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
       "sources": [
         {
           "id": "s1",
-          "role": "award",
+          "prior_role": "award",
+          "role": "metadata",
+          "superseded_by": "html-confirmed-6720002f6c29f503",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Identity Problem in the special affine group of Z2",
           "url": "https://lics.siglog.org/archive/kleene-award.html"
         },
@@ -32282,15 +32311,22 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: The Identity Problem in the special affine group of Z2",
           "url": "https://lics.siglog.org/archive/2023/Dong-TheIdentityProblemi.html"
+        },
+        {
+          "id": "html-confirmed-6720002f6c29f503",
+          "review_basis": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
+          "role": "award",
+          "text": "User-confirmed HTML award row: LICS 2023 / Distinguished Paper: The Identity Problem in the special affine group of Z2",
+          "url": "https://lics.siglog.org/archive/distinguished-papers.html"
         }
       ],
       "record": {
         "title": "The Identity Problem in the special affine group of Z2",
-        "award_name": "Kleene Award for the Best Student Paper",
+        "award_name": "Distinguished Paper",
         "track": "",
         "award_evidence": {
-          "quote": "Kleene Award for the Best Student Paper: The Identity Problem in the special affine group of Z2",
-          "source_id": "s1"
+          "quote": "LICS 2023 / Distinguished Paper: The Identity Problem in the special affine group of Z2",
+          "source_id": "html-confirmed-6720002f6c29f503"
         },
         "title_evidence": {
           "quote": "The Identity Problem in the special affine group of Z2",
@@ -33823,8 +33859,8 @@
       "conference_id": "recomb-b4b666",
       "year": 2023,
       "status": "verified",
-      "reviewer": "Excel核验整理版",
-      "review_note": "从 CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx 导入；官方获奖信息URL已核验。",
+      "reviewer": "用户确认，Codex 执行",
+      "review_note": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
       "sources": [
         {
           "id": "s1",
@@ -33837,6 +33873,13 @@
           "role": "metadata",
           "text": "Imported from CCF190_2023-2026截至2026-09-15_论文奖核验整理版.xlsx: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2",
           "url": "https://www.biorxiv.org/content/10.1101/2023.01.09.523288v1"
+        },
+        {
+          "id": "html-confirmed-055346a81534bf26",
+          "review_basis": "用户确认：“这七篇的话是html文件是对的，请更新”。仅限此七篇，不代表整份 HTML 已核验。",
+          "role": "award",
+          "text": "User-confirmed HTML award row: RECOMB 2023 / Best Paper Award: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2",
+          "url": "https://recomb.org/awards/"
         }
       ],
       "record": {
@@ -33844,8 +33887,8 @@
         "award_name": "Best Paper Award",
         "track": "",
         "award_evidence": {
-          "quote": "Best Paper Award: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2",
-          "source_id": "s1"
+          "quote": "RECOMB 2023 / Best Paper Award: HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2",
+          "source_id": "html-confirmed-055346a81534bf26"
         },
         "title_evidence": {
           "quote": "HOGVAX: Exploiting peptide overlaps to maximize population coverage in vaccine design with application to SARS-CoV-2",
