@@ -4,7 +4,7 @@ import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
 import PaperPageHeading from '../components/PaperPageHeading.vue'
 import PaperPagination from '../components/PaperPagination.vue'
-import { DEFAULT_PAGE_SIZE, pageSlice } from '../pagination.js'
+import { DEFAULT_OVERVIEW_PAGE_SIZE, pageSlice } from '../pagination.js'
 import { authorText, affiliationText, overviewRows, overviewStats, overviewCsv } from '../paperOverview.js'
 import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
 
@@ -13,7 +13,7 @@ const isPublic = props.meta.mode === 'public'
 const defaults = () => ({ conferences: [], rank: '', category: '', year_from: null, year_to: null, query: '', status: isPublic ? 'verified' : 'active' })
 const filters = reactive(defaults())
 const records = ref([]), loading = ref(false), loadError = ref('')
-const sort = ref('conference'), page = ref(1), pageSize = ref(DEFAULT_PAGE_SIZE), expanded = ref(false)
+const sort = ref('conference'), page = ref(1), pageSize = ref(DEFAULT_OVERVIEW_PAGE_SIZE), expanded = ref(false)
 const selected = ref(null), drawer = ref(false)
 const invalidYears = computed(() => filters.year_from != null && filters.year_to != null && filters.year_from > filters.year_to)
 const rows = computed(() => invalidYears.value ? [] : overviewRows(records.value, filters, sort.value))

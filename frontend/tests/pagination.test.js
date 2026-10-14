@@ -1,9 +1,10 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { DEFAULT_PAGE_SIZE, PAGE_SIZES, pageSlice } from '../src/pagination.js'
+import { DEFAULT_PAGE_SIZE, DEFAULT_OVERVIEW_PAGE_SIZE, PAGE_SIZES, pageSlice } from '../src/pagination.js'
 
-test('both paper views use five papers by default and the requested sizes', () => {
+test('search defaults to five papers, overview to ten, with the requested sizes', () => {
   assert.equal(DEFAULT_PAGE_SIZE, 5)
+  assert.equal(DEFAULT_OVERVIEW_PAGE_SIZE, 10)
   assert.deepEqual(PAGE_SIZES, [5, 10, 15, 20, 30, 50])
 })
 
