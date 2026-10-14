@@ -3,6 +3,9 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
+import PaperPageHeading from '../components/PaperPageHeading.vue'
+import PaperPagination from '../components/PaperPagination.vue'
+import { DEFAULT_PAGE_SIZE, pageSlice } from '../pagination.js'
 import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
 import { alphabeticalConferences } from '../conferenceOptions.js'
 
@@ -24,8 +27,8 @@ const defaults = () => ({
 
 const filters = reactive(defaults())
 const page = ref(1)
-const pageSize = 20
-const pageRecords = computed(() => records.value.slice((page.value-1)*pageSize, page.value*pageSize))
+const pageSize = ref(DEFAULT_PAGE_SIZE)
+const pageRecords = computed(() => pageSlice(records.value, page.value, pageSize.value))
 function resetFilters() { Object.assign(filters, defaults()); runSearch() }
 const loading = ref(false)
 const records = ref([])
@@ -84,6 +87,7 @@ onMounted(runSearch)
 
 <template>
   <div class="search-workspace">
+    <PaperPageHeading class="search-page-heading" title="获奖论文检索" description="按会议、奖项与年份查找计算机领域获奖论文，查看原始奖项名称和可核验来源。" :meta="meta" />
     <aside class="filter-sidebar" aria-label="检索设置">
       <div class="sidebar-heading"><h2>检索设置</h2></div>
       <el-form :model="filters" label-position="top" class="filter-form" @submit.prevent="runSearch">
@@ -132,11 +136,6 @@ onMounted(runSearch)
     </aside>
 
     <section class="results-content" aria-label="论文检索结果">
-      <div class="search-intro">
-        <div class="eyebrow">GLOBAL CS PAPER AWARDS</div>
-        <h1>获奖论文检索</h1>
-        <p>按会议、奖项与年份查找计算机领域获奖论文，查看原始奖项名称和可核验来源。</p>
-      </div>
       <div class="results-heading">
         <div>
           <span class="results-count" role="status" aria-live="polite">{{ loading ? '正在检索…' : `共检索到 ${records.length.toLocaleString()} 篇论文` }}</span>
@@ -178,7 +177,7 @@ onMounted(runSearch)
         </article>
         <el-empty v-if="!loading && !records.length" :description="emptyDescription" />
       </div>
-      <el-pagination v-if="records.length" v-model:current-page="page" :page-size="pageSize" :total="records.length" layout="prev, pager, next" :pager-count="5" :disabled="loading" class="result-pages" />
+      <PaperPagination v-model:page="page" v-model:page-size="pageSize" :total="records.length" :disabled="loading" />
       <p class="results-note">“最佳论文奖”采用 JeffHuang 收录口径；学生论文奖单列，其他奖项保留原名并归入其他获奖。</p>
     </section>
 
@@ -189,19 +188,21 @@ onMounted(runSearch)
 </template>
 
 <style scoped>
-.search-workspace{display:grid;grid-template-columns:270px minmax(0,1fr);align-items:start;gap:32px}
+.search-workspace{display:grid;grid-template-columns:270px minmax(0,1fr);align-items:start;gap:0 32px}
+.search-page-heading{grid-column:1/-1}
 .filter-sidebar{background:#fff;border:1px solid #dce8f5;border-radius:8px;padding:20px;box-shadow:0 7px 22px rgba(27,65,111,.035)}
 .sidebar-heading{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #e8eff7}.sidebar-heading h2{font-size:18px;margin:0;color:#173b66}
 .filter-form{display:block}.filter-form :deep(.el-form-item){display:block;margin-bottom:15px}.filter-form :deep(.el-form-item__label){font-weight:650;color:#526b88;margin-bottom:6px;padding:0;line-height:1.3}.filter-form :deep(.el-form-item__content){display:block}.filter-form :deep(.el-select),.filter-form :deep(.el-input),.filter-form :deep(.el-date-editor){width:100%}.filter-form :deep(.el-input__wrapper),.filter-form :deep(.el-select__wrapper){min-height:38px;box-shadow:0 0 0 1px #dce7f3 inset;border-radius:6px}
 .year-fields{display:flex;align-items:center;gap:6px}.year-fields :deep(.el-input-number){width:calc(50% - 10px)}.year-fields>span{color:#8191a6}.date-fields{display:grid;gap:8px}.filter-actions{display:grid;gap:9px;margin-top:20px}.filter-actions .el-button{margin:0;width:100%;height:38px;border-radius:6px}
-.results-content{min-width:0}.search-intro{padding:7px 0 18px}.eyebrow{font-size:11px;font-weight:750;letter-spacing:.14em;color:#2780df}.search-intro h1{font-size:32px;line-height:1.2;letter-spacing:-.02em;color:#102f59;margin:8px 0 9px}.search-intro p{font-size:14px;color:#70839b;margin:0;line-height:1.6}
-.results-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:4px 0 14px;padding-top:14px;border-top:1px solid #e7edf5}.results-count{color:#233e63;font-weight:680}.page-count{color:#70839b;font-size:13px;margin-left:12px}.results-heading .el-button{border-radius:8px}
+.results-content{min-width:0}
+.results-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px;min-height:38px}.results-count{color:#233e63;font-weight:680}.page-count{color:#70839b;font-size:13px;margin-left:12px}.results-heading .el-button{border-radius:8px}
 .paper-list{min-height:180px}.paper-card{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:16px;background:#fff;border:1px solid #dce8f5;border-radius:8px;padding:12px 16px;margin-bottom:8px;box-shadow:0 3px 12px rgba(27,65,111,.035);transition:border-color .2s,box-shadow .2s}.paper-card:hover{border-color:#9dccf9;box-shadow:0 5px 16px rgba(27,99,177,.08)}.paper-card:first-child{border-color:#9cc9f5}
 .paper-main{min-width:0;overflow-wrap:anywhere}.paper-badges{display:flex;align-items:center;flex-wrap:wrap;gap:6px}.paper-badges span{display:inline-flex;align-items:center;min-height:20px;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:650}.rank-badge{color:#1475d0;background:#e4f2ff}.category-badge{color:#456a95;background:#edf4fc}.paper-main h2{font-size:16px;line-height:1.35;margin:5px 0 4px}.title-button{padding:0;background:none;border:0;text-align:left;color:#122f58;font-weight:750;cursor:pointer;line-height:inherit}.title-button:hover{color:#1475d0;text-decoration:underline}.paper-authors{font-size:12px;color:#6c7f98;margin:0 0 6px;line-height:1.45}.paper-authors.missing{color:#9baabd}.paper-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:3px 16px}.paper-facts{display:flex;gap:4px 12px;flex-wrap:wrap;color:#536b88;font-size:12px}.paper-facts strong{color:#263f64}.paper-links{display:flex;gap:14px;flex-wrap:wrap;font-size:12px}.paper-links a,.paper-links button{display:inline-flex;align-items:center;min-height:24px;color:#1780df;text-decoration:none;background:none;border:0;padding:0;font-weight:600;cursor:pointer}.paper-links a:hover,.paper-links button:hover{text-decoration:underline}
 .paper-award{min-width:0;align-self:stretch;border-left:1px solid #e6edf6;padding-left:14px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px}.award-caption{font-size:11px;color:#8293aa;font-weight:700;letter-spacing:.03em}.paper-award strong{font-size:12px;color:#294567;line-height:1.4;overflow-wrap:anywhere}.paper-review{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:5px}.status-pill{display:inline-block;border-radius:100px;padding:2px 8px;background:#eaf1fa;color:#58718e;font-size:12px;font-weight:650}.status-verified{background:#e7f7ef;color:#16845b}.status-pending{background:#fff4dc;color:#a57118}.status-rejected{background:#feecec;color:#be4c4c}
-.result-pages{margin-top:20px;justify-content:flex-end;flex-wrap:wrap}.results-note{margin:23px 0 0;color:#8293aa;font-size:12px;line-height:1.6}
+.results-note{margin:18px 0 0;color:#8293aa;font-size:12px;line-height:1.6}
 @media(max-width:1050px){.search-workspace{gap:20px;grid-template-columns:240px minmax(0,1fr)}.paper-card{grid-template-columns:1fr;gap:8px}.paper-award{border-left:0;border-top:1px solid #e6edf6;padding:8px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:4px 10px}.paper-review{margin-top:0}}
 @media(max-width:760px){.search-workspace{display:block}.filter-sidebar{margin-bottom:24px}.search-intro h1{font-size:27px}.paper-card{padding:12px}.paper-award{grid-template-columns:auto minmax(0,1fr)}.paper-review{grid-column:1/-1}.page-count{display:block;margin:4px 0 0}.results-heading{align-items:flex-start}}
+.search-workspace{row-gap:0}
 </style>
 
 

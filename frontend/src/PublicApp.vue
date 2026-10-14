@@ -20,7 +20,7 @@ onMounted(boot)
     <main class="main-shell">
       <div v-if="!meta" class="center-state"><p>{{ error || '正在加载论文资料库…' }}</p><el-button v-if="error" @click="boot">重新连接</el-button></div>
       <template v-else>
-        <p class="publication-stamp">最近发布：{{ meta.publication?.published_at || '尚未发布' }} · 已核验公开数据</p>
+        <p v-if="active==='events'" class="publication-stamp">最近发布：{{ meta.publication?.published_at || '尚未发布' }} · 已核验公开数据</p>
         <SearchView v-if="active==='search'" :meta="meta" />
         <PaperOverviewView v-else-if="active==='overview'" :meta="meta" />
         <AwardEventsView v-else-if="active==='events'" :meta="meta" />
