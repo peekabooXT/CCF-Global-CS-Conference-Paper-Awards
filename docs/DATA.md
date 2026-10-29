@@ -30,7 +30,7 @@
 
 数据整理结合自动采集和人工核对。网站和公开索引展示已核验数据，保留可查阅的来源链接及关联信息。
 
-核验针对已收录记录的来源，不构成某会议或年度完整性的保证。发现更正信息时，可通过[项目 Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards-Agent/issues) 提交官方依据。
+核验针对已收录记录的来源，不构成某会议或年度完整性的保证。发现更正信息时，可通过[项目 Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) 提交官方依据。
 
 ## 更新与数据文件
 

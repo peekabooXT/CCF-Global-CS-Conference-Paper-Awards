@@ -1,8 +1,8 @@
-# Global CS Paper Awards Agent
+# Global CS Paper Awards
 
 **计算机领域获奖论文数据库**
 
-Global CS Paper Awards Agent 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
+Global CS Paper Awards 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
 
 ## 浏览论文
 
@@ -41,11 +41,16 @@ Global CS Paper Awards Agent 整理计算机领域会议的获奖论文，提供
 
 ## 反馈与补充
 
-欢迎通过 [Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards-Agent/issues) 提交缺失论文、信息更正和使用建议。补充数据时，请附上会议名称、获奖年份、论文题名及官方来源链接，便于核对。
+如果发现数据错误、遗漏或其他问题，请联系作者邮箱：[peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com)。如能附上相关论文、会议、年份及来源链接，将有助于核对和修正。
+
+
+欢迎通过 [Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) 提交缺失论文、信息更正和使用建议。补充数据时，请附上会议名称、获奖年份、论文题名及官方来源链接，便于核对。
 
 ## 关于项目
 
-项目采用 Python、SQLite 和 Vue 构建，结合自动采集与人工核验持续整理获奖资料。本仓库提供项目源码、数据快照和论文索引。
+本仓库只提供已核验论文的数据快照、Markdown 索引和只读展示网站。网站采用 Python、SQLite 和 Vue 构建，不包含数据采集、模型调用、审核管理或研究实验代码。
+
+独立运行与校验方法见[运行说明](docs/RUNNING.md)。
 
 ## 致谢
 

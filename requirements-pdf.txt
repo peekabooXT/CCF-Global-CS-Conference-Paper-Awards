@@ -1,2 +1,0 @@
-# Optional: HTML/text collection, JSON import and search use only Python stdlib.
-pypdf>=6.12,<7

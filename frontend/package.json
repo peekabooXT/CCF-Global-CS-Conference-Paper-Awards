@@ -1,12 +1,12 @@
 {
-  "name": "global-cs-paper-awards-agent-frontend",
+  "name": "global-cs-paper-awards-frontend",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:public": "vite build --mode public --outDir dist-public",
+    "test": "node --test tests/*.test.js",
     "preview": "vite preview"
   },
   "dependencies": {

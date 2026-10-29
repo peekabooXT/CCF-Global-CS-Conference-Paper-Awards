@@ -10,9 +10,7 @@ import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
 import { alphabeticalConferences } from '../conferenceOptions.js'
 
 const props = defineProps({ meta: { type: Object, required: true } })
-const emptyDescription = import.meta.env.VITE_APP_MODE === 'public'
-  ? '暂无匹配的已核验论文，可调整筛选条件或等待下一次数据发布。'
-  : '暂无匹配论文；可调整筛选条件，或前往“采集与导入”开始收集。'
+const emptyDescription = '暂无匹配的已核验论文，可调整筛选条件或等待下一次数据发布。'
 
 const conferences = computed(() => alphabeticalConferences(props.meta?.conferences || []))
 const awardCategories = computed(() => props.meta?.award_categories || {})
@@ -22,7 +20,7 @@ const defaults = () => ({
   conference: null, rank: null, category: null,
   year_from: null, year_to: null,
   author: '', affiliation: '', title: '',
-  status: props.meta.mode === 'public' ? 'verified' : 'active', published_from: null, published_to: null,
+  status: 'verified', published_from: null, published_to: null,
 })
 
 const filters = reactive(defaults())

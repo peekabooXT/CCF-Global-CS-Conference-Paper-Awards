@@ -16,7 +16,7 @@ const teachers = [
 <template>
   <footer class="acknowledgement-footer" :class="{ 'public-footer': publicVersion }">
     <div class="footer-summary">
-      <span>Global CS Paper Awards Agent · 学术资料索引</span>
+      <span>Global CS Paper Awards · 学术资料索引</span>
       <span>{{ publicVersion ? '保留原始奖项与来源 · 数据由本地审核后发布' : '保留原始来源 · 缺失信息标注未知 · 核验状态可追溯' }}</span>
     </div>
     <div class="footer-acknowledgements">
