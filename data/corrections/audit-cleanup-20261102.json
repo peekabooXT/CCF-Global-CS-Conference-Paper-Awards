@@ -4,7 +4,7 @@
   "source_audit_sha256": "f0bbc2c0773783129231652111366314e403abceb1d3ef697df1066e856a58c8",
   "audit_rows_removed": 65,
   "paper_results_before": 5007,
-  "paper_results_after": 4946,
+  "paper_results_after": 4942,
   "categories": {
     "奖项分类错误": 18,
     "题名损坏并重复": 11,

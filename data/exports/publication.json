@@ -1,14 +1,14 @@
 {
   "release_id": "b536dc94651e734d46ca744f4ccfd84d",
-  "published_at": "2026-11-02T20:11:34+08:00",
+  "published_at": "2026-11-02T20:16:51+08:00",
   "timezone": "Asia/Shanghai",
   "counts": {
     "records": 323,
-    "award_events": 2139,
-    "award_papers": 4947,
-    "award_event_papers": 4045,
+    "award_events": 2138,
+    "award_papers": 4943,
+    "award_event_papers": 4040,
     "source_listings": 1947,
     "source_listing_records": 86
   },
-  "paper_results": 4946
+  "paper_results": 4942
 }

@@ -2,17 +2,17 @@
   "schema_version": 2,
   "publication": {
     "release_id": "b536dc94651e734d46ca744f4ccfd84d",
-    "published_at": "2026-11-02T20:11:34+08:00",
+    "published_at": "2026-11-02T20:16:51+08:00",
     "timezone": "Asia/Shanghai",
     "counts": {
       "records": 323,
-      "award_events": 2139,
-      "award_papers": 4947,
-      "award_event_papers": 4045,
+      "award_events": 2138,
+      "award_papers": 4943,
+      "award_event_papers": 4040,
       "source_listings": 1947,
       "source_listing_records": 86
     },
-    "paper_results": 4946
+    "paper_results": 4942
   },
   "schema": {
     "conferences": "CREATE TABLE conferences (\n          id TEXT PRIMARY KEY, acronym TEXT NOT NULL, rank TEXT NOT NULL,\n          area TEXT NOT NULL, full_name TEXT NOT NULL, data TEXT NOT NULL)",
@@ -28388,17 +28388,6 @@
         "created_at": "2026-10-13T22:19:40+08:00"
       },
       {
-        "id": "ec56b3280775d08161d88ec8",
-        "venue": "SIGGRAPH",
-        "conference_id": "siggraph-083f25",
-        "year": 2023,
-        "official_award_name": "Best Paper",
-        "category": "paper",
-        "student_only": 0,
-        "status": "verified",
-        "created_at": "2026-09-18T13:59:15+00:00"
-      },
-      {
         "id": "ec96fda6ecf221086bfe65cb",
         "venue": "DATE",
         "conference_id": "date-b7ba1f",
@@ -34023,14 +34012,6 @@
         "title": "Orbitopal Fixing in SAT",
         "authors_raw": "Markus Anders, Cayden Codel and Marijn Heule",
         "paper_url": "https://arxiv.org/pdf/2601.16855"
-      },
-      {
-        "id": "18ac2ac89fb9367aa8460ac1",
-        "venue": "SOSP",
-        "year": 2025,
-        "title": "From Rust Till Run: Extending Memory Safety From Rust to Cryptographic Assembly",
-        "authors_raw": "Shai Caspin; Nikhil Pimpalkhare; Amit Levy",
-        "paper_url": "http://dl.acm.org/citation.cfm?id=3768333"
       },
       {
         "id": "18b2c7f92b9debff0a108fd1",
@@ -51809,14 +51790,6 @@
         "paper_url": "https://link.springer.com/chapter/10.1007/978-3-031-90252-9_23"
       },
       {
-        "id": "8cecd1f7dc4978990270eff9",
-        "venue": "AAAI",
-        "year": 2024,
-        "title": "Nowcasting Temporal Trends Using Indirect Surveys",
-        "authors_raw": "Ajitesh Srivastava, Juan Marcos Ramirez, Sergio Díaz, Jose Aguilar, Antonio Fernández Anta, Antonio Ortega, Rosa Lillo",
-        "paper_url": null
-      },
-      {
         "id": "8cfa17b7b4f5aac02baf5f0e",
         "venue": "ETAPS",
         "year": 2026,
@@ -55503,14 +55476,6 @@
         "title": "IO-Lite: A Unified I/O Buffering and Caching System",
         "authors_raw": "Vivek S. Pai, Rice University; Peter Druschel, Rice University; Willy Zwaenepoel, Rice University",
         "paper_url": null
-      },
-      {
-        "id": "a5baf99e0540e2dc839a7d27",
-        "venue": "SIGGRAPH",
-        "year": 2023,
-        "title": "Lifted Curls: A Model for Tightly Coiled Hair Simulation",
-        "authors_raw": "Alvin Shi; Haomiao Wu; Jarred Parr; A. M. Darke; Theodore Kim",
-        "paper_url": "http://dl.acm.org/citation.cfm?id=3606920"
       },
       {
         "id": "a5c23993283c9bb5fd1c18c5",
@@ -65182,14 +65147,6 @@
         "year": 2024,
         "title": "PathFinder: Returning Paths in Graph Queries",
         "authors_raw": "Benjamín Farías, Wim Martens, Carlos Rojas and Domagoj Vrgoč",
-        "paper_url": null
-      },
-      {
-        "id": "e09df91b97277c4ab4f21fc7",
-        "venue": "STOC",
-        "year": 2025,
-        "title": "Simulating Time in (Nearly) Square-Root Space",
-        "authors_raw": "Ryan Williams",
         "paper_url": null
       },
       {
@@ -78997,16 +78954,6 @@
         "status": "verified"
       },
       {
-        "annotation_id": "record:N00017",
-        "event_id": "ec56b3280775d08161d88ec8",
-        "paper_id": "a5baf99e0540e2dc839a7d27",
-        "source_url": "https://www.acm.org/conferences/best-paper-awards",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Best Paper: Lifted Curls: A Model for Tightly Coiled Hair Simulation\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
         "annotation_id": "record:N00019",
         "event_id": "630b5585f07a6ea72f9084e3",
         "paper_id": "cafcde4d0f9635e17a3c4df8",
@@ -79543,16 +79490,6 @@
         "source_url": "https://www.acm.org/conferences/best-paper-awards",
         "source_page_id": "s1",
         "evidence": "[{\"quote\": \"Best Paper Award: Valet: Efficient Data Placement on Modern SSDs\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "record:N00077",
-        "event_id": "d640c8bb89f927e66a1d3aa5",
-        "paper_id": "18ac2ac89fb9367aa8460ac1",
-        "source_url": "https://www.acm.org/conferences/best-paper-awards",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Best Paper: From Rust Till Run: Extending Memory Safety From Rust to Cryptographic Assembly\", \"source_id\": \"s1\"}]",
         "note": null,
         "status": "verified"
       },
@@ -80767,16 +80704,6 @@
         "status": "verified"
       },
       {
-        "annotation_id": "record:P00434",
-        "event_id": "d648b865ddf6e7794c1b9a91",
-        "paper_id": "e09df91b97277c4ab4f21fc7",
-        "source_url": "https://www.sigact.org/prizes/best_paper.html",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Best Paper Award: Simulating Time in (Nearly) Square-Root Space\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
         "annotation_id": "record:P00435",
         "event_id": "d648b865ddf6e7794c1b9a91",
         "paper_id": "c7589d39cb9e23593a97b2d2",
@@ -81073,16 +81000,6 @@
         "source_url": "https://kdd.org/awards/view/2023-sigkdd-best-paper-award-winners",
         "source_page_id": "s1",
         "evidence": "[{\"quote\": \"BEST PAPER AWARD — Applied Data Science Track: Improving Training Stability for Multitask Ranking Models in Recommender Systems\", \"source_id\": \"s1\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "record:P00675",
-        "event_id": "eeed2e1aa6d27e8a230d3c3c",
-        "paper_id": "8cecd1f7dc4978990270eff9",
-        "source_url": "https://aaai.org/about-aaai/aaai-awards/aaai-conference-paper-awards-and-recognition/",
-        "source_page_id": "s1",
-        "evidence": "[{\"quote\": \"Best Paper for the AI for Social Impact track at AAAI-2024: Nowcasting Temporal Trends Using Indirect Surveys\", \"source_id\": \"s1\"}]",
         "note": null,
         "status": "verified"
       },
@@ -101213,16 +101130,6 @@
         "source_url": "https://www.ndss-symposium.org/ndss2019/",
         "source_page_id": "frozen-2579:1148",
         "evidence": "[{\"award_section\": \"\", \"bibliography_status\": \"primary_source_fields_only\", \"claim_type\": \"parsed\", \"fetched_at\": \"2026-10-13T07:55:15+00:00\", \"html_record_id\": \"99063632ffaf85d1\", \"kind\": \"reviewed_official_award_row\", \"official_award_name_original\": \"NDSS 2019 Distinguished Paper Awards\", \"official_source_locator\": \"/html/body/div/div/main/section/div[2]/div/div/div/p[8]\", \"official_source_sha256\": \"87727239632219e8df0dba2bb36af222e48122b8aba825220aafaa79d8b57a88\", \"original_title\": \"Establishing Software Root of Trust Unconditionally\", \"paper_url\": \"https://www.ndss-symposium.org/ndss-paper/establishing-software-root-of-trust-unconditionally/\", \"parsed_award_name\": \"NDSS 2019 Distinguished Paper Awards\", \"parsed_title\": \"Establishing Software Root of Trust Unconditionally\", \"row\": 1148, \"sheet\": \"frozen-2579\", \"source_url\": \"https://www.ndss-symposium.org/ndss2019/\", \"verification_note\": \"本次仅导入逐条匹配官方颁奖段落、年份与题名的记录。作者、DOI仅采用同段落或精确匹配的出版元数据；缺失信息保留未知。不批量审核其他待核验任务。\", \"verification_scope\": \"Explicit conference/year/title/award relationship; bibliography independently recorded\", \"workbook\": \"获奖论文档案_清理版.html / frozen 2579 unmatched rows\"}]",
-        "note": null,
-        "status": "verified"
-      },
-      {
-        "annotation_id": "supplement:c3d35282e6744eb516439465",
-        "event_id": "d648b865ddf6e7794c1b9a91",
-        "paper_id": "e09df91b97277c4ab4f21fc7",
-        "source_url": "https://sigact.org/prizes/best_paper.html",
-        "source_page_id": "2025:31",
-        "evidence": "[{\"kind\": \"reviewed_workbook_row\", \"original_title\": \"Simulating Time in (Nearly) Square-Root Space\", \"paper_url\": null, \"quote\": \"Best Paper: Simulating Time in (Nearly) Square-Root Space\", \"row\": 31, \"sheet\": \"2025\", \"source_url\": \"https://sigact.org/prizes/best_paper.html\", \"verification_note\": \"2026-10-09 数据所有者在本对话确认：都已核验，可公开发布。仅核验此补充表，不更改原有待核验任务。\", \"workbook\": \"CCF会议获奖论文_公开下载地址续补2.xlsx\"}]",
         "note": null,
         "status": "verified"
       },
