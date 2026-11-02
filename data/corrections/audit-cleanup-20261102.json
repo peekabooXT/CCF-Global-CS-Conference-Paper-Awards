@@ -1,0 +1,1230 @@
+{
+  "date": "2026-11-02",
+  "scope": "Remove confirmed incorrect award associations and duplicate records from verified publication",
+  "source_audit_sha256": "f0bbc2c0773783129231652111366314e403abceb1d3ef697df1066e856a58c8",
+  "audit_rows_removed": 65,
+  "paper_results_before": 5007,
+  "paper_results_after": 4946,
+  "categories": {
+    "奖项分类错误": 18,
+    "题名损坏并重复": 11,
+    "同篇重复": 4,
+    "会议归属错误": 22,
+    "年份错误": 10
+  },
+  "records": [
+    {
+      "audit_id": "E003",
+      "classification": "奖项分类错误",
+      "repository_record_id": "P00675",
+      "recorded_title": "Nowcasting Temporal Trends Using Indirect Surveys",
+      "recorded_conference": "AAAI",
+      "recorded_year": 2024,
+      "actual_conference": "AAAI",
+      "actual_year": 2024,
+      "actual_award": "Honorable Mention — AI for Social Impact track, AAAI-2024",
+      "duplicate_of": null,
+      "verdict": "纠正奖项；不能按 AI for Social Impact 最佳论文获奖者计数",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://aaai.org/about-aaai/aaai-awards/aaai-conference-paper-awards-and-recognition/"
+      ]
+    },
+    {
+      "audit_id": "E048",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:ee197f4383b141e658760b2a:a7442a95efdf8f7ba1112d45",
+      "recorded_title": "A Large-Scale Industry Case Study",
+      "recorded_conference": "FSE",
+      "recorded_year": 2014,
+      "actual_conference": "FSE",
+      "actual_year": 2014,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-97dd56b995c84205d74ec5d0",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E049",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:af1a68f1917e4220142725bd:fca43e5f3faa1c501e1b054d",
+      "recorded_title": "A Retroactive Study on the Evolution and Migration of Software Libraries",
+      "recorded_conference": "FSE",
+      "recorded_year": 2012,
+      "actual_conference": "FSE",
+      "actual_year": 2012,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-d68f031371115cbb261cd948",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E053",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:907ba1983d3e5b63fd2c28fe:af63dd9b3531cfcae3536483",
+      "recorded_title": "Towards Neural Synthesis for SMT-assisted Proof-Oriented ProgrammingSecurityFormal Methods",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2025,
+      "actual_conference": "ICSE",
+      "actual_year": 2025,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-68b437d4632c681db50c0910",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://api.crossref.org/works?query.title=Towards%20Neural%20Synthesis%20for%20SMT-assisted%20Proof-Oriented%20Programming&rows=3"
+      ]
+    },
+    {
+      "audit_id": "E054",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:db63f96f497d33f3d8c31346:e10ce8479b6760d33df89486",
+      "recorded_title": "An Empirical Study of Evolving C# Programs",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2014,
+      "actual_conference": "ICSE",
+      "actual_year": 2014,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-46d5a6ac78e79df55a4dd867",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E055",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:db63f96f497d33f3d8c31346:64a5f6f6d229dd54b1ded5c1",
+      "recorded_title": "How is Video Game Development Different from Software Development?",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2014,
+      "actual_conference": "ICSE",
+      "actual_year": 2014,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-27fe0ac5569db5fae28fc1f8",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E056",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:1a856aedc1250d00d63173db:84ab00a58df17807dcbeeea9",
+      "recorded_title": "Towards Modeling and Reasoning with Uncertainty",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2012,
+      "actual_conference": "ICSE",
+      "actual_year": 2012,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-9a4ddc325edf2011dba7a39e",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E057",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:72b73b8342745f69d34de40e:3cf32e07c772ce8ade1b87ab",
+      "recorded_title": "A Multi-Company Analysis of Project Productivity, Quality, and Profits",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2011,
+      "actual_conference": "ICSE",
+      "actual_year": 2011,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-0ac6dd4a37f33b79aa73edfe",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E058",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:72b73b8342745f69d34de40e:a50ec49ec25c31a2ca4b2090",
+      "recorded_title": "The Foundations of Testing Revisited",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2011,
+      "actual_conference": "ICSE",
+      "actual_year": 2011,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-8cc6e34e8f763e391811e369",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E059",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:6faab31e551425bd6df2ff4e:2c259efc737516b3c328806c",
+      "recorded_title": "An Experimental Approach",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2008,
+      "actual_conference": "ICSE",
+      "actual_year": 2008,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-af5a0a293696aed1a8a11dfd",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E060",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:6faab31e551425bd6df2ff4e:c0c1c1801721a50acd4d5495",
+      "recorded_title": "Asking and Answering Why and Why Not Questions about Program Behavior",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2008,
+      "actual_conference": "ICSE",
+      "actual_year": 2008,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-da4524cb6179535fe7535327",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E061",
+      "classification": "题名损坏并重复",
+      "repository_record_id": "event:6c5af6e5be8248393b883d4d:909e77e57278a3493aeffba2",
+      "recorded_title": "A Detailed Study of Corrective and Perfective Maintenance Tasks",
+      "recorded_conference": "ICSE",
+      "recorded_year": 2005,
+      "actual_conference": "ICSE",
+      "actual_year": 2005,
+      "actual_award": "ACM SIGSOFT Distinguished Paper Award",
+      "duplicate_of": "listing:jeffhuang-5bbddc0011b9d4140137c251",
+      "verdict": "修复题名后与仓库既有完整题名记录合并；不算 Jeff 遗漏",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www2.sigsoft.org/awards/distinguishedpaper/",
+        "https://www2.sigsoft.org/awards/distinguishedpaper/"
+      ]
+    },
+    {
+      "audit_id": "E075",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:e8df3541de2cdb0c00c6f159:f3b026ca4e3516549fe17edf",
+      "recorded_title": "PhyCloak: Obfuscating Sensing from Communication Signals",
+      "recorded_conference": "NSDI",
+      "recorded_year": 2016,
+      "actual_conference": "NSDI",
+      "actual_year": 2016,
+      "actual_award": "NSDI Best Student Paper Award",
+      "duplicate_of": null,
+      "verdict": "改归最佳学生论文奖，并修正笼统奖名",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.usenix.org/conference/nsdi16/technical-sessions"
+      ]
+    },
+    {
+      "audit_id": "E080",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:5c041b3918247d2b4a101ab9:639ee33cac7ea28eb48438f8",
+      "recorded_title": "Do Incentives Build Robustness in BitTorrent?",
+      "recorded_conference": "NSDI",
+      "recorded_year": 2007,
+      "actual_conference": "NSDI",
+      "actual_year": 2007,
+      "actual_award": "NSDI Best Student Paper Award",
+      "duplicate_of": null,
+      "verdict": "改归最佳学生论文奖，并修正笼统奖名",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.usenix.org/events/nsdi07/tech/"
+      ]
+    },
+    {
+      "audit_id": "E081",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:b3aa9a20a6b92efab01b5a16:5add39184dce253efe9e1611",
+      "recorded_title": "Listen and Whisper: Security Mechanisms for BGP",
+      "recorded_conference": "NSDI",
+      "recorded_year": 2004,
+      "actual_conference": "NSDI",
+      "actual_year": 2004,
+      "actual_award": "NSDI Best Student Paper Award",
+      "duplicate_of": null,
+      "verdict": "改归最佳学生论文奖，并修正笼统奖名",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.usenix.org/events/nsdi04/tech/",
+        "https://www.usenix.org/events/nsdi04/tech/"
+      ]
+    },
+    {
+      "audit_id": "E082",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:234ced44708fad746a1d0a64:fa9a3102382d9fca86b6ffb6",
+      "recorded_title": "X-ray: Automating Root-Cause Diagnosis of Performance Anomalies in Production Software",
+      "recorded_conference": "OSDI",
+      "recorded_year": 2012,
+      "actual_conference": "OSDI",
+      "actual_year": 2012,
+      "actual_award": "Jay Lepreau Best Student Paper Award",
+      "duplicate_of": [],
+      "verdict": "最佳学生论文奖被通用 Best Papers 汇总页掩盖，误归普通最佳论文奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.usenix.org/conference/osdi12/technical-sessions"
+      ]
+    },
+    {
+      "audit_id": "E087",
+      "classification": "同篇重复",
+      "repository_record_id": "event:d05913cbba6a55731b6fcb10:bc932543b3d07b79c62b17f3",
+      "recorded_title": "XCPath, the first order complete XPath dialect",
+      "recorded_conference": "PODS",
+      "recorded_year": 2004,
+      "actual_conference": "PODS",
+      "actual_year": 2004,
+      "actual_award": "PODS 2004 Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-805a8219b38878deaf12192c",
+          "conference": "PODS",
+          "year": 2004,
+          "title": "Conditional XPath, the first order complete XPath dialect",
+          "jeff_record_id": "PODS:2004:27"
+        }
+      ],
+      "verdict": "官方奖页的 XCPath 简称与 Conditional XPath 全题名指向同一 DOI",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/pods-home/pods-best-paper-awards/",
+        "https://api.crossref.org/works/10.1145/1055558.1055562"
+      ]
+    },
+    {
+      "audit_id": "E088",
+      "classification": "会议归属错误",
+      "repository_record_id": "N00017",
+      "recorded_title": "Lifted Curls: A Model for Tightly Coiled Hair Simulation",
+      "recorded_conference": "SIGGRAPH",
+      "recorded_year": 2023,
+      "actual_conference": "SCA",
+      "actual_year": 2023,
+      "actual_award": "SCA 2023 Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "实际是 SCA 2023 最佳论文，误挂 SIGGRAPH 主会",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://computeranimation.org/2023/awards",
+        "https://www.tkim.graphics/LIFTED/"
+      ]
+    },
+    {
+      "audit_id": "E089",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:ebe5ad8e249f5061ba32b8ea:bcbbd679c46d6b5702aa260b",
+      "recorded_title": "Reduce, Reuse, Recycle: Green Information Retrieval Research",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2022,
+      "actual_conference": "SIGIR",
+      "actual_year": 2022,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E090",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:387cecbddbf56c2afc35cfd4:cac2776c662cc364fadfe4f4",
+      "recorded_title": "Causal Intervention for Leveraging Popularity Bias in Recommendation",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2021,
+      "actual_conference": "SIGIR",
+      "actual_year": 2021,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E091",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:8b41e49acf3d3166d45481e3:cfae71cc0c9a287d0ce83567",
+      "recorded_title": "Models Versus Satisfaction: Towards a Better Understanding of Evaluation Metrics",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2020,
+      "actual_conference": "SIGIR",
+      "actual_year": 2020,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E092",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:a580fe550f2cb143239d19bf:6a00d563968e770a43d0d17d",
+      "recorded_title": "Online Multi-modal Hashing with Dynamic Query-adaption",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2019,
+      "actual_conference": "SIGIR",
+      "actual_year": 2019,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E093",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:c22b886bb2443b4a52216e4f:564448c2af74bee0fcf2dbff",
+      "recorded_title": "Classification by Retrieval: Binarizing Data and Classifiers",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2017,
+      "actual_conference": "SIGIR",
+      "actual_year": 2017,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E094",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:c22b886bb2443b4a52216e4f:a948fa4c908c243ac5304338",
+      "recorded_title": "IRGAN: A Minimax Game for Unifying Generative and Discriminative Information Retrieval Models",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2017,
+      "actual_conference": "SIGIR",
+      "actual_year": 2017,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E095",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:9c1a56048d405fb0bc134a51:528be29babbe304dacb7853e",
+      "recorded_title": "Quill: A Framework for Constructing Negotiated Texts – with a Case Study on the US Constitutional Convention of 1787",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2017,
+      "actual_conference": "JCDL",
+      "actual_year": 2017,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E096",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:34f7c3aee39fffb1500835bd:86085c54a492b696780f6bcb",
+      "recorded_title": "Comparing Published Scientific Journal Articles to Their Pre-print Versions",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2016,
+      "actual_conference": "JCDL",
+      "actual_year": 2016,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E097",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:26bb6c70c43c630f40fac35c:a48a3ec30d917f4bb34ef5c0",
+      "recorded_title": "Discrete Collaborative Filtering",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2016,
+      "actual_conference": "SIGIR",
+      "actual_year": 2016,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E098",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:26bb6c70c43c630f40fac35c:f63f81175a10d2f58506c36b",
+      "recorded_title": "Searching by Talking: Analysis of Voice Queries on Mobile Web Search",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2016,
+      "actual_conference": "SIGIR",
+      "actual_year": 2016,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E099",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:f3a63e7488b52d54aec463c0:ee76c2f48cb6f22c7af6d331",
+      "recorded_title": "An Eye-Tracking Study of Query Reformulation",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2015,
+      "actual_conference": "SIGIR",
+      "actual_year": 2015,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E100",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:f3a63e7488b52d54aec463c0:5572e1ff1b8aaf83cd507d51",
+      "recorded_title": "Incorporating Non-sequential Behavior into Click Models",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2015,
+      "actual_conference": "SIGIR",
+      "actual_year": 2015,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E101",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:8fbbc609f70c7e1ce1ec3283:1e409a81a64a4d2dcb5593ae",
+      "recorded_title": "Result List Actions in Fiction Search",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2015,
+      "actual_conference": "JCDL",
+      "actual_year": 2015,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E102",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:f3a63e7488b52d54aec463c0:61eb8dc4b842d63ad3de0c59",
+      "recorded_title": "The Benefits of Magnitude Estimation for Relevance Assessment",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2015,
+      "actual_conference": "SIGIR",
+      "actual_year": 2015,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E103",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:73f977581a073d2693925d44:f90c9f7ecf75c5f27bdb3dee",
+      "recorded_title": "Modelling interaction with economic models of search",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2014,
+      "actual_conference": "SIGIR",
+      "actual_year": 2014,
+      "actual_award": "SIGIR Best Paper Honorable Mention",
+      "duplicate_of": [],
+      "verdict": "应归入 Honorable Mention，不能计作 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.hosting.acm.org/awards/best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E104",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:86e7ea316f41e767a426bd6e:4e117b82cc96dcbebe8ea9a8",
+      "recorded_title": "When Should I Make Preservation Copies of Myself?",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2014,
+      "actual_conference": "JCDL",
+      "actual_year": 2014,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E105",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:05459518900a4d9579cb0fa1:9d5772c5b54d760e2be7603b",
+      "recorded_title": "Exploiting Potential Citation Papers in Scholarly Paper Recommendation",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2013,
+      "actual_conference": "JCDL",
+      "actual_year": 2013,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E106",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:d33fb7711efe0a0ba839c5cc:40c507cced6c7efaf9416b51",
+      "recorded_title": "Modeling and exploiting heterogeneous bibliographic networks for expertise ranking",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2012,
+      "actual_conference": "JCDL",
+      "actual_year": 2012,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E107",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:0b0de5e677202905a2635a99:559cfe8c06d99e2a31a486ff",
+      "recorded_title": "SharedCanvas: A Collaborative Model for Medieval Manuscript Layout Dissemination",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2011,
+      "actual_conference": "JCDL",
+      "actual_year": 2011,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E108",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:5bcf241fdbe7fcca33795065:da0e10f27724ec0ccd8a9ed8",
+      "recorded_title": "Transferring structural markup across translations using multilingual alignment and projection",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2010,
+      "actual_conference": "JCDL",
+      "actual_year": 2010,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E109",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:5b6750887fe36500fc550b2b:bd2fa52e13312db9a95210e5",
+      "recorded_title": "Automatically characterizing resource quality for educational digital libraries",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2009,
+      "actual_conference": "JCDL",
+      "actual_year": 2009,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E110",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:806d5912fc0754ff520550f3:d45c6bace7f21e63ce3043a7",
+      "recorded_title": "From writing and analysis to the repository: taking the scholars’ perspective on scholarly archiving",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2008,
+      "actual_conference": "JCDL",
+      "actual_year": 2008,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E111",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:a0c7ffd0ab133e94f0771ead:ae42af86398b54dbb52ddca3",
+      "recorded_title": "World explorer: visualizing aggregate data from unstructured text in geo-referenced collections",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2007,
+      "actual_conference": "JCDL",
+      "actual_year": 2007,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E112",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:e7537445afa23bbfe95272bf:f0a9c7e525235cb88f09fece",
+      "recorded_title": "Metadata aggregation and “automated digital libraries”: a retrospective on the NSDL experience",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2006,
+      "actual_conference": "JCDL",
+      "actual_year": 2006,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E113",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:93bfd6a9e4729997fc46e71a:ad44dfbf64c76902c724d512",
+      "recorded_title": "Developing practical automatic metadata assignment and evaluation tools for internet resources",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2005,
+      "actual_conference": "JCDL",
+      "actual_year": 2005,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E114",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:c0c474247ed82c5258457fcf:1288f352059f61bd3a1bd1b5",
+      "recorded_title": "Measuring the user’s experience with digital libraries",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2004,
+      "actual_conference": "JCDL",
+      "actual_year": 2004,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E115",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:6aa4c8e3262d5822a3c9797b:f86602325a9996c7034a42be",
+      "recorded_title": "How fast is too fast?: evaluating fast forward surrogates for digital video",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2003,
+      "actual_conference": "JCDL",
+      "actual_year": 2003,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E116",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:243f6c6898f5a7c879d4af04:be221d037b6e0634dc024f1e",
+      "recorded_title": "Collection Systhesis",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2002,
+      "actual_conference": "JCDL",
+      "actual_year": 2002,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/",
+        "https://api.crossref.org/works/10.1145/544220.544275"
+      ]
+    },
+    {
+      "audit_id": "E117",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:f8e5393d08ceb44fbe22d652:fe968d726cb7ee81428d2bf9",
+      "recorded_title": "Building a Hypertextual Digital Library in the Humanities: A Case Study on London",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2001,
+      "actual_conference": "JCDL",
+      "actual_year": 2001,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/"
+      ]
+    },
+    {
+      "audit_id": "E118",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:d9ef246355c62171efc0ac40:1f4ca47b97f60066e184222b",
+      "recorded_title": "Effects of annotations on student readers and writers",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 2000,
+      "actual_conference": "ACM DL",
+      "actual_year": 2000,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/",
+        "https://api.crossref.org/works/10.1145/336597.336620"
+      ]
+    },
+    {
+      "audit_id": "E120",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:d1e585b7c1de665473864daf:12baf979f0894ec27a573138",
+      "recorded_title": "Towards a digital library of popular music",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 1999,
+      "actual_conference": "ACM DL",
+      "actual_year": 1999,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/",
+        "https://api.crossref.org/works/10.1145/313238.313295"
+      ]
+    },
+    {
+      "audit_id": "E121",
+      "classification": "会议归属错误",
+      "repository_record_id": "event:5b8a62f4baa378e548108f43:2f5b164fd9b93132bd205c22",
+      "recorded_title": "Making metadata: a study of metadata creation for a mixed physical-digital collection",
+      "recorded_conference": "SIGIR",
+      "recorded_year": 1998,
+      "actual_conference": "ACM DL",
+      "actual_year": 1998,
+      "actual_award": "Vannevar Bush Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "数字图书馆会议获奖论文误挂 SIGIR",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigir.org/awards/vannevar-bush-best-paper-awards/",
+        "https://api.crossref.org/works/10.1145/276675.276693"
+      ]
+    },
+    {
+      "audit_id": "E135",
+      "classification": "年份错误",
+      "repository_record_id": "event:82a9d96941dc12626c1f4d8c:cdf929d238bf858f38177a2f",
+      "recorded_title": "An efficient approach to clustering in large multimedia databases with noise",
+      "recorded_conference": "KDD",
+      "recorded_year": 1997,
+      "actual_conference": "KDD",
+      "actual_year": 1998,
+      "actual_award": "KDD Best Research Paper Award — Runner-up",
+      "duplicate_of": null,
+      "verdict": "改为 KDD 1998 研究论文奖 Runner-up，并移出获胜者主列表",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://kdd.org/awards/view/1997-sigkdd-best-paper-awards",
+        "https://kdd.org/awards/view/1998-sigkdd-best-paper-awards",
+        "https://www.aaai.org/Papers/KDD/1998/KDD98-009.pdf",
+        "https://www.aaai.org/Papers/KDD/1998/KDD98-009.pdf"
+      ]
+    },
+    {
+      "audit_id": "E137",
+      "classification": "年份错误",
+      "repository_record_id": "event:3eced406c61632a498967212:021376b781a96dc66642d485",
+      "recorded_title": "Exploiting Process Lifetime Distributions for Dynamic Load Balancing",
+      "recorded_conference": "SIGMETRICS",
+      "recorded_year": 2002,
+      "actual_conference": "SIGMETRICS",
+      "actual_year": 1996,
+      "actual_award": "SIGMETRICS Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-1a5b6bfc1f29477bf3647ac2",
+          "conference": "SIGMETRICS",
+          "year": 1996,
+          "title": "Exploiting Process Lifetime Distributions for Dynamic Load Balancing"
+        }
+      ],
+      "verdict": "1996 年 Best Paper 被误挂到 2002 年，并与正确年份收录重复",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.sigmetrics.org/awards.shtml"
+      ]
+    },
+    {
+      "audit_id": "E138",
+      "classification": "年份错误",
+      "repository_record_id": "event:3eced406c61632a498967212:f315f069f9cf0927aae6832c",
+      "recorded_title": "Supporting stored video: reducing rate variability and end-to-end resource requirements through optimal smoothing",
+      "recorded_conference": "SIGMETRICS",
+      "recorded_year": 2002,
+      "actual_conference": "SIGMETRICS",
+      "actual_year": 1996,
+      "actual_award": "SIGMETRICS Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-12ffdca71a34570c5a073adf",
+          "conference": "SIGMETRICS",
+          "year": 1996,
+          "title": "Supporting Stored Video: Reducing Rate Variability and End-to-End Resource Requirements through Optimal Smoothing"
+        }
+      ],
+      "verdict": "1996 年 Best Paper 被误挂到 2002 年，并与正确年份收录重复",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.sigmetrics.org/awards.shtml"
+      ]
+    },
+    {
+      "audit_id": "E143",
+      "classification": "同篇重复",
+      "repository_record_id": "event:30f71e1936a7e12f777fe247:2f5b19930d20b2704bf3fddf",
+      "recorded_title": "1) Bao: Making Learned Query Optimization Practical.",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2021,
+      "actual_conference": "SIGMOD",
+      "actual_year": 2021,
+      "actual_award": "SIGMOD Data Management: Best Papers",
+      "duplicate_of": [
+        {
+          "record_id": "event:2aeadde0391e1b7eaea28ae1:520941ac05e56f01602a6c56",
+          "conference": "SIGMOD",
+          "year": 2021,
+          "title": "Bao: Making Learned Query Optimization Practical."
+        }
+      ],
+      "verdict": "同一最佳论文因列表编号和排版差异出现两条",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://2021.sigmod.org/sigmod_best_papers.shtml",
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E144",
+      "classification": "同篇重复",
+      "repository_record_id": "event:30f71e1936a7e12f777fe247:1f6db5dc425fe6939eb76e01",
+      "recorded_title": "2) DFI - The Data Flow Interface for High-Speed Networks.",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2021,
+      "actual_conference": "SIGMOD",
+      "actual_year": 2021,
+      "actual_award": "SIGMOD Data Management: Best Papers",
+      "duplicate_of": [
+        {
+          "record_id": "event:2aeadde0391e1b7eaea28ae1:619b8f4895561b964d3863a6",
+          "conference": "SIGMOD",
+          "year": 2021,
+          "title": "DFI – The Data Flow Interface for High-Speed Networks."
+        }
+      ],
+      "verdict": "同一最佳论文因列表编号和排版差异出现两条",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://2021.sigmod.org/sigmod_best_papers.shtml",
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E147",
+      "classification": "奖项分类错误",
+      "repository_record_id": "event:51c94faee3df5e825b48f442:77ff45662434c3d4fcb6e49d",
+      "recorded_title": "An Architecture for Recycling Intermediates in a Column-Store",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2009,
+      "actual_conference": "SIGMOD",
+      "actual_year": 2009,
+      "actual_award": "SIGMOD Best Paper Award Runner-up",
+      "duplicate_of": [],
+      "verdict": "Runner-up 被错标为 Best Paper 正奖",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E148",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:184b62b53c301c0f17e3c46c",
+      "recorded_title": "AlphaSort: A RISC Machine Sort",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1994,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "1994 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E149",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:b9a94342bf8c1caee818317d",
+      "recorded_title": "DynaMat: A Dynamic View Management System for Data Warehouses",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1999,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-31ec331591caa1db6a699cc4",
+          "conference": "SIGMOD",
+          "year": 1999,
+          "title": "DynaMat: a dynamic view management system for data warehouses"
+        }
+      ],
+      "verdict": "1999 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E150",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:316643cc2efd557a3e75958d",
+      "recorded_title": "Efficient Transparent Application Recovery in Client Server Information Systems",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1998,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-e12c4a0cd9b8d20e82b740d6",
+          "conference": "SIGMOD",
+          "year": 1998,
+          "title": "Efficient transparent application recovery in client-server information systems"
+        }
+      ],
+      "verdict": "1998 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E151",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:414fcb6bc3dd390e8c586ce0",
+      "recorded_title": "Fast Parallel Similarity Search in Multimedia Databases",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1997,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-e5adf7c38a32d7a55dba8694",
+          "conference": "SIGMOD",
+          "year": 1997,
+          "title": "Fast parallel similarity search in multimedia databases"
+        }
+      ],
+      "verdict": "1997 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E152",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:1e0f60c2e0f0bbfe8da1dd78",
+      "recorded_title": "Fast Subsequence Matching in Time-Series Databases",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1994,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [],
+      "verdict": "1994 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E153",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:8c9b729a177a8147baa2a564",
+      "recorded_title": "Implementing Data Cubes Efficiently",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1996,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-340d31cfc3c5200f41fb37d0",
+          "conference": "SIGMOD",
+          "year": 1996,
+          "title": "Implementing data cubes efficiently"
+        }
+      ],
+      "verdict": "1996 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E154",
+      "classification": "年份错误",
+      "repository_record_id": "event:06c7d47a602c7a44c14312d5:4bc94d8a7967e321f1314548",
+      "recorded_title": "Integrating Association Rule Mining with Relational Database Systems: Alternatives and Implications",
+      "recorded_conference": "SIGMOD",
+      "recorded_year": 2000,
+      "actual_conference": "SIGMOD",
+      "actual_year": 1998,
+      "actual_award": "SIGMOD Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-6ada2e178e0dff913bfb76ed",
+          "conference": "SIGMOD",
+          "year": 1998,
+          "title": "Integrating association rule mining with relational database systems: alternatives and implications"
+        }
+      ],
+      "verdict": "1998 年 Best Paper 被误记为 2000 年",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://sigmod.org/sigmod-awards/sigmod-best-paper-award/"
+      ]
+    },
+    {
+      "audit_id": "E155",
+      "classification": "会议归属错误",
+      "repository_record_id": "N00077",
+      "recorded_title": "From Rust Till Run: Extending Memory Safety From Rust to Cryptographic Assembly",
+      "recorded_conference": "SOSP",
+      "recorded_year": 2025,
+      "actual_conference": "PLOS",
+      "actual_year": 2025,
+      "actual_award": "PLOS 2025 Best Paper Award",
+      "duplicate_of": null,
+      "verdict": "改归 PLOS 2025 研讨会最佳论文奖，移出 SOSP 主会列表",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://plos-workshop.org/2025/",
+        "https://api.crossref.org/works/10.1145/3764860.3768333",
+        "https://www.cs.princeton.edu/~sc4479/",
+        "https://www.amitlevy.com/publications/"
+      ]
+    },
+    {
+      "audit_id": "E159",
+      "classification": "同篇重复",
+      "repository_record_id": "P00434",
+      "recorded_title": "Simulating Time in (Nearly) Square-Root Space",
+      "recorded_conference": "STOC",
+      "recorded_year": 2025,
+      "actual_conference": "STOC",
+      "actual_year": 2025,
+      "actual_award": "STOC 2025 Best Paper Award",
+      "duplicate_of": [
+        {
+          "record_id": "listing:jeffhuang-dc5e7be6dd4b41285fb52ee6",
+          "conference": "STOC",
+          "year": 2025,
+          "title": "Simulating Time with Square-Root Space",
+          "jeff_record_id": "STOC:2025:3"
+        }
+      ],
+      "verdict": "同一 STOC 2025 获奖论文在授奖页和出版/作者页采用不同题名",
+      "confidence": "high",
+      "evidence_urls": [
+        "https://www.sigact.org/prizes/best_paper.html",
+        "https://acm-stoc.org/stoc2025/accepted-papers.html",
+        "https://people.csail.mit.edu/rrw/projects.html"
+      ]
+    }
+  ]
+}
