@@ -6,16 +6,17 @@ import SearchView from './views/SearchView.vue'
 import PaperOverviewView from './views/PaperOverviewView.vue'
 import AwardEventsView from './views/AwardEventsView.vue'
 import AcknowledgementFooter from './components/AcknowledgementFooter.vue'
-const active = ref('search'), meta = ref(null), error = ref('')
-const navigation = [{ id: 'search', label: '论文检索' }, { id: 'overview', label: '论文总览' }, { id: 'events', label: '会议年度颁奖' }]
+import SiteBranding from './components/SiteBranding.vue'
+const active = ref('overview'), meta = ref(null), error = ref('')
+const navigation = [{ id: 'overview', label: '论文总览' }, { id: 'events', label: '会议年度奖项' }, { id: 'search', label: '论文检索' }]
 async function boot() { try { meta.value = await api.meta(); error.value = '' } catch(e) { error.value = errMsg(e) } }
 onMounted(boot)
 </script>
 <template>
   <div class="academic-app">
     <header class="site-header"><div class="header-inner">
-      <a href="#" class="brand" @click.prevent="active='search'"><span class="brand-mark"><el-icon :size="26"><Reading /></el-icon></span><span><strong>Global CS Paper Awards</strong><small>计算机领域获奖论文资料库 · 公开只读版</small></span></a>
-      <nav aria-label="主导航"><button v-for="item in navigation" :key="item.id" :class="{active:active===item.id}" @click="active=item.id">{{ item.label }}</button></nav>
+      <SiteBranding @home="active='overview'" />
+      <nav aria-label="主导航"><button v-for="item in navigation" :key="item.id" :class="{active:active===item.id}" :aria-current="active===item.id ? 'page' : undefined" @click="active=item.id">{{ item.label }}</button></nav>
     </div></header>
     <main class="main-shell">
       <div v-if="!meta" class="center-state"><p>{{ error || '正在加载论文资料库…' }}</p><el-button v-if="error" @click="boot">重新连接</el-button></div>

@@ -1,8 +1,8 @@
-# Global CS Paper Awards
+# CCF Global CS Conference Paper Awards
 
 **计算机领域获奖论文数据库**
 
-Global CS Paper Awards 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
+CCF Global CS Conference Paper Awards 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
 
 ## 浏览论文
 

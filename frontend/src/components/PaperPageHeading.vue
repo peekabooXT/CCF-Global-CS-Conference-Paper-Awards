@@ -5,7 +5,7 @@ defineProps({ title: String, description: String, meta: Object })
 <template>
   <header class="paper-page-heading">
     <div class="page-heading-copy">
-      <div class="eyebrow">GLOBAL CS PAPER AWARDS</div>
+      <div class="eyebrow">CCF GLOBAL CS CONFERENCE PAPER AWARDS</div>
       <h1>{{ title }}</h1>
       <p>{{ description }}</p>
     </div>

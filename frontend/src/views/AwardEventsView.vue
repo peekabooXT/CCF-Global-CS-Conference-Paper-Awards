@@ -32,7 +32,7 @@ onMounted(() => load())
 
 <template>
   <div class="events-workspace">
-    <h2>会议年度颁奖记录</h2>
+    <h2>会议年度奖项记录</h2>
     <p class="hint">按会议与年份查看颁发了哪些奖项，以及各奖项已收录的获奖论文数量。保留官网原始奖名与证据；完整颁奖数量以官方来源为准。</p>
     <el-form class="events-filters" @submit.prevent="load(true)">
       <el-form-item label="会议"><el-input v-model="filters.venue" clearable placeholder="例如 SIGIR" /></el-form-item>
@@ -46,7 +46,7 @@ onMounted(() => load())
         <el-button class="events-search-button" type="primary" native-type="submit" :loading="loading">检索</el-button>
       </el-form-item>
     </el-form>
-    <p class="hint">共 {{ result.total }} 条会议年度颁奖记录；“未映射”表示尚未可靠对应 CCF 会议目录。</p>
+    <p class="hint">共 {{ result.total }} 条会议年度奖项记录；“未映射”表示尚未可靠对应 CCF 会议目录。</p>
     <el-table :data="result.events" v-loading="loading" stripe style="width: 100%">
       <el-table-column prop="year" label="年份" width="80" />
       <el-table-column label="会议" width="150"><template #default="{ row }">{{ row.venue }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></template></el-table-column>
@@ -57,7 +57,7 @@ onMounted(() => load())
       <el-table-column label="操作" width="80"><template #default="{ row }"><el-button link type="primary" @click="openEvent(row.id)">查看</el-button></template></el-table-column>
     </el-table>
     <div class="pager"><el-pagination :current-page="page" :page-size="pageSize" :total="result.total" :disabled="loading" layout="prev, pager, next" @current-change="p => { offset = (p - 1) * pageSize; load() }" /></div>
-    <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.official_award_name || '会议年度颁奖详情'">
+    <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.official_award_name || '会议年度奖项详情'">
       <template v-if="selected">
         <p>{{ selected.venue }} · {{ selected.year }} · {{ selected.category_label }}<span v-if="selected.student_only"> · 学生奖</span></p>
         <p class="hint">原始奖名与统一分类并列展示；分类不替代原始称谓。事件和论文关联分别保留核验状态。</p>
