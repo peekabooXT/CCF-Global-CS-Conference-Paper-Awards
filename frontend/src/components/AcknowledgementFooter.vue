@@ -60,7 +60,7 @@ a:focus-visible{outline:3px solid #90b8e6;outline-offset:3px;border-radius:2px}
 .institution-acknowledgements>.acknowledgement-label{padding-top:17px}
 .institution-list{align-items:center;gap:16px 28px;min-width:0;flex:1}
 .institution-logo-item{max-width:100%}
-.institution-list>li:last-child{flex-basis:100%}
+.institution-list>li:last-child{flex-basis:auto}
 .university-mark{display:flex;align-items:center;min-height:58px}
 .university-mark img{display:block;width:190px;height:auto;max-width:100%}
 .college-mark{display:flex;align-items:center;width:418px;max-width:100%;padding:10px 12px;background:#123d70;border-radius:8px}
