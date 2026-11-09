@@ -38,4 +38,4 @@ Chinese and English interfaces use the same snapshot and database. Language swit
 
 [publication.json](../data/exports/publication.json) records the release, timestamp and counts. [public-data.json](../data/exports/public-data.json) holds the corresponding snapshot. Presentation-only updates may change the deployed website commit without changing the data-publication timestamp.
 
-External aggregators include [Jeff Huang's Best Paper Awards](https://jeffhuang.com/best_paper_awards/). Consult each record's source links for its specific provenance. Send corrections with evidence through [Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) or [email](mailto:peekaboocatx@gmail.com).
+External aggregators include [Jeff Huang's Best Paper Awards](https://jeffhuang.com/best_paper_awards/). Consult each record's source links for its specific provenance. Send corrections with evidence through [Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Paper-Awards/issues) or [email](mailto:peekaboocatx@gmail.com).

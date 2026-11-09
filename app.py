@@ -17,7 +17,7 @@ from paper_awards.ontology import CATEGORIES
 from paper_awards.web_helpers import AWARDS, csv_bytes, validate_filters
 
 ROOT = Path(__file__).resolve().parent
-app = FastAPI(title="Global CS Paper Awards Public API", docs_url=None, redoc_url=None)
+app = FastAPI(title="CCF Global CS Conference Paper Awards API", docs_url=None, redoc_url=None)
 
 
 def get_db():
