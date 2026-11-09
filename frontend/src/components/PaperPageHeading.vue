@@ -1,4 +1,5 @@
 <script setup>
+import { t } from '../i18n.js'
 defineProps({ title: String, description: String, meta: Object })
 </script>
 
@@ -6,12 +7,12 @@ defineProps({ title: String, description: String, meta: Object })
   <header class="paper-page-heading">
     <div class="page-heading-copy">
       <div class="eyebrow">CCF GLOBAL CS CONFERENCE PAPER AWARDS</div>
-      <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
+      <h1>{{ t(title) }}</h1>
+      <p>{{ t(description) }}</p>
     </div>
     <p v-if="meta?.mode === 'public'" class="page-publication">
-      <span>最近发布：{{ meta.publication?.published_at || '尚未发布' }}</span>
-      <span class="publication-label">已核验公开数据</span>
+      <span>{{ t("最近发布：") }}{{ meta.publication?.published_at || t('尚未发布') }}</span>
+      <span class="publication-label">{{ t("已核验公开数据") }}</span>
     </p>
   </header>
 </template>

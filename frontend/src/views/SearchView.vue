@@ -1,4 +1,5 @@
 <script setup>
+import { t, locale } from '../i18n.js'
 import { ref, reactive, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
@@ -7,6 +8,7 @@ import PaperPageHeading from '../components/PaperPageHeading.vue'
 import PaperPagination from '../components/PaperPagination.vue'
 import { DEFAULT_PAGE_SIZE, pageSlice } from '../pagination.js'
 import { scholarUrl, externalPaperUrl, sourceUrl } from '../paperLinks.js'
+import { overviewCsv } from '../paperOverview.js'
 import { alphabeticalConferences } from '../conferenceOptions.js'
 
 const props = defineProps({ meta: { type: Object, required: true } })
@@ -34,12 +36,12 @@ const applied = ref(null)
 const selectedId = ref(null)
 const drawer = ref(false)
 
-const conferenceLabel = (c) => c ? `${c.acronym} · ${c.rank} 类 · ${c.area}` : '全部会议'
+const conferenceLabel = (c) => c ? `${c.acronym} · ${c.rank} 类 · ${t(c.area)}` : '全部会议'
 
 async function runSearch() {
   if (loading.value) return
-  if (filters.year_from && filters.year_to && filters.year_from > filters.year_to) { ElMessage.warning('起始年份不能晚于结束年份'); return }
-  if (filters.published_from && filters.published_to && filters.published_from > filters.published_to) { ElMessage.warning('发表起点不能晚于终点'); return }
+  if (filters.year_from && filters.year_to && filters.year_from > filters.year_to) { ElMessage.warning(t('起始年份不能晚于结束年份')); return }
+  if (filters.published_from && filters.published_to && filters.published_from > filters.published_to) { ElMessage.warning(t('发表起点不能晚于终点')); return }
   loading.value = true
   try {
     const body = { ...filters }
@@ -78,108 +80,111 @@ const authorLine = (record) => record.authors?.length
   : record.authors_raw || ''
 
 function downloadCsv() {
-  if (applied.value) window.open(api.exportUrl(applied.value), '_blank', 'noopener')
+  if (!applied.value) return
+  const url = URL.createObjectURL(new Blob([overviewCsv(records.value, props.meta.statuses, locale.value)], { type: 'text/csv;charset=utf-8' }))
+  const link = document.createElement('a'); link.href = url; link.download = `paper-search-${locale.value}.csv`; link.click()
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 onMounted(runSearch)
 </script>
 
 <template>
   <div class="search-workspace">
-    <PaperPageHeading class="search-page-heading" title="获奖论文检索" description="按会议、奖项与年份查找计算机领域获奖论文，查看原始奖项名称和可核验来源。" :meta="meta" />
-    <aside class="filter-sidebar" aria-label="检索设置">
-      <div class="sidebar-heading"><h2>检索设置</h2></div>
+    <PaperPageHeading class="search-page-heading" :title="t(&quot;获奖论文检索&quot;)" :description="t(&quot;按会议、奖项与年份查找计算机领域获奖论文，查看原始奖项名称和可核验来源。&quot;)" :meta="meta" />
+    <aside class="filter-sidebar" :aria-label="t(&quot;检索设置&quot;)">
+      <div class="sidebar-heading"><h2>{{ t("检索设置") }}</h2></div>
       <el-form :model="filters" label-position="top" class="filter-form" @submit.prevent="runSearch">
-        <el-form-item label="CCF 等级">
-          <el-select v-model="filters.rank" placeholder="全部（CCF A / B）" clearable>
+        <el-form-item :label="t(&quot;CCF 等级&quot;)">
+          <el-select v-model="filters.rank" :placeholder="t(&quot;全部（CCF A / B）&quot;)" clearable>
             <el-option label="CCF A" value="A" />
             <el-option label="CCF B" value="B" />
           </el-select>
         </el-form-item>
-        <el-form-item label="奖项分类">
-          <el-select v-model="filters.category" placeholder="全部奖项分类" clearable>
-            <el-option v-for="(label, key) in awardCategories" :key="key" :label="label" :value="key" />
+        <el-form-item :label="t(&quot;奖项分类&quot;)">
+          <el-select v-model="filters.category" :placeholder="t(&quot;全部奖项分类&quot;)" clearable>
+            <el-option v-for="(label, key) in awardCategories" :key="key" :label="t(label)" :value="key" />
           </el-select>
         </el-form-item>
-        <el-form-item label="会议名称">
-          <el-select v-model="filters.conference" placeholder="输入会议简称查找" filterable clearable>
-            <el-option v-for="c in conferences" :key="c.id" :label="conferenceLabel(c)" :value="c.id" />
+        <el-form-item :label="t(&quot;会议名称&quot;)">
+          <el-select v-model="filters.conference" :placeholder="t(&quot;输入会议简称查找&quot;)" filterable clearable>
+            <el-option v-for="c in conferences" :key="c.id" :label="t(conferenceLabel(c))" :value="c.id" />
           </el-select>
         </el-form-item>
-        <el-form-item label="获奖年份">
+        <el-form-item :label="t(&quot;获奖年份&quot;)">
           <div class="year-fields">
-            <el-input-number v-model="filters.year_from" :min="1900" :max="2200" placeholder="起始" controls-position="right" />
+            <el-input-number v-model="filters.year_from" :min="1900" :max="2200" :placeholder="t(&quot;起始&quot;)" controls-position="right" />
             <span aria-hidden="true">—</span>
-            <el-input-number v-model="filters.year_to" :min="1900" :max="2200" placeholder="结束" controls-position="right" />
+            <el-input-number v-model="filters.year_to" :min="1900" :max="2200" :placeholder="t(&quot;结束&quot;)" controls-position="right" />
           </div>
         </el-form-item>
-        <el-form-item label="作者"><el-input v-model="filters.author" placeholder="输入作者姓名" clearable /></el-form-item>
-        <el-form-item label="单位"><el-input v-model="filters.affiliation" placeholder="输入作者单位" clearable /></el-form-item>
-        <el-form-item label="标题关键词"><el-input v-model="filters.title" placeholder="输入标题关键词" clearable /></el-form-item>
-        <el-form-item label="核验状态">
+        <el-form-item :label="t(&quot;作者&quot;)"><el-input v-model="filters.author" :placeholder="t(&quot;输入作者姓名&quot;)" clearable /></el-form-item>
+        <el-form-item :label="t(&quot;单位&quot;)"><el-input v-model="filters.affiliation" :placeholder="t(&quot;输入作者单位&quot;)" clearable /></el-form-item>
+        <el-form-item :label="t(&quot;标题关键词&quot;)"><el-input v-model="filters.title" :placeholder="t(&quot;输入标题关键词&quot;)" clearable /></el-form-item>
+        <el-form-item :label="t(&quot;核验状态&quot;)">
           <el-select v-model="filters.status">
-            <el-option v-for="k in statusKeys" :key="k" :label="meta.statuses[k]" :value="k" />
+            <el-option v-for="k in statusKeys" :key="k" :label="t(meta.statuses[k])" :value="k" />
           </el-select>
         </el-form-item>
-        <el-form-item label="发表日期">
+        <el-form-item :label="t(&quot;发表日期&quot;)">
           <div class="date-fields">
-            <el-date-picker v-model="filters.published_from" type="date" placeholder="起始日期" value-format="YYYY-MM-DD" />
-            <el-date-picker v-model="filters.published_to" type="date" placeholder="结束日期" value-format="YYYY-MM-DD" />
+            <el-date-picker v-model="filters.published_from" type="date" :placeholder="t(&quot;起始日期&quot;)" value-format="YYYY-MM-DD" />
+            <el-date-picker v-model="filters.published_to" type="date" :placeholder="t(&quot;结束日期&quot;)" value-format="YYYY-MM-DD" />
           </div>
         </el-form-item>
         <div class="filter-actions">
-          <el-button type="primary" native-type="submit" :loading="loading">检索论文</el-button>
-          <el-button :disabled="loading" @click="resetFilters">重置条件</el-button>
+          <el-button type="primary" native-type="submit" :loading="loading">{{ t("检索论文") }}</el-button>
+          <el-button :disabled="loading" @click="resetFilters">{{ t("重置条件") }}</el-button>
         </div>
       </el-form>
     </aside>
 
-    <section class="results-content" aria-label="论文检索结果">
+    <section class="results-content" :aria-label="t(&quot;论文检索结果&quot;)">
       <div class="results-heading">
         <div>
-          <span class="results-count" role="status" aria-live="polite">{{ loading ? '正在检索…' : `共检索到 ${records.length.toLocaleString()} 篇论文` }}</span>
-          <span v-if="records.length" class="page-count">当前显示 {{ (page - 1) * pageSize + 1 }}–{{ Math.min(page * pageSize, records.length) }} 篇</span>
+          <span class="results-count" role="status" aria-live="polite">{{ loading ? t('正在检索…') : t(`共检索到 ${records.length.toLocaleString()} 篇论文`) }}</span>
+          <span v-if="records.length" class="page-count">{{ t("当前显示 ") }}{{ (page - 1) * pageSize + 1 }}–{{ Math.min(page * pageSize, records.length) }}{{ t(" 篇") }}</span>
         </div>
-        <el-button :disabled="!applied || loading || !records.length" @click="downloadCsv">导出当前结果 CSV</el-button>
+        <el-button :disabled="!applied || loading || !records.length" @click="downloadCsv">{{ t("导出当前结果 CSV") }}</el-button>
       </div>
       <div class="paper-list" v-loading="loading">
         <article v-for="record in pageRecords" :key="record.id" class="paper-card">
           <div class="paper-main">
             <div class="paper-badges">
-              <span v-if="record.rank" class="rank-badge">★ CCF {{ record.rank }} 类会议</span>
-              <span class="category-badge">{{ record.category_label || '其他获奖' }}</span>
+              <span v-if="record.rank" class="rank-badge">★ CCF {{ record.rank }}{{ t(" 类会议") }}</span>
+              <span class="category-badge">{{ t(record.category_label || t('其他获奖')) }}</span>
             </div>
             <h2><button class="title-button" @click="openDetail(record.id)">{{ record.title }}</button></h2>
             <p v-if="authorLine(record)" class="paper-authors">{{ authorLine(record) }}</p>
-            <p v-else class="paper-authors missing">作者信息尚未提供</p>
+            <p v-else class="paper-authors missing">{{ t("作者信息尚未提供") }}</p>
             <div class="paper-meta">
               <div class="paper-facts">
-                <span><strong>{{ record.acronym || '会议未映射' }}</strong> · {{ record.year }}</span>
-                <span>发表日期 {{ record.publication_date || '未知' }}</span>
+                <span><strong>{{ record.acronym || t('会议未映射') }}</strong> · {{ record.year }}</span>
+                <span>{{ t("发表日期 ") }}{{ record.publication_date || t('未知') }}</span>
               </div>
               <div class="paper-links">
                 <a :href="scholarUrl(record)" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a>
-                <a v-if="externalPaperUrl(record)" :href="externalPaperUrl(record)" target="_blank" rel="noopener noreferrer">外部论文 ↗</a>
-                <a v-if="sourceUrl(record)" :href="sourceUrl(record)" target="_blank" rel="noopener noreferrer">来源 ↗</a>
-                <button @click="openDetail(record.id)">查看详情 →</button>
+                <a v-if="externalPaperUrl(record)" :href="externalPaperUrl(record)" target="_blank" rel="noopener noreferrer">{{ t("外部论文 ↗") }}</a>
+                <a v-if="sourceUrl(record)" :href="sourceUrl(record)" target="_blank" rel="noopener noreferrer">{{ t("来源 ↗") }}</a>
+                <button @click="openDetail(record.id)">{{ t("查看详情 →") }}</button>
               </div>
             </div>
           </div>
           <div class="paper-award">
-            <span class="award-caption">奖项原名</span>
-            <strong>{{ record.award_name || '来源未提供' }}</strong>
+            <span class="award-caption">{{ t("奖项原名") }}</span>
+            <strong>{{ record.award_name || t('来源未提供') }}</strong>
             <div class="paper-review">
-              <span class="award-caption">核验状态</span>
-              <span class="status-pill" :class="`status-${record.status}`">{{ meta.statuses[record.status] || record.status }}</span>
+              <span class="award-caption">{{ t("核验状态") }}</span>
+              <span class="status-pill" :class="`status-${record.status}`">{{ t(meta.statuses[record.status] || record.status) }}</span>
             </div>
           </div>
         </article>
-        <el-empty v-if="!loading && !records.length" :description="emptyDescription" />
+        <el-empty v-if="!loading && !records.length" :description="t(emptyDescription)" />
       </div>
       <PaperPagination v-model:page="page" v-model:page-size="pageSize" :total="records.length" :disabled="loading" />
-      <p class="results-note">“最佳论文奖”采用 JeffHuang 收录口径；学生论文奖单列，其他奖项保留原名并归入其他获奖。</p>
+      <p class="results-note">{{ t("“最佳论文奖”采用 JeffHuang 收录口径；学生论文奖单列，其他奖项保留原名并归入其他获奖。") }}</p>
     </section>
 
-    <el-drawer v-model="drawer" size="min(760px, 100vw)" title="论文详情">
+    <el-drawer v-model="drawer" size="min(760px, 100vw)" :title="t(&quot;论文详情&quot;)">
       <RecordDetail v-if="selected" :record="selected" :awards="meta.awards" />
     </el-drawer>
   </div>

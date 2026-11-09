@@ -1,4 +1,5 @@
 <script setup>
+import { t } from './i18n.js'
 import { ref, onMounted } from 'vue'
 import { Reading } from '@element-plus/icons-vue'
 import { api, errMsg } from './api.js'
@@ -16,12 +17,12 @@ onMounted(boot)
   <div class="academic-app">
     <header class="site-header"><div class="header-inner">
       <SiteBranding @home="active='overview'" />
-      <nav aria-label="主导航"><button v-for="item in navigation" :key="item.id" :class="{active:active===item.id}" :aria-current="active===item.id ? 'page' : undefined" @click="active=item.id">{{ item.label }}</button></nav>
+      <nav :aria-label="t(&quot;主导航&quot;)"><button v-for="item in navigation" :key="item.id" :class="{active:active===item.id}" :aria-current="active===item.id ? 'page' : undefined" @click="active=item.id">{{ t(item.label) }}</button></nav>
     </div></header>
     <main class="main-shell">
-      <div v-if="!meta" class="center-state"><p>{{ error || '正在加载论文资料库…' }}</p><el-button v-if="error" @click="boot">重新连接</el-button></div>
+      <div v-if="!meta" class="center-state"><p>{{ error || t('正在加载论文资料库…') }}</p><el-button v-if="error" @click="boot">{{ t("重新连接") }}</el-button></div>
       <template v-else>
-        <p v-if="active==='events'" class="publication-stamp">最近发布：{{ meta.publication?.published_at || '尚未发布' }} · 已核验公开数据</p>
+        <p v-if="active==='events'" class="publication-stamp">{{ t("最近发布：") }}{{ meta.publication?.published_at || t('尚未发布') }}{{ t(" · 已核验公开数据") }}</p>
         <SearchView v-if="active==='search'" :meta="meta" />
         <PaperOverviewView v-else-if="active==='overview'" :meta="meta" />
         <AwardEventsView v-else-if="active==='events'" :meta="meta" />

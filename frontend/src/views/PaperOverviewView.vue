@@ -1,4 +1,5 @@
 <script setup>
+import { t, locale } from '../i18n.js'
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { api, errMsg } from '../api.js'
 import RecordDetail from '../components/RecordDetail.vue'
@@ -45,15 +46,15 @@ async function load() {
 function reset() { Object.assign(filters, defaults()); sort.value = 'conference' }
 function openDetail(record) { selected.value = record; drawer.value = true }
 function authorSummary(record) {
-  if (!record.authors?.length) return record.authors_raw || '作者未提供'
+  if (!record.authors?.length) return record.authors_raw || t('作者未提供')
   const names = record.authors.map(author => author.name).filter(Boolean)
-  return names.slice(0, 2).join('、') + (names.length > 2 ? ` 等 ${names.length} 位` : '')
+  return names.slice(0, 2).join(locale.value === 'en' ? ', ' : '、') + (names.length > 2 ? (locale.value === 'en' ? ` · ${names.length} authors` : ` 等 ${names.length} 位`) : '')
 }
 function rowClass({ row, rowIndex }) {
   return sort.value === 'conference' && rowIndex > 0 && pageRows.value[rowIndex - 1].acronym !== row.acronym ? 'conference-start' : ''
 }
 function downloadCsv() {
-  const url = URL.createObjectURL(new Blob([overviewCsv(rows.value, props.meta.statuses)], { type: 'text/csv;charset=utf-8' }))
+  const url = URL.createObjectURL(new Blob([overviewCsv(rows.value, props.meta.statuses, locale.value)], { type: 'text/csv;charset=utf-8' }))
   const link = document.createElement('a')
   link.href = url
   link.download = `paper-overview-${new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Shanghai' })}.csv`
@@ -64,44 +65,44 @@ onMounted(load)
 </script>
 
 <template>
-  <section class="overview-workspace" aria-label="论文总览">
-    <PaperPageHeading title="论文总览" description="用紧凑表格批量筛查获奖论文；默认按会议 A–Z、年份从新到旧排列。" :meta="meta" />
+  <section class="overview-workspace" :aria-label="t(&quot;论文总览&quot;)">
+    <PaperPageHeading :title="t(&quot;论文总览&quot;)" :description="t(&quot;用紧凑表格批量筛查获奖论文；默认按会议 A–Z、年份从新到旧排列。&quot;)" :meta="meta" />
     <div class="overview-panel">
     <el-form label-position="top" size="small" class="overview-filters" @submit.prevent>
-      <el-form-item label="会议（可多选）" class="conference-filter">
-        <el-select v-model="filters.conferences" multiple filterable collapse-tags collapse-tags-tooltip :max-collapse-tags="2" clearable placeholder="全部已收录会议 · 输入简称查找">
-          <template #header><el-button text size="small" @click="filters.conferences = conferenceOptions.map(item => item.acronym)">全选会议</el-button><el-button text size="small" @click="filters.conferences = []">清空选择</el-button></template>
-          <el-option v-for="item in conferenceOptions" :key="item.acronym" :value="item.acronym" :label="item.label" />
+      <el-form-item :label="t(&quot;会议（可多选）&quot;)" class="conference-filter">
+        <el-select v-model="filters.conferences" multiple filterable collapse-tags collapse-tags-tooltip :max-collapse-tags="2" clearable :placeholder="t(&quot;全部已收录会议 · 输入简称查找&quot;)">
+          <template #header><el-button text size="small" @click="filters.conferences = conferenceOptions.map(item => item.acronym)">{{ t("全选会议") }}</el-button><el-button text size="small" @click="filters.conferences = []">{{ t("清空选择") }}</el-button></template>
+          <el-option v-for="item in conferenceOptions" :key="item.acronym" :value="item.acronym" :label="t(item.label)" />
         </el-select>
       </el-form-item>
-      <el-form-item label="CCF 等级"><el-select v-model="filters.rank" clearable placeholder="全部等级"><el-option label="CCF A" value="A" /><el-option label="CCF B" value="B" /></el-select></el-form-item>
-      <el-form-item label="奖项分类"><el-select v-model="filters.category" clearable placeholder="全部分类"><el-option v-for="(label, key) in meta.award_categories" :key="key" :value="key" :label="label" /></el-select></el-form-item>
-      <el-form-item label="获奖年份" class="year-filter"><div class="year-range"><el-input-number v-model="filters.year_from" placeholder="起始" :controls="false" /><span>—</span><el-input-number v-model="filters.year_to" placeholder="结束" :controls="false" /></div></el-form-item>
-      <el-form-item label="快速筛查" class="query-filter"><el-input v-model="filters.query" clearable placeholder="题名、作者、单位、奖项 · 多个关键词用空格分隔" /></el-form-item>
-      <el-form-item label="排列方式"><el-select v-model="sort"><el-option label="会议 A–Z / 年份倒序" value="conference" /><el-option label="年份从新到旧" value="year" /><el-option label="论文题名 A–Z" value="title" /></el-select></el-form-item>
-      <el-form-item v-if="!isPublic" label="核验状态"><el-select v-model="filters.status"><el-option v-for="(label, key) in meta.statuses" :key="key" :value="key" :label="label" /></el-select></el-form-item>
-      <div class="filter-reset"><el-button size="small" @click="reset">重置条件</el-button></div>
+      <el-form-item :label="t(&quot;CCF 等级&quot;)"><el-select v-model="filters.rank" clearable :placeholder="t(&quot;全部等级&quot;)"><el-option label="CCF A" value="A" /><el-option label="CCF B" value="B" /></el-select></el-form-item>
+      <el-form-item :label="t(&quot;奖项分类&quot;)"><el-select v-model="filters.category" clearable :placeholder="t(&quot;全部分类&quot;)"><el-option v-for="(label, key) in meta.award_categories" :key="key" :value="key" :label="t(label)" /></el-select></el-form-item>
+      <el-form-item :label="t(&quot;获奖年份&quot;)" class="year-filter"><div class="year-range"><el-input-number v-model="filters.year_from" :placeholder="t(&quot;起始&quot;)" :controls="false" /><span>—</span><el-input-number v-model="filters.year_to" :placeholder="t(&quot;结束&quot;)" :controls="false" /></div></el-form-item>
+      <el-form-item :label="t(&quot;快速筛查&quot;)" class="query-filter"><el-input v-model="filters.query" clearable :placeholder="t(&quot;题名、作者、单位、奖项 · 多个关键词用空格分隔&quot;)" /></el-form-item>
+      <el-form-item :label="t(&quot;排列方式&quot;)"><el-select v-model="sort"><el-option :label="t(&quot;会议 A–Z / 年份倒序&quot;)" value="conference" /><el-option :label="t(&quot;年份从新到旧&quot;)" value="year" /><el-option :label="t(&quot;论文题名 A–Z&quot;)" value="title" /></el-select></el-form-item>
+      <el-form-item v-if="!isPublic" :label="t(&quot;核验状态&quot;)"><el-select v-model="filters.status"><el-option v-for="(label, key) in meta.statuses" :key="key" :value="key" :label="t(label)" /></el-select></el-form-item>
+      <div class="filter-reset"><el-button size="small" @click="reset">{{ t("重置条件") }}</el-button></div>
     </el-form>
-    <p v-if="invalidYears" class="overview-error" role="alert">起始年份不能晚于结束年份，请调整年份范围。</p>
-    <div v-if="loadError" class="overview-error" role="alert">数据加载失败：{{ loadError }}<el-button link type="primary" @click="load">重试</el-button></div>
+    <p v-if="invalidYears" class="overview-error" role="alert">{{ t("起始年份不能晚于结束年份，请调整年份范围。") }}</p>
+    <div v-if="loadError" class="overview-error" role="alert">{{ t("数据加载失败：") }}{{ loadError }}<el-button link type="primary" @click="load">{{ t("重试") }}</el-button></div>
     <div class="overview-toolbar">
-      <div class="overview-summary" role="status" aria-live="polite"><strong>{{ rows.length.toLocaleString() }} 篇论文</strong><span>{{ stats.conferences }} 个会议<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
-      <div class="overview-tools"><el-checkbox v-model="expanded" size="small">展开长文本</el-checkbox><el-button size="small" :loading="loading" @click="load">刷新数据</el-button><el-button size="small" :disabled="loading || !!loadError || !rows.length" @click="downloadCsv">导出筛选结果 CSV</el-button></div>
+      <div class="overview-summary" role="status" aria-live="polite"><strong>{{ rows.length.toLocaleString() }}{{ t(" 篇论文") }}</strong><span>{{ stats.conferences }}{{ t(" 个会议") }}<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
+      <div class="overview-tools"><el-checkbox v-model="expanded" size="small">{{ t("展开长文本") }}</el-checkbox><el-button size="small" :loading="loading" @click="load">{{ t("刷新数据") }}</el-button><el-button size="small" :disabled="loading || !!loadError || !rows.length" @click="downloadCsv">{{ t("导出筛选结果 CSV") }}</el-button></div>
     </div>
     <div class="overview-table-shell" :class="{ expanded }">
-      <el-table :data="pageRows" row-key="id" v-loading="loading" size="small" border stripe :max-height="720" :row-class-name="rowClass" empty-text="暂无匹配论文，请调整筛选条件" class="overview-table">
-        <el-table-column label="会议 / 年份" width="125" fixed="left"><template #default="{ row }"><strong class="table-conference">{{ row.acronym }}</strong><div class="table-muted">{{ row.year }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></div></template></el-table-column>
-        <el-table-column label="论文题名" min-width="380"><template #default="{ row }"><a class="table-title clamped" :href="scholarUrl(row)" :title="`${row.title} · 在 Google Scholar 检索（外部网站）`" target="_blank" rel="noopener noreferrer">{{ row.title }}</a></template></el-table-column>
-        <el-table-column label="作者 / 单位" min-width="240"><template #default="{ row }"><span class="clamped" :title="authorText(row)">{{ expanded ? authorText(row) || '作者未提供' : authorSummary(row) }}</span><span v-if="affiliationText(row)" class="table-muted clamped" :title="affiliationText(row)">{{ affiliationText(row) }}</span></template></el-table-column>
-        <el-table-column label="分类 / 奖项原名" min-width="250"><template #default="{ row }"><span class="table-category">{{ row.category_label || meta.award_categories[row.category] || '其他获奖' }}</span><span class="table-muted clamped" :title="row.award_name || '来源未提供'">{{ row.award_name || '来源未提供' }}</span></template></el-table-column>
-        <el-table-column label="状态" width="80"><template #default="{ row }"><span class="table-status" :class="`status-${row.status}`">{{ meta.statuses[row.status] || row.status }}</span></template></el-table-column>
-        <el-table-column label="链接" width="90"><template #default="{ row }"><div class="table-links"><a v-if="externalPaperUrl(row)" :href="externalPaperUrl(row)" target="_blank" rel="noopener noreferrer">外部论文 ↗</a><a v-if="sourceUrl(row)" :href="sourceUrl(row)" target="_blank" rel="noopener noreferrer">来源 ↗</a><button @click="openDetail(row)">详情</button></div></template></el-table-column>
+      <el-table :data="pageRows" row-key="id" v-loading="loading" size="small" border stripe :row-class-name="rowClass" :empty-text="t(&quot;暂无匹配论文，请调整筛选条件&quot;)" class="overview-table">
+        <el-table-column :label="t(&quot;会议 / 年份&quot;)" width="125" fixed="left"><template #default="{ row }"><strong class="table-conference">{{ row.acronym }}</strong><div class="table-muted">{{ row.year }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></div></template></el-table-column>
+        <el-table-column :label="t(&quot;论文题名&quot;)" min-width="380"><template #default="{ row }"><a class="table-title clamped" :href="scholarUrl(row)" :title="t(`${row.title} · 在 Google Scholar 检索（外部网站）`)" target="_blank" rel="noopener noreferrer">{{ row.title }}</a></template></el-table-column>
+        <el-table-column :label="t(&quot;作者 / 单位&quot;)" min-width="240"><template #default="{ row }"><span class="clamped" :title="authorText(row)">{{ expanded ? authorText(row) || t('作者未提供') : authorSummary(row) }}</span><span v-if="affiliationText(row)" class="table-muted clamped" :title="affiliationText(row)">{{ affiliationText(row) }}</span></template></el-table-column>
+        <el-table-column :label="t(&quot;分类 / 奖项原名&quot;)" min-width="250"><template #default="{ row }"><span class="table-category">{{ t(row.category_label || meta.award_categories[row.category] || t('其他获奖')) }}</span><span class="table-muted clamped" :title="row.award_name || t('来源未提供')">{{ row.award_name || t('来源未提供') }}</span></template></el-table-column>
+        <el-table-column :label="t(&quot;状态&quot;)" width="80"><template #default="{ row }"><span class="table-status" :class="`status-${row.status}`">{{ t(meta.statuses[row.status] || row.status) }}</span></template></el-table-column>
+        <el-table-column :label="t(&quot;链接&quot;)" width="90"><template #default="{ row }"><div class="table-links"><a v-if="externalPaperUrl(row)" :href="externalPaperUrl(row)" target="_blank" rel="noopener noreferrer">{{ t("外部论文 ↗") }}</a><a v-if="sourceUrl(row)" :href="sourceUrl(row)" target="_blank" rel="noopener noreferrer">{{ t("来源 ↗") }}</a><button @click="openDetail(row)">{{ t("详情") }}</button></div></template></el-table-column>
       </el-table>
     </div>
     <PaperPagination v-model:page="page" v-model:page-size="pageSize" :total="rows.length" :disabled="loading" />
-    <div class="overview-bottom"><p>每行一篇论文，多项奖和来源合并显示；表格、分页及 CSV 使用同一论文数量。点击题名跳转 Google Scholar；本站仅提供外部链接，不托管论文文件。</p></div>
+    <div class="overview-bottom"><p>{{ t("每行一篇论文，多项奖和来源合并显示；表格、分页及 CSV 使用同一论文数量。点击题名跳转 Google Scholar；本站仅提供外部链接，不托管论文文件。") }}</p></div>
     </div>
-    <el-drawer v-model="drawer" size="min(760px, 100vw)" title="论文详情"><RecordDetail v-if="selected" :record="selected" :awards="meta.awards" /></el-drawer>
+    <el-drawer v-model="drawer" size="min(760px, 100vw)" :title="t(&quot;论文详情&quot;)"><RecordDetail v-if="selected" :record="selected" :awards="meta.awards" /></el-drawer>
   </section>
 </template>
 

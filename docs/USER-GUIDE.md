@@ -1,19 +1,27 @@
-# 使用指南
+# User guide
 
-## 查找与浏览论文
+**English** | [简体中文](USER-GUIDE.zh-CN.md)
 
-[在线数据库](http://47.107.172.42/)提供“论文检索”“论文总览”和“会议年度颁奖”三个入口，仅展示已核验数据。
+## Language and navigation
 
-“论文检索”按会议、CCF 等级、奖项、年份、题名、作者及单位组合筛选，默认每页 5 篇。“论文总览”以紧凑表格展示论文，支持会议多选、关键词即时筛查及排序，默认每页 10 篇。两页均可选择 5、10、15、20、30、50 篇，并输入页码跳转。
+The [website](http://47.107.172.42/) opens in Chinese for new visitors. Switch with **中文 | English** in the upper-right corner. The browser remembers your choice. [Open in English](http://47.107.172.42/?lang=en) or [open in Chinese](http://47.107.172.42/?lang=zh).
 
-表格按一篇论文一条统计，同一论文的多个奖项及来源合并展示；不同会议或年份的同名论文分别保留。CSV 导出全部筛选结果，不限当前页。“展开长文本”可查看折叠内容。
+The navigation order is **Paper overview → Annual conference awards → Paper search**. Paper overview is the default page. Switching languages keeps your current page and filters; it changes interface text, not source records.
 
-“会议年度颁奖”按会议、年度和奖项组织数据。没有记录的年度不代表没有设奖，也可能尚未收录。
+## Find papers
 
-## 来源与论文访问
+**Paper overview** provides a compact table with multiple-conference selection, instant keyword filters and sorting. It initially shows 10 papers per page. **Paper search** combines conference, CCF tier, award category, year, title, author, affiliation and publication-date filters; it initially shows 5 papers per page.
 
-详情页保留题名、已知作者及单位、奖项原名和来源依据；未知字段不推断补齐。官方授奖证据和聚合收录线索分别展示。
+Both views offer page sizes of 5, 10, 15, 20, 30 and 50, with direct page-number entry. One row represents one paper; multiple awards and sources are combined. Identically titled papers from different conferences or years remain separate.
 
-论文题名可跳转 Google Scholar；已知出版页面与官方获奖来源另外列出。本站不托管、镜像、代理或提供论文附件下载。外部网站的访问与版权要求由各自服务决定。
+CSV exports include every filtered result, not just the current page. Headers, generic categories and review labels follow the selected language. Paper titles, original award names, author and affiliation data retain their source values. Use **Expand long text** to show truncated fields in the overview.
 
-数据时间见网站和索引。发现错误时，请通过[项目 Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues)提供会议、年份、题名和官方来源。
+**Annual conference awards** organizes awards by conference and year. An absent year may mean that data has not yet been indexed; it does not establish that no award was given.
+
+## Sources and access
+
+Paper details show known authors and affiliations, original award names and provenance. Missing fields are not inferred. Official award evidence and aggregator listings are displayed separately.
+
+Titles link to Google Scholar. Known publisher pages and official award sources appear as separate links. This site does not host, mirror, proxy or distribute paper attachments; external access and copyright terms are controlled by the respective websites.
+
+The website and indices show the last data-publication time. Report corrections through [Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) or [peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com), including the conference, year, paper title and official source.

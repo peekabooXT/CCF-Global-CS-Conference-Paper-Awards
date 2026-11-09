@@ -248,10 +248,7 @@ def paper_provenance(conn, record_id, verified_only=True):
             self.conn = connection
 
         def search(self, **filters):
-            if verified_only:
-                from .public_db import Database
-            else:
-                from .db import Database
+            from .database import Database
             view = object.__new__(Database)
             view.conn = self.conn
             return view.search(**filters)

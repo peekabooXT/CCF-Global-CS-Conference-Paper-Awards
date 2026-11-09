@@ -1,4 +1,5 @@
 <script setup>
+import { t } from '../i18n.js'
 import { ref, reactive, onMounted, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import { api, errMsg } from '../api.js'
@@ -32,45 +33,45 @@ onMounted(() => load())
 
 <template>
   <div class="events-workspace">
-    <h2>会议年度奖项记录</h2>
-    <p class="hint">按会议与年份查看颁发了哪些奖项，以及各奖项已收录的获奖论文数量。保留官网原始奖名与证据；完整颁奖数量以官方来源为准。</p>
+    <h2>{{ t("会议年度奖项记录") }}</h2>
+    <p class="hint">{{ t("按会议与年份查看颁发了哪些奖项，以及各奖项已收录的获奖论文数量。保留官网原始奖名与证据；完整颁奖数量以官方来源为准。") }}</p>
     <el-form class="events-filters" @submit.prevent="load(true)">
-      <el-form-item label="会议"><el-input v-model="filters.venue" clearable placeholder="例如 SIGIR" /></el-form-item>
-      <el-form-item label="统一分类">
-        <el-select v-model="filters.category" clearable placeholder="全部分类">
-          <el-option v-for="(label, key) in props.meta.award_categories" :key="key" :label="label" :value="key" />
+      <el-form-item :label="t(&quot;会议&quot;)"><el-input v-model="filters.venue" clearable :placeholder="t(&quot;例如 SIGIR&quot;)" /></el-form-item>
+      <el-form-item :label="t(&quot;统一分类&quot;)">
+        <el-select v-model="filters.category" clearable :placeholder="t(&quot;全部分类&quot;)">
+          <el-option v-for="(label, key) in props.meta.award_categories" :key="key" :label="t(label)" :value="key" />
         </el-select>
       </el-form-item>
-      <el-form-item label="奖项 / 论文"><el-input v-model="filters.query" clearable placeholder="输入关键词" /></el-form-item>
+      <el-form-item :label="t(&quot;奖项 / 论文&quot;)"><el-input v-model="filters.query" clearable :placeholder="t(&quot;输入关键词&quot;)" /></el-form-item>
       <el-form-item class="events-filter-actions">
-        <el-button class="events-search-button" type="primary" native-type="submit" :loading="loading">检索</el-button>
+        <el-button class="events-search-button" type="primary" native-type="submit" :loading="loading">{{ t("检索") }}</el-button>
       </el-form-item>
     </el-form>
-    <p class="hint">共 {{ result.total }} 条会议年度奖项记录；“未映射”表示尚未可靠对应 CCF 会议目录。</p>
+    <p class="hint">{{ t("共 ") }}{{ result.total }}{{ t(" 条会议年度奖项记录；“未映射”表示尚未可靠对应 CCF 会议目录。") }}</p>
     <el-table :data="result.events" v-loading="loading" stripe style="width: 100%">
-      <el-table-column prop="year" label="年份" width="80" />
-      <el-table-column label="会议" width="150"><template #default="{ row }">{{ row.venue }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></template></el-table-column>
-      <el-table-column prop="official_award_name" label="原始奖项名称" min-width="300" />
-      <el-table-column prop="category_label" label="统一分类" width="150" />
-      <el-table-column label="已收录获奖论文数" width="150"><template #default="{ row }">{{ row.paper_count }}</template></el-table-column>
-      <el-table-column label="状态" width="90"><template #default="{ row }"><el-tag :type="row.status === 'verified' ? 'success' : 'warning'" size="small">{{ row.status === 'verified' ? '已核验' : '待核验' }}</el-tag></template></el-table-column>
-      <el-table-column label="操作" width="80"><template #default="{ row }"><el-button link type="primary" @click="openEvent(row.id)">查看</el-button></template></el-table-column>
+      <el-table-column prop="year" :label="t(&quot;年份&quot;)" width="80" />
+      <el-table-column :label="t(&quot;会议&quot;)" width="150"><template #default="{ row }">{{ row.venue }}<span v-if="row.rank"> · CCF-{{ row.rank }}</span></template></el-table-column>
+      <el-table-column prop="official_award_name" :label="t(&quot;原始奖项名称&quot;)" min-width="300" />
+      <el-table-column  :label="t(&quot;统一分类&quot;)" width="170"><template #default="{ row }">{{ t(row.category_label) }}</template></el-table-column>
+      <el-table-column :label="t(&quot;已收录获奖论文数&quot;)" width="150"><template #default="{ row }">{{ row.paper_count }}</template></el-table-column>
+      <el-table-column :label="t(&quot;状态&quot;)" width="90"><template #default="{ row }"><el-tag :type="row.status === 'verified' ? 'success' : 'warning'" size="small">{{ row.status === 'verified' ? t('已核验') : t('待核验') }}</el-tag></template></el-table-column>
+      <el-table-column :label="t(&quot;操作&quot;)" width="80"><template #default="{ row }"><el-button link type="primary" @click="openEvent(row.id)">{{ t("查看") }}</el-button></template></el-table-column>
     </el-table>
     <div class="pager"><el-pagination :current-page="page" :page-size="pageSize" :total="result.total" :disabled="loading" layout="prev, pager, next" @current-change="p => { offset = (p - 1) * pageSize; load() }" /></div>
-    <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.official_award_name || '会议年度奖项详情'">
+    <el-drawer v-model="drawer" size="min(760px, 92vw)" :title="selected?.official_award_name || t('会议年度奖项详情')">
       <template v-if="selected">
-        <p>{{ selected.venue }} · {{ selected.year }} · {{ selected.category_label }}<span v-if="selected.student_only"> · 学生奖</span></p>
-        <p class="hint">原始奖名与统一分类并列展示；分类不替代原始称谓。事件和论文关联分别保留核验状态。</p>
+        <p>{{ selected.venue }} · {{ selected.year }} · {{ t(selected.category_label) }}<span v-if="selected.student_only">{{ t(" · 学生奖") }}</span></p>
+        <p class="hint">{{ t("原始奖名与统一分类并列展示；分类不替代原始称谓。事件和论文关联分别保留核验状态。") }}</p>
         <el-divider />
         <article v-for="paper in selected.papers" :key="paper.annotation_id" class="paper">
           <h3>{{ paper.title }}</h3>
-          <p>核验状态：{{ paper.status === 'verified' ? '已核验' : '待核验' }}</p>
-          <p v-if="paper.authors_raw">作者（原文）：{{ paper.authors_raw }}</p>
-          <p v-else>作者：待补全</p>
-          <p><a :href="scholarUrl(paper)" target="_blank" rel="noopener noreferrer">Google Scholar 检索 ↗</a><template v-if="externalPaperUrl(paper)"> · <a :href="externalPaperUrl(paper)" target="_blank" rel="noopener noreferrer">外部论文 / 出版页面 ↗</a></template></p>
-          <p><a v-if="externalUrl(paper.source_url)" :href="externalUrl(paper.source_url)" target="_blank" rel="noopener noreferrer">奖项来源页</a> · {{ paper.annotation_id }}</p>
-          <p v-if="paper.note" class="hint">标注疑点：{{ paper.note }}</p>
-          <details v-if="paper.evidence.length"><summary>原文证据片段（{{ paper.evidence.length }}）</summary><ul><li v-for="(item, i) in paper.evidence" :key="i">{{ item.relation }}：{{ item.quote }}</li></ul></details>
+          <p>{{ t("核验状态：") }}{{ paper.status === 'verified' ? t('已核验') : t('待核验') }}</p>
+          <p v-if="paper.authors_raw">{{ t("作者（原文）：") }}{{ paper.authors_raw }}</p>
+          <p v-else>{{ t("作者：待补全") }}</p>
+          <p><a :href="scholarUrl(paper)" target="_blank" rel="noopener noreferrer">{{ t("Google Scholar 检索 ↗") }}</a><template v-if="externalPaperUrl(paper)"> · <a :href="externalPaperUrl(paper)" target="_blank" rel="noopener noreferrer">{{ t("外部论文 / 出版页面 ↗") }}</a></template></p>
+          <p><a v-if="externalUrl(paper.source_url)" :href="externalUrl(paper.source_url)" target="_blank" rel="noopener noreferrer">{{ t("奖项来源页") }}</a> · {{ paper.annotation_id }}</p>
+          <p v-if="paper.note" class="hint">{{ t("标注疑点：") }}{{ paper.note }}</p>
+          <details v-if="paper.evidence.length"><summary>{{ t("原文证据片段（") }}{{ paper.evidence.length }}）</summary><ul><li v-for="(item, i) in paper.evidence" :key="i">{{ item.relation }}：{{ item.quote }}</li></ul></details>
         </article>
       </template>
     </el-drawer>

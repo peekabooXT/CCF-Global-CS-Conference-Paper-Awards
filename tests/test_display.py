@@ -43,6 +43,15 @@ class DisplayTest(unittest.TestCase):
         finally:
             db.close()
 
+    def test_paper_details_can_load_linked_provenance(self):
+        from urllib.parse import quote
+        with patch('app.get_db', side_effect=lambda: Database(self.path)), TestClient(app.app) as client:
+            record = client.post('/api/search', json={}).json()['records'][0]
+            response = client.get('/api/papers/' + quote(record['id'], safe='') + '/sources')
+            self.assertEqual(response.status_code, 200)
+            self.assertIsInstance(response.json().get('listings'), list)
+            self.assertTrue(response.json().get('awards'))
+
     def test_management_endpoints_do_not_exist(self):
         with TestClient(app.app) as client:
             for endpoint in ['collect-stream', 'review', 'coverage', 'llm-models', 'seeds', 'publication/start', 'runs', 'duplicates/resolve']:

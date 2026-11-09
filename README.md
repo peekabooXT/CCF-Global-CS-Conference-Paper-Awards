@@ -1,59 +1,57 @@
 # CCF Global CS Conference Paper Awards
 
-**计算机领域获奖论文数据库**
+**English** | [简体中文](README.zh-CN.md)
 
-CCF Global CS Conference Paper Awards 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
+An index of award-winning papers from **China Computer Federation (CCF) A/B conferences**, with original award names and verifiable sources.
 
-## 浏览论文
+**[Browse the website](http://47.107.172.42/?lang=en)** · [中文网站](http://47.107.172.42/?lang=zh)
 
-**[访问在线数据库](http://47.107.172.42/)**
+The website opens in Chinese for new visitors. Use **中文 | English** in the upper-right corner to switch languages. Your choice is remembered by the browser. The interface language does not change paper titles, author names, original award names, evidence or the underlying records.
 
-也可以直接在 GitHub 浏览：
+## Explore the collection
 
-| 索引 | 内容 |
+The default page is **Paper overview**, followed by **Annual conference awards** and **Paper search**.
+
+- **Paper overview:** compact tables, multiple conference selection, instant keyword filtering and sorting. The default page size is 10.
+- **Annual conference awards:** awards and indexed winning papers grouped by conference and year.
+- **Paper search:** combine conference, CCF tier, award category, year, title, author, affiliation and publication-date filters. The default page size is 5.
+
+Both paper views support page sizes of 5, 10, 15, 20, 30 and 50. CSV exports include all filtered results, not just the current page; interface headers follow the selected language.
+
+You can also browse the versioned Markdown indices. These retain original-language bibliographic metadata and source links:
+
+| Index | Contents |
 | --- | --- |
-| [全部论文](AWARDS.md) | 按会议名称 A–Z 排序 |
-| [研究领域](docs/awards/BY_CATEGORY.md) | 按会议所属领域浏览 |
-| [获奖年份](docs/awards/BY_YEAR.md) | 按年度浏览 |
-| [奖项类型](docs/awards/BY_AWARD.md) | 最佳论文、最佳学生论文及其他奖项 |
+| [All papers](AWARDS.md) | Conferences in A–Z order |
+| [Research areas](docs/awards/BY_CATEGORY.md) | Conference research areas |
+| [Award years](docs/awards/BY_YEAR.md) | Year-by-year listings |
+| [Award categories](docs/awards/BY_AWARD.md) | Paper, student-paper and other awards |
 
-各索引标注数据更新时间和收录数量。网站提供“论文检索”“论文总览”“会议年度颁奖”三个入口：卡片检索适合逐篇阅读，论文总览用紧凑表格批量筛查，年度颁奖按会议和年份展示奖项与论文。论文总览支持会议多选、年份范围、关键词即时筛选和排序，可导出全部筛选结果 CSV，而不只是当前页。
+## Scope and provenance
 
-## 收录范围
+The catalogue follows the supplied **CCF 2026 A/B conference list**: 190 conferences, including 58 in tier A and 132 in tier B. Catalogue membership does not imply complete historical coverage, or the same CCF tier in every historical year. Actual coverage is shown by the records.
 
-会议目录以 **CCF 2026 年 A/B 类会议名单**为基础，共 190 个会议，其中 A 类 58 个、B 类 132 个。目录范围与已收录数据的覆盖范围不同，各会议的实际收录年份以网站和索引为准。
+Original names such as Best Paper, Best Student Paper, Outstanding Paper and Distinguished Paper are retained. Multiple awards and sources for one paper are combined in search results while preserving their associations. Unknown fields are marked as unknown rather than inferred.
 
-记录保留来源中的奖项原名，包含 Best Paper、Best Student Paper、Outstanding Paper、Distinguished Paper 等名称。同一篇论文获得不同奖项时，分别保留获奖关联。
+Sources include conference and organizer announcements, publisher pages, manually reviewed material and aggregators such as [Jeff Huang's Best Paper Awards](https://jeffhuang.com/best_paper_awards/). Official award evidence is distinguished from aggregator provenance. Verification applies to indexed records; it is not a completeness guarantee for a conference or year.
 
-论文信息包括题名、作者、作者单位、会议、获奖年份、奖项原名、发表时间和来源链接。字段以来源实际提供的信息为准；未公开或尚未补齐的信息标注为未知。
+This site does not host, mirror or distribute paper attachments. Titles link to Google Scholar; known publication pages and award sources are listed separately. Locally uploaded attachments are not included in public releases.
 
-## 数据来源与整理
+## Documentation and data
 
-数据来自会议和主办方的获奖公告、论文出版页面、人工整理资料，以及 [Jeff Huang 的 Best Paper Awards](https://jeffhuang.com/best_paper_awards/) 等聚合来源。
+- [User guide](docs/USER-GUIDE.md) · [中文使用指南](docs/USER-GUIDE.zh-CN.md)
+- [Data notes](docs/DATA.md) · [中文数据说明](docs/DATA.zh-CN.md)
+- [Run the viewer locally](docs/RUNNING.md) · [中文运行说明](docs/RUNNING.zh-CN.md)
+- [Reviewed data snapshot](data/exports/public-data.json) · [Publication manifest](data/exports/publication.json)
 
-我们在整理时核对来源、处理会议别名与重复条目，并保留原始来源信息。论文详情区分官方获奖证据和聚合收录线索；聚合来源没有给出奖项原名时，记录注明“来源未提供奖项原名”。
+This repository contains reviewed data, Markdown indices and a read-only viewer built with Python, SQLite and Vue. Collection, model calls, review administration and research experiments belong to the private maintainer repository.
 
-网站展示已核验的数据。“已核验”表示经过来源核对，不代表该会议历年的获奖论文已经全部收录。会议年份、论文发表时间和 CCF 分类年份也可能不同。
+## Corrections and contributions
 
-本站不托管、镜像或提供论文附件下载。论文总览的题名跳转 Google Scholar，公开的外部论文 / 出版页面与官方获奖来源分别列出；本地采集上传的文件不进入公开发布包。CSV 导出仅包含书目信息与链接。
+If you find errors, omissions or other problems, please contact the author at **[peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com)** or open an [issue](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues). Please include the conference, year, paper title and an official source when available.
 
-更多说明见 [使用指南](docs/USER-GUIDE.md)和[数据说明](docs/DATA.md)。
+## Acknowledgements
 
-## 反馈与补充
+We thank [Hunan University of Science and Technology](https://www.hnust.edu.cn/), its [School of Computer Science and Engineering](https://computer.hnust.edu.cn/), and the Hunan Provincial Key Laboratory of Service Computing and Novel Software Service Technologies for the learning and research environment.
 
-如果发现数据错误、遗漏或其他问题，请联系作者邮箱：[peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com)。如能附上相关论文、会议、年份及来源链接，将有助于核对和修正。
-
-
-欢迎通过 [Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) 提交缺失论文、信息更正和使用建议。补充数据时，请附上会议名称、获奖年份、论文题名及官方来源链接，便于核对。
-
-## 关于项目
-
-本仓库只提供已核验论文的数据快照、Markdown 索引和只读展示网站。网站采用 Python、SQLite 和 Vue 构建，不包含数据采集、模型调用、审核管理或研究实验代码。
-
-独立运行与校验方法见[运行说明](docs/RUNNING.md)。
-
-## 致谢
-
-感谢[湖南科技大学](https://www.hnust.edu.cn/)、[湖南科技大学计算机科学与工程学院](https://computer.hnust.edu.cn/)以及服务计算与软件服务新技术湖南省重点实验室提供的学习与科研环境。
-
-特别感谢[刘建勋](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050037/chinese/index.html)教授、[王焕宇](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050148/chinese/index.html)教授、[黄晶](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050135/chinese/index.html)教授在本项目建设过程中的帮助、指导与把关。谨向三位老师致以诚挚的谢意。
+Special thanks to Professors [Jianxun Liu](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050037/chinese/index.html), [Huanyu Wang](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050148/chinese/index.html) and [Jing Huang](https://faculty.hnust.edu.cn/pubtphp/jsjkxygcxy/1050135/chinese/index.html) for their help, guidance and review throughout the project.

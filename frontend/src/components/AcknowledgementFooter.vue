@@ -1,4 +1,5 @@
 <script setup>
+import { t, locale } from '../i18n.js'
 import universityLogo from '../assets/hnust.svg'
 import collegeLogo from '../assets/hnust-computer.png'
 defineProps({ publicVersion: Boolean })
@@ -18,26 +19,29 @@ const teachers = [
 <template>
   <footer class="acknowledgement-footer" :class="{ 'public-footer': publicVersion }">
     <div class="footer-summary">
-      <span>CCF Global CS Conference Paper Awards · 学术资料索引</span>
-      <span>{{ publicVersion ? '保留原始奖项与来源 · 数据由本地审核后发布' : '保留原始来源 · 缺失信息标注未知 · 核验状态可追溯' }}</span>
+      <span>{{ t("CCF Global CS Conference Paper Awards · 学术资料索引") }}</span>
+      <span>{{ publicVersion ? t('保留原始奖项与来源 · 数据由本地审核后发布') : t('保留原始来源 · 缺失信息标注未知 · 核验状态可追溯') }}</span>
     </div>
     <div class="footer-acknowledgements institution-acknowledgements">
-      <span class="acknowledgement-label">致谢</span>
-      <ul class="institution-list" aria-label="致谢单位">
+      <span class="acknowledgement-label">{{ t("致谢") }}</span>
+      <ul class="institution-list" :aria-label="t(&quot;致谢单位&quot;)">
         <li v-for="institution in institutions" :key="institution.name" :class="{ 'institution-logo-item': institution.logo }">
-          <a v-if="institution.url" :href="institution.url" :title="institution.title" :class="institution.logoClass" target="_blank" rel="noopener noreferrer">
-            <img v-if="institution.logo" :src="institution.logo" :alt="institution.name" :width="institution.width" :height="institution.height" />
-            <template v-else>{{ institution.name }}</template>
+          <a v-if="institution.url" :href="institution.url" :title="t(institution.title)" :class="institution.logoClass" target="_blank" rel="noopener noreferrer">
+            <img v-if="institution.logo" :src="institution.logo" :alt="t(institution.name)" :width="institution.width" :height="institution.height" />
+            <template v-else>{{ t(institution.name) }}</template>
           </a>
-          <span v-else>{{ institution.name }}</span>
+          <span v-else class="laboratory-mark" :class="{ 'is-english': locale === 'en' }" :aria-label="t(institution.name)">
+            <strong>{{ locale === 'zh' ? '服务计算与软件服务新技术' : 'Service Computing & Novel Software Service Technologies' }}</strong>
+            <small>{{ locale === 'zh' ? '湖南省重点实验室' : 'Hunan Provincial Key Laboratory' }}</small>
+          </span>
         </li>
       </ul>
     </div>
     <div class="footer-acknowledgements teacher-acknowledgements">
-      <span class="acknowledgement-label">特别致谢</span>
-      <ul aria-label="致谢老师的个人介绍">
+      <span class="acknowledgement-label">{{ t("特别致谢") }}</span>
+      <ul :aria-label="t(&quot;致谢老师的个人介绍&quot;)">
         <li v-for="teacher in teachers" :key="teacher.name">
-          <a :href="teacher.url" :title="`查看${teacher.name}老师的介绍（新窗口）`" target="_blank" rel="noopener noreferrer">{{ teacher.name }}</a>
+          <a :href="teacher.url" :title="t(`查看${teacher.name}老师的介绍（新窗口）`)" target="_blank" rel="noopener noreferrer">{{ t(teacher.name) }}</a>
         </li>
       </ul>
     </div>
@@ -58,12 +62,17 @@ a:hover{text-decoration:underline;color:#1476d4}
 a:focus-visible{outline:3px solid #90b8e6;outline-offset:3px;border-radius:2px}
 .institution-acknowledgements{align-items:flex-start;margin-top:20px}
 .institution-acknowledgements>.acknowledgement-label{padding-top:17px}
-.institution-list{align-items:center;gap:16px 28px;min-width:0;flex:1}
+.institution-list{align-items:center;gap:16px 22px;min-width:0;flex:1}
 .institution-logo-item{max-width:100%}
 .institution-list>li:last-child{flex-basis:auto}
 .university-mark{display:flex;align-items:center;min-height:58px}
 .university-mark img{display:block;width:190px;height:auto;max-width:100%}
 .college-mark{display:flex;align-items:center;width:418px;max-width:100%;padding:10px 12px;background:#123d70;border-radius:8px}
 .college-mark img{display:block;width:100%;height:auto;object-fit:contain}
-@media(max-width:760px){.acknowledgement-footer{padding:20px}.footer-summary{flex-direction:column}.footer-acknowledgements{gap:10px}ul{flex-direction:column;gap:6px}.institution-list{align-items:flex-start;gap:12px}.institution-list>li:last-child{flex-basis:auto}.institution-logo-item{width:100%}.college-mark{width:min(418px,100%)}.institution-acknowledgements>.acknowledgement-label{padding-top:16px}}
+.laboratory-mark{display:flex;flex-direction:column;justify-content:center;gap:3px;width:clamp(260px,23vw,340px);max-width:100%;min-height:62px;padding:9px 16px;border-radius:8px;background:#123d70;color:#fff;font-family:"Segoe UI","Microsoft YaHei",sans-serif;text-align:center}
+.laboratory-mark strong{font-size:18px;font-weight:500;line-height:1.4}
+.laboratory-mark small{font-size:13px;line-height:1.4;letter-spacing:.1em;color:#e5eef9}
+.laboratory-mark.is-english{padding:6px 12px;gap:2px}.laboratory-mark.is-english strong{font-size:15px;line-height:1.25}
+.laboratory-mark.is-english small{font-size:11px;line-height:1.25;letter-spacing:.02em}
+@media(max-width:760px){.acknowledgement-footer{padding:20px}.footer-summary{flex-direction:column}.footer-acknowledgements{gap:10px}ul{flex-direction:column;gap:6px}.institution-list{align-items:flex-start;gap:12px}.institution-list>li:last-child{flex-basis:auto}.institution-logo-item{width:100%}.college-mark,.laboratory-mark{width:min(418px,100%)}.institution-acknowledgements>.acknowledgement-label{padding-top:16px}}
 </style>

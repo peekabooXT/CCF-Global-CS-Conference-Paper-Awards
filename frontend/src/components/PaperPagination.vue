@@ -1,4 +1,5 @@
 <script setup>
+import { t } from '../i18n.js'
 import { PAGE_SIZES } from '../pagination.js'
 
 defineProps({
@@ -15,7 +16,7 @@ function changeSize(size) {
 </script>
 
 <template>
-  <div v-if="total" class="paper-pagination" role="navigation" aria-label="论文分页">
+  <div v-if="total" class="paper-pagination" role="navigation" :aria-label="t(&quot;论文分页&quot;)">
     <el-pagination
       :current-page="page" :page-size="pageSize" :page-sizes="PAGE_SIZES" :total="total"
       :disabled="disabled" :pager-count="5" layout="total, sizes, prev, pager, next, jumper"

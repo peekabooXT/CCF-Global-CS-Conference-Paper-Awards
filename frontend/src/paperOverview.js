@@ -1,3 +1,4 @@
+import { translate } from './translate.js'
 // Presentation-only helpers. Award identities and review status are never changed.
 import { externalPaperUrl, sourceUrl } from './paperLinks.js'
 const fold = value => String(value ?? '').normalize('NFKC').toLocaleLowerCase().trim().replace(/\s+/g, ' ')
@@ -55,16 +56,17 @@ export function overviewStats(records) {
   }
 }
 
-export function overviewCsv(records, statuses = {}) {
+export function overviewCsv(records, statuses = {}, language = 'zh') {
+  const tt = value => translate(value, language)
   const cell = value => {
     let text = String(value ?? '')
     // Prevent spreadsheet formula execution, including values with leading whitespace.
     if (/^\s*[=+@-]/.test(text) || /^[\t\r\n]/.test(text)) text = "'" + text
     return '"' + text.replaceAll('"', '""') + '"'
   }
-  const rows = [['会议', 'CCF', '获奖年份', '论文题名', '作者', '作者单位', '统一分类', '奖项原名', '核验状态', '发表日期', '论文或来源链接', '记录ID']]
+  const rows = [['会议', 'CCF', '获奖年份', '论文题名', '作者', '作者单位', '统一分类', '奖项原名', '核验状态', '发表日期', '论文或来源链接', '记录ID'].map(tt)]
   for (const record of records) rows.push([record.acronym, record.rank, record.year, record.title,
-    authorText(record), affiliationText(record), record.category_label, record.award_name || '来源未提供',
-    statuses[record.status] || record.status, record.publication_date || '未知', paperLink(record), record.id])
+    authorText(record), affiliationText(record), tt(record.category_label), record.award_name || tt('来源未提供'),
+    tt(statuses[record.status] || record.status), record.publication_date || tt('未知'), paperLink(record), record.id])
   return '\ufeff' + rows.map(row => row.map(cell).join(',')).join('\r\n')
 }

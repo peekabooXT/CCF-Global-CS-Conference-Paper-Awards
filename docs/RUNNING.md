@@ -1,10 +1,12 @@
-# 本地运行展示站
+# Run the reader website locally
 
-本仓库只提供已核验论文数据、索引和只读网站。运行时无需模型服务、账户凭据或写入型管理接口。
+**English** | [简体中文](RUNNING.zh-CN.md)
 
-## Python 后端
+The standalone viewer provides reviewed data, indices and a read-only website. It requires no model service, account credentials or write-enabled management API.
 
-使用 Python 3.12 或更新版本，建议在独立虚拟环境中安装依赖：
+## Python backend
+
+Use Python 3.12 or later, preferably in a virtual environment:
 
 ```powershell
 python -m pip install -r requirements-public.txt
@@ -12,9 +14,9 @@ python scripts/prepare_data.py
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-`prepare_data.py` 从版本化 JSON 创建 SQLite 文件；已有数据库时不会覆盖。更新数据前请先保存旧数据库，再准备新快照。
+`prepare_data.py` creates SQLite from the versioned JSON snapshot. It refuses to overwrite an existing database. Preserve the old database before preparing a newer snapshot.
 
-## 前端
+## Frontend
 
 ```powershell
 cd frontend
@@ -22,13 +24,15 @@ npm ci
 npm run build
 ```
 
-构建后重新启动后端，访问 `http://127.0.0.1:8000/`。开发时可运行 `npm run dev`，访问 `http://127.0.0.1:5173/`；请求转发到本机后端。
+Restart the backend after building, then visit `http://127.0.0.1:8000/`. For frontend development, use `npm run dev` and visit `http://127.0.0.1:5173/`; API requests are forwarded to the local backend.
 
-## 检查
+The initial language is Chinese. The upper-right language control switches immediately and persists the choice in browser storage. `?lang=en` or `?lang=zh` explicitly selects a language.
+
+## Validation
 
 ```powershell
 python scripts/validate_public_snapshot.py
 node --test frontend/tests/*.test.js
 ```
 
-校验检查已核验状态、论文数量、索引时间及数据库只读约束。网站只执行检索、浏览与 CSV 导出，不修改论文数据。
+Checks cover verified data, paper counts, index timestamps and database read-only constraints. Frontend tests include translation and CSV identity checks. The viewer searches, browses and exports data; it does not modify paper records.

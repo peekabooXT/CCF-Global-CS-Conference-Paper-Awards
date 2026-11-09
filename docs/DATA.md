@@ -1,39 +1,41 @@
-# 数据说明
+# Data notes
 
-## 会议目录与覆盖范围
+**English** | [简体中文](DATA.zh-CN.md)
 
-会议目录采用 CCF 2026 年 A/B 类会议分类，包含 190 个会议。分类用于当前浏览与筛选，不表示某会议在历史年份具有相同等级。
+## Catalogue and coverage
 
-目录中的会议并非每个年度都有完整数据。实际收录范围以各索引和在线检索结果为准，项目持续补充缺失年份与资料。
+The conference catalogue uses the supplied CCF 2026 A/B classification and contains 190 conferences. This classification supports current browsing and filtering; it does not imply the same tier in every historical year.
 
-## 记录与奖项
+Not every conference has complete data for every year. Actual coverage is defined by the records in the indices and search results. Missing years and sources remain subject to future collection and review.
 
-一条获奖记录描述某篇论文在某个会议年度获得的奖项。整理时统一会议别名、题名中的排版差异和已确认的重复条目，保留不同奖项的关联。
+## Records and awards
 
-奖项原名按来源保存。浏览分类将最佳论文和最佳学生论文单独列出；Outstanding、Distinguished 等论文奖也纳入相应论文奖分类，其他奖项保留在“其他获奖”中。分类用于检索，不改变来源中的原始奖名。
+An award record associates a paper with an award at a conference in a given year. Conference aliases, typographical title variants and confirmed duplicates are reconciled while distinct award associations are retained.
 
-部分聚合条目没有提供官方奖项原名。这类记录注明“来源未提供奖项原名”，其聚合收录信息与官方授奖证据分别展示。
+Original award names are preserved. Generic browsing categories distinguish paper awards, student-paper awards and other awards; relevant Outstanding and Distinguished paper awards are included in the corresponding categories. Categories facilitate retrieval and do not replace original names.
 
-## 字段含义
+Some aggregator listings do not supply an official award name. They are marked accordingly, and their collection provenance is kept separate from official award evidence.
 
-| 字段 | 含义 |
+## Fields
+
+| Field | Meaning |
 | --- | --- |
-| 获奖年份 | 来源记录的会议或授奖年度 |
-| 发表时间 | 论文出版信息中的日期，与获奖年份可能不同 |
-| 作者及单位 | 来源提供的姓名和机构信息；对应关系无法确认时保留原文 |
-| 核验状态 | 当前记录的来源核对状态 |
-| 来源 | 官方公告、出版页面或聚合收录页面 |
+| Award year | Conference or award year recorded by the source |
+| Publication date | Date in the publication metadata; it may differ from the award year |
+| Authors and affiliations | Sourced names and institutions; unmatched associations retain the original text |
+| Review status | Current source-verification status |
+| Source | Official announcement, publication page or aggregator listing |
 
-日期只精确到月份时保留月份，不补造具体日期。未知信息不会根据作者姓名、会议年份或其他条目推断补齐。
+Month-level dates remain month-level; no day is invented. Missing information is not inferred from an author name, a conference year or another record.
 
-## 核验与溯源
+## Verification and languages
 
-数据整理结合自动采集和人工核对。网站和公开索引展示已核验数据，保留可查阅的来源链接及关联信息。
+Collection combines automated discovery with manual source checks. The website and reader indices expose reviewed data and traceable source links. Verification is a statement about indexed records, not a completeness guarantee for a conference or year.
 
-核验针对已收录记录的来源，不构成某会议或年度完整性的保证。发现更正信息时，可通过[项目 Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) 提交官方依据。
+Chinese and English interfaces use the same snapshot and database. Language switching translates interface text, generic category labels and CSV headers. It does not modify or translate paper titles, original award names, authors, affiliations or quoted evidence.
 
-## 更新与数据文件
+## Versioned data
 
-网站与索引显示最近一次数据更新时间。仓库中的 [publication.json](../data/exports/publication.json) 记录版本、时间和统计；[public-data.json](../data/exports/public-data.json) 保存对应的数据快照。
+[publication.json](../data/exports/publication.json) records the release, timestamp and counts. [public-data.json](../data/exports/public-data.json) holds the corresponding snapshot. Presentation-only updates may change the deployed website commit without changing the data-publication timestamp.
 
-主要外部聚合来源包括 [Jeff Huang 的 Best Paper Awards](https://jeffhuang.com/best_paper_awards/)。具体记录以其详情中的来源为准。
+External aggregators include [Jeff Huang's Best Paper Awards](https://jeffhuang.com/best_paper_awards/). Consult each record's source links for its specific provenance. Send corrections with evidence through [Issues](https://github.com/peekabooXT/Global-CS-Paper-Awards/issues) or [email](mailto:peekaboocatx@gmail.com).
