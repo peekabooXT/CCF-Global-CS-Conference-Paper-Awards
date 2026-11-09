@@ -18,6 +18,8 @@ The default page is **Paper overview**, followed by **Annual conference awards**
 
 Both paper views support page sizes of 5, 10, 15, 20, 30 and 50. CSV exports include all filtered results, not just the current page; interface headers follow the selected language.
 
+The website uses a static snapshot generated at publication time. Browsing and filtering reuse a compressed index in the browser; evidence and award details load as separate static files when opened. Visitors do not wait for a server-side database query on each search or page change.
+
 You can also browse the versioned Markdown indices. These retain original-language bibliographic metadata and source links:
 
 | Index | Contents |

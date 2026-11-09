@@ -30,12 +30,13 @@ const conferenceOptions = computed(() => {
 })
 watch([filters, sort, pageSize], () => { page.value = 1 }, { deep: true })
 
-async function load() {
+async function load(force = false) {
+  if (force === true && props.meta.delivery === 'static') { window.location.reload(); return }
   if (loading.value) return
   loading.value = true
   loadError.value = ''
   try {
-    // Reuse the existing read-only search endpoint; local managers can inspect all statuses.
+    // Public readers reuse the published snapshot; managers query the local database.
     const result = await api.search({ status: isPublic ? 'verified' : 'all' })
     records.value = result.records
     page.value = 1
@@ -87,7 +88,7 @@ onMounted(load)
     <div v-if="loadError" class="overview-error" role="alert">{{ t("数据加载失败：") }}{{ loadError }}<el-button link type="primary" @click="load">{{ t("重试") }}</el-button></div>
     <div class="overview-toolbar">
       <div class="overview-summary" role="status" aria-live="polite"><strong>{{ rows.length.toLocaleString() }}{{ t(" 篇论文") }}</strong><span>{{ stats.conferences }}{{ t(" 个会议") }}<span v-if="stats.yearFrom != null"> · {{ stats.yearFrom }}–{{ stats.yearTo }}</span></span></div>
-      <div class="overview-tools"><el-checkbox v-model="expanded" size="small">{{ t("展开长文本") }}</el-checkbox><el-button size="small" :loading="loading" @click="load">{{ t("刷新数据") }}</el-button><el-button size="small" :disabled="loading || !!loadError || !rows.length" @click="downloadCsv">{{ t("导出筛选结果 CSV") }}</el-button></div>
+      <div class="overview-tools"><el-checkbox v-model="expanded" size="small">{{ t("展开长文本") }}</el-checkbox><el-button size="small" :loading="loading" @click="load(true)">{{ t("刷新数据") }}</el-button><el-button size="small" :disabled="loading || !!loadError || !rows.length" @click="downloadCsv">{{ t("导出筛选结果 CSV") }}</el-button></div>
     </div>
     <div class="overview-table-shell" :class="{ expanded }">
       <el-table :data="pageRows" row-key="id" v-loading="loading" size="small" border stripe :row-class-name="rowClass" :empty-text="t(&quot;暂无匹配论文，请调整筛选条件&quot;)" class="overview-table">

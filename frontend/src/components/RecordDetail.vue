@@ -115,7 +115,7 @@ const statusLabel = status => ({ verified: '已核验', pending: '待核验', re
 
     <el-collapse>
       <el-collapse-item :title="t(&quot;查看字段证据及原始记录&quot;)">
-        <pre class="raw">{{ JSON.stringify(record, null, 2) }}</pre>
+        <pre class="raw">{{ JSON.stringify(provenance?.record || record, null, 2) }}</pre>
       </el-collapse-item>
     </el-collapse>
   </div>
