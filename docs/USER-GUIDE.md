@@ -24,4 +24,4 @@ Paper details show known authors and affiliations, original award names and prov
 
 Titles link to Google Scholar. Known publisher pages and official award sources appear as separate links. This site does not host, mirror, proxy or distribute paper attachments; external access and copyright terms are controlled by the respective websites.
 
-The website and indices show the last data-publication time. Report corrections through [Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Paper-Awards/issues) or [peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com), including the conference, year, paper title and official source.
+The website and indices show the last data-publication time. Report corrections through [Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Best-Paper-Awards/issues) or [peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com), including the conference, year, paper title and official source.

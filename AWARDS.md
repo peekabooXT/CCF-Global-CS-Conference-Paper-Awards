@@ -1,4 +1,4 @@
-# CCF Global CS Conference Paper Awards：获奖论文索引
+# CCF Global CS Conference Best Paper Awards：获奖论文索引
 
 [会议/期刊字母排序](AWARDS.md) · [会议/期刊类别分类检索](docs/awards/BY_CATEGORY.md) · [年份分类检索](docs/awards/BY_YEAR.md) · [奖项分类检索](docs/awards/BY_AWARD.md)
 

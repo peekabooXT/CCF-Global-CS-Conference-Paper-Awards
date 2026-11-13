@@ -1,4 +1,4 @@
-# CCF Global CS Conference Paper Awards
+# CCF Global CS Conference Best Paper Awards
 
 **English** | [简体中文](README.zh-CN.md)
 
@@ -50,7 +50,7 @@ This repository contains reviewed data, Markdown indices and a read-only viewer 
 
 ## Corrections and contributions
 
-If you find errors, omissions or other problems, please contact the author at **[peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com)** or open an [issue](https://github.com/peekabooXT/CCF-Global-CS-Conference-Paper-Awards/issues). Please include the conference, year, paper title and an official source when available.
+If you find errors, omissions or other problems, please contact the author at **[peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com)** or open an [issue](https://github.com/peekabooXT/CCF-Global-CS-Conference-Best-Paper-Awards/issues). Please include the conference, year, paper title and an official source when available.
 
 ## Acknowledgements
 

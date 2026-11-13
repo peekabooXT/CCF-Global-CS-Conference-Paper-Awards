@@ -22,4 +22,4 @@
 
 论文题名可跳转 Google Scholar；已知出版页面与官方获奖来源另外列出。本站不托管、镜像、代理或提供论文附件下载。外部网站的访问与版权要求由各自服务决定。
 
-数据时间见网站和索引。发现错误时，请通过[项目 Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Paper-Awards/issues)提供会议、年份、题名和官方来源。
+数据时间见网站和索引。发现错误时，请通过[项目 Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Best-Paper-Awards/issues)提供会议、年份、题名和官方来源。

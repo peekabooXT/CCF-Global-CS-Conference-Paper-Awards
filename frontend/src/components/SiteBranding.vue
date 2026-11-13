@@ -8,10 +8,10 @@ defineEmits(['home'])
 
 <template>
   <div class="site-branding">
-    <a class="project-brand" href="#" :aria-label="t(&quot;CCF Global CS Conference Paper Awards 首页&quot;)" @click.prevent="$emit('home')">
+    <a class="project-brand" href="#" :aria-label="t(&quot;CCF Global CS Conference Best Paper Awards 首页&quot;)" @click.prevent="$emit('home')">
       <span class="project-mark" aria-hidden="true"><el-icon :size="27"><Reading /></el-icon></span>
       <span class="project-name">
-        <strong>CCF Global CS Conference Paper Awards</strong>
+        <strong>CCF Global CS Conference Best Paper Awards</strong>
         <small>{{ t("中国计算机学会A/B类会议最佳论文获奖资料库") }}</small>
       </span>
     </a>

@@ -1,10 +1,10 @@
-# CCF Global CS Conference Paper Awards
+# CCF Global CS Conference Best Paper Awards
 
 [English](README.md) | **简体中文**
 
 **中国计算机学会A/B类会议最佳论文获奖资料库**
 
-CCF Global CS Conference Paper Awards 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
+CCF Global CS Conference Best Paper Awards 整理计算机领域会议的获奖论文，提供按会议、研究领域、年份和奖项类型浏览与检索的入口。我们希望帮助研究者发现值得阅读的论文，也让每条收录记录的来源便于查证。
 
 新访客默认显示中文，可在网站右上角使用“中文 | English”即时切换；浏览器会记住所选语言。切换保留当前页面与筛选条件，论文、奖项原名和证据保持来源原文。
 
@@ -50,7 +50,7 @@ CCF Global CS Conference Paper Awards 整理计算机领域会议的获奖论文
 如果发现数据错误、遗漏或其他问题，请联系作者邮箱：[peekaboocatx@gmail.com](mailto:peekaboocatx@gmail.com)。如能附上相关论文、会议、年份及来源链接，将有助于核对和修正。
 
 
-欢迎通过 [Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Paper-Awards/issues) 提交缺失论文、信息更正和使用建议。补充数据时，请附上会议名称、获奖年份、论文题名及官方来源链接，便于核对。
+欢迎通过 [Issues](https://github.com/peekabooXT/CCF-Global-CS-Conference-Best-Paper-Awards/issues) 提交缺失论文、信息更正和使用建议。补充数据时，请附上会议名称、获奖年份、论文题名及官方来源链接，便于核对。
 
 ## 关于项目
 
